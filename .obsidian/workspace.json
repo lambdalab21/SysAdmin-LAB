@@ -14,12 +14,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Lab/06 Create a Development Environment.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "06 Create a Development Environment"
+              "title": "README"
             }
           }
         ]
@@ -201,9 +201,10 @@
       "bases:Create new base": false
     }
   },
-  "active": "eabd0120cd70fefa",
+  "active": "a61468e89823807e",
   "lastOpenFiles": [
-    "Lab/07 Deploy Static site Phase 1.md",
+    "Lab/06 SCP Deploy Troubleshooting.md",
+    "Lab/07 Setup nginx and Deploy Static site Phase 1.md",
     "Lab/06 Create a Development Environment.md",
     "Lab/07x Deploy Static Sites - Phase 1 LAB.md",
     "Lab/04 『How Linux Works』 Ch. 7 LAB.md",
