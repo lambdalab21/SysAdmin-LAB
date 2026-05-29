@@ -25,6 +25,16 @@ For a simple static site, `src/` and `dist/` may look almost the same at first. 
 - `dist/` = what is safe to deploy
 - `/var/www/site1/public/` = what Nginx serves
 
+## Git
+
+```bash
+cd site1
+git init
+git add .
+git commit -m "initial commit"
+git git remote add origin https://github.com
+git push -u origin main
+```
 
 ## Deployment
 

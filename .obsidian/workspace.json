@@ -96,7 +96,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 344.49999618530273
   },
   "right": {
     "id": "873b09bcfe580248",
@@ -201,7 +201,7 @@
       "bases:Create new base": false
     }
   },
-  "active": "a61468e89823807e",
+  "active": "eabd0120cd70fefa",
   "lastOpenFiles": [
     "Lab/07 Deploy Static site Phase 1.md",
     "Lab/06 Create a Development Environment.md",
