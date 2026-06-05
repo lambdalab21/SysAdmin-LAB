@@ -33,10 +33,6 @@ cat /etc/os-release
 uname -a
 ```
 
-He should record this in notes.
-
-Correction: “another _computer_,” not “another comuter.”
-
 ## 2. Set hostname
 
 ```bash
@@ -53,8 +49,8 @@ sudoedit /etc/hosts
 Add both machines:
 
 ```text
-192.168.1.50 app01
-192.168.1.51 db01
+192.168.0.107 app01
+192.168.0.102 db01
 ```
 
 Adjust IP addresses to match your actual network.
@@ -99,9 +95,9 @@ service account = runs the app
 Example:
 
 ```bash
-sudo adduser elliot
+sudo adduser isaac
 sudo adduser takashi
-sudo adduser brothername
+sudo adduser elliot
 
 sudo adduser takashi-admin
 sudo usermod -aG wheel takashi-admin
@@ -139,13 +135,13 @@ sudo systemctl status sshd
 From another machine:
 
 ```bash
-ssh elliot@app01
+ssh isaac@app01
 ```
 
 Set up SSH keys:
 
 ```bash
-ssh-copy-id elliot@app01
+ssh-copy-id isaac@app01
 ssh-copy-id takashi@app01
 ssh-copy-id takashi-admin@app01
 ```
