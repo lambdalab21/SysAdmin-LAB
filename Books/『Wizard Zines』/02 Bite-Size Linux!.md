@@ -2,9 +2,7 @@ He should do a **Linux scavenger hunt** and create a one-page “map of the mach
 
 The box-set description presents the zines as a way to understand what programs are doing, how Linux system parts communicate, and how to use tools already available on the machine. ([nostarch.com](https://nostarch.com/linuxtoolbox))
 
-More natural wording: **“Is there anything he should do after reading _Bite-Size Linux!_?”**
-
-Do not assign another book immediately. Make him inspect the Ubuntu and AlmaLinux machines.
+Make him inspect the Ubuntu and AlmaLinux machines.
 
 # Goal
 
