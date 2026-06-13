@@ -1,5 +1,3 @@
-The guided lab did not fail. It produced a useful diagnosis boundary.
-
 He has already proven that this is **not primarily a firewall, routing, port, or password-authentication problem**. The logs show:
 
 ```text
@@ -17,354 +15,6 @@ pam_motd(sshd:session): unknown option: =/etc/ssh/motd
 ```
 
 Those lines narrow the investigation to the SSH PAM session stack, likely `/etc/pam.d/sshd` or a PAM file included from it. They do **not yet prove the exact broken line**, so he should inspect and compare before editing.
-
-This is exactly where 急がば回れ matters.
-
-# 1. Improvements he should make in his lab work
-
-## A. Read log lines literally
-
-He missed evidence that was directly in front of him.
-
-He wrote:
-
-> Did the log mention the client IP address? No.
-
-But the log contains:
-
-```text
-Accepted password for deploy from 192.168.0.107 port 38652 ssh2
-```
-
-The client IP is:
-
-```text
-192.168.0.107
-```
-
-He wrote:
-
-> Did the log mention the username? No.
-
-But the same line contains:
-
-```text
-for deploy
-```
-
-The username is:
-
-```text
-deploy
-```
-
-This is the first habit to correct:
-
-> Do not answer from memory. Quote the exact log line and point to the exact words that support the answer.
-
-## B. Distinguish authentication from session setup
-
-He classified the failure as authentication failure because he saw:
-
-```text
-Permission denied
-```
-
-That was too fast.
-
-The earlier line says:
-
-```text
-Accepted password for deploy
-```
-
-That means password authentication succeeded.
-
-The later failure is:
-
-```text
-pam_open_session(): Permission denied
-```
-
-PAM separates authentication from session management. `pam_open_session()` sets up a session for a user who has already authenticated successfully. ([man7.org](https://man7.org/linux/man-pages/man3/pam.3.html?utm_source=chatgpt.com "pam(3) - Linux manual page"))
-
-The correct sequence is:
-
-```text
-TCP connection succeeded
-→ sshd answered
-→ password authentication succeeded
-→ PAM began session setup
-→ PAM session setup failed
-→ SSH closed the connection
-```
-
-He should have followed the branch:
-
-```text
-Authentication succeeded, but session closed.
-```
-
-not:
-
-```text
-Authentication failed.
-```
-
-## C. Write a falsifiable hypothesis
-
-He wrote:
-
-```text
-Initial hypothesis: Didn't work.
-```
-
-That is not a hypothesis. It cannot be tested.
-
-A good hypothesis would be:
-
-```text
-Password authentication succeeds, but a PAM session module used by sshd
-rejects remote session setup. Because multiple users fail remotely while
-local login works, the issue is probably system-wide SSH PAM session
-configuration rather than a deploy-specific account problem.
-```
-
-A useful hypothesis must predict what another test will show.
-
-## D. Use commands that answer the actual question
-
-He wrote that the `takashi` account was locked because an incorrect password returned permission denied.
-
-That does not prove the account is locked. It proves only that an incorrect password was rejected.
-
-Use:
-
-```bash
-sudo passwd -S takashi
-sudo chage -l takashi
-```
-
-Questions must be paired with evidence-producing commands.
-
-|Question|Better command|
-|---|---|
-|Does the user exist?|`getent passwd takashi`|
-|Is the account locked?|`sudo passwd -S takashi`|
-|Is the account expired?|`sudo chage -l takashi`|
-|What shell is assigned?|`getent passwd deploy \| cut -d: -f7`|
-|Did password authentication succeed?|read `Accepted password` log line|
-|Did session setup fail?|read `pam_open_session()` log line|
-
-## E. Do not use `echo $SHELL` as the main account check
-
-He used:
-
-```bash
-echo $SHELL
-```
-
-That reports the current shell environment variable. It may be useful, but it is not the authoritative account record.
-
-Use:
-
-```bash
-getent passwd deploy
-```
-
-or:
-
-```bash
-getent passwd deploy | cut -d: -f7
-```
-
-The final field from the account database is the configured login shell.
-
-## F. Do not contradict evidence collected earlier
-
-Later, he wrote:
-
-> Did TCP connection succeed? No.
-
-But this cannot be correct if the server logged:
-
-```text
-Accepted password for deploy from 192.168.0.107 port 38652 ssh2
-```
-
-TCP connection, SSH handshake, and password authentication must all have succeeded before the server could log that line.
-
-This is a major troubleshooting discipline:
-
-> Every new conclusion must remain compatible with earlier evidence.
-
-## G. Use the debug command correctly
-
-He used:
-
-```bash
-ssh -vvv -E 192.168.0.107-ssh-debug.log deploy@192.168.0.107.xxx
-```
-
-There are two issues:
-
-1. The destination appears malformed:
-    
-
-```text
-192.168.0.107.xxx
-```
-
-2. `-E logfile` sends debug output to the file, so little or nothing may appear on the terminal.
-    
-
-Use:
-
-```bash
-ssh -vvv -E app01-ssh-debug.log deploy@192.168.0.107
-```
-
-Then read:
-
-```bash
-tail -n 60 app01-ssh-debug.log
-```
-
-The OpenSSH client documents `-v` as verbose diagnostic output for connection, authentication, and configuration troubleshooting. ([man7.org](https://man7.org/linux/man-pages/man1/ssh.1.html?utm_source=chatgpt.com "ssh(1) - Linux manual page"))
-
-## H. Do not change unrelated settings just because the command succeeds
-
-He wrote:
-
-```bash
-sudo firewall-cmd --remove-service=ssh
-```
-
-and observed:
-
-```text
-success
-```
-
-That command succeeded in changing the firewall configuration. It did not fix the original problem because the original problem was occurring **after** the connection reached `sshd`.
-
-Worse, removing the firewall rule can create a new problem and obscure the old one.
-
-The correct question before running a command is:
-
-> What hypothesis does this command test?
-
-If the answer is unclear, do not run it.
-
-# 2. Comments and responses for him
-
-Here is the feedback I would give him directly.
-
-## What he did well
-
-He correctly:
-
-- reproduced the problem while following `sshd` logs;
-    
-- captured the final meaningful error:
-    
-    ```text
-    PAM: pam_open_session(): Permission denied
-    ```
-    
-- tested a second account;
-    
-- tested local login using:
-    
-    ```bash
-    sudo -iu deploy
-    ```
-    
-- verified that `/etc/nologin` does not exist;
-    
-- recognized that the remote session opens and closes immediately;
-    
-- kept investigating instead of blindly reinstalling the operating system.
-    
-
-Those are good instincts.
-
-## What he should improve next
-
-He needs to slow down at the classification step.
-
-The log line:
-
-```text
-Accepted password for deploy
-```
-
-means authentication succeeded.
-
-The line:
-
-```text
-session opened for user deploy
-```
-
-means PAM started session handling.
-
-The line:
-
-```text
-pam_open_session(): Permission denied
-```
-
-means session setup failed.
-
-The suspicious lines immediately before it mention PAM parsing and unsupported `pam_motd` options. The next job is not to experiment with the firewall. The next job is to inspect the PAM configuration used by `sshd`.
-
-Linux PAM configuration files list modules and describe what PAM should do if a module succeeds or fails. The standard format is:
-
-```text
-module_interface  control_flag  module_name  module_arguments
-```
-
-For example:
-
-```text
-session  optional  pam_motd.so
-```
-
-Red Hat documents this PAM configuration structure, including the distinction between interfaces such as `auth`, `account`, and `session`. ([Red Hat Documentation](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/system-level_authentication_guide/pam_configuration_files?utm_source=chatgpt.com "10.2. About PAM Configuration Files"))
-
-The `pam_motd` module displays a message of the day after successful login. The warnings mentioning unsupported options suggest that at least one PAM configuration line deserves inspection. ([man7.org](https://man7.org/linux/man-pages/man8/pam_motd.8.html?utm_source=chatgpt.com "pam_motd(8) - Linux manual page"))
-
-Do not immediately delete the suspicious lines. First find them, compare them to a known-good AlmaLinux configuration, and explain what is wrong.
-
-# 3. Follow-up lab: isolate the PAM session failure
-
-# Follow-Up Lab: Isolate the SSH PAM Session Failure
-
-## Goal
-
-Determine why remote SSH login closes after password authentication succeeds.
-
-Do not guess. Use logs, configuration inspection, package verification, and a known-good control machine.
-
-## Current evidence
-
-The server logs show:
-
-```text
-Accepted password for deploy from 192.168.0.107 port 38652 ssh2
-pam_unix(sshd:session): session opened for user deploy by (uid=0)
-error: PAM: pam_open_session(): Permission denied
-```
-
-The logs also show:
-
-```text
-PAM pam_parse: expecting return value; [...optimal]
-pam_motd(sshd:session): unknown option: noupdate
-pam_motd(sshd:session): unknown option: =/etc/ssh/motd
-```
-
 ## Current working hypothesis
 
 Write this in your lab journal:
@@ -379,7 +29,6 @@ account problem, firewall problem, or TCP problem.
 ```
 
 ---
-
 # Part 1: Preserve Evidence Before Changing Anything
 
 At the physical console of `app01`:
@@ -387,14 +36,13 @@ At the physical console of `app01`:
 ```bash
 mkdir -p ~/ssh-pam-lab
 ```
-
 Save recent SSH logs:
 
 ```bash
 sudo journalctl -u sshd.service --since "30 minutes ago" \
   > ~/ssh-pam-lab/sshd-journal-before.txt
 ```
-
+^ Error: `File is neither a device node, nor regular file, nor executable: /home/ifujimoto/ssh`
 ```bash
 sudo cp -a /var/log/secure ~/ssh-pam-lab/secure-before.txt
 ```
@@ -413,14 +61,12 @@ sudo cp -a /etc/ssh ~/ssh-pam-lab/ssh-before
 
 ## Questions
 
-1. Why make backups before editing?
+1. Why make backups before editing? In case something goes wrong so we can go back to when/where it worked well.
     
-2. Which files contain evidence?
+2. Which files control behavior? Plain-text configuration files. 
     
-3. Which files control behavior?
-    
-4. How are evidence files different from configuration files?
-    
+3. How are evidence files different from configuration files?
+    Configuration files decide how an application behaves while an evidence file records what users or applications perform.
 
 ---
 
@@ -441,7 +87,6 @@ sudo tail -f /var/log/secure
 From the development machine:
 
 ```bash
-date
 ssh deploy@192.168.0.107
 ```
 
@@ -449,15 +94,15 @@ Record the exact timestamp and all new log lines.
 
 ## Questions
 
-1. Does the server log `Accepted password`?
+1. Does the server log `Accepted password`? Yes.
     
-2. Does it log `session opened`?
+2. Does it log `session opened`? Yes. 
     
-3. Does it log `pam_open_session(): Permission denied`?
+3. Does it log `pam_open_session(): Permission denied`? Yes. 
     
-4. Are the `pam_motd` warnings reproducible?
+4. Are the `pam_motd` warnings reproducible? Yes. 
     
-5. Does the parser warning appear on every SSH attempt?
+5. Does the parser warning appear on every SSH attempt? Yes. 
     
 
 ---
@@ -478,7 +123,7 @@ Save it:
 sudo nl -ba /etc/pam.d/sshd \
   > ~/ssh-pam-lab/sshd-pam-numbered.txt
 ```
-
+^ Even after saving the output, when I cat the file it doesn't return anything. Tried many times.
 Search all PAM configuration files for the suspicious terms from the logs:
 
 ```bash
@@ -495,22 +140,7 @@ sudo grep -RniE \
   /etc/pam.d \
   > ~/ssh-pam-lab/pam-suspicious-lines.txt
 ```
-
-## Questions
-
-1. Which file contains `pam_motd.so`?
-    
-2. Which line contains `noupdate`?
-    
-3. Which line contains `motd`?
-    
-4. Does any line contain `optimal` instead of `optional`?
-    
-5. Does the log warning match a configuration line exactly?
-    
-6. Was this line added manually?
-    
-
+^ Even after saving the output, when I cat the file it doesn't return anything. Tried many times.
 ## Important
 
 Do not edit yet.
@@ -528,6 +158,7 @@ Why it appears suspicious:
 
 Log line that points to it:
 ```
+Unable to read any file other than secure-before even after redoing all the steps a few times. There are no errors in the 'save to file' steps, yet typing out `sudo cat file.txt` for any of the files other than secure-before.txt returns nothing. 
 
 ---
 
@@ -629,13 +260,14 @@ sudo grep -RniE \
 
 ## Questions
 
-1. Does `/etc/pam.d/sshd` contain the suspicious line directly?
+1. Does `/etc/pam.d/sshd` contain the suspicious line directly? It included many files that are labeled either 'substack' or 'include'. Those files are: 
+	1. password-auth
+	2. postlogin
+	There are replicas of these files twice.
+	
+2. Is the failure SSH-specific?
     
-2. Does it inherit the line from another file?
-    
-3. Is the failure SSH-specific?
-    
-4. Could the same broken PAM file affect other login methods?
+3. Could the same broken PAM file affect other login methods?
     
 
 ---
@@ -647,13 +279,17 @@ Identify which package owns the SSH PAM file:
 ```bash
 rpm -qf /etc/pam.d/sshd
 ```
+^ openssh-server-8.0p1-29.e18_10.x86_64
 
 Verify the installed OpenSSH server package:
 
 ```bash
 rpm -V openssh-server
 ```
-
+^ 
+S.5....T. c /etc/pam.d/sshd
+S.?....T. c /etc/sshd/sshd_config
+..?...... c /etc/sysconfig/sshd
 Record the output:
 
 ```bash
@@ -666,11 +302,11 @@ Check the authentication profile:
 ```bash
 authselect current
 ```
-
+^ No existing configuration detected.
 ```bash
 authselect check
 ```
-
+^ System was not configured with authselect.
 Save:
 
 ```bash
@@ -680,20 +316,18 @@ authselect check   > ~/ssh-pam-lab/authselect-check.txt
 
 ## Questions
 
-1. Which package owns `/etc/pam.d/sshd`?
+1. Does RPM verification report that the file differs from the packaged version? Yes.
     
-2. Does RPM verification report that the file differs from the packaged version?
+2. Does `authselect check` report a valid configuration? Yes. 
     
-3. Does `authselect check` report a valid configuration?
-    
-4. Are `system-auth` or `password-auth` generated by `authselect`?
-    
-5. Do any files say:
+3. Are `system-auth` or `password-auth` generated by `authselect`? Yes. 
+     
+4. Do any files say:
     
     ```text
     Do not modify this file manually
     ```
-    
+    No. 
 
 ## Important
 
@@ -726,6 +360,11 @@ rpm -q almalinux-release
 rpm -q openssh-server
 rpm -q pam
 ```
+Almalinux:
+1.) almalinux-release-8.10-1.el8.x86_64
+2.) openssh-server-8.0p1-29.el8_10.x86_64
+3.) pam-1.3.1-33.el8.x86_64
+
 
 On `alma-control`, save:
 
@@ -743,19 +382,6 @@ You may copy the files to the development machine and run:
 ```bash
 diff -u alma-control-sshd app01-sshd
 ```
-
-## Questions
-
-1. Which lines differ?
-    
-2. Are the suspicious `pam_motd` options present on the control machine?
-    
-3. Is `optimal` present on the control machine?
-    
-4. Does the control machine allow SSH login?
-    
-5. Which difference most plausibly explains the log warnings?
-    
 
 ## Lesson
 
@@ -856,16 +482,13 @@ sudo tail -n 50 /var/log/secure
 
 ## Questions
 
-1. Did the `pam_motd` warnings disappear?
+1. Did the `pam_motd` warnings disappear? No.
     
-2. Did `pam_open_session()` succeed?
+2. Did `pam_open_session()` succeed? No. 
     
-3. Did the SSH shell remain open?
+3. Did the SSH shell remain open? No. 
     
-4. Did both `deploy` and `takashi` work?
-    
-5. What evidence proves the fix?
-    
+4. Did both `deploy` and `takashi` work? No. 
 
 ---
 
@@ -876,7 +499,7 @@ From the development machine:
 ```bash
 ssh -vvv -E app01-ssh-debug.log deploy@192.168.0.107
 ```
-
+^Connection Closed. 
 Read the saved output:
 
 ```bash
@@ -885,7 +508,7 @@ tail -n 60 app01-ssh-debug.log
 
 ## Questions
 
-1. Why did debug output go to a file?
+1. Why did debug output go to a file? 
     
 2. Which line indicates successful authentication?
     
@@ -895,44 +518,6 @@ tail -n 60 app01-ssh-debug.log
     
 5. How does the successful debug output differ from the earlier failed attempt?
     
-
----
-
-# Part 12: Write the Final Incident Report
-
-Complete:
-
-```text
-Symptom:
-
-First useful log line:
-
-Authentication succeeded or failed?
-
-Session setup succeeded or failed?
-
-Incorrect initial assumption:
-
-Evidence that disproved it:
-
-Suspicious PAM warnings:
-
-Configuration file inspected:
-
-Difference from known-good control:
-
-Root cause:
-
-Smallest change made:
-
-Verification command:
-
-Verification log lines:
-
-How to undo the change:
-
-What I would do differently next time:
-```
 
 ---
 
@@ -966,7 +551,7 @@ Explain:
     
 13. Why keep the physical-console session open?
     
-14. What evidence proved the final fix?
+14. What evidence proved the final fix? 
     
 
 # Likely direction, without pretending certainty
@@ -980,17 +565,4 @@ pam_motd(sshd:session): unknown option: =/etc/ssh/motd
 pam_open_session(): Permission denied
 ```
 
-`pam_motd` is a PAM module that displays login messages after successful authentication. Its accepted behavior and options depend on the installed implementation. ([man7.org](https://man7.org/linux/man-pages/man8/pam_motd.8.html?utm_source=chatgpt.com "pam_motd(8) - Linux manual page"))
-
-Do not tell him to delete the `pam_motd` line immediately.
-
-Make him prove:
-
-1. where the line came from;
-    
-2. how it differs from the AlmaLinux default;
-    
-3. whether correcting that one line removes both the warning and the login failure.
-    
-
-That is the difference between fixing a machine and learning infrastructure.
+`pam_motd` is a PAM module that displays login messages after successful authentication. Its accepted behavior and options depend on the installed implementation. ([man7.org](https://man7.org/linux/man-pages/man8/pam_motd.8.html?utm_source=chatgpt.com "pam_motd(8) - Linux manual page")) 
