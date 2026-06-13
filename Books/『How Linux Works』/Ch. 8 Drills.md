@@ -983,19 +983,19 @@ sudo rm -rf /tmp/ch8-private
 
 Use this schedule rather than doing all drills once.
 
-|Day|Work|
-|---|---|
-|Day 1|Drills 1–3: PIDs, jobs, signals, `top`|
-|Day 2|CPU experiments: `yes`, load average, `nice`, `renice`|
-|Day 3|Memory: `free`, controlled Python allocation|
-|Day 4|I/O: `vmstat`, `iostat`, safe `dd` test|
-|Day 5|`lsof`, sockets, occupied-port experiment|
-|Day 6|`strace`: success, missing file, permission denied|
-|Day 7|No commands: verbal recall only|
-|Day 9|Repeat tool-matching drill and one mystery challenge|
-|Day 12|Repeat two random experiments|
-|Day 16|Diagnose all four mystery challenges without notes|
-|Day 30|Five-minute verbal review plus one random challenge|
+| Day    | Work                                                   |
+| ------ | ------------------------------------------------------ |
+| Day 1  | Drills 1–3: PIDs, jobs, signals, `top`                 |
+| Day 2  | CPU experiments: `yes`, load average, `nice`, `renice` |
+| Day 3  | Memory: `free`, controlled Python allocation           |
+| Day 4  | I/O: `vmstat`, `iostat`, safe `dd` test                |
+| Day 5  | `lsof`, sockets, occupied-port experiment              |
+| Day 6  | `strace`: success, missing file, permission denied     |
+| Day 7  | No commands: verbal recall only                        |
+| Day 9  | Repeat tool-matching drill and one mystery challenge   |
+| Day 12 | Repeat two random experiments                          |
+| Day 16 | Diagnose all four mystery challenges without notes     |
+| Day 30 | Five-minute verbal review plus one random challenge    |
 
 # Exit criteria before Ward Ch. 9
 
