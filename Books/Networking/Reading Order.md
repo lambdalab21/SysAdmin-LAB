@@ -182,15 +182,15 @@ Her _**How DNS Works**_ zine is especially useful because DNS has difficult term
 
 ## Compact reading plan
 
-|Stage|Resource|Reading style|
-|---|---|---|
-|1|Julia Evans: _Networking! ACK!_|Casual preview|
-|2|Shotts: Chapter 16|Read and run commands|
-|3|Julia Evans: _Bite Size Networking_|Read alongside Shotts|
-|4|Ward: Chapter 9|Read carefully; explain concepts|
-|5|Ward: Chapter 10|Connect concepts to SSH, nginx, and other services|
-|6|Lucas: _Networking for System Administrators_, 2nd edition|Read gradually with troubleshooting experiments|
-|7|Julia Evans: DNS, HTTP, sockets, and `tcpdump` resources|Revisit when relevant|
+| Stage | Resource                                                   | Reading style                                      |
+| ----- | ---------------------------------------------------------- | -------------------------------------------------- |
+| 1     | Julia Evans: _Networking! ACK!_                            | Casual preview                                     |
+| 2     | Shotts: Chapter 16                                         | Read and run commands                              |
+| 3     | Julia Evans: _Bite Size Networking_                        | Read alongside Shotts                              |
+| 4     | Ward: Chapter 9                                            | Read carefully; explain concepts                   |
+| 5     | Ward: Chapter 10                                           | Connect concepts to SSH, nginx, and other services |
+| 6     | Lucas: _Networking for System Administrators_, 2nd edition | Read gradually with troubleshooting experiments    |
+| 7     | Julia Evans: DNS, HTTP, sockets, and `tcpdump` resources   | Revisit when relevant                              |
 
 ## Where _Network Basics for Hackers_ fits
 
