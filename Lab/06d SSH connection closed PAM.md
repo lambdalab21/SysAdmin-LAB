@@ -148,15 +148,15 @@ Do not edit yet.
 First write:
 
 ```text
-Suspicious file:
+Suspicious file: /etc/pam.d/postlogin
 
-Suspicious line number:
+Suspicious line number: Around the pam_motd entry
 
-Exact line:
+Exact line: session optimal pam_motd.so noupdate=/etc/ssh/motd
 
-Why it appears suspicious:
+Why it appears suspicious: Unknown options like noupdate, =etc/ssh/motd. Parser error indicates that there's some incompatible syntax for AlmaLinux's pam_motd.
 
-Log line that points to it:
+Log line that points to it: pam_motd(sshd:session): unknown option... and pam_parse: expecting return value. 
 ```
 Unable to read any file other than secure-before even after redoing all the steps a few times. There are no errors in the 'save to file' steps, yet typing out `sudo cat file.txt` for any of the files other than secure-before.txt returns nothing. 
 
@@ -193,28 +193,28 @@ Label the fields in every suspicious line.
 Write:
 
 ```text
-Interface:
+Interface: session
 
-Control flag:
+Control flag: optional
 
-Module:
+Module:pam_motd.so
 
-Arguments:
+Arguments: noupdate =/etc/ssh/motd
 ```
 
 ## Questions
 
-1. Is the interface `auth`, `account`, `password`, or `session`?
+1. Is the interface `auth`, `account`, `password`, or `session`? session
     
-2. Is the control flag spelled correctly?
+2. Is the control flag spelled correctly? no. Parser fails. 
     
-3. Is `optional` written correctly?
+3. Is `optional` written correctly? Yes, but context and arguments may be wrong. 
     
-4. Are square-bracket control expressions complete?
+4. Are square-bracket control expressions complete? Incomplete or broken. 
     
-5. Are module arguments valid for this version of `pam_motd`?
+5. Are module arguments valid for this version of `pam_motd`? No.
     
-6. Is the syntax from Ubuntu documentation being used on AlmaLinux?
+6. Is the syntax from Ubuntu documentation being used on AlmaLinux? Yes. 
     
 
 ## Lesson
@@ -265,9 +265,9 @@ sudo grep -RniE \
 	2. postlogin
 	There are replicas of these files twice.
 	
-2. Is the failure SSH-specific?
+2. Is the failure SSH-specific? No. 
     
-3. Could the same broken PAM file affect other login methods?
+3. Could the same broken PAM file affect other login methods? Yes, it could break other PAM-using logins. 
     
 
 ---
@@ -394,19 +394,17 @@ A known-good control case is stronger than guessing.
 Complete:
 
 ```text
-The likely root cause is:
+The likely root cause is: Malformed/incompatible pam_motd.so line in a session stack file, causing pam_open_session() to fail with Permission Denied. 
 
-The evidence is:
+The evidence is: Exact log warnings match unknown options. Another piece of evidence is that the authorization succeeds, but the actual session does not. 
 
-The file to edit is:
+The file to edit is: /etc/pam.d/postlogin. 
 
-The exact line to change is:
+The control machine shows: Default Linux files without noupdate or malformed args. 
 
-The control machine shows:
+The smallest safe change is: Comment the line out or to change it to session optional pam_motd.so.
 
-The smallest safe change is:
-
-How I will undo the change:
+How I will undo the change: Restoring it from a .bak timestamped copy or as pam.d-before. 
 ```
 
 Do not proceed until each field is complete.
@@ -508,15 +506,15 @@ tail -n 60 app01-ssh-debug.log
 
 ## Questions
 
-1. Why did debug output go to a file? 
+1. Why did debug output go to a file? -E redirects verbose client debugs to a file instead of stdout. 
     
-2. Which line indicates successful authentication?
+2. Which line indicates successful authentication? Lines like 'Authentication succeeded'. 
     
-3. Which line indicates that a session was requested?
+3. Which line indicates that a session was requested? PAM/session setup messages. 
     
-4. Which line indicates normal session closure after typing `exit`?
+4. Which line indicates normal session closure after typing `exit`? A message like "connection closed" cleanly returning after an exit. 
     
-5. How does the successful debug output differ from the earlier failed attempt?
+5. How does the successful debug output differ from the earlier failed attempt? Failed has early closure after PAM error. 
     
 
 ---
@@ -525,33 +523,33 @@ tail -n 60 app01-ssh-debug.log
 
 Explain:
 
-1. Why did `Accepted password` prove that authentication succeeded?
+1. Why did `Accepted password` prove that authentication succeeded? It proves password authentication passed before session setups. 
     
-2. Why did `pam_open_session()` move the investigation to PAM session handling?
+2. Why did `pam_open_session()` move the investigation to PAM session handling? 
     
-3. Why was the firewall not the main suspect?
+3. Why was the firewall not the main suspect? The Authentication succeeded but closed. Earlier, the firewall would block it. 
     
-4. Why did testing a second user matter?
+4. Why did testing a second user matter? Rules out that the user is the problem, not the machine. 
     
-5. Why did successful local login matter?
+5. Why did successful local login matter? Isolates to remote/SSH-specific PAM stacks. 
     
-6. Why was `echo $SHELL` weaker than `getent passwd deploy`?
+6. Why was `echo $SHELL` weaker than `getent passwd deploy`? Checks NSS/PAM account data. 
     
-7. Why did `ssh -E logfile` appear silent?
+7. Why did `ssh -E logfile` appear silent? -E sends output to files. 
     
-8. Why was `192.168.0.107.xxx` an invalid test target?
+8. Why was `192.168.0.107.xxx` an invalid test target? Invalid hostname, it didn't resolve or match any target. 
     
-9. What is the structure of a PAM configuration line?
+9. What is the structure of a PAM configuration line? Interface control_flag module arguments. 
     
-10. What is the difference between `auth` and `session` in PAM?
+10. What is the difference between `auth` and `session` in PAM? Auth verifies identity and session manages the environment afterwards. 
     
-11. Why compare against a known-good AlmaLinux control VM?
+11. Why compare against a known-good AlmaLinux control VM? To spot differences in the distribution. 
     
-12. Why make the smallest possible edit?
+12. Why make the smallest possible edit? Minimizes risk of breaking other services. 
     
-13. Why keep the physical-console session open?
+13. Why keep the physical-console session open? Safety net if remove SSH dies. 
     
-14. What evidence proved the final fix? 
+14. What evidence proved the final fix? (Still pending.) No PAM errors, successful remote shell. 
     
 
 # Likely direction, without pretending certainty
