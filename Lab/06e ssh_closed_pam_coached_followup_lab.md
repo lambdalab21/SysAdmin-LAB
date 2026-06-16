@@ -1,4 +1,4 @@
-# SSH Connection Closed: Coached Follow-Up Lab
+
 
 ## Purpose
 
@@ -31,12 +31,6 @@ PAM pam_parse: expecting return value; [...optimal]
 pam_motd(sshd:session): unknown option: noupdate
 pam_motd(sshd:session): unknown option: =/etc/ssh/motd
 ```
-
-## Big coaching message
-
-Slow down here.
-
-Do not treat this as “SSH is broken.” That is too vague.
 
 You already know several things work:
 
@@ -107,12 +101,12 @@ Take time here.
 
 This line contains four pieces of evidence:
 
-| Evidence | Meaning |
-|---|---|
+| Evidence            | Meaning                           |
+| ------------------- | --------------------------------- |
 | `Accepted password` | password authentication succeeded |
-| `deploy` | the username was recognized |
-| `192.168.0.107` | the client IP reached the server |
-| `ssh2` | SSH protocol negotiation happened |
+| `deploy`            | the username was recognized       |
+| `192.168.0.107`     | the client IP reached the server  |
+| `ssh2`              | SSH protocol negotiation happened |
 
 ## Do not rush past this conclusion
 
@@ -129,13 +123,13 @@ port 22 unreachable
 ## Write this answer
 
 ```text
-Evidence line:
+Evidence line:Accepted password for deploy from 192.168.0.107 port 38652 ssh2
 
-Authentication succeeded because:
+Authentication succeeded because: SSH accepted the password and PAM authentication passed. 
 
-This rules out:
+This rules out: Incorrect passwords, unreachable server, firewall block, sshd down.
 
-This does not yet prove:
+This does not yet prove: That the session fully opened or that the shell had started. 
 ```
 
 Expected thinking:
@@ -156,33 +150,24 @@ pam_unix(sshd:session): session opened for user deploy by (uid=0)
 error: PAM: pam_open_session(): Permission denied
 ```
 
-Slow down here.
-
-The word `session` matters.
-
-PAM has different stages. Do not mix them up.
-
-```text
-auth      = prove who you are
-account   = check whether the account is allowed
-password  = change/manage password
-session   = set up the login session after authentication
-```
-
-Your failure is not at `auth`.
+Your failure is during session
 
 Your failure is during `session`.
 
 ## Write this answer
 
 ```text
-The failure occurs during which PAM stage?
+The failure occurs during which PAM stage? Session. 
 
-The evidence is:
+The evidence is: `pam_unix(sshd:session): session opened` followed by `error: PAM: pam_open_session(): Permission denied.`
 
-Why this is different from wrong password:
+Why this is different from wrong password: Password authorization succeeded; but the failure is after auth during environment setup. 
 
 What files probably control this stage:
+/etc/pam.d/sshd
+/etc/pam.d/postlogin
+/etc/pam.d/password-auth
+/etc/pam.d/system-auth
 ```
 
 Expected direction:
@@ -229,11 +214,6 @@ substack
 optional
 ```
 
-## Coaching point
-
-A one-letter typo in a PAM file can break logins.
-
-This is why you do not copy configuration from random instructions without reading it.
 
 ## Find it
 
@@ -252,22 +232,12 @@ sudo grep -Rni 'optional' /etc/pam.d
 ## Write this answer
 
 ```text
-Command:
-
+Command: sudo grep -Rni 'optimal' /etc/pam.d (and the optional one).
 Exact file and line containing `optimal`:
-
-Exact line:
-
-What I think the typo should be:
-
-Why I think so:
+/etc/pam.d/sshd:15:session
+/etc/pam.d/sshd.bak.20260613
+/etc/pam.d/sshd.bak.Y0613-144700:15:session
 ```
-
-## Stop point
-
-Do not edit yet.
-
-First prove where the line is and what it says.
 
 ---
 
@@ -307,34 +277,13 @@ sudo grep -RniE 'noupdate|motd' /etc/pam.d
 ## Write this answer
 
 ```text
-File:
-
-Line number:
-
-Exact line:
-
-Interface:
-
-Control flag:
-
-Module:
-
-Arguments:
+File: /etc/pam.d/sshd
+/etc/pam.d/sshd:15:session
+/etc/pam.d/sshd:16:session
+/etc/pam.d/sshd.bak.20260613-130Z12:15:session
+/etc/pam.d/sshd.bak.20260613-130Z12:16:session
+/etcpam.d/sshd.bak.Y0613-144700:16:session
 ```
-
-Example structure:
-
-```text
-session  optional  pam_motd.so  argument1 argument2
-```
-
-## Slow down here
-
-Do not just say “the line is wrong.”
-
-Break the line into fields.
-
-If you cannot identify the interface, control flag, module, and arguments, you are not ready to edit it.
 
 ---
 
@@ -358,6 +307,7 @@ Now run:
 echo TEST > ~/ssh-pam-lab/test-output.txt
 cat ~/ssh-pam-lab/test-output.txt
 ```
+(First line returns Permission Denied regardless of sudo used or not.)
 
 Expected:
 
@@ -369,8 +319,11 @@ Now test command output redirection:
 
 ```bash
 sudo nl -ba /etc/pam.d/sshd > ~/ssh-pam-lab/sshd-pam-numbered.txt
-ls -l ~/ssh-pam-lab/sshd-pam-numbered.txt
+(Permission Denied)
+ls -l ~/ssh-pam-lab/sshd-pam-numbered.txt 
+(-rw-r--r--. 1 root root 0 Jun 13 12:26 /home/user/ssh-pam-lab/sshd-pam-numbered.txt)
 wc -l ~/ssh-pam-lab/sshd-pam-numbered.txt
+(0 /home/user/ssh-pam-lab/sshd-pam-numbered.txt)
 sed -n '1,80p' ~/ssh-pam-lab/sshd-pam-numbered.txt
 ```
 
@@ -420,26 +373,23 @@ But for this lab, keep output under:
 ## Write this answer
 
 ```text
-My current directory:
+My current directory: /home/user
 
-My current user:
+My current user: ifujimoto
 
-Does simple redirection work?
+Does simple redirection work? No. Files empty despite no error.
 
-Does `nl -ba /etc/pam.d/sshd` print to screen?
+Does `nl -ba /etc/pam.d/sshd` print to screen? Yes. 
 
-Does the saved file have more than 0 lines?
-
-If not, what exact command did I type?
+Does the saved file have more than 0 lines? No. 
 ```
 
 ---
 
 # Part 6: Compare with a Known-Good Control Before Editing
 
-This is where you practice `急がば回れ`.
-
 Do not edit based only on suspicion.
+
 
 Use your control AlmaLinux VM.
 
@@ -486,15 +436,15 @@ substack
 ## Write this answer
 
 ```text
-The control machine differs from app01 in this file:
+The control machine differs from app01 in this file: /etc/pam.d/sshd
 
-Exact differing line on app01:
+Exact differing line on app01: session optimal pam_motd.so noupdate =/etc/ssh/motd.
 
-Exact corresponding line on control:
+Exact corresponding line on control: Session optional pam_motd.so
 
-Which log message points to this difference:
+Which log message points to this difference: pam_parse: expecting return value; [...optimal] and pam_motd ... unknown option: noupdate
 
-Why this difference could cause pam_open_session() to fail:
+Why this difference could cause pam_open_session() to fail: The parser fails invalid control flag "optimal". The whole session module returns Permission Denied. 
 ```
 
 ## Stop point
@@ -544,18 +494,19 @@ then the smaller safer test may be to match the control machine.
 Write:
 
 ```text
-I will edit this file:
+I will edit this file: /etc/pam.d/sshd
 
-I will change this exact line:
+I will change this exact line: Line 15, the one with optimal.
 
-From:
+From: session optimal pam_motd.so noupdate=/etc/ssh/motd
 
-To:
+To: session optional pam_motd.so
 
-Why this is the smallest change:
+Why this is the smallest change: Only fixes clear typo and removes invalid arguments. Matches control machine. 
 
-How I will undo it:
+How I will undo it: Restore from the timestamped .bak
 ```
+**^The above worked. SSH to 192.168.0.107 works now.** 
 
 Then back up the exact file:
 
@@ -564,12 +515,6 @@ sudo cp -a /etc/pam.d/postlogin /etc/pam.d/postlogin.bak.$(date +%Y%m%d-%H%M%S)
 ```
 
 Replace `/etc/pam.d/postlogin` with the actual file you will edit.
-
-## Coaching warning
-
-Do not edit `/etc/pam.d/sshd` if the suspicious line is actually in `/etc/pam.d/postlogin`.
-
-Edit the file that contains the bad line.
 
 ---
 
@@ -620,27 +565,22 @@ pam_open_session(): Permission denied
 ```text
 After the edit, remote SSH login:
 
-Did `Accepted password` appear?
+Did `Accepted password` appear? Yes. 
 
-Did `session opened` appear?
+Did `session opened` appear? Yes. 
 
-Did `pam_open_session(): Permission denied` appear?
+Did `pam_open_session(): Permission denied` appear? No.
 
-Did `pam_motd unknown option` appear?
+Did `pam_motd unknown option` appear? No. 
 
-Final conclusion:
+Final conclusion: Fix successful, SSH works. 
 ```
 
 ---
 
 # Part 9: If the First Edit Does Not Fix It
 
-Do not panic.
-
-Do not start changing unrelated files.
-
-Return to the evidence.
-
+**Skipped since it did fix it.** 
 Run:
 
 ```bash
@@ -748,33 +688,31 @@ That is the standard you are aiming for.
 Complete this after the next attempt:
 
 ```text
-Symptom:
+Symptom: SSH Connection Closed after Password 
 
-Strongest log evidence:
+Strongest log evidence: Accepted password + pam_unix session opened + pam_open_session(): Permission denied.
 
-Failure stage:
+Failure stage:PAM Session
 
-Wrong assumptions I almost made:
+Wrong assumptions I almost made: Firewall, password, routing, and user-specific details. 
 
-Exact suspicious PAM file:
+Exact suspicious PAM file:etc/pam.d/sshd
 
-Exact suspicious line:
+Exact suspicious line: Session Optimal pam_motd.so noupdate =/etc/ssh/motd
 
-Known-good control line:
+Known-good control line:Session optional pam_motd.so
 
-Smallest edit made:
+Smallest edit made: Changed "Optimal" to "Optional" and removed bad arguments. 
 
-Backup file created:
+Backup file created: /etc/pam.d/sshd.bak
 
-Test command:
+Test command:ssh deploy@192.168.0.107
 
-Post-fix logs:
+Post-fix logs:Clean
 
-Did SSH login work?
+Did SSH login work? Yes. 
 
-Did PAM warnings disappear?
+Did PAM warnings disappear? Yes. 
 
-Root cause:
-
-One thing I learned about troubleshooting:
+Root cause: Try "optimal" instead of "optional" + Ubuntu-style pam_motd options on AlmaLinux
 ```
