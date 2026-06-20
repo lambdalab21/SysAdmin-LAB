@@ -1,24 +1,5 @@
 # The Linux Command Line, Chapter 18: Archiving and Backup
 
-Chapter 18 is best split into pieces. Do not read it in one sitting and expect the commands to stick.
-
-Main habit:
-
-```text
-A backup is not real until you can restore from it.
-```
-
-Disciplined thinking pattern for this chapter:
-
-```text
-1. What am I trying to preserve?
-2. Am I compressing one file or archiving many files?
-3. Where is the backup going?
-4. How can I list or inspect the backup before trusting it?
-5. Can I restore it into a separate directory?
-6. Did I verify the restored files?
-```
-
 One-time setup:
 
 ```bash
@@ -87,15 +68,15 @@ tar = put many files and directories into one archive file
 Compression is like squeezing the box smaller. That comes later.
 
 ---
-
-## Before touching the keyboard
-
 Answer:
 
-1. What is the difference between copying a directory and archiving it?
-2. Why should you list an archive before extracting it?
-3. Why is extracting into a separate restore directory safer?
-4. What do `c`, `t`, and `x` mean in `tar`?
+1. What is the difference between copying a directory and archiving it? Copying duplicates files and folders individually while archiving bundles them into a single file. 
+2. Why should you list an archive before extracting it? To see contents and paths to avoid unexpected outcomes. 
+3. Why is extracting into a separate restore directory safer? It prevents accidental overwriting of original files if the archive contains unexpected structure. 
+4. What do `c`, `t`, and `x` mean in `tar`? 
+C: Create(New Archive)
+T: Table(List)
+X: Extract
 
 ---
 
@@ -123,16 +104,6 @@ Verbose list:
 ```bash
 tar tvf backup/project.tar
 ```
-
-Say aloud:
-
-```text
-c = create
-t = table/list
-x = extract
-f = archive file
-```
-
 ---
 
 ## Drill 1: Extract safely
@@ -171,13 +142,6 @@ Expected result:
 ```text
 No output if the directories match.
 ```
-
-Say aloud:
-
-```text
-No diff output means no differences were found.
-```
-
 ---
 
 ## Drill 3: Archive only selected files
@@ -195,60 +159,13 @@ Question:
 ```text
 Did this archive include src/app.py?
 ```
-
-Expected answer:
-
-```text
-No. It archived only project/config.
-```
-
----
-
-## Disciplined thinking checkpoint
-
-Before creating an archive, write:
-
-```text
-What exact path am I archiving?
-Where will the archive be saved?
-How will I list it?
-Where will I test extraction?
-```
-
----
-
-## Explain to a ten-year-old
-
-Explain:
-
-```bash
-tar cf backup/project.tar project
-```
-
-Use:
-
-```text
-tar is like a box.
-project is...
-backup/project.tar is...
-The c means...
-The f means...
-```
-
+No. It only archived project/config. 
 ---
 
 ## Checkpoint
 
-He understands Day 2 only if he can answer:
-
-1. What does `tar cf archive.tar directory` do?
-2. What does `tar tf archive.tar` do?
-3. What does `tar xf archive.tar` do?
-4. Why should extraction be tested in a restore directory?
-5. Why is `tar` not automatically compression?
-
----
-
-## Cleanup
-
-Keep the archive for later days.
+1. What does `tar cf archive.tar directory` do? It creates an archive of the directory. 
+2. What does `tar tf archive.tar` do? It lists contents of the archive. 
+3. What does `tar xf archive.tar` do? It extracts the archive. 
+4. Why should extraction be tested in a restore directory? Extraction should be tested in a restore directory to avoid overwriting originals. 
+5. Why is `tar` not automatically compression? Tar enables automatic compression(Not "automatically compression".) because it focuses on building. Compression is optional and separate. 

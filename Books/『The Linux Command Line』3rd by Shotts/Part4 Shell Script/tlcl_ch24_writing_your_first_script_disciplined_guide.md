@@ -1,43 +1,5 @@
 # TLCL Chapter 24 Guide — Writing Your First Script
-
-A cleaner phrasing: “Please create a downloadable Markdown file to guide reading Chapter 24, ‘Writing Your First Script.’ Use the Feynman method if applicable, and make sure he does not just type the instructions mindlessly.”
-
-Use this guide with William Shotts’s *The Linux Command Line*, Chapter 24.
-
-Chapter 24 is the beginning of shell scripting. The goal is not to “type a script from the book.” The goal is to understand that a script is a saved sequence of shell commands that can be inspected, improved, tested, and reused.
-
 ---
-
-# Main discipline for this chapter
-
-Before running any script, the student must answer:
-
-```text
-1. What problem is this script supposed to solve?
-2. What command would I type manually to solve it once?
-3. What lines are in the script?
-4. What does each line do?
-5. What output do I expect?
-6. What could go wrong?
-7. How will I verify the result?
-```
-
-Rule:
-
-```text
-If I cannot explain the script line by line, I should not run it yet.
-```
-
----
-
-# Feynman analogy: a script is a recipe
-
-A shell script is like a cooking recipe.
-
-A command typed at the prompt is like saying:
-
-```text
-Do this one step now.
 ```
 
 A script is like writing several steps on a recipe card:
@@ -59,22 +21,6 @@ Step 4: show disk usage
 ```
 
 The computer follows the recipe exactly. If the recipe is unclear, dangerous, or wrong, the computer does not “understand what you meant.” It does what you wrote.
-
----
-
-# Suggested reading split
-
-Do not read Chapter 24 as one passive reading. Split it into three sessions.
-
-| Session | Reading focus | Practice focus |
-|---|---|---|
-| Session 1 | What a script is; creating the first script | Write, read, and run a tiny script |
-| Session 2 | Shebang, executable permission, PATH | Understand how the shell finds and runs scripts |
-| Session 3 | Editing, testing, improving, and debugging habits | Build a useful mini-report script |
-
-If he is comfortable, this can be done in 2–3 days. If he is new to scripting, use 4–5 days with review.
-
----
 
 # One-time setup
 
@@ -105,9 +51,9 @@ cat script-notes.txt
 Before moving on, answer:
 
 ```text
-Where am I working?
-What files exist here?
-Why am I using a practice directory instead of random places in my home directory?
+Where am I working? ~/tlcl-ch24-scripts
+What files exist here? script-notes.txt. 
+Why am I using a practice directory instead of random places in my home directory? Keep work isolated, safe, and organized. 
 ```
 
 ---
@@ -126,21 +72,6 @@ commands saved in a file
 running commands in order
 using an editor
 ```
-
-Do not worry yet about making the script executable. First understand that the script is just text.
-
----
-
-## Feynman explanation before reading
-
-Explain this to a ten-year-old:
-
-```text
-When I type commands one at a time, I am giving the computer instructions now.
-When I put those commands in a file, I am saving the instructions so I can run them again later.
-That file is called a script.
-```
-
 ---
 
 ## Before typing: predict the manual commands
@@ -149,17 +80,6 @@ Suppose the goal is:
 
 ```text
 Show a small system report.
-```
-
-What manual commands could answer this?
-
-Write your guess first:
-
-```text
-Command to show current date:
-Command to show current user:
-Command to show current directory:
-Command to show hostname:
 ```
 
 Expected commands:
@@ -185,12 +105,7 @@ Question:
 ```text
 If I can run these manually, why save them in a script?
 ```
-
-Expected idea:
-
-```text
-A script lets me repeat the same steps reliably.
-```
+To reuse them easily, run them together with one command, and document repeatable steps. 
 
 ---
 
@@ -234,14 +149,12 @@ cat hello-report
 Now answer:
 
 ```text
-Line 1 means:
-Line 3 means:
-Line 5 means:
-Line 7 means:
-Line 9 means:
+Line 1 means: Shebang. Use /bin/bash to interpret. 
+Line 3 means: Comment. This is ignored by the shell. 
+Line 5 means: Prints text. 
+Line 7 means: Runs the date command. 
+Line 9 means: Runs the whoami command. 
 ```
-
-Do not continue until he can explain each line.
 
 ---
 
@@ -258,13 +171,7 @@ Question:
 ```text
 Why did this work even if the file is not executable yet?
 ```
-
-Expected answer:
-
-```text
-Because I explicitly asked bash to read and run the file.
-```
-
+Bash was told to interpret this file as a script. 
 Verify permissions:
 
 ```bash
@@ -276,19 +183,20 @@ Question:
 ```text
 Does this file currently have execute permission?
 ```
+No
 
 ---
 
 ## Session 1 explain-back
 
-Explain this without notes:
+Explain this:
 
 ```text
-A shell script is...
-The script is stored as...
-I can inspect it with...
-I can run it with bash by typing...
-The computer runs the commands in...
+A shell script is a plain text file containing a saved list of shell commands that run in order. 
+The script is stored as a readable text file. 
+I can inspect it with cat
+I can run it with bash by typing bash script-name
+The computer runs the commands in the same sequence. 
 ```
 
 ---
@@ -331,10 +239,6 @@ means:
 Use bash to run this script.
 ```
 
-Executable permission is like permission to use the recipe card as an action, not just read it.
-
-`PATH` is like a list of shelves where the shell looks for commands.
-
 ---
 
 ## Before typing: predict permission behavior
@@ -342,9 +246,9 @@ Executable permission is like permission to use the recipe card as an action, no
 Answer before running commands:
 
 ```text
-If I type ./hello-report now, will it run?
-Why or why not?
-What permission is probably missing?
+If I type ./hello-report now, will it run? No. 
+Why or why not? It's missing executable permissions.
+What permission is probably missing? It's missing executable permissions. 
 ```
 
 Test:
@@ -366,41 +270,6 @@ Run:
 
 ```bash
 ./hello-report
-```
-
----
-
-## Discipline checkpoint: explain `./`
-
-Question:
-
-```text
-Why do I type ./hello-report instead of just hello-report?
-```
-
-Expected idea:
-
-```text
-The current directory is usually not in PATH. ./ tells the shell to run the file from the current directory.
-```
-
-Check:
-
-```bash
-echo "$PATH"
-```
-
-Ask:
-
-```text
-Do I see . as a PATH entry?
-Should I add . to PATH casually?
-```
-
-Expected answer:
-
-```text
-No. Adding . to PATH can be unsafe because the shell might run a local file accidentally.
 ```
 
 ---
@@ -432,8 +301,6 @@ If not, run it by full path:
 ~/bin/hello-report
 ```
 
-Do not edit startup files yet unless the chapter tells him to and he understands what he is changing.
-
 ---
 
 ## Session 2 explain-back
@@ -441,16 +308,16 @@ Do not edit startup files yet unless the chapter tells him to and he understands
 Explain:
 
 ```text
-#!/bin/bash means...
-chmod +x means...
-./hello-report means...
-PATH is...
-~/bin is useful because...
+#!/bin/bash uses bash to run this script(shebang)
+chmod +x adds executable permission so the file can be run. 
+./hello-report runs the script in the current directory. 
+PATH is the list of directories the shell searches for commands. 
+~/bin is useful because it's a standard personal directory for user scripts that can be added to path. 
 ```
 
 ---
 
-# Session 3 — Improve the script without mindless typing
+# Session 3 — Improve the script
 
 ## Read this part of Chapter 24
 
@@ -467,37 +334,8 @@ building scripts gradually
 
 ---
 
-## Feynman explanation before reading
 
-A good script is not just a working script.
-
-A good script is like a clear recipe:
-
-```text
-another person can read it
-future me can understand it
-mistakes are easier to find
-```
-
-Comments are not for explaining obvious commands. They are for explaining purpose.
-
-Bad comment:
-
-```bash
-# echo prints text
-echo "Hello"
-```
-
-Better comment:
-
-```bash
-# Print a short identity report for this machine.
-echo "Hello"
-```
-
----
-
-## Exercise 4: Create a disciplined report script
+## Exercise 4: Create a report script
 
 Create:
 
@@ -540,10 +378,10 @@ df -h | head
 Before running, answer:
 
 ```text
-Which lines print labels?
-Which lines run real commands?
-Which line uses a pipeline?
-What do I expect df -h | head to show?
+Which lines print labels? The echo lines with text. 
+Which lines run real commands? date, whoami, hostname, pwd, and df.
+Which line uses a pipeline? df -h | head
+What do I expect df -h | head to show? Human-readable disk usage summary for the first few filesystems. 
 ```
 
 Run with bash first:
@@ -580,9 +418,8 @@ free -h
 Question:
 
 ```text
-Does this command exist on this machine?
-What output does it show?
-Where should it go in the report?
+Does this command exist on this machine? Yes. 
+What output does it show? Human readable memory and swap usage.
 ```
 
 Now edit the script and add:
@@ -613,23 +450,9 @@ cat snapshot.txt
 Question:
 
 ```text
-Did the script change, or did the shell redirect its output?
+Did the script change, or did the shell redirect its output?``` 
 ```
-
-Expected answer:
-
-```text
-The shell redirected the script's output into snapshot.txt.
-```
-
-Now append two snapshots:
-
-```bash
-./system-snapshot >> snapshot-history.txt
-./system-snapshot >> snapshot-history.txt
-cat snapshot-history.txt
-```
-
+No. 
 Explain:
 
 ```text
@@ -638,63 +461,6 @@ Explain:
 ```
 
 ---
-
-# Anti-mindless-typing gates
-
-Use these gates throughout Chapter 24.
-
-## Gate 1: Line-by-line translation
-
-Before running a script, he must fill this out:
-
-```text
-Script name:
-Purpose:
-Line 1:
-Line 2:
-Line 3:
-Line 4:
-Command I expect to produce output:
-Command I expect to possibly fail:
-```
-
-## Gate 2: Prediction before execution
-
-Before running:
-
-```text
-I expect the output to include:
-I expect the script to create these files:
-I expect the script not to modify:
-```
-
-## Gate 3: Verification after execution
-
-After running:
-
-```text
-Did the output match my prediction?
-What surprised me?
-Did any files change?
-How do I know?
-```
-
-## Gate 4: Explain to a younger student
-
-He must explain:
-
-```text
-What is a script?
-What is a shebang?
-Why use chmod +x?
-Why use ./script-name?
-Why test with bash script-name first?
-```
-
-If he cannot explain these, he should reread the relevant part of the chapter.
-
----
-
 # Common mistakes and what they teach
 
 ## Mistake 1: Permission denied
@@ -892,46 +658,13 @@ The line I understand least is...
 
 # End-of-chapter self-test
 
-Without notes, answer:
-
-1. What is a shell script?
-2. Why does a script start with `#!/bin/bash`?
-3. What does `chmod +x script-name` do?
-4. Why might `./script-name` work when `script-name` does not?
-5. How can you run a script without execute permission?
-6. Why should you inspect a script before running it?
-7. Why should you test after small changes?
-8. How do you save script output to a file?
-9. What is the difference between `>` and `>>`?
-10. What makes a script readable?
-
-Expected answers:
-
-```text
-1. A text file containing commands for the shell to run.
-2. It tells the system to use bash as the interpreter.
-3. It adds execute permission.
-4. The current directory is usually not in PATH; ./ gives an explicit path.
-5. Use bash script-name.
-6. Scripts can run many commands and may change files.
-7. Small changes make mistakes easier to find.
-8. script-name > file.txt
-9. > overwrites; >> appends.
-10. Clear purpose, simple commands, comments where useful, and tested sections.
-```
-
----
-
-# Final standard
-
-He understands Chapter 24 only if he can say:
-
-```text
-I know that a script is a plain text file of commands.
-I can explain the shebang.
-I can run a script with bash or with execute permission.
-I know why ./ is needed.
-I can build a script one small section at a time.
-I can redirect script output.
-I do not run scripts I cannot explain.
-```
+1. What is a shell script? A plain text file containing a sequence of shell commands. 
+2. Why does a script start with `#!/bin/bash`? It tells the system which interpreter to use. 
+3. What does `chmod +x script-name` do? It makes the file executable. 
+4. Why might `./script-name` work when `script-name` does not? ./ tells the shell to look in the current directory. 
+5. How can you run a script without execute permission? bash script-name or sh script-name. 
+6. Why should you inspect a script before running it? To verify it's safe and does what you expect. 
+7. Why should you test after small changes? Makes debugging much easier. 
+8. How do you save script output to a file? ./script > file.txt
+9. What is the difference between `>` and `>>`? > overwrites and >> appends. 
+10. What makes a script readable? Comments, clear labels with echo, consistent formatting, and small logical sections 

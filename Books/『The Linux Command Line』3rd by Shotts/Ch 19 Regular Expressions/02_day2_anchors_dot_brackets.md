@@ -2,22 +2,6 @@
 
 Use these files as a multi-day study plan for Shotts's Chapter 19.
 
-Main discipline:
-
-```text
-Do not treat regex as magic symbols.
-A regular expression is a small rule for matching text.
-```
-
-Before every command, answer:
-
-```text
-1. What lines do I expect to match?
-2. Which part of the regex creates that match?
-3. Could the shell change my pattern before grep sees it?
-4. Did the output prove my prediction?
-```
-
 One-time setup:
 
 ```bash
@@ -99,19 +83,15 @@ EOF
 
 Read the sections covering `.`, `^`, `$`, `[]`, `[^]`, and ranges such as `[0-9]` and `[a-z]`.
 
-## Feynman analogy
-
-Yesterday the rule was simple: “Show me cards containing ERROR.” Today the rule becomes precise: “show lines that start with ERROR,” “end with bob,” or “contain any digit.” Regex symbols narrow or widen the rule.
-
 ## Before touching the keyboard
 
 Answer:
 
-1. What does `^` mean at the beginning of a regex?
-2. What does `$` mean at the end?
-3. What does `.` match?
-4. What does `[aeiou]` mean?
-5. What does `[^0-9]` mean?
+1. What does `^` mean at the beginning of a regex? Matches the start of a line
+2. What does `$` mean at the end? Matches the end of a line. 
+3. What does `.` match? Matches any single characters. 
+4. What does `[aeiou]` mean? Matches any vowel. 
+5. What does `[^0-9]` mean? Matches any character that is not a digit. 
 
 ## Practice
 
@@ -126,8 +106,6 @@ grep '^INFO' app.log
 grep '^error' app.log
 grep -i '^error' app.log
 ```
-
-Say aloud: `^` anchors the match to the beginning; `$` anchors it to the end.
 
 ## Dot practice
 
@@ -152,15 +130,14 @@ grep -v '[0-9]' words.txt
 ```
 
 Important: `[^0-9]` means one character that is not a digit. It does not mean “a line with no digits.” Use `grep -v '[0-9]'` for lines with no digits.
-
-## Shell quoting discipline
-
-Bad habit: `grep [0-9] words.txt`
-
-Better habit: `grep '[0-9]' words.txt`
-
-Say aloud: “Quote regex patterns so the shell does not interpret special characters first.”
-
 ## Checkpoint
 
 Explain `^ERROR`, `bob$`, `c.t`, `[0-9]`, and the difference between `grep '[^0-9]'` and `grep -v '[0-9]'`.
+
+* ^ERROR Matches lines that start with "ERROR".
+* bob$ matches lines that end with "bob".
+* c.t matches any three-character sequence starting with "c", ending with "t", with any character in between. Like cat, cot, and cut.
+* [0-9] matches any single digit from 0 through 9.
+
+* grep '[^0-9]' matches lines that contain at least one non-digit character.
+* grep -v '[0-9]' matches lines that contain no digits at all. 

@@ -1,69 +1,7 @@
-# Two-Day Review: Permissions, Users, Groups, and Disciplined Thinking
-
-**Reading focus**
-
-- Shotts, *The Linux Command Line*, Chapter 9: Permissions
-- Ward, *How Linux Works*, Sections 7.3 and 7.4: user management files and commands
-
-**Purpose**
-
-This review is not mainly about memorizing commands.
-
-It is about learning to think like this:
-
-```text
-question → command → evidence → conclusion → verification
-```
-
-The recent SSH/PAM problem showed an important weakness: rushing past evidence. This review is designed to slow you down at the exact places where mistakes happen.
-
----
-
-# The Habit You Are Practicing
-
-Before an important command, write:
-
-```text
-I am about to run:
-
-This command tests:
-
-If my idea is correct, I expect:
-
-If my idea is wrong, I expect:
-```
-
-After the command, write:
-
-```text
-Exact output:
-
-What this proves:
-
-What this does NOT prove:
-
-Next narrow question:
-```
-
-Do not write only:
-
-```text
-worked
-failed
-probably
-I don't know
-```
-
-Those are not evidence.
 
 ---
 
 # Feynman Explanation: Permissions
-
-Imagine a school building.
-
-A file is like a worksheet.
-A directory is like a hallway or classroom.
 
 For a file:
 
@@ -117,19 +55,6 @@ deploy = the user who copies files
 nginx  = the user/group that reads files for the web server
 ```
 
-The goal is not:
-
-```text
-make everything writable
-```
-
-The goal is:
-
-```text
-deploy can write website files
-nginx can read website files
-nginx should not need to write website files
-```
 
 ---
 
@@ -160,11 +85,6 @@ Focus on:
 - `umask`
 - `su`
 - `sudo`
-
-Do not try to memorize every mode number yet.
-
-First understand what the permissions mean.
-
 ---
 
 ## Stop Point 1: Explain Before Commands
@@ -178,15 +98,6 @@ Who can read, change, or execute this file?
 A directory permission answers:
 Who can list, create/delete, or pass through this directory?
 ```
-
-Green check:
-
-```text
-[ ] I can explain the difference between file `x` and directory `x`.
-```
-
-Do not continue until this is clear.
-
 ---
 
 ## Part 2: Small Local Permission Lab
@@ -212,19 +123,12 @@ ls -ld hallway
 Before continuing, answer:
 
 ```text
-What is the owner of note.txt?
-What is the group of note.txt?
-What can the owner do?
-What can the group do?
-What can others do?
+What is the owner of note.txt? Current User, ifujimoto.
+What is the group of note.txt? The primary group. 
+What can the owner do? Read and Write.
+What can the group do? Read. 
+What can others do? Read. 
 ```
-
-Green check:
-
-```text
-[ ] I identified owner, group, and other from `ls -l`.
-```
-
 ---
 
 ## Part 3: Change File Permissions Carefully
@@ -242,13 +146,13 @@ Write:
 Command:
 chmod 600 note.txt
 
-What changed:
+What changed: Only the owner can read and write. Everybody else has no access. 
 
-What 600 means:
+What 600 means: rw------- (The owner can read and write, no permissions for others)
 
-Who can read the file now:
+Who can read the file now: Only the Owner.
 
-Who can write the file now:
+Who can write the file now: Only the Owner. 
 ```
 
 Now run:
@@ -261,17 +165,10 @@ ls -l note.txt
 Write:
 
 ```text
-What 644 means:
+What 644 means:rw-r--r--(Owner can read and write, everyone else can just read)
 
-Why 644 is common for web files:
+Why 644 is common for web files:It allows web servers to read and the owner to edit. It's beneficial for public content. 
 ```
-
-Green check:
-
-```text
-[ ] I can explain 600 and 644 without guessing.
-```
-
 ---
 
 ## Part 4: Directory Permissions Matter More Than You Think
@@ -307,23 +204,17 @@ cat hallway/inside.txt
 Write:
 
 ```text
-What failed?
+What failed? ls hallway and cat hallway/inside.txt
 
-Why did it fail?
+Why did it fail? No executable permission on directory prevents access.
 
-What does directory execute permission mean?
+What does directory execute permission mean? The ability to navigate the directory. 
 ```
 
 Restore:
 
 ```bash
 chmod 755 hallway
-```
-
-Green check:
-
-```text
-[ ] I understand why parent directory permissions can block access to a file.
 ```
 
 Slow down here. This is one of the most important lessons for Nginx 403 errors.
@@ -348,22 +239,18 @@ Now use the better tool:
 namei -l /var/www/site1/public/index.html
 ```
 
-Take time here.
-
-`namei -l` shows every directory in the path. Do not look only at `index.html`.
-
 Write:
 
 ```text
-Can the path be traversed all the way to index.html?
+Can the path be traversed all the way to index.html? When permissions are correct, yes.
 
-Which directory permissions matter?
+Which directory permissions matter? Execute on every directory in the path. 
 
-Which file permission matters?
+Which file permission matters? Read on index.html.
 
-What user writes the file?
+What user writes the file? deploy. 
 
-What user or group reads the file?
+What user or group reads the file? nginx. 
 ```
 
 Now test as Nginx:
@@ -378,7 +265,7 @@ If it prints:
 nginx can read
 ```
 
-write what that proves.
+write what that proves. This proves that the nginx user has read access to the file and traverse the path. 
 
 If it prints nothing, run:
 
@@ -391,13 +278,6 @@ and inspect the path again with:
 ```bash
 namei -l /var/www/site1/public/index.html
 ```
-
-Green check:
-
-```text
-[ ] I proved whether Nginx can read index.html.
-```
-
 ---
 
 ## Part 6: Test Deploy User Write Access
@@ -424,21 +304,14 @@ nginx usually should not need to write.
 Write:
 
 ```text
-Can deploy write?
+Can deploy write? Yes. 
 
-Can nginx write?
+Can nginx write? No. 
 
-Is that the desired setup?
+Is that the desired setup? Yes. 
 
-Why?
+Why? Deploy should change site fields. Nginx only neds to read and serve them. 
 ```
-
-Green check:
-
-```text
-[ ] I checked write access using the actual users, not guessing from memory.
-```
-
 ---
 
 ## Day 1 Reflection
@@ -446,13 +319,13 @@ Green check:
 Write no more than 8 lines:
 
 ```text
-Today I learned:
+Today I learned: Directory execute permission is required for traversal. It's also critical for web servers. 
 
-The most important command was:
+The most important command was: name1 -l
 
-The most important mistake to avoid is:
+The most important mistake to avoid is: Forgetting x on directories. 
 
-One thing I can now prove with a command is:
+One thing I can now prove with a command is: Whether nginx can read a file with sudo -u nginx test -r.  
 ```
 
 Do not write a long essay.
@@ -557,22 +430,16 @@ getent group wheel
 Write:
 
 ```text
-User deploy UID:
-User deploy groups:
-User deploy home:
-User deploy shell:
+User deploy UID: 1001
+User deploy groups: deploy
+User deploy home: /home/deploy/
+User deploy shell: /bin/bash
 
-User nginx UID:
-User nginx groups:
-User nginx home:
-User nginx shell:
+User nginx groups: nginx
+User nginx home: /var/lib/nginx
+User nginx shell: /usr/sbin/nologin
 ```
 
-Green check:
-
-```text
-[ ] I can identify UID, GID, groups, home directory, and shell for deploy and nginx.
-```
 
 ---
 
@@ -601,12 +468,6 @@ A wrong password does not prove an account is locked.
 
 A locked account must be proven with account-state commands or logs.
 
-Green check:
-
-```text
-[ ] I did not confuse wrong password with locked account.
-```
-
 ---
 
 ## Part 4: Use Questions, Not Random Commands
@@ -623,12 +484,6 @@ Complete this table.
 | Is deploy expired? | `sudo chage -l deploy` | |
 | Can deploy write to the website? | `sudo -u deploy test -w /var/www/site1/public` | |
 | Can nginx read index.html? | `sudo -u nginx test -r /var/www/site1/public/index.html` | |
-
-Green check:
-
-```text
-[ ] Every command answered a specific question.
-```
 
 ---
 
@@ -676,12 +531,6 @@ If nothing blocks Nginx, write:
 
 ```text
 No directory in the path blocks Nginx because:
-```
-
-Green check:
-
-```text
-[ ] I connected users/groups to the actual deployment directory.
 ```
 
 ---
@@ -749,11 +598,6 @@ Smallest fix:
 Verification:
 ```
 
-Green check:
-
-```text
-[ ] I broke one thing, observed it, fixed it, and verified it.
-```
 
 ---
 
@@ -786,12 +630,6 @@ Evidence: lab instruction and before/after verification.
 
 Now do your own.
 
-Green check:
-
-```text
-[ ] Each why answer included evidence.
-```
-
 ---
 
 # Final Completion Test
@@ -799,33 +637,25 @@ Green check:
 Answer without notes first. Then verify with commands.
 
 ```text
-1. Which user deploys website files?
+1. Which user deploys website files? deploy user deploys website files. 
 
-2. Which user or group reads website files for Nginx?
+2. Which user or group reads website files for Nginx? nginx user reads website files. 
 
-3. Why should deployment not require root?
+3. Why should deployment not require root? deployment should not require root for security.
 
-4. Why is 777 usually a bad fix?
+4. Why is 777 usually a bad fix? it gives full access to anybody.
 
-5. What does directory execute permission mean?
+5. What does directory execute permission mean? directory execute permission is the ability to use the directory.
 
-6. What command shows every directory permission in a path?
+6. What command shows every directory permission in a path? shows every direcory permission in a path. 
+ 
+7. What file stores the login shell? /etc/passwd
 
-7. What file stores the login shell?
+8. What command shows a user's groups? id <user> shows a user's groups. 
 
-8. What command shows a user's groups?
+9. What command shows whether an account is locked? sudo passwd -S <user> shows whether an account is locked or not. 
 
-9. What command shows whether an account is locked?
-
-10. What command proves Nginx can read index.html?
-```
-
-Green check:
-
-```text
-[ ] I answered first from understanding.
-[ ] I verified with commands.
-[ ] I corrected any answer that the command disproved.
+10. What command proves Nginx can read index.html? `sudo -u nginx test -r /site1/public/index.html`
 ```
 
 ---
@@ -845,12 +675,6 @@ One place I slowed down and noticed evidence:
 
 One thing I will do differently in the next lab:
 ```
-
-Keep it short.
-
-The goal is not a long report.
-
-The goal is better thinking.
 
 ---
 

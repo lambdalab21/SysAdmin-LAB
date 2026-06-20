@@ -46,9 +46,9 @@ head index.html
 
 **Questions:**
 
-1. What filename did `wget` choose?
-2. Did the file contain HTML?
-3. Why is `wget` called a non-interactive downloader?
+1. What filename did `wget` choose? index.html
+2. Did the file contain HTML? Yes. 
+3. Why is `wget` called a non-interactive downloader? It runs without any interactive prompts. This makes it perfect for scripts and automation. 
 
 **Check your answer:**
 `wget` downloads without requiring an interactive session with the remote server. It is useful in scripts and repeatable command-line workflows.

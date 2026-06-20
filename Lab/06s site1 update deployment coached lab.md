@@ -8,8 +8,6 @@ You already installed Nginx, opened the firewall, created the deployment user, a
 /var/www/site1/public/
 ```
 
-This lab is **not** about setting up Nginx again.
-
 This lab is about building disciplined deployment habits:
 
 ```text
@@ -20,8 +18,6 @@ change locally
 → inspect logs
 → write the lesson
 ```
-
-Do not rush to “it showed in the browser.” That is only one piece of evidence.
 
 ---
 
@@ -41,13 +37,13 @@ Nginx site URL:              http://app01/
 If your actual paths differ, write them here:
 
 ```text
-My local project directory:
+My local project directory: ~/code/projects/site1/public
 
-My server hostname or IP:
+My server hostname or IP: 192.168.0.107
 
-My remote target directory:
+My remote target directory: 
 
-My test URL:
+My test URL: http://127.0.0.1:8080/
 ```
 
 ---
@@ -72,11 +68,11 @@ My test URL:
 Before touching files, answer this.
 
 ```text
-The source of truth is:
+The source of truth is: The local project directory: ~/code/projects/site1/public/
 
-The server copy is:
+The server copy is: a deployed copy, not the source. 
 
-If the local file and server file disagree, the correct one should be:
+If the local file and server file disagree, the correct one should be: The local version. 
 ```
 
 Expected idea:
@@ -90,7 +86,7 @@ The server should not be manually edited.
 Now inspect local files:
 
 ```bash
-cd ~/projects/site1
+cd ~/code/projects/site1
 find ./public -type f -print
 ```
 
@@ -105,13 +101,9 @@ ssh deploy@app01 'find /var/www/site1/public -type f -print'
 Do not continue until you can answer:
 
 ```text
-Which files exist locally?
+Which files exist locally? index.html, style.css, form.scss, java.js, signupform.js
 
-Which files exist on the server?
-
-Are there any server-only files?
-
-Are there any local-only files?
+Which files exist on the server? Mirror of deployed public contents.
 ```
 
 ---
@@ -135,11 +127,9 @@ Make a visible change, such as:
 Before saving, write:
 
 ```text
-I am changing this file:
+I am changing this file: public/index.html
 
-The exact change is:
-
-After deployment, I expect this URL to show the change:
+The exact change is: <p> Deployment Practice Version 2</p> 
 ```
 
 Now save the file.
@@ -149,14 +139,6 @@ Inspect the local change:
 ```bash
 grep -n 'Deployment practice' public/index.html
 ```
-
-## Pay Attention
-
-Do not deploy yet.
-
-First prove that the change exists locally.
-
-If you cannot find the change locally, deployment is not the next problem.
 
 ---
 
@@ -171,17 +153,18 @@ scp ./public/index.html deploy@app01:/var/www/site1/public/
 Before running it, write:
 
 ```text
-This command copies from:
+This command copies from: Local ./public/idnex.html
 
-This command copies to:
+This command copies to: deploy@192.168.0.107:/var/www/site1/public
 
-The local side is:
+The local side is: Development machine. 
 
-The remote side is:
+The remote side is: app01 server. 
 
-The colon means:
+The colon means: Separates remote user/host from remote path. 
 
 If this succeeds, the changed file should appear at:
+/code/projects/site1/public/
 ```
 
 ## Stop Point
@@ -215,13 +198,12 @@ After running it, do **not** write only “worked.”
 Write:
 
 ```text
-Exact command:
+Exact command: scp ./public/index.html
+deploy@192.168.0.107:/var/www/site1/public
 
-Exact output:
+What this proves: File was successfully copied over SSH to the correct server path. 
 
-What this proves:
-
-What this does not prove:
+What this does not prove: That nginx has reloaded/served the new content, or that other files are in sync. 
 ```
 
 Example:
@@ -255,20 +237,15 @@ ssh deploy@app01 'ls -l /var/www/site1/public/index.html'
 Write:
 
 ```text
-Did the server file contain the expected change?
+Did the server file contain the expected change? Yes. 
 
-What exact output proves it?
+What exact output proves it? grep on the server showed the new text. 
 
-Who owns the file?
+Who owns the file? deploy user
 
-Can Nginx probably read it?
+Can Nginx probably read it? Yes. 
 ```
 
-## Pay Attention
-
-This verifies the file copy.
-
-It still does not prove the browser received the new page.
 
 ---
 
@@ -295,13 +272,13 @@ http://app01/
 Write:
 
 ```text
-HTTP status code:
+HTTP status code: 200
 
-Did curl show the updated text?
+Did curl show the updated text? Yes. 
 
-Did the browser show the updated text?
+Did the browser show the updated text? Yes. 
 
-If browser and curl disagree, what might explain it?
+If browser and curl disagree, what might explain it? Browser cache, wrong URL, or Nginx configuration pointing somewhere else. 
 ```
 
 Possible explanations:
@@ -313,16 +290,6 @@ wrong server block
 wrong file copied
 Nginx root points somewhere else
 ```
-
-## Stop Point
-
-Do not say “deployment worked” until both are true:
-
-```text
-[ ] The server file contains the change.
-[ ] HTTP response contains the change.
-```
-
 ---
 
 # Part 7: Inspect Nginx Logs
@@ -345,26 +312,19 @@ Check error logs:
 ```bash
 sudo tail -n 20 /var/log/nginx/site1.error.log
 ```
-
+No errors
 Write:
 
 ```text
-Did my request appear in the access log?
+Did my request appear in the access log? Yes. 
 
-What path did the browser request?
+What path did the browser request? / or /index.html
 
-What status code did Nginx return?
+What status code did Nginx return? 200 
 
-Did the error log show anything new?
+Did the error log show anything new? No errors at all, thus no new errors either. 
 ```
 
-## Pay Attention
-
-The browser showing the page is useful.
-
-The log tells you what the server actually received and returned.
-
-A good infrastructure person verifies both.
 
 ---
 
@@ -395,11 +355,11 @@ Example content:
 Before deploying, write:
 
 ```text
-New local file:
+New local file: public/practice.html
 
-Expected remote file:
+Expected remote file: Same path on server. 
 
-Expected URL:
+Expected URL: http://app01/practice.html
 ```
 
 Deploy:
@@ -407,6 +367,7 @@ Deploy:
 ```bash
 scp ./public/practice.html deploy@app01:/var/www/site1/public/
 ```
+^ pr 100% 194 91.7KB/s 00:00
 
 Verify filesystem:
 
@@ -424,18 +385,6 @@ Verify log:
 
 ```bash
 ssh your-admin-user@app01 'sudo tail -n 20 /var/log/nginx/site1.access.log'
-```
-
-Write:
-
-```text
-What changed?
-
-How did I verify the file exists?
-
-How did I verify Nginx served it?
-
-What did the access log show?
 ```
 
 ---
@@ -475,15 +424,15 @@ curl -v http://app01/practice.html
 Write:
 
 ```text
-Does practice.html still exist on the server?
+Does practice.html still exist on the server? Yes. 
 
-Why?
+Why? scp -r only copies and adds files. it does not delete removed local files. 
 
-What does this prove about scp?
+What does this prove about scp? it is a simple copy tool and not a full synchronizer. 
 
-What problem could stale files cause?
+What problem could stale files cause? Outdated or sensitive content remaining alive. 
 
-What tool should solve this later?
+What tool should solve this later? rsync --delete for proper synchrnoizeation. 
 ```
 
 Expected conclusion:
@@ -496,91 +445,23 @@ rsync with --delete is better for repeatable deployment.
 
 ---
 
-# Part 10: Short Reflection — Toyota-Style
+# Part 10: Short Reflection
 
-Do not skip this.
 
 Write a short reflection. Keep it brief and evidence-based.
 
 ```text
-Symptom or task:
+Symptom or task: Update index.html and deploy a new page with scp. 
 
-What I expected:
+What I expected: Clean update visible in browser and curl. 
 
-What actually happened:
+What actually happened: File copied successfully. File was served after verification. 
 
-Strongest evidence:
+Strongest evidence: server grep and curl output both showed changes. 
 
-One wrong assumption I avoided or corrected:
+One wrong assumption I avoided or corrected: Assuming scp success automatically means that nginx was serving new contents. 
 
-One command that gave useful evidence:
+One command that gave useful evidence: curl -s https://app01 | grep 'Deployment practice' and server ls -l. 
 
-One thing I would do differently next deployment:
+One thing I would do differently next deployment: Always verify with both filesystem check and https/logs/immediately. Use rsync for future deploys.
 ```
-
-Example:
-
-```text
-Task:
-Update index.html and deploy it.
-
-What I expected:
-The browser should show "Deployment practice version 2."
-
-What actually happened:
-The server file updated and curl showed the new text.
-
-Strongest evidence:
-grep on the server found the new line, and curl returned the same text.
-
-One wrong assumption I avoided:
-I did not assume scp success meant Nginx served the new file.
-
-One useful command:
-curl -s http://app01/ | grep 'Deployment practice'
-
-One thing I would do differently:
-Check logs immediately after curl so I connect request and server evidence.
-```
-
----
-
-# Completion Checkpoint
-
-You are done only when you can answer these without guessing:
-
-1. Which directory is the source of truth?
-2. Which directory does Nginx serve?
-3. What exactly did `scp` copy?
-4. How did you prove the file changed on the server?
-5. How did you prove Nginx served the changed file?
-6. What did the access log show?
-7. Did the error log show anything new?
-8. Why does Nginx not need a restart for a static-file update?
-9. What stale-file weakness did `scp` show?
-10. Why will `rsync` be better for the next deployment phase?
-
----
-
-# Habit Checklist
-
-Before command:
-
-```text
-[ ] I know what this command tests.
-[ ] I know what output I expect.
-[ ] I know what file or system state should change.
-```
-
-After command:
-
-```text
-[ ] I quoted exact output or exact log evidence.
-[ ] I wrote what it proves.
-[ ] I wrote what it does not prove.
-[ ] I chose the next command based on evidence.
-```
-
-If you skip these, you are not practicing deployment.
-
-You are just typing.

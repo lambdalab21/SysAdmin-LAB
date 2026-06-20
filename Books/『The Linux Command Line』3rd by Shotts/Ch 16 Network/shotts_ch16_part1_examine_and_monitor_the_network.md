@@ -49,9 +49,9 @@ Compare the hostname-based test with the IP-address-based test.
 
 **Questions:**
 
-1. If both succeed, what has been verified?
-2. If the IP-address test succeeds but the hostname test fails, what should you investigate?
-3. Can a failed `ping` prove that the host is down?
+1. If both succeed, what has been verified? Hostname resolution and LAN both work. 
+2. If the IP-address test succeeds but the hostname test fails, what should you investigate? Name Resolution should be investigated. 
+3. Can a failed `ping` prove that the host is down? No, firewalls can block ICMP while the host is up.
 
 **Check your answer:**
 A successful hostname-based ping shows that name resolution and ICMP reachability both work. If the IP-address test works but the hostname test fails, investigate hostname resolution. A failed ping does not prove that the host is down because firewalls and hosts can block ICMP traffic.
@@ -108,8 +108,8 @@ Identify:
 
 **Questions:**
 
-1. What is the first hop likely to be on a home network?
-2. Does `* * *` automatically prove that the route is broken?
+1. What is the first hop likely to be on a home network? The local router. 
+2. Does `* * *` automatically prove that the route is broken? No. * * * only means that the router had not responded to the probe. Traffic may still pass. *
 
 **Check your answer:**
 The first hop is commonly the local router or default gateway. Asterisks can mean that a router did not answer the diagnostic probe; they do not automatically prove that traffic cannot pass through it.
