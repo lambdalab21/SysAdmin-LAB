@@ -1,33 +1,7 @@
 # 07 — Log Files: Coached Lab for Disciplined Troubleshooting
-
-## Purpose
-
-This lab is not mainly about memorizing `journalctl`, `grep`, or `tail`.
-
-It is about building this habit:
-
-```text
-observe → quote evidence → ask one narrow question → test → conclude → reflect
-```
-
-A weak troubleshooter says:
-
-```text
-It does not work.
-```
-
-A stronger troubleshooter says:
-
-```text
-The request reached Nginx because the access log shows a 404.
-The problem is not the firewall. The next question is why the file was not found.
-```
-
-That is the standard.
-
 ---
 
-## Feynman version: what is a log?
+## What is a log?
 
 Imagine the server is a store.
 
@@ -56,8 +30,6 @@ In Linux:
 symptom = what the user saw
 log = what the machine recorded
 ```
-
-Do not trust only the symptom. Read the machine’s notebook.
 
 ---
 
@@ -89,25 +61,6 @@ probably
 obviously
 I don't know
 ```
-
-Those are not evidence.
-
----
-
-# Quick green-check habit
-
-Use these checkboxes as small “green tests.” Do not rush past them.
-
-```text
-[ ] I know what question this command answers.
-[ ] I quoted the exact log line.
-[ ] I separated symptom from evidence.
-[ ] I wrote what the evidence proves.
-[ ] I wrote what the evidence does NOT prove.
-[ ] I chose the next command based on the evidence.
-```
-
-If one box is unchecked, slow down.
 
 ---
 
@@ -143,32 +96,6 @@ N
 G
 g
 q
-```
-
-## Stop and explain like you are teaching a 10-year-old
-
-Write:
-
-```text
-/var/log/secure is like:
-less is useful because:
-Searching for sshd helps because:
-```
-
-Expected idea:
-
-```text
-/var/log/secure records security and login-related events.
-less lets me inspect a large file without dumping the whole thing.
-Searching for sshd narrows the log to SSH-related events.
-```
-
-## Green check
-
-```text
-[ ] I opened a log file.
-[ ] I searched inside it.
-[ ] I can explain why `less` is better than `cat` for a large log.
 ```
 
 ---
