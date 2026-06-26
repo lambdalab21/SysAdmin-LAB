@@ -1,24 +1,5 @@
 # The Linux Command Line, Chapter 18: Archiving and Backup
 
-Chapter 18 is best split into pieces. Do not read it in one sitting and expect the commands to stick.
-
-Main habit:
-
-```text
-A backup is not real until you can restore from it.
-```
-
-Disciplined thinking pattern for this chapter:
-
-```text
-1. What am I trying to preserve?
-2. Am I compressing one file or archiving many files?
-3. Where is the backup going?
-4. How can I list or inspect the backup before trusting it?
-5. Can I restore it into a separate directory?
-6. Did I verify the restored files?
-```
-
 One-time setup:
 
 ```bash
@@ -67,29 +48,15 @@ Focus on local practice first.
 
 ---
 
-## Feynman analogy
-
-`tar` is like putting everything into a box.
-
-`rsync` is like a careful helper who compares two shelves and copies only what is needed.
-
-```text
-rsync = synchronize source and destination
-```
-
-This makes it useful for repeated backups.
-
----
-
 ## Before touching the keyboard
 
 Answer:
 
-1. What is the source?
-2. What is the destination?
-3. Why does the trailing slash matter in many `rsync` examples?
-4. Why is a dry run useful?
-5. Why is `--delete` dangerous?
+1. What is the source? The Project directory
+2. What is the destination? The backup location. 
+3. Why does the trailing slash matter in many `rsync` examples? A trailing slash on the source tells rsync to copy the contents of the directory. Without project, rsync would just copy the directory as a subfolder inside of the destination. 
+4. Why is a dry run useful? It shows what rsync would do without making any changes. 
+5. Why is `--delete` dangerous? It removes files from the destination that  don't exist in the source. 
 
 ---
 
@@ -118,6 +85,7 @@ Question:
 ```text
 Did rsync copy everything again, or did it detect little/no change?
 ```
+^ It detected little to no change. Rsync only transferred a small amount of data on the second run. 
 
 ---
 
@@ -139,12 +107,6 @@ Verify:
 
 ```bash
 cat backup/rsync-copy/project/config/app.conf
-```
-
-Say aloud:
-
-```text
-rsync is useful for repeated backups because it notices changes.
 ```
 
 ---
@@ -216,13 +178,6 @@ Do not run this until you understand it:
 rsync -av --delete SOURCE/ DEST/
 ```
 
-Say aloud:
-
-```text
---delete can remove files from the destination that are not in the source.
-Always use --dry-run first.
-```
-
 Safe preview only:
 
 ```bash
@@ -231,32 +186,12 @@ rsync -av --delete --dry-run project/ backup/slash-test-b/
 
 ---
 
-## Disciplined thinking checkpoint
-
-Before `rsync`, say:
-
-```text
-Source is...
-Destination is...
-Trailing slash means...
-I will dry-run first if deletion is involved.
-I will verify destination after copying.
-```
-
----
-
 ## Checkpoint
 
-He understands Day 5 only if he can answer:
+You understand Day 5 only if you can answer:
 
-1. What does `rsync -av` do?
-2. Why is `rsync` good for repeated backups?
-3. What does `--dry-run` do?
-4. Why is `--delete` dangerous?
-5. What is the trailing slash issue?
-
----
-
-## Cleanup
-
-No cleanup needed.
+1. What does `rsync -av` do? It recursively copies files  and directories from  the source to the destination. 
+2. Why is `rsync` good for repeated backups? It copies files that have changed on subsequent runs. 
+3. What does `--dry-run` do? It simulates the operation and shows what would happen without making any actual changes. 
+4. Why is `--delete` dangerous? It deletes the files in the destination that don't exist in the source. Any mistake can cause data loss. 
+5. What is the trailing slash issue? Whether or not you include a trailing slash on the source directory changes the rsync copies the director itself or just its contents inside of the destination. 

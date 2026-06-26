@@ -1,23 +1,5 @@
 # The Linux Command Line, Chapter 19: Regular Expressions
 
-Use these files as a multi-day study plan for Shotts's Chapter 19.
-
-Main discipline:
-
-```text
-Do not treat regex as magic symbols.
-A regular expression is a small rule for matching text.
-```
-
-Before every command, answer:
-
-```text
-1. What lines do I expect to match?
-2. Which part of the regex creates that match?
-3. Could the shell change my pattern before grep sees it?
-4. Did the output prove my prediction?
-```
-
 One-time setup:
 
 ```bash
@@ -99,10 +81,6 @@ EOF
 
 Skim Chapter 19 again. Look for examples involving `grep`, anchors, bracket expressions, POSIX classes, extended regex, and quoting.
 
-## Feynman analogy
-
-A regex is not the answer. It is a filter. A disciplined user asks: “What lines do I want to keep? What rule describes those lines? What false matches might sneak in? What real matches might be missed?”
-
 ## Practice
 
 ```bash
@@ -112,8 +90,6 @@ cd day5
 ```
 
 ## Drill 1: Write the English rule first
-
-For each task, write the English rule before the command.
 
 ```bash
 grep '^INFO' app.log
@@ -132,8 +108,6 @@ grep -E 'ERROR|WARN' app.log
 grep -E '^(ERROR|WARN)' app.log
 ```
 
-Ask: Which command is broader? Which is stricter? Which better matches log levels?
-
 ## Package-style output
 
 ```bash
@@ -149,3 +123,11 @@ Question: Why escape `[` and `]` in `\[installed\]`?
 ## Day 5 self-test
 
 Write commands for: lines starting with ERROR, ending with bob, containing any digit, containing no digits, ERROR or WARN log lines, installed packages, and app01 or app02.
+
+`grep '^ERROR' app.log`
+`grep 'bob$' app.log`
+`grep '[[:digit:]]' app.log`
+`grep  -v '[[:digit:]]' app.log`
+`grep -E '^(ERROR|WARN)' app.log`
+`grep '\[installed\]' packages.txt
+`grep  -E 'app0[12]' app.log` 

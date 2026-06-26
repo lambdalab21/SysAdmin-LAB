@@ -1,9 +1,5 @@
 # The Linux Command Line, Chapters 1–10: Summer Retention Drills
 
-Use these on `playground01`. Repeat weekly through the summer. Keep each session short: 20–35 minutes.
-
-Rules: predict first, run the command, explain the output aloud, clean up, and do not use the mouse.
-
 ## One-time setup
 
 ```bash
@@ -76,8 +72,6 @@ rm -r backup/src-copy
 find . -maxdepth 3 -print
 ```
 
-Say aloud: `rm` deletes; `rm -r` deletes recursively; the shell has no trash can.
-
 ## 7. Wildcards carefully
 
 ```bash
@@ -100,8 +94,6 @@ cat dst/output.txt
 echo "third" >> dst/output.txt
 cat dst/output.txt
 ```
-
-Say aloud: `>` overwrites; `>>` appends.
 
 ## Cleanup
 

@@ -1,23 +1,5 @@
 # The Linux Command Line, Chapter 19: Regular Expressions
 
-Use these files as a multi-day study plan for Shotts's Chapter 19.
-
-Main discipline:
-
-```text
-Do not treat regex as magic symbols.
-A regular expression is a small rule for matching text.
-```
-
-Before every command, answer:
-
-```text
-1. What lines do I expect to match?
-2. Which part of the regex creates that match?
-3. Could the shell change my pattern before grep sees it?
-4. Did the output prove my prediction?
-```
-
 One-time setup:
 
 ```bash
@@ -99,19 +81,15 @@ EOF
 
 Read the sections covering POSIX character classes and repetition, especially `[[:alpha:]]`, `[[:digit:]]`, `[[:alnum:]]`, `[[:space:]]`, and `*`. Preview `+`, `?`, and `{}` for Day 4.
 
-## Feynman analogy
-
-Bracket ranges are like naming individual students: `[0-9]`. POSIX classes name a whole category: “any digit,” “any letter,” or “any whitespace.” Repetition asks: “How many times may this thing appear?”
-
 ## Before touching the keyboard
 
 Answer:
 
-1. What does `[[:digit:]]` mean?
-2. Why does it use double brackets?
-3. What does `*` mean in regex?
-4. Why is regex `*` not the same as shell wildcard `*`?
-5. What does `ab*` match?
+1. What does `[[:digit:]]` mean? Any digit between 0-9
+2. Why does it use double brackets? Because POSIX character classes are written as `[[:name:]]`.
+3. What does `*` mean in regex? Zero or more occurrences of the previous element. 
+4. Why is regex `*` not the same as shell wildcard `*`? Shell wildcard * is a glob that matches any sequence of characters in filenames. 
+5. What does `ab*` match? a, ab, abb, abbb, etc.
 
 ## Practice
 
@@ -160,8 +138,14 @@ Regex idea:
 grep '.*txt' file
 ```
 
-Say aloud: “Shell wildcards match filenames. Regex patterns match text.”
-
 ## Checkpoint
 
 Explain `[[:digit:]]`, `[[:space:]]`, regex `*`, why `ab*` matches `a`, and the difference between shell wildcard `*` and regex `*`.
+
+* [[:digit:]] = any digit, 0-9. 
+* [[:space:]] = any whitespace character. 
+* Regex * = zero or more repetitions of the previous character or group. 
+* ab* matches a because * allows zero bs after the a
+* Difference between shell * and regex *:
+	* Shell * is a wildcard that matches any characters in file names.
+	* Regex * is a quantifier meaning "zero or more of the preceding pattern".

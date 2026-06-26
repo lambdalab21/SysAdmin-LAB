@@ -1,24 +1,5 @@
 # The Linux Command Line, Chapter 18: Archiving and Backup
 
-Chapter 18 is best split into pieces. Do not read it in one sitting and expect the commands to stick.
-
-Main habit:
-
-```text
-A backup is not real until you can restore from it.
-```
-
-Disciplined thinking pattern for this chapter:
-
-```text
-1. What am I trying to preserve?
-2. Am I compressing one file or archiving many files?
-3. Where is the backup going?
-4. How can I list or inspect the backup before trusting it?
-5. Can I restore it into a separate directory?
-6. Did I verify the restored files?
-```
-
 One-time setup:
 
 ```bash
@@ -64,27 +45,14 @@ extracting zip files
 
 ---
 
-## Feynman analogy
-
-`tar` is common in Unix/Linux.
-
-`zip` is common when exchanging files with Windows, macOS, school systems, and ordinary users.
-
-```text
-zip = archive and compress in a widely recognized format
-unzip = extract zip files
-```
-
----
-
 ## Before touching the keyboard
 
 Answer:
 
-1. Why might `zip` be more convenient than `tar` when sharing with non-Linux users?
-2. Why should you list a zip file before extracting it?
-3. What does recursive mean?
-4. Why is restoring into a separate directory still important?
+1. Why might `zip` be more convenient than `tar` when sharing with non-Linux users? Zip is supported on both windows and macOS while  tar requires extra software. 
+2. Why should you list a zip file before extracting it? To see  what files and paths are inside. 
+3. What does recursive mean? Includes  the directory and all of it's subdirectores/files. 
+4. Why is restoring into a separate directory still important? Prevents overwriting of original files if the archive contains the same paths. 
 
 ---
 
@@ -141,12 +109,6 @@ Question:
 What exactly went into the archive?
 ```
 
-Expected answer:
-
-```text
-Only project/config/app.conf.
-```
-
 ---
 
 ## Drill 2: Extract to a chosen directory
@@ -165,10 +127,6 @@ Say aloud:
 -d chooses the extraction directory.
 ```
 
----
-
-## Disciplined thinking checkpoint
-
 Before sending a zip file to someone else, ask:
 
 ```text
@@ -181,36 +139,12 @@ Can someone else extract it?
 
 ---
 
-## Explain to a ten-year-old
-
-Explain:
-
-```bash
-zip -r backup/project.zip project
-```
-
-Use:
-
-```text
-zip is like...
--r means...
-project.zip contains...
-```
-
----
-
 ## Checkpoint
 
-He understands Day 4 only if he can answer:
+You understand Day 4 only if you can answer:
 
 1. What does `zip -r` do?
 2. What does `unzip -l` do?
 3. What does `unzip file.zip -d DIR` do?
 4. Why is zip useful for sharing?
 5. Why can zip files accidentally include private files?
-
----
-
-## Cleanup
-
-Keep the zip files for Day 6.

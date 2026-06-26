@@ -21,50 +21,7 @@
 
 > How does a normal home or small-office Linux machine receive configuration and reach the Internet safely?
 
-Do not continue until you can answer this question in your own words.
-
-## Feynman explanation
-
-### Hotel front desk analogy
-
-DHCP is like the hotel front desk assigning you a room number, Wi-Fi information, and checkout instructions. Your computer joins a network and receives an address, gateway, and DNS information.
-
-### Apartment NAT analogy
-
-Many people in an apartment building share one street address. NAT is like the front desk keeping track of which inside apartment started which outside conversation.
-
-### Security guard analogy
-
-A firewall is like a security guard at a door. Routing decides where traffic goes. A firewall decides whether traffic is allowed.
-
-### Explain it to a 10-year-old
-
-Write a short explanation using ordinary words. No jargon unless you define it first.
-
-```text
-My explanation:
-
-Words I used but need to define:
-
-Where my explanation became vague:
-```
-
-## Must-understand checklist
-
-- [ ] What DHCP can provide.
-- [ ] Why private IPv4 addresses exist.
-- [ ] What NAT does at a beginner level.
-- [ ] The difference between a router and a firewall.
-- [ ] Why IPv6 matters even if the lab mostly uses IPv4.
-- [ ] Why network configuration managers exist.
-
-If any box feels fuzzy, reread that part. Do not reward yourself for simply reaching the end of the page.
-
-## Slow-down checkpoints
-
-- Separate 'I recognize this' from 'I can configure this.' Recognition is enough for some sections on the first pass.
-- Do not memorize firewall syntax yet. First understand the difference between forwarding, filtering, and address translation.
-- When reading IPv6, do not skip it because the current lab uses IPv4. Write one paragraph explaining why IPv6 exists.
+A home/office  linux machine gets  its configurations with DHCP from  the router. It uses a private IPv4 address. Traffic  to  the internet is forwarded by the router, that performs NAT. DNS resolves names. A firewall on the machine and router blocks inbound traffic and internet safety. 
 
 ## Observation commands
 
@@ -75,34 +32,23 @@ ip -br addr
 ip route
 cat /etc/resolv.conf
 ```
-
-Before running the command, predict what kind of evidence it should produce. After running it, write what changed in your understanding.
-
 ### NetworkManager if applicable
 
 ```bash
 nmcli device status
 nmcli connection show
 ```
-
-Before running the command, predict what kind of evidence it should produce. After running it, write what changed in your understanding.
-
 ### IPv6 awareness
 
 ```bash
 ip -6 addr
 ip -6 route
 ```
-
-Before running the command, predict what kind of evidence it should produce. After running it, write what changed in your understanding.
-
 ## Drills
 
 ### Drill 1: Configuration source
 
 Find the machine's address, default gateway, and resolver. Decide which pieces may have come from DHCP.
-
-**Discipline rule:** write the hypothesis first, then the evidence, then the conclusion.
 
 ```text
 Hypothesis:
@@ -116,8 +62,6 @@ Next question:
 
 Identify whether the machine's IPv4 address is private. Explain how you know.
 
-**Discipline rule:** write the hypothesis first, then the evidence, then the conclusion.
-
 ```text
 Hypothesis:
 Expected evidence:
@@ -130,8 +74,6 @@ Next question:
 
 Describe a case where routing works but a firewall still blocks traffic.
 
-**Discipline rule:** write the hypothesis first, then the evidence, then the conclusion.
-
 ```text
 Hypothesis:
 Expected evidence:
@@ -143,8 +85,6 @@ Next question:
 ### Drill 4: IPv6 recognition
 
 Find one IPv6 address if present. Do not configure anything; just identify it.
-
-**Discipline rule:** write the hypothesis first, then the evidence, then the conclusion.
 
 ```text
 Hypothesis:
@@ -212,18 +152,13 @@ They coordinate network settings automatically and reduce problems caused by man
 
 ## Final deliverable
 
-Write a one-page explanation: “How my home Linux machine gets an address and reaches the Internet.” Include DHCP, private address, default gateway, NAT, DNS, and firewall.
+Write an explanation: “How my home Linux machine gets an address and reaches the Internet.” Include DHCP, private address, default gateway, NAT, DNS, and firewall.
 
-## Self-grade
-
-Grade yourself harshly. A weak explanation means the idea is not solid yet.
-
-| Skill | 0 = weak | 1 = partial | 2 = solid | Notes |
-|---|---:|---:|---:|---|
-| I can explain the main idea without looking |  |  |  |  |
-| I can connect the idea to command output |  |  |  |  |
-| I can use the idea in troubleshooting |  |  |  |  |
-| I can avoid vague words like 'network problem' |  |  |  |  |
+1.) On boot, the machine sends a DHCP request
+2.) The router assigns a private IPv4 address, default gateway, and DNS servers.
+3.) For outward internet traffic, packets to to the default gateway. The router performs NAT to map the private source IP to its public IP.
+4.) DNS queries translate domain names to IPs.
+5.) A local firewall allows connections and related replies while also blocking unwanted traffic. The router's firewall adds more protection. 
 
 ## Common traps
 

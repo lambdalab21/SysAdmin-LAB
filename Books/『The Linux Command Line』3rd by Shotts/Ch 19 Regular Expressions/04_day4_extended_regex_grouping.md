@@ -1,23 +1,5 @@
 # The Linux Command Line, Chapter 19: Regular Expressions
 
-Use these files as a multi-day study plan for Shotts's Chapter 19.
-
-Main discipline:
-
-```text
-Do not treat regex as magic symbols.
-A regular expression is a small rule for matching text.
-```
-
-Before every command, answer:
-
-```text
-1. What lines do I expect to match?
-2. Which part of the regex creates that match?
-3. Could the shell change my pattern before grep sees it?
-4. Did the output prove my prediction?
-```
-
 One-time setup:
 
 ```bash
@@ -97,15 +79,14 @@ EOF
 
 ## Read these Chapter 19 sections
 
-Read the sections covering extended regular expressions: `grep -E`, `+`, `?`, `{}`, `|`, and `()`.
-
-## Feynman analogy
-
-Extended regex lets you ask more natural questions: “one or more digits,” “optional letter,” “ERROR or WARN,” and “group these choices together.” Grouping is like parentheses in math.
-
+Read the sections covering extended regular expressions: `grep -E`, `+`, `?`, and `()`.
 ## Before touching the keyboard
 
 Answer what `grep -E`, `+`, `?`, `|`, and parentheses do.
+* grep -E enables extended regular expressions.
+* + matches one or more occurrences of the previous character. 
+* ? matches zero or more occurrence of the previous character. 
+* () treats multiple characters as a single unit for quantifiers or alternation.  
 
 ## Practice
 
@@ -139,7 +120,7 @@ grep 'ab*' extended.txt
 grep -E 'ab+' extended.txt
 ```
 
-Say aloud: `*` means zero or more; `+` means one or more.
+*` means zero or more; `+` means one or more.
 
 ## `?`, `{}`, `|`, and grouping
 
@@ -162,8 +143,6 @@ grep -E '(alice|bob)' app.log
 Questions:
 
 1. What is stricter: `ERROR|WARN` or `^(ERROR|WARN)`?
+		`|ERROR|WARN` is more strict. It matches words  found anywhere in the file but the other one only matches lines that start with ERROR or WARN. 
 2. Why do parentheses matter?
-
-## Checkpoint
-
-Explain `grep -E`, `*` vs `+`, `?`, `|`, and why `^(ERROR|WARN)` does not match INFO lines.
+		They group `alice|bob` so it applies only to those two words.

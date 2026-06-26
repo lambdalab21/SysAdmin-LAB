@@ -32,8 +32,6 @@ whoami
 groups
 ```
 
-Say aloud: Linux checks user identity and group membership when deciding permissions.
-
 ## 2. Read permission strings
 
 ```bash
@@ -56,8 +54,6 @@ ls -l friday-perm.txt
 chmod 640 friday-perm.txt
 ls -l friday-perm.txt
 ```
-
-Say aloud: `600 = rw-------`; `644 = rw-r--r--`; `640 = rw-r-----`.
 
 ## 4. Symbolic `chmod`
 
@@ -84,8 +80,6 @@ chmod 755 friday-script.sh
 ./friday-script.sh
 ```
 
-Say aloud: a script needs execute permission to run directly.
-
 ## 6. Directory execute permission
 
 ```bash
@@ -98,8 +92,6 @@ chmod 700 friday-dir
 ls friday-dir
 cat friday-dir/secret.txt
 ```
-
-Say aloud: `x` on a directory means enter or traverse.
 
 ## 7. `umask`
 

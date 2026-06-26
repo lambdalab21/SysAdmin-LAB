@@ -14,8 +14,6 @@ Use machines that belong to your home lab, such as `app01` and `db01`.
 
 ---
 
----
-
 # Part 4 — Troubleshooting drills
 
 ## Drill 19: Distinguish host reachability from service reachability
@@ -30,12 +28,12 @@ ssh <user>@app01
 **Task:**
 Describe the meaning of each case:
 
-| `ping` | `ssh` | Likely interpretation |
-|---|---|---|
-| succeeds | succeeds | Host and SSH service are reachable |
-| succeeds | fails | Host may be reachable, but SSH service, port, authentication, or firewall needs investigation |
-| fails | succeeds | ICMP may be blocked even though SSH works |
-| fails | fails | Gather more evidence before concluding that the host is down |
+| `ping`   | `ssh`    | Likely interpretation                                                                         |
+| -------- | -------- | --------------------------------------------------------------------------------------------- |
+| succeeds | succeeds | Host and SSH service are reachable                                                            |
+| succeeds | fails    | Host may be reachable, but SSH service, port, authentication, or firewall needs investigation |
+| fails    | succeeds | ICMP may be blocked even though SSH works                                                     |
+| fails    | fails    | Gather more evidence before concluding that the host is down                                  |
 
 **Check your answer:**
 Different tools test different assumptions. Do not treat one failed test as a complete diagnosis.

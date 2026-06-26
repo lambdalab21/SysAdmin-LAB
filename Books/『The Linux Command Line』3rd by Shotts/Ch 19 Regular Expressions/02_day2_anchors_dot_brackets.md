@@ -106,18 +106,6 @@ grep '^INFO' app.log
 grep '^error' app.log
 grep -i '^error' app.log
 ```
-
-## Dot practice
-
-Predict, then run:
-
-```bash
-grep 'c.t' words.txt
-grep 'gr.y' words.txt
-```
-
-Explain why `c.t` matches `cat`, `cot`, and `cut`.
-
 ## Bracket practice
 
 ```bash
