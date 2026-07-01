@@ -2,23 +2,6 @@
 
 Chapter 18 is best split into pieces. Do not read it in one sitting and expect the commands to stick.
 
-Main habit:
-
-```text
-A backup is not real until you can restore from it.
-```
-
-Disciplined thinking pattern for this chapter:
-
-```text
-1. What am I trying to preserve?
-2. Am I compressing one file or archiving many files?
-3. Where is the backup going?
-4. How can I list or inspect the backup before trusting it?
-5. Can I restore it into a separate directory?
-6. Did I verify the restored files?
-```
-
 One-time setup:
 
 ```bash
@@ -51,47 +34,21 @@ find ~/tlcl-ch18-lab -maxdepth 3 -type f -print
 ---
 # Day 6: Restore Practice and Backup Discipline
 
-## Purpose
-
-This day is the most important day.
-
-A student who can create archives but cannot restore them does not understand backup.
-
 ---
-
-## Feynman analogy
-
-A backup is like a spare key.
-
-It is not enough to say:
-
-```text
-I think I made a spare key.
-```
-
-You must test:
-
-```text
-Can the spare key open the door?
-```
-
-In Linux terms:
-
-```text
-Can I restore the files into a separate directory and verify them?
-```
-
----
-
 ## Before touching the keyboard
 
 Answer:
 
-1. Which backup files did I create this week?
-2. How do I list each one?
-3. How do I extract each one safely?
-4. How do I compare restored files with originals?
-5. Which command is most dangerous in this chapter?
+1. Which backup files did I create this week? backup/project.tar,backup/project.tar.gz, backup/project.tar.bz2, backup/project.zip, backup/rsync-copy/project
+2. How do I list each one? Using tar, unzip, and find. 
+3. How do I extract each one safely? Create a restore subdiretory first, then:
+		*tar xf backup/project.tar
+		tar xzf backup/projects.tar.gz
+		tar xjf backup/project.tar.bz2
+		unzip backup/project.zip -d restore/dir/
+		rsync -av backup/rsync-copy/project restore/dir/
+4. How do I compare restored files with originals? using `diff -r original/ restored/`
+5. Which command is most dangerous in this chapter? `rsync -av --delete source/ dest/` deletes the destination files not in the source, it causes data loss if it's misused.
 
 ---
 
@@ -179,32 +136,6 @@ diff -r backup/rsync-copy/project restore/final-rsync/project
 
 ---
 
-# Disciplined-thinking audit
-
-Fill this out:
-
-```text
-Archive or backup tested:
-Command used to list or inspect:
-Command used to restore:
-Restore location:
-Verification command:
-Result:
-Difference found:
-Explanation:
-```
-
-Do this for:
-
-```text
-project.tar
-project.tar.gz
-project.zip
-rsync-copy
-```
-
----
-
 # Dangerous command review
 
 Explain why these can be dangerous:
@@ -221,7 +152,7 @@ Expected ideas:
 ```text
 rm -rf can delete trees quickly.
 tar/unzip can overwrite files if extracted carelessly.
-rsync --delete can remove destination files.
+rsync --delete can remove estination files.
 ```
 
 ---

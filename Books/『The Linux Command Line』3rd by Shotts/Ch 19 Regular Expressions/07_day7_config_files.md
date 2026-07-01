@@ -1,23 +1,5 @@
 # The Linux Command Line, Chapter 19: Regular Expressions
 
-Use these files as a multi-day study plan for Shotts's Chapter 19.
-
-Main discipline:
-
-```text
-Do not treat regex as magic symbols.
-A regular expression is a small rule for matching text.
-```
-
-Before every command, answer:
-
-```text
-1. What lines do I expect to match?
-2. Which part of the regex creates that match?
-3. Could the shell change my pattern before grep sees it?
-4. Did the output prove my prediction?
-```
-
 One-time setup:
 
 ```bash
@@ -99,10 +81,6 @@ EOF
 
 Configuration files are one of the most important places to use regex carefully. Practice comments, active settings, disabled settings, directives, and safe inspection before editing.
 
-## Feynman analogy
-
-A config file is a rule sheet. Some rules are active; some are crossed out with `#`. Regex helps find active rules, comments, and specific directives.
-
 ## Practice
 
 ```bash
@@ -121,7 +99,7 @@ grep -v '^#' sshd_config_sample
 grep -v '^#' sshd_config_sample | grep '[[:alpha:]]'
 ```
 
-Question: Why might `grep -v '^#'` still show blank lines?
+Question: Why might `grep -v '^#'` still show blank lines? It still shows  blank lines because they do not begin with #. 
 
 ## Find specific directives
 
@@ -132,7 +110,7 @@ grep '^#PasswordAuthentication' sshd_config_sample
 grep -E '^#?PasswordAuthentication' sshd_config_sample
 ```
 
-Question: What does `#?` mean in extended regex?
+Question: What does `#?` mean in extended regex? #? in extended regex means "zero or one # character". 
 
 ## Nginx-style config
 
@@ -143,14 +121,4 @@ grep 'root' nginx_site_sample.conf
 grep -E '^[[:space:]]*listen' nginx_site_sample.conf
 ```
 
-Question: Why use `^[[:space:]]*listen` instead of `^listen`?
-
-## Discipline checkpoint
-
-Task: Find the active PasswordAuthentication setting.
-
-Bad: `grep PasswordAuthentication sshd_config_sample`
-
-Better: `grep '^PasswordAuthentication' sshd_config_sample`
-
-Explain why the stricter pattern is better.
+Question: Why use `^[[:space:]]*listen` instead of `^listen`? It's used instead of ^listen because NGinx directives can be indented with spaces or tabs. 

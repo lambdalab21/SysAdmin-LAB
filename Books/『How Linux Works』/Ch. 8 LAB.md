@@ -1,8 +1,4 @@
-More natural wording: **“Create lab experiments to deepen his understanding of Ch. 8.”**
-
 Ward Ch. 8 is about the relationship between processes, the kernel, and three major hardware-resource categories: CPU, memory, and I/O. These labs should make those relationships visible rather than turn into command memorization. ([オライリー・メディア](https://www.oreilly.com/library/view/how-linux-works/9781098128913/c08.xhtml?utm_source=chatgpt.com "How Linux Works, 3rd Edition"))
-
-Use a disposable VM such as `app01` or a separate practice VM. Do not run stress experiments on the Proxmox host.
 
 # Chapter 8 lab series
 
@@ -100,7 +96,6 @@ ps -p "$SLEEP_PID" -o pid,ppid,user,stat,comm,args
 ```bash
 cat "/proc/$SLEEP_PID/status"
 ```
-
 Focus on:
 
 ```text
@@ -113,8 +108,6 @@ VmRSS
 voluntary_ctxt_switches
 nonvoluntary_ctxt_switches
 ```
-
-`/proc/<PID>/status` exposes process status and memory information in a human-readable form, including state, PID, PPID, memory fields, thread count, and context-switch counts. ([man7.org](https://man7.org/linux/man-pages/man5/proc_pid_status.5.html "proc_pid_status(5) - Linux manual page"))
 
 ## Step 4: Terminate gracefully
 

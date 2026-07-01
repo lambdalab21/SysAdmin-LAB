@@ -2,21 +2,6 @@
 
 Use these files as a multi-day study plan for Shotts's Chapter 19.
 
-Main discipline:
-
-```text
-Do not treat regex as magic symbols.
-A regular expression is a small rule for matching text.
-```
-
-Before every command, answer:
-
-```text
-1. What lines do I expect to match?
-2. Which part of the regex creates that match?
-3. Could the shell change my pattern before grep sees it?
-4. Did the output prove my prediction?
-```
 
 One-time setup:
 
@@ -99,29 +84,6 @@ EOF
 
 Use regex with logs, process lists, network sockets, and system command output.
 
-## Feynman analogy
-
-Troubleshooting is finding clues in messy notes. Regex is the clue detector. A detective asks: What clue proves my idea? What clue disproves it? What false clue might fool me?
-
-## Practice
-
-```bash
-cd ~/tlcl-ch19-regex
-cp app.log day8/
-cd day8
-```
-
-## Log levels
-
-```bash
-grep '^ERROR' app.log
-grep -E '^(ERROR|WARN)' app.log
-grep -E '^(INFO|DEBUG)' app.log
-grep -i '^error' app.log
-```
-
-Questions: Which matches only uppercase ERROR at the beginning? Which also matches lowercase error? Which matches serious lines?
-
 ## Failed-login users
 
 ```bash
@@ -130,7 +92,7 @@ grep -E 'failed-login (alice|bob)' app.log
 grep -E 'failed-login [[:alpha:]]+$' app.log
 ```
 
-Question: What does `[[:alpha:]]+$` mean at the end?
+Question: What does `[[:alpha:]]+$` mean at the end? One or more letters at the end of the line, matching only alphabetic usernames. 
 
 ## Process output
 
@@ -141,7 +103,7 @@ ps aux | grep -E 'bash|ssh'
 ps aux | grep '[b]ash'
 ```
 
-Question: Why can `grep bash` show the grep command itself?
+Question: Why can `grep bash` show the grep command itself? It shows itself because the grep process contain the word "bash" in its command line, so it matches its own output. 
 
 ## Network/socket output
 
@@ -150,8 +112,6 @@ ss -tuln | head
 ss -tuln | grep ':22'
 ss -tuln | grep -E ':22|:80|:443'
 ```
-
-Important: a listening port does not prove the application works correctly.
 
 ## Combine regex with Chapter 20 pipelines
 

@@ -45,8 +45,6 @@ cp src/file2.txt dst/file2-copy.txt
 ls -l dst
 ```
 
-Explain which command preserved the original filename and which renamed the copy.
-
 ## 4. Copy directories recursively
 
 ```bash
