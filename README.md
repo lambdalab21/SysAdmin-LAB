@@ -6,6 +6,10 @@
 3. Click on the Vault > Manage vaults.. under the left tree
 4. click on "Open" button.  Navigate to ~/Obsidian/SysAdmin-Lab
    
+## Resources
+- How Linux Works, 3rd Edition: What Every Superuser Should Know, Brian Ward
+- The Linux Command Line, 3rd Edition: A Complete Introduction, William Shotts
+
 ## Setup
 ### Physical Setup 
 app01: 

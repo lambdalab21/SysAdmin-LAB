@@ -6,8 +6,6 @@ scp -r ./dist/. deploy@app01:/var/www/site1/public/
 
 The likely problem is **server-side directory ownership/permissions**, not `scp` itself.
 
-Correction: _AlmaLinux_, not “almalinux.”
-
 ## First: identify which permission error
 
 He should not guess. Read the exact error.
