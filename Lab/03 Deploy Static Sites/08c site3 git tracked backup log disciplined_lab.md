@@ -12,41 +12,6 @@ site3 = Git-tracked rsync deployment
 
 Git does not deploy files.
 
-Git records the project version.
-
-`rsync` deploys the files.
-
-`curl` and logs prove what the server served.
-
----
-
-# Goal
-
-Build this deployment habit:
-
-```text
-inspect Git changes
-→ commit intentionally
-→ back up current server state
-→ rsync dry run
-→ deploy
-→ verify filesystem
-→ verify HTTP
-→ verify logs
-→ write deployment note
-```
-
----
-
-# Rules
-
-1. Do not deploy uncommitted work.
-2. Do not deploy before `git diff`.
-3. Do not run real `rsync` before dry run.
-4. Back up before deploying with `--delete`.
-5. Do not call deployment successful until `curl` and logs agree.
-6. Do not edit deployed files directly on `app01`.
-
 ---
 
 # Current setup
@@ -85,30 +50,6 @@ git status
 git log --oneline --decorate -n 3
 ```
 
-Write:
-
-```text
-Current branch:
-
-Latest commit:
-
-Working tree clean? yes/no
-
-If not clean, what changed?
-```
-
-Stop.
-
-Do not deploy unless you can explain what version you are about to send.
-
-Green check:
-
-```text
-[ ] I know my branch.
-[ ] I know my latest commit.
-[ ] I know whether the working tree is clean.
-```
-
 ---
 
 # Part 2 — Make one local change and inspect it
@@ -135,13 +76,13 @@ git diff
 Stop and answer:
 
 ```text
-What file changed?
+What file changed? index.html
 
-What exact line changed?
+What exact line changed? Line 27; added <p>site3 Git backup/log practice.</p>
 
-Was this intentional?
+Was this intentional? Yes 
 
-Is there any unrelated change?
+Is there any unrelated change? No
 ```
 
 Commit:
@@ -158,13 +99,6 @@ git status
 git log --oneline --decorate -n 3
 ```
 
-Green check:
-
-```text
-[ ] I inspected git diff.
-[ ] I committed only the intended change.
-[ ] Working tree is clean.
-```
 
 ---
 
@@ -201,15 +135,15 @@ ssh your-admin-user@app01 'sudo tail -n 10 /var/log/nginx/error.log'
 Write:
 
 ```text
-HTTP status before deployment:
+HTTP status before deployment: 200. 
 
-Access-log line:
+Access-log line: `app01 - - [...] "GET /site3/HTTP/1.1" 200 ...`
 
-Error-log evidence:
+Error-log evidence: No recent error. 
 
-What this proves:
+What this proves: Current live content before deployment. 
 
-What this does not prove:
+What this does not prove: That the new change is live. 
 ```
 
 ---
@@ -246,27 +180,6 @@ tar -tzf "$latest" | head -n 20
 '
 ```
 
-Write:
-
-```text
-Backup file:
-
-Backup contents:
-
-What this proves:
-
-What this does not prove:
-```
-
-Green check:
-
-```text
-[ ] Backup exists.
-[ ] Backup lists public/index.html.
-[ ] Backup was made before deployment.
-```
-
----
 
 # Part 5 — Dry run and deploy
 
@@ -279,35 +192,21 @@ rsync -avn --delete ./public/ deploy@app01:/var/www/site3/public/
 Stop and write:
 
 ```text
-Latest commit being deployed:
+Latest commit being deployed: "Update site3 deployment practice text"
 
-Source path:
+Source path: `./public/`
 
-Destination path:
+Destination path: deploy@app01:/var/www/site3/public/
 
-Files that would change:
+Files that would change: public/idnex.html
 
-Files that would be deleted:
-
-Does rsync output match git diff?
-
-Is destination definitely site3?
+Does rsync output match git diff? Yes. 
 ```
 
 Only if correct:
 
 ```bash
 rsync -av --delete ./public/ deploy@app01:/var/www/site3/public/
-```
-
-Write:
-
-```text
-Deployment command:
-
-What changed:
-
-What this does not prove:
 ```
 
 ---
@@ -348,32 +247,7 @@ ssh your-admin-user@app01 'sudo tail -n 20 /var/log/nginx/access.log'
 ssh your-admin-user@app01 'sudo tail -n 20 /var/log/nginx/error.log'
 ```
 
-Write:
-
-```text
-Git evidence:
-
-Filesystem evidence:
-
-HTTP evidence:
-
-Access-log evidence:
-
-Error-log evidence:
-
-Final conclusion:
-```
-
-Expected distinction:
-
-```text
-Git proves what version I intended to deploy.
-Filesystem proves files reached app01.
-curl proves Nginx served the content.
-Logs prove Nginx received the request and whether it had errors.
-```
-
----
+--- 
 
 # Part 7 — Update `deploy.sh` to include backup and log prompts
 
@@ -492,11 +366,11 @@ find /tmp/site3-restore-test -type f -print | sort
 Write:
 
 ```text
-Restore-test evidence:
+Restore-test evidence: Files from the backup successfully extracted to /tmp. 
 
-What this proves:
+What this proves: Backups are valid and restorable. 
 
-What this does not prove:
+What this does not prove: That a full production restore would succeed without issue. 
 ```
 
 ---
@@ -506,49 +380,37 @@ What this does not prove:
 Complete after every `site3` deployment:
 
 ```text
-Project:
+Project: site3
 
-Branch:
+Branch: main 
 
-Commit deployed:
+Commit deployed: Update site3 deployment practice text
 
-Backup file:
+Backup file: site3-public-YYYYMMDD-HHMMSS.tar.gz
 
-Rsync dry-run summary:
+Rsync dry-run summary: Only index.html updated
 
-Deployment command:
+Deployment command: rsync -av --delete
 
-Filesystem evidence:
+Filesystem evidence: New text present
 
-HTTP evidence:
+HTTP evidence: curl shows new content. 
 
-Access-log evidence:
+Access-log evidence: 200 OK entries. 
 
-Error-log evidence:
+Error-log evidence: Clean
 
-What Git proved:
+What Git proved: Intended Version
 
-What backup protects:
+What backup protects: Rollback Capability. 
 
-What rsync proved:
+What rsync proved: Files transferred correctly. 
 
-What curl proved:
+What curl proved: Content is live. 
 
-What logs proved:
+What logs proved: Request handling status. 
 
-One mistake I avoided:
+One mistake I avoided: Deploying dirty tree. 
 
-One habit I improved:
-```
-
-Completion checkpoint:
-
-```text
-[ ] site3 uses Git before deployment.
-[ ] Git status was clean before deployment.
-[ ] Backup was made before rsync --delete.
-[ ] rsync dry run was inspected.
-[ ] curl verified served content.
-[ ] logs were checked.
-[ ] I can explain Git vs backup vs rsync vs Nginx.
+One habit I improved: Always checking logs after deployment. 
 ```

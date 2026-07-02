@@ -76,22 +76,6 @@ Read for this question:
 
 > How does the kernel help network applications communicate?
 
-Write a Feynman explanation to a younger student:
-
-```text
-A network program does not throw bytes directly onto the cable. Instead...
-```
-
-Your explanation must use these words correctly:
-
-```text
-process
-kernel
-socket
-TCP
-port
-```
-
 ### 10.3 Network servers: SSH and sshd
 
 Read for this question:
@@ -105,23 +89,11 @@ ssh  = client program
 sshd = server daemon that listens for SSH connections
 ```
 
-Then explain:
-
-```text
-1. Which machine runs ssh?
-2. Which machine runs sshd?
-3. What port does sshd normally listen on?
-4. Why should root login usually be disabled?
-5. Why are SSH keys better than password-only login?
-```
-
 ### fail2ban
 
 Read for this question:
 
 > What problem does fail2ban try to reduce?
-
-Do not overstate it. fail2ban is not “security.” It is one defensive layer against repeated failed login attempts.
 
 Answer:
 
@@ -145,18 +117,6 @@ netcat/nc proves:
 nmap proves:
 ss proves:
 journalctl proves:
-```
-
-Bad answer:
-
-```text
-lsof shows stuff.
-```
-
-Good answer:
-
-```text
-lsof can show which process has a network socket or file open.
 ```
 
 ### Remote procedure calls
@@ -199,45 +159,3 @@ Final explanation:
 Network sockets allow communication across a network.
 Unix domain sockets allow processes on the same machine to communicate through the filesystem/socket interface.
 ```
-
-## End-of-chapter Feynman test
-
-Without looking at the book, explain this system:
-
-```text
-Laptop A runs ssh.
-Laptop B runs sshd.
-Laptop B has port 22 open.
-The firewall allows Laptop A to connect.
-sshd authenticates the user.
-The login becomes a shell process.
-journalctl records login events.
-```
-
-Your explanation must mention:
-
-```text
-client
-server
-process
-daemon
-port
-firewall
-authentication
-logs
-```
-
-If you cannot explain this, reread the SSH and diagnostic sections.
-
-## Do not skip the discipline
-
-For every command in the chapter, ask:
-
-```text
-What question does this command answer?
-What evidence does it give me?
-Could this output mislead me?
-What should I check next?
-```
-
-That is infrastructure thinking.

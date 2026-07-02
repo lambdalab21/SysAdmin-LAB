@@ -53,8 +53,6 @@ ls alpha missing-file > both.txt 2>&1
 cat both.txt
 ```
 
-Say aloud: order matters. `> both.txt` redirects stdout; `2>&1` sends stderr to stdout’s destination.
-
 ## 4. Pipelines
 
 ```bash
@@ -82,8 +80,6 @@ echo file{1..5}.txt
 echo "$HOME"
 echo '$HOME'
 ```
-
-Explain wildcard expansion, brace expansion, variable expansion, single quotes, and double quotes.
 
 ## 7. Dangerous glob habit
 

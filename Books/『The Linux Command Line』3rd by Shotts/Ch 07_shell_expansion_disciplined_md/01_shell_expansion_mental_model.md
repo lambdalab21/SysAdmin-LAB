@@ -73,40 +73,14 @@ using echo to preview expansion
 
 ---
 
-## Feynman analogy
-
-Imagine you write a note to a helper:
-
-```text
-Show me *.txt
-```
-
-But before the helper receives the note, a secretary rewrites it:
-
-```text
-Show me docs/report.txt docs/todo.txt docs/file with spaces.txt
-```
-
-The helper never saw `*.txt`. The helper saw the expanded list.
-
-That secretary is the shell.
-
-```text
-you type text
-→ shell expands it
-→ program receives arguments
-```
-
----
-
 ## Before touching the keyboard
 
 Answer:
 
-1. Does `ls *.txt` send `*.txt` to `ls`, or does the shell expand it first?
-2. What command can preview expansion?
-3. Why is expansion dangerous with `rm`?
-4. Why is Chapter 7 important before shell scripting?
+1. Does `ls *.txt` send `*.txt` to `ls`, or does the shell expand it first? No. The shell expands it first into matching filenames.  
+2. What command can preview expansion? `echo` or `print`. 
+3. Why is expansion dangerous with `rm`? The shell expands wildcards before `rm` runs, potentially deleting many files unexpectedly. 
+4. Why is Chapter 7 important before shell scripting? Understanding how the shell modifies commands is essential for writing correct scripts. 
 
 ---
 
@@ -122,36 +96,6 @@ Run:
 echo *.txt
 echo docs/*.txt
 printf '<%s>\n' docs/*.txt
-```
-
-## Explain-back
-
-Say aloud:
-
-```text
-The shell expands docs/*.txt into matching pathnames before echo or printf runs.
-printf shows each resulting argument clearly.
-```
-
----
-
-## Discipline drill: command-receipt thinking
-
-For each command, fill this out before running:
-
-```text
-Typed command:
-What the shell expands:
-What the program receives:
-Is it safe?
-```
-
-Commands:
-
-```bash
-echo logs/*.log
-printf '<%s>\n' logs/*.log
-ls logs/*.log
 ```
 
 ---
@@ -174,13 +118,7 @@ rm tmp/*.tmp
 Question:
 
 ```text
-Why is echo rm tmp/*.tmp useful but not a perfect safety guarantee?
-```
-
-Expected idea:
-
-```text
-It shows the expanded command idea, but files can change between preview and execution. Still, previewing is much safer than guessing.
+Why is echo rm tmp/*.tmp useful but not a perfect safety guarantee? It shows the expected command idea, but files can change between preview and execution.
 ```
 
 ---
@@ -205,7 +143,7 @@ Inside `man bash`, search for:
 Write one sentence:
 
 ```text
-Where does Bash document expansion?
+Where does Bash document expansion? In the man bash page under sections like EXPANSION, pathname expansion, and quoting. 
 ```
 
 ---
@@ -214,8 +152,8 @@ Where does Bash document expansion?
 
 He understands Session 1 only if he can explain:
 
-1. What expansion means.
-2. Why `echo *.txt` is a preview tool.
-3. Why `printf '<%s>\n' *.txt` can be clearer than `echo`.
-4. Why destructive commands with wildcards are risky.
-5. Why the shell, not the program, often handles wildcards.
+1. What expansion means. The shell rewrites your command before the program receives it. 
+2. Why `echo *.txt` is a preview tool. It shows the expanded list without running a dangerous command. 
+3. Why `printf '<%s>\n' *.txt` can be clearer than `echo`. It displays each argument on its own line, making spaces and separate items obvious. 
+4. Why destructive commands with wildcards are risky. The shell expands them first. One typo can delete more than intended. 
+5. Why the shell, not the program, often handles wildcards. Pathname extensions are performed by the shell before passing arguments to the command. 
