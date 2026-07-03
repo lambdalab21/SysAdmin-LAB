@@ -1,7 +1,5 @@
 # Effective Shell Chapter 2: Thinking in Pipelines — Study Plan
 
-A cleaner phrasing: “Create Markdown file(s) for Chapter 2, ‘Thinking in Pipelines,’ by Kerr. This follows Shotts Chapter 6. Use the Feynman method and train disciplined thinking rather than mindless typing. Also encourage use of `man`, `--help`, and similar tools.”
-
 Recommended split:
 
 | Session | File | Focus |
@@ -17,18 +15,6 @@ Main bridge from Shotts Chapter 6:
 ```text
 Shotts: where streams go
 Kerr: how to think with streams
-```
-
-Core habit:
-
-```text
-Question → input → stage 1 → inspect → stage 2 → inspect → final answer
-```
-
-Do not allow this habit:
-
-```text
-copy long pipeline → press Enter → feel smart
 ```
 
 Require this instead:

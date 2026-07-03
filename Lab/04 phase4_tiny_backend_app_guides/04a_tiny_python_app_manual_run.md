@@ -1,21 +1,5 @@
 # 04a — Tiny Python App: Manual Run
 
-## Purpose
-
-Start a tiny backend app manually and prove it is listening on a port.
-
-The goal is not Python.
-
-The goal is:
-
-```text
-process
-→ listens on 127.0.0.1:8000
-→ curl reaches it
-→ ss proves the listening socket
-→ stopping the process makes the app unavailable
-```
-
 ---
 
 # Mental model
@@ -26,13 +10,6 @@ Running Python script = process
 127.0.0.1 = this machine only
 8000 = port number
 curl = test client
-```
-
-Feynman version:
-
-```text
-The app is like a person sitting in room 8000 on app01.
-curl knocks on room 8000 and reads the answer.
 ```
 
 ---
@@ -68,34 +45,16 @@ httpd.serve_forever()
 
 ## Stop and think
 
-Do not study every Python detail.
-
-Answer only these:
+Answer these:
 
 ```text
-What address will the app listen on?
+What address will the app listen on? 172.0.0.1
 
-What port will it listen on?
+What port will it listen on? 8000. 
 
-What text should it return?
+What text should it return? 'Hello' from your tiny Python server.
 
-Will this app be reachable directly from another machine? Why or why not?
-```
-
-Expected:
-
-```text
-It listens on 127.0.0.1 port 8000.
-It returns a plain text message.
-127.0.0.1 means localhost, so it is only reachable from app01 itself.
-```
-
-Green check:
-
-```text
-[ ] I know the address.
-[ ] I know the port.
-[ ] I know this is a running process, not a static file.
+Will this app be reachable directly from another machine? Why or why not? No, it binds only to 127.0.0.1.
 ```
 
 ---
@@ -123,11 +82,11 @@ This terminal is now occupied because the process is running.
 Write:
 
 ```text
-What process is running?
+What process is running? The Python HTTP server process. 
 
-Why did the prompt not come back?
+Why did the prompt not come back? `serve_forever()` runs an infinite loop. 
 
-What would happen if I press Ctrl-C?
+What would happen if I press Ctrl-C? It stops the server. 
 ```
 
 Expected:
@@ -153,13 +112,13 @@ curl -v http://127.0.0.1:8000/
 Write exact evidence:
 
 ```text
-HTTP status:
+HTTP status: 200. 
 
-Response body:
+Response body: Hello from your tiny python server
 
-What this proves:
+What this proves: The app works locally on app01
 
-What this does not prove:
+What this does not prove: Reachability from other machines or nginx integration. 
 ```
 
 Expected:
@@ -186,28 +145,6 @@ If permission hides the process name, try:
 ```bash
 sudo ss -ltnp | grep 8000
 ```
-
-Write:
-
-```text
-Exact output:
-
-Listening address:
-
-Listening port:
-
-Process name or PID:
-
-What this proves:
-```
-
-Expected idea:
-
-```text
-The output should show 127.0.0.1:8000.
-This proves a process is listening locally on port 8000.
-```
-
 Do not continue if the output shows:
 
 ```text
@@ -283,11 +220,11 @@ curl http://127.0.0.1:8000/
 Write:
 
 ```text
-What changed in the code?
+What changed in the code? The response text. 
 
-What changed in curl output?
+What changed in curl output? The message body. 
 
-What stayed the same?
+What stayed the same? Address(127.0.0.1), the port(8000), and overall behavior.
 ```
 
 Expected:
@@ -303,31 +240,19 @@ The process still listens on 127.0.0.1:8000.
 # Final reflection
 
 ```text
-Task:
+Command that started the process: python3 app.py
 
-Command that started the process:
+Command that tested the app: curl http://127.0.0.1:8000/
 
-Command that tested the app:
+Command that proved the port was listening: ss -ltnp | grep 8000
 
-Command that proved the port was listening:
+What 127.0.0.1 means: localhost.
 
-What 127.0.0.1 means:
+What port 8000 means: The specific port the app listens on.
 
-What port 8000 means:
+What happens when the process stops: The port becomes free and connections fail. 
 
-What happens when the process stops:
+One thing I did not need to understand deeply yet: Production deployment
 
-One thing I did not need to understand deeply yet:
-
-One habit I practiced:
-```
-
-Completion checkpoint:
-
-```text
-[ ] I can run the app manually.
-[ ] I can test it with curl.
-[ ] I can prove it is listening with ss.
-[ ] I can explain why it stops when I press Ctrl-C.
-[ ] I understand why systemd is the next step.
+One habit I practiced: Testing in small steps and verifying with tools like curl and ss. 
 ```

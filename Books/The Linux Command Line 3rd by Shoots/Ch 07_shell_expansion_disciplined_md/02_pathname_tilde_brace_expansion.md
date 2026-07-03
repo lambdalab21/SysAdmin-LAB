@@ -2,34 +2,6 @@
 
 Use these guides after Chapter 6 redirection/pipelines and before heavy scripting.
 
-Main idea:
-
-```text
-The program does not always receive what you typed.
-The shell often expands, splits, or removes characters first.
-```
-
-Disciplined habit:
-
-```text
-Before pressing Enter, ask:
-1. What will the shell change before the command runs?
-2. Will wildcards expand?
-3. Will variables expand?
-4. Will command substitution run another command first?
-5. Do I need quotes?
-6. Is this command destructive?
-7. Can I preview with echo or printf first?
-```
-
-Safer preview tools:
-
-```bash
-echo PATTERN
-printf '<%s>
-' PATTERN
-```
-
 Use `printf '<%s>
 ' ...` when you want to see each resulting argument clearly.
 
@@ -73,36 +45,6 @@ Focus on prediction, not memorizing examples.
 
 ---
 
-## Feynman analogy
-
-Pathname expansion is like asking a librarian:
-
-```text
-Bring every book whose title ends in .log.
-```
-
-Tilde expansion is a shortcut address:
-
-```text
-~ means my home directory.
-```
-
-Brace expansion is like a stamp-maker:
-
-```text
-file-{a,b,c}.txt
-```
-
-becomes:
-
-```text
-file-a.txt file-b.txt file-c.txt
-```
-
-Important: brace expansion does **not** check whether files exist. It just manufactures text.
-
----
-
 # Part A: Pathname expansion
 
 ## Predict first
@@ -132,14 +74,6 @@ printf '<%s>\n' docs/*.txt
 printf '<%s>\n' photos/img00?.jpg
 ```
 
-## Explain-back
-
-```text
-* matches any characters in a pathname component.
-? matches one character.
-The shell replaces the pattern with matching pathnames.
-```
-
 ---
 
 # Part B: Character classes
@@ -161,8 +95,8 @@ echo photos/img00[!1].jpg
 Question:
 
 ```text
-What did [12] mean?
-What did [!1] mean?
+What did [12] mean?Matches 1 or 2 in that position. 
+What did [!1] mean? Matches any character except for 1 in that position. 
 ```
 
 ---
@@ -184,12 +118,6 @@ echo ~/tlcl-ch07-lab
 cd ~
 pwd
 cd ~/tlcl-ch07-lab
-```
-
-Explain:
-
-```text
-~ expands to my home directory.
 ```
 
 ---
@@ -224,32 +152,6 @@ ls does-not-exist-{a,b,c}.txt
 The `echo` works because it only manufactures text. The `ls` fails because the files do not exist.
 
 ---
-
-## Discipline drill: expansion type identification
-
-For each command, identify the expansion type before running:
-
-```bash
-echo ~
-echo *.md
-echo logs/*.log
-echo {alpha,beta,gamma}
-echo file-{1..3}.txt
-echo photos/img00?.jpg
-```
-
-Use this form:
-
-```text
-Command:
-Expansion type:
-Expected output:
-Actual output:
-What I learned:
-```
-
----
-
 ## Safety habit
 
 Never jump from this:
@@ -264,49 +166,13 @@ to this without thinking:
 rm tmp/*.tmp
 ```
 
-Required safety checklist:
-
-```text
-Am I in the intended directory?
-Did the pattern expand to exactly the files I expected?
-Could it match too much?
-Should I use rm -i?
-Should I move files to a temporary review directory instead?
-```
-
 ---
-
-## Documentation habit
-
-Run:
-
-```bash
-man bash
-```
-
-Search for:
-
-```text
-/Pathname Expansion
-/Brace Expansion
-/Tilde Expansion
-```
-
-Write:
-
-```text
-One fact I learned from man bash:
-One thing I still do not understand:
-```
-
----
-
 ## Checkpoint
 
 He understands Session 2 only if he can answer:
 
-1. What does `*` do in pathname expansion?
-2. What does `?` do?
-3. What does `[12]` do?
-4. What does `~` expand to?
-5. Why can brace expansion produce names that do not exist?
+1. What does `*` do in pathname expansion? Matches any characters. 
+2. What does `?` do? Matches exactly one character. 
+3. What does `[12]` do? Matches any one character from the set inside brackets. 
+4. What does `~` expand to? Home directory. 
+5. Why can brace expansion produce names that do not exist? It generates text patterns before the command runs; it does not check for file existence. 
