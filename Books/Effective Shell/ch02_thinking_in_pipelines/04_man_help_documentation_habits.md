@@ -2,21 +2,6 @@
 
 This guide is a follow-up to Shotts, *The Linux Command Line*, Chapter 6 on redirection.
 
-Shotts Chapter 6 should have taught the mechanics:
-
-```text
-stdin
-stdout
-stderr
->
->>
-<
-2>
-2>&1
-|
-tee
-```
-
 Kerr Chapter 2 should make him more effective:
 
 ```text
@@ -24,26 +9,6 @@ Think in streams.
 Build pipelines one stage at a time.
 Inspect intermediate output.
 Use documentation instead of guessing options.
-```
-
-Core discipline:
-
-```text
-Do not type a pipeline until you can explain what each stage receives and emits.
-```
-
-Before every pipeline, fill this out:
-
-```text
-Question I am trying to answer:
-Input data:
-Stage 1 command:
-Stage 1 output:
-Stage 2 command:
-Stage 2 output:
-Final output:
-How I verified it:
-Which command did I check with man/help:
 ```
 
 One-time setup:
@@ -115,33 +80,7 @@ This session teaches how to use documentation while practicing pipelines.
 
 ---
 
-# Feynman analogy: tool labels in a workshop
-
-A beginner asks:
-
-```text
-What command do I copy?
-```
-
-A stronger learner asks:
-
-```text
-What kind of tool is this?
-Where is its manual?
-Which option answers my question?
-```
-
-The manual page is not a novel. It is a reference shelf.
-
----
-
 # Tool 1: `type`
-
-Question:
-
-```text
-Is this command built into the shell, an alias, a function, or an external program?
-```
 
 Run:
 
@@ -283,8 +222,6 @@ Question:
 ```text
 How do I sort numbers numerically rather than alphabetically?
 ```
-
-Do not guess.
 
 Check:
 
