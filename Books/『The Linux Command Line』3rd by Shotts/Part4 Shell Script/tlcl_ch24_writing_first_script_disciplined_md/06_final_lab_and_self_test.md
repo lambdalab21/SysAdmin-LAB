@@ -117,7 +117,7 @@ How I will verify it:
 Create:
 
 ```bash
-nano ~/tlcl-ch24-lab/scripts/lab-check
+vim ~/tlcl-ch24-lab/scripts/lab-check
 ```
 
 Write:
