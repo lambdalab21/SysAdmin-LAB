@@ -2,37 +2,11 @@
 
 Use this guide with William Shotts, *The Linux Command Line*, Chapter 24, "Writing Your First Script."
 
-This chapter starts Part IV of the book: shell scripting. The goal is not to type a few scripts and feel finished. The goal is to learn how a command sequence becomes a repeatable tool.
-
-Core discipline:
-
-```text
-Do not type first.
-Think first.
-Write the English purpose first.
-Predict what the script should do.
-Run it safely.
-Verify the result.
-Explain every line.
-```
-
 One-time lab setup:
 
 ```bash
 mkdir -p ~/tlcl-ch24-lab/{bin,scripts,tmp,output}
 cd ~/tlcl-ch24-lab
-```
-
-Use this answer template throughout the chapter:
-
-```text
-Purpose of this script:
-Input it uses:
-Output it produces:
-Commands inside it:
-How I will run it:
-How I will verify it worked:
-What could go wrong:
 ```
 
 ---
@@ -46,8 +20,6 @@ Read this Chapter 24 section:
 Executable Permissions
 ```
 
-## What he should gain from this reading
-
 He should gain this idea:
 
 ```text
@@ -57,29 +29,15 @@ It needs executable permission if you want to run it directly.
 
 ---
 
-# Feynman analogy
-
-A script file is like a written recipe.
-
-Executable permission is like permission to hand the recipe to the kitchen and say:
-
-```text
-Run this.
-```
-
-Without executable permission, the file may be readable but not directly runnable.
-
----
-
 # After-reading questions
 
 Answer before typing:
 
-1. What does executable permission allow?
-2. Which command changes file permissions?
-3. What does `chmod +x scriptname` mean?
-4. How can `ls -l` show whether a file is executable?
-5. Why is `./system-info` different from `system-info`?
+1. What does executable permission allow? It allows a file to be run as a program. 
+2. Which command changes file permissions? Chmod. 
+3. What does `chmod +x scriptname` mean? It adds the executable permission to the script. 
+4. How can `ls -l` show whether a file is executable? It displays x in the permission bits. 
+5. Why is `./system-info` different from `system-info`? ./ tells the shell to run the file from the current directory. 
 
 ---
 
@@ -95,10 +53,10 @@ ls -l system-info
 Answer:
 
 ```text
-Owner permissions:
-Group permissions:
-Other permissions:
-Is x present?
+Owner permissions: rwx. 
+Group permissions: r-x or r--
+Other permissions: r-x or r--
+Is x present? Yes. 
 ```
 
 ---
@@ -108,7 +66,7 @@ Is x present?
 Predict first:
 
 ```text
-What do I expect ./system-info to do before chmod +x?
+What do I expect ./system-info to do before chmod +x? Show a 'permission denied' error. 
 ```
 
 Run:
@@ -122,8 +80,8 @@ If permission is denied, that is expected.
 Now answer:
 
 ```text
-Did the error come from Bash syntax or file permission?
-How do I know?
+Did the error come from Bash syntax or file permission? File permission. 
+How do I know? The error says permission is denied, not a syntax error. 
 ```
 
 ---
@@ -140,8 +98,8 @@ ls -l system-info
 Now predict:
 
 ```text
-What changed in ls -l?
-Will ./system-info run now?
+What changed in ls -l? An x was added to the file's permissions. 
+Will ./system-info run now? Yes. 
 ```
 
 Run:
@@ -167,9 +125,9 @@ The last one will probably fail unless the script directory is in `PATH`.
 Fill in:
 
 ```text
-bash system-info worked because...
-./system-info worked because...
-system-info failed or worked because...
+bash system-info worked because bash reads and executes the script. 
+./system-info worked because The script has executable permissions. 
+system-info failed or worked because It depends on whether or not the current directory in the path. 
 ```
 
 ---
@@ -185,10 +143,10 @@ chmod --help | head -n 20
 
 Answer:
 
-1. What does `chmod` change?
-2. What does `+x` add?
-3. What section of `man chmod` was most useful?
-4. Was `--help` faster for quick syntax?
+1. What does `chmod` change? File permissions. 
+2. What does `+x` add? Execute Permissions. 
+3. What section of `man chmod` was most useful? The description or examples section
+4. Was `--help` faster for quick syntax? Yes. 
 
 ---
 
@@ -204,9 +162,9 @@ chmod +x system-info
 Use:
 
 ```text
-chmod +x means...
-./ means...
-The system reads the shebang and...
+chmod +x means adding executable permission to the file. 
+./ runs the program from the current directory. 
+The system reads the shebang and uses the specified interpreter to run the script. 
 ```
 
 ---
@@ -218,10 +176,8 @@ Reread “Executable Permissions.”
 This time, read with this question:
 
 ```text
-Why is executable permission a safety feature?
+Why is executable permission a safety feature? It prevents files from being run. 
 ```
-
-Write a short answer.
 
 ---
 
@@ -229,7 +185,7 @@ Write a short answer.
 
 He is ready for Session 4 only if he can answer:
 
-1. Why did `bash system-info` work without executable permission?
-2. Why did `./system-info` need executable permission?
-3. What does `chmod +x` do?
-4. Why does `system-info` not automatically work from the current directory?
+1. Why did `bash system-info` work without executable permission? Because bash interpreted the script directly. 
+2. Why did `./system-info` need executable permission? Because it was run as an executable program. 
+3. What does `chmod +x` do? Adds execute permission. 
+4. Why does `system-info` not automatically work from the current directory? Because the current directory is usually not included in the path environment variable. 

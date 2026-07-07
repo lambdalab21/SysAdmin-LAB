@@ -1,40 +1,5 @@
-# Ward Ch. 12 — Feynman Questions and Checkpoints
-
-> Rule: before running a command, predict what will happen. After running it, explain what happened. If prediction and result differ, that is the learning moment.
 
 ---
-
-## Section checkpoint: Quick copy
-
-### Explain like teaching a younger student
-
-Explain this command:
-
-```bash
-scp notes.txt john@app01:/home/john/
-```
-
-He must include:
-
-```text
-scp means secure copy
-notes.txt is the local source file
-john is the remote username
-app01 is the remote host
-/home/john/ is the remote destination directory
-SSH is used underneath
-```
-
-Bad explanation:
-
-> “It sends the file to the server.”
-
-Better explanation:
-
-> “The local machine uses SSH to log in as john on app01, then writes a copy of notes.txt into john's home directory on that remote machine.”
-
----
-
 ## Question set 1 — Identity
 
 Answer these in writing:
