@@ -17,35 +17,6 @@ stderr
 tee
 ```
 
-Kerr Chapter 2 should make him more effective:
-
-```text
-Think in streams.
-Build pipelines one stage at a time.
-Inspect intermediate output.
-Use documentation instead of guessing options.
-```
-
-Core discipline:
-
-```text
-Do not type a pipeline until you can explain what each stage receives and emits.
-```
-
-Before every pipeline, fill this out:
-
-```text
-Question I am trying to answer:
-Input data:
-Stage 1 command:
-Stage 1 output:
-Stage 2 command:
-Stage 2 output:
-Final output:
-How I verified it:
-Which command did I check with man/help:
-```
-
 One-time setup:
 
 ```bash
@@ -105,22 +76,6 @@ find ~/effective-shell-ch02-pipelines -maxdepth 3 -type f -print
 
 This session practices tiny pipelines, but each command must answer a question.
 
-Do not type until the English question is clear.
-
----
-
-# Feynman analogy: water pipes
-
-Think of stdout as water leaving a hose.
-
-The pipe symbol `|` connects that water into another machine.
-
-```text
-command 1 stdout → command 2 stdin
-```
-
-But stderr is like a separate warning siren. It does not normally flow through the same pipe.
-
 ---
 
 # Documentation habit before practice
@@ -153,10 +108,10 @@ wc --help | head
 
 Answer:
 
-1. Which option counts lines?
-2. Which option counts words?
-3. Which option counts bytes?
-4. Which was faster for quick lookup, `man` or `--help`?
+1. Which option counts lines? -l 
+2. Which option counts words? -w
+3. Which option counts bytes? -c 
+4. Which was faster for quick lookup, `man` or `--help`? --help
 
 ---
 
@@ -167,6 +122,7 @@ Question:
 ```text
 How many ERROR lines are in errors.txt?
 ```
+grep selected matching error lines. nc -1 counted those lines. 
 
 Build one stage at a time.
 
@@ -188,22 +144,9 @@ Stage 2:
 grep ERROR data/errors.txt | wc -l
 ```
 
-Explain:
-
-```text
-grep selected matching lines.
-wc -l counted those lines.
-```
-
 ---
 
 # Drill 2: Count status codes in a log
-
-Question:
-
-```text
-Which HTTP status codes appear, and how many times?
-```
 
 Start broad:
 
@@ -232,26 +175,13 @@ cut -d ' ' -f9 data/access.log | sort | uniq -c
 Explain each stage:
 
 ```text
-cut selects field 9.
-sort groups equal values together.
-uniq -c counts adjacent equal lines.
+cut selects field 9 - extracts the http status code field. 
+sort groups equal values together - groups identical status codes. 
+uniq -c counts adjacent equal lines - counts occurrences of each coder. 
 ```
-
-Discipline question:
-
-```text
-Why does uniq -c usually need sort before it?
-```
-
 ---
 
 # Drill 3: Extract installed package names
-
-Question:
-
-```text
-Which packages are marked installed in packages.txt?
-```
 
 Stage 1:
 
@@ -271,26 +201,11 @@ Stage 3:
 grep '\[installed\]' data/packages.txt | cut -d '/' -f1 | sort
 ```
 
-Explain:
-
-```text
-The regex selects installed lines.
-cut extracts the package name before the slash.
-sort orders the names.
-```
-
 Question:
 
 ```text
-Why do the square brackets need escaping?
+Why do the square brackets need escaping? In regex, [] defines a character class. Excaping them makes them match brackets. 
 ```
-
-Expected idea:
-
-```text
-In regex, [ ] are special. Escaping them matches literal brackets.
-```
-
 ---
 
 # Drill 4: Avoid fake sophistication
@@ -310,13 +225,7 @@ grep '\[installed\]' data/packages.txt | cut -d '/' -f1
 Question:
 
 ```text
-Which is simpler, and why?
-```
-
-Expected answer:
-
-```text
-The second is simpler because grep can read the file directly.
+Which is simpler, and why? The second one is simpler because it avoids an unnecessary cat command.
 ```
 
 ---
@@ -325,8 +234,8 @@ The second is simpler because grep can read the file directly.
 
 He understands this session if he can answer:
 
-1. What question does each pipeline answer?
-2. What does each stage receive?
-3. What does each stage output?
-4. Why inspect intermediate output?
-5. Which command’s manual/help did he consult?
+1. What question does each pipeline answer? A specific well-defined question about the data. 
+2. What does each stage receive? The output of the previous stage. 
+3. What does each stage output? Processed data passed to the next stage. 
+4. Why inspect intermediate output? To verify the accuracy at each step and catch mistakes.
+5. Which command’s manual/help did he consult? `wc`. 

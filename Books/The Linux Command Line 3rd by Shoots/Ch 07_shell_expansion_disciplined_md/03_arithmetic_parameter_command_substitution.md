@@ -9,19 +9,6 @@ The program does not always receive what you typed.
 The shell often expands, splits, or removes characters first.
 ```
 
-Disciplined habit:
-
-```text
-Before pressing Enter, ask:
-1. What will the shell change before the command runs?
-2. Will wildcards expand?
-3. Will variables expand?
-4. Will command substitution run another command first?
-5. Do I need quotes?
-6. Is this command destructive?
-7. Can I preview with echo or printf first?
-```
-
 Safer preview tools:
 
 ```bash
@@ -29,9 +16,6 @@ echo PATTERN
 printf '<%s>
 ' PATTERN
 ```
-
-Use `printf '<%s>
-' ...` when you want to see each resulting argument clearly.
 
 One-time setup:
 
@@ -69,21 +53,6 @@ command substitution
 ```
 
 Focus on what happens before the final command runs.
-
----
-
-## Feynman analogy
-
-The shell can replace parts of your command with answers before the command runs.
-
-```text
-$USER        → your username
-$HOME        → your home directory
-$((2 + 3))   → 5
-$(hostname)  → the output of hostname
-```
-
-The shell is doing pre-work.
 
 ---
 
@@ -142,27 +111,11 @@ printf '<%s>\n' "$NOT_A_REAL_VARIABLE"
 Question:
 
 ```text
-Why is printf with markers clearer than echo here?
+Why is printf with markers clearer than echo here? It showsx empty values using markers, making blank output easier to see. 
 ```
-
-Expected idea:
-
-```text
-It shows the empty value between markers.
-```
-
 ---
 
 # Part C: Arithmetic expansion
-
-Predict:
-
-```bash
-echo $((2 + 3))
-echo $((10 / 3))
-echo $((10 % 3))
-echo $((2 ** 8))
-```
 
 Run:
 
@@ -171,73 +124,13 @@ echo $((2 + 3))
 echo $((10 / 3))
 echo $((10 % 3))
 echo $((2 ** 8))
-```
-
-Explain:
-
-```text
-$(( ... )) asks the shell to do integer arithmetic before running echo.
 ```
 
 Question:
 
 ```text
-Why does 10 / 3 not show 3.333?
+Why does 10 / 3 not show 3.333? Because shell arithmetic uses integer math, so the decimal is discarded(like 10/3=3)
 ```
-
-Expected idea:
-
-```text
-Shell arithmetic is integer arithmetic here.
-```
-
----
-
-# Part D: Command substitution
-
-Predict:
-
-```bash
-echo "This machine is $(hostname)"
-echo "Today is $(date +%F)"
-echo "There are $(ls docs/*.txt | wc -l) txt files in docs."
-```
-
-Run:
-
-```bash
-echo "This machine is $(hostname)"
-echo "Today is $(date +%F)"
-echo "There are $(ls docs/*.txt | wc -l) txt files in docs."
-```
-
-Explain:
-
-```text
-$(command) runs command first, captures its output, and inserts that output into the outer command.
-```
-
----
-
-## Discipline drill: hidden command awareness
-
-For this command:
-
-```bash
-echo "There are $(find docs -type f -name '*.txt' | wc -l) text files."
-```
-
-Fill out before running:
-
-```text
-Outer command:
-Inner command:
-What the inner command outputs:
-What the shell inserts:
-What the final echo receives:
-```
-
-Then run it.
 
 ---
 
@@ -254,50 +147,12 @@ echo '$HOME'
 Do not worry if the quoting rules are not fully clear yet. Session 4 focuses on quoting.
 
 ---
-
-## Documentation habit
-
-Run:
-
-```bash
-man bash
-```
-
-Search for:
-
-```text
-/Parameter Expansion
-/Arithmetic Expansion
-/Command Substitution
-```
-
-Then use shell built-in help:
-
-```bash
-help let
-help printf
-```
-
-Write:
-
-```text
-Which expansions are documented in man bash rather than man echo?
-```
-
-Expected idea:
-
-```text
-The shell performs expansions, so they are documented under bash, not under each external command.
-```
-
----
-
 ## Checkpoint
 
 He understands Session 3 only if he can explain:
 
-1. What `$USER` does.
-2. What happens when a variable is undefined.
-3. What `$((2 + 3))` does.
-4. What `$(hostname)` does.
-5. Why command substitution can hide a command inside another command.
+1. What `$USER` does replaces $user with the current username. 
+2. What happens when a variable is undefined. It expands to an empty string.
+3. What `$((2 + 3))` does. Evaluates the arithmetic expression and returns 5. 
+4. What `$(hostname)` does. Runs the hostname command and substitutes its output. 
+5. Why command substitution can hide a command inside another command. Because the shell executes the inner command first and inserts its output into the outer command. 
