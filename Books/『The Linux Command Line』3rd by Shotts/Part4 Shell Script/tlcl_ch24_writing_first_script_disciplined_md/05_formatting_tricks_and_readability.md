@@ -88,7 +88,7 @@ Answer before editing:
 Edit:
 
 ```bash
-nano ~/tlcl-ch24-lab/scripts/system-info
+vim ~/tlcl-ch24-lab/scripts/system-info
 ```
 
 Make it more readable:
@@ -212,7 +212,7 @@ Run:
 Edit `list-lab`:
 
 ```bash
-nano ~/tlcl-ch24-lab/scripts/list-lab
+vim ~/tlcl-ch24-lab/scripts/list-lab
 ```
 
 Change it to:
