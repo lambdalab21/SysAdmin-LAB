@@ -2,21 +2,6 @@
 
 These drills are designed to break file transfers in controlled ways.
 
-Do not guess. Diagnose.
-
-Use this format for every drill:
-
-```text
-Symptom:
-Command I ran:
-What I expected:
-What happened:
-Evidence:
-Root cause:
-Fix:
-Prevention:
-```
-
 ---
 
 ## Drill 1 — SSH works by IP but not hostname
@@ -28,13 +13,6 @@ From `db01`, try:
 ```bash
 ssh john@app01 hostname
 ```
-
-If hostname fails, test IP:
-
-```bash
-ssh john@192.168.1.50 hostname
-```
-
 ### Diagnose
 
 ```bash
@@ -44,10 +22,6 @@ resolvectl status 2>/dev/null || cat /etc/resolv.conf
 ping -c 2 app01
 ping -c 2 192.168.1.50
 ```
-
-### Feynman question
-
-> Why can IP connectivity work while hostname resolution fails?
 
 ### Fix options
 
@@ -93,41 +67,6 @@ On `app01`:
 ls -ld /srv/ch12-drill
 id john
 ```
-
-### Feynman question
-
-> Why did authentication succeed but writing the file fail?
-
-### Fix options
-
-Bad lazy fix:
-
-```bash
-sudo chmod 777 /srv/ch12-drill
-```
-
-Do not use that.
-
-Better owner fix:
-
-```bash
-sudo chown john:john /srv/ch12-drill
-sudo chmod 755 /srv/ch12-drill
-```
-
-Better group fix:
-
-```bash
-sudo groupadd deployers
-sudo usermod -aG deployers john
-sudo chown root:deployers /srv/ch12-drill
-sudo chmod 2775 /srv/ch12-drill
-```
-
-Then log out and back in.
-
----
-
 ## Drill 3 — rsync copied one directory too deep
 
 ### Break it
@@ -162,10 +101,6 @@ Use the correct source path:
 ```bash
 rsync -av ~/bad-slash/project/ john@app01:/home/john/bad-slash-dest/
 ```
-
-Feynman sentence:
-
-> Without trailing slash, rsync copies the directory. With trailing slash, rsync copies the directory contents.
 
 ---
 
@@ -205,10 +140,6 @@ Use dry-run first if unsure:
 rsync -avn --delete --exclude 'target/' ~/exclude-fail/project/ john@app01:/home/john/exclude-fail/
 ```
 
-Feynman question:
-
-> Where is the exclude pattern evaluated relative to the source directory?
-
 ---
 
 ## Drill 5 — `--delete` removed a file
@@ -244,10 +175,6 @@ Why?
 ```bash
 rsync -av --delete ~/delete-source/ john@app01:/home/john/delete-drill/
 ```
-
-### Lesson
-
-> `--delete` means the destination should mirror the source. Anything extra at the destination can disappear.
 
 ---
 
@@ -291,9 +218,6 @@ chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
 ```
 
-### Feynman question
-
-> Why does SSH care about file permissions?
 
 ---
 
@@ -323,14 +247,6 @@ tree ~/backup
 What does john@app01:backup mean?
 Is backup absolute or relative?
 Where did the files go?
-```
-
-### Safer habit
-
-Use absolute paths when learning:
-
-```bash
-rsync -av ~/delete-source/ john@app01:/home/john/backup/
 ```
 
 ---
@@ -413,71 +329,20 @@ sudo firewall-cmd --list-all
 sudo systemctl status sshd
 ```
 
-### Feynman question
-
-> What is the difference between SSH refusing login and the network blocking TCP port 22?
-
 ---
-
-## Drill 10 — Backup copied but not verified
-
-### Bad behavior
-
-```bash
-rsync -av john@db01:/home/john/db-backups/ ~/db-backups/
-```
-
-Then stop.
-
-That is not enough.
-
-### Better behavior
-
-```bash
-ls -lh ~/db-backups
-wc -c ~/db-backups/*
-sha256sum ~/db-backups/*
-head -n 5 ~/db-backups/*
-```
-
-If it is a real SQL dump later:
-
-```bash
-mysql --help >/dev/null
-```
-
-Eventually test restore into a throwaway database.
-
-### Lesson
-
-> A backup transfer is not proven until the backup is checked and eventually restored.
-
----
-
 # Final troubleshooting exam
 
 Give him these symptoms and make him diagnose without hints:
 
 ```text
-1. scp says Permission denied.
-2. ssh works by IP but not hostname.
-3. rsync created project/project/file.txt.
-4. rsync copied .env by accident.
-5. rsync --delete removed destination-only files.
-6. SSH key login stopped working after chmod 777 ~/.ssh.
-7. The app cannot read the copied jar.
-8. Backup file copied but is zero bytes.
-9. nc app01 22 times out.
-10. A copied script will not execute.
+1. scp says Permission denied. Wrong permissions on target directory or file. Check with 1s-1d. Fix ownership and permissions with chown/chmod. Prevent by verifying access before transfers. 
+2. ssh works by IP but not hostname. DNS or `/etc/hosts` missing early. Confirm the `getent hosts` or `ping`. Add entry to `etc/hosts` on client. Prevent by maintaining consistent host files. 
+3. rsync created project/project/file.txt. Trailing slash missing on source. Confirm with tree. Use rsync ... source/dest/. Prevent by testing with -n. 
+4. rsync copied .env by accident. Missing or wrong --exclude pattern. Confirm with find. add correct --exclude `.env` and use dry-run. Prevent by always previewing first. 
+5. rsync --delete removed destination-only files. --delete removes files not present in the source. 
+6. SSH key login stopped working after chmod 777 ~/.ssh. The directory is too permissive.  
+7. The app cannot read the copied jar. Wrong ownership and permissions on the target file. 
+8. Backup file copied but is zero bytes. Interrupted transfer or source file issue. 
+9. nc app01 22 times out. Firewall blocking on port 22. 
+10. A copied script will not execute. No execute permission. 
 ```
-
-For each one, he must write:
-
-```text
-likely cause
-commands to confirm
-fix
-prevention
-```
-
-No guessing. Evidence first.

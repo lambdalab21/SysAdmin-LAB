@@ -9,19 +9,6 @@ The program does not always receive what you typed.
 The shell often expands, splits, or removes characters first.
 ```
 
-Disciplined habit:
-
-```text
-Before pressing Enter, ask:
-1. What will the shell change before the command runs?
-2. Will wildcards expand?
-3. Will variables expand?
-4. Will command substitution run another command first?
-5. Do I need quotes?
-6. Is this command destructive?
-7. Can I preview with echo or printf first?
-```
-
 Safer preview tools:
 
 ```bash
@@ -56,25 +43,6 @@ find ~/tlcl-ch07-lab -maxdepth 3 -print | sort
 ```
 
 ---
-# Session 5: Applied Lab and Self-Test
-
-## Purpose
-
-This lab checks whether he understands Chapter 7 as a thinking skill.
-
-He must not type commands mindlessly.
-
-For each task:
-
-```text
-1. Predict expansion.
-2. Preview with echo or printf.
-3. Run the harmless command.
-4. Explain what happened.
-5. Identify the risk if the command were destructive.
-```
-
----
 
 # Lab 1: Expansion receipt
 
@@ -89,23 +57,15 @@ printf '<%s>\n' 'docs/*.txt'
 Fill out:
 
 ```text
-Command:
-Expanded or literal?
-How many arguments?
-Why?
+Command: `printf '<%s>\n' docs/*.txt`
+Expanded or literal? Expanded (pathname/globbing expansion)
+How many arguments? five
+Why? The shell expanded docs/*.txt to match .txt files in docs/. printf recieved each filename as a separate argument. 
 ```
 
 ---
 
 # Lab 2: Brace expansion versus pathname expansion
-
-Predict first:
-
-```bash
-echo photos/img{001,002,010}.jpg
-echo photos/img00?.jpg
-echo photos/img{003,004}.jpg
-```
 
 Run:
 
@@ -113,20 +73,6 @@ Run:
 echo photos/img{001,002,010}.jpg
 echo photos/img00?.jpg
 echo photos/img{003,004}.jpg
-```
-
-Explain:
-
-```text
-Which command checked existing files?
-Which command merely manufactured text?
-```
-
-Expected idea:
-
-```text
-Pathname expansion checks existing matching files.
-Brace expansion manufactures text and does not care whether files exist.
 ```
 
 ---
@@ -173,9 +119,9 @@ touch tmp/file1.tmp tmp/file2.tmp tmp/file-with-space.tmp
 Explain:
 
 ```text
-Why is rm -i safer?
-Why is tmp/*.tmp safer than *.tmp from the wrong directory?
-What could still go wrong?
+Why is rm -i safer?rm -i prompts before deleting. 
+Why is tmp/*.tmp safer than *.tmp from the wrong directory? tmp/*.tmp limits to correct directory. 
+What could still go wrong? Forgetting cd, unquoted spaces, or * matching too much.
 ```
 
 ---
@@ -203,8 +149,8 @@ echo 'Host: $(hostname)'
 Explain:
 
 ```text
-Double quotes allowed...
-Single quotes prevented...
+Double quotes allow variable expansion and command substitution. 
+Single quotes prevented all explanations. 
 ```
 
 ---
@@ -221,13 +167,7 @@ printf 'Argument: <%s>\n' "docs/file with spaces.txt"
 Question:
 
 ```text
-How many arguments did printf receive in each case?
-```
-
-Expected idea:
-
-```text
-The unquoted version split at spaces. The quoted version preserved one pathname as one argument.
+How many arguments did printf receive in each case? Three arguments for unquoted, one argument for quoted. 
 ```
 
 ---
@@ -247,27 +187,17 @@ printf '<%s>\n' photos/img00?.jpg
 printf '<%s>\n' "photos/img00?.jpg"
 ```
 
-Use this form:
-
-```text
-Command:
-Expansion type:
-What shell produces:
-What program receives:
-Risk:
-```
-
 ---
 
 # Lab 7: Documentation scavenger hunt
 
 Use documentation to answer these.
 
-1. Where does Bash document pathname expansion?
-2. Where does Bash document quoting?
-3. What does `help printf` show?
-4. Is `echo` always reliable for precise output? Why might `printf` be better?
-5. Which documentation source helped more for expansion: `man ls` or `man bash`?
+1. Where does Bash document pathname expansion? man bash. 
+2. Where does Bash document quoting? man bash. 
+3. What does `help printf` show? It shows format specifiers, escapes, and options. 
+4. Is `echo` always reliable for precise output? Why might `printf` be better? No. Echo adds spaces/newlines and has quirks where printf gives precise control. 
+5. Which documentation source helped more for expansion: `man ls` or `man bash`? man bash. 
 
 Commands:
 
@@ -291,27 +221,14 @@ ls receives arguments after expansion; it does not perform shell expansion itsel
 
 Without notes, answer:
 
-1. What does pathname expansion do?
-2. What does brace expansion do?
-3. What does tilde expansion do?
-4. What does parameter expansion do?
-5. What does command substitution do?
-6. What do double quotes allow?
-7. What do single quotes prevent?
-8. Why is `printf '<%s>\n' PATTERN` useful?
-9. Why is `rm *.tmp` dangerous?
-10. Why should shell expansion be understood before scripting?
+1. What does pathname expansion do? * ? [ ] matches files. 
+2. What does brace expansion do? generates combinations. 
+3. What does tilde expansion do? home directory. 
+4. What does parameter expansion do? variable value. 
+5. What does command substitution do? output of command. 
+6. What do double quotes allow? allows $, ', and \.
+7. What do single quotes prevent? Prevents all expansions. 
+8. Why is `printf '<%s>\n' PATTERN` useful? Shows exact arguments after expansion. 
+9. Why is `rm *.tmp` dangerous? Can delete wrong files if not in the right directory or unquoted. 
+10. Why should shell expansion be understood before scripting? Expansions happen before commands and scripts run. 
 
----
-
-# End standard
-
-He understands Chapter 7 only if he can say:
-
-```text
-I know the shell rewrites parts of my command before the program runs.
-I can predict pathname, brace, tilde, variable, arithmetic, and command substitution.
-I can choose between no quotes, double quotes, single quotes, and backslash.
-I preview expansion before destructive commands.
-I know to read man bash for shell expansion rules.
-```

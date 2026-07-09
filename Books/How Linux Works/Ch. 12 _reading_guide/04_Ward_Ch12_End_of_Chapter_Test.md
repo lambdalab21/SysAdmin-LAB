@@ -1,28 +1,26 @@
 # Ward Ch. 12 End-of-Chapter Test — Network File Transfer and Sharing
 
-This test is not about memorizing commands. It checks whether he understands what file transfer and sharing mean in a real Linux environment.
-
 ---
 
 ## Part 1 — Concept questions
 
 Answer in complete sentences.
 
-1. What is the difference between copying a file and sharing a filesystem?
-2. Why is `scp` simpler than `rsync`?
-3. Why is `rsync` usually better than `scp` for repeated deployments?
-4. What does `rsync --dry-run` do?
-5. Why is `rsync --delete` dangerous?
-6. What does a trailing slash change in rsync source paths?
-7. Why should `.env` usually not be copied casually?
-8. Why should you inspect ownership after transferring files?
-9. What problem does Samba solve?
-10. What problem does NFS solve?
-11. What problem does SSHFS solve?
-12. Why is cloud storage not the same thing as a normal Linux filesystem?
-13. Why is file sharing often a security concern?
-14. Why is a backup not proven just because a file was copied?
-15. Why is `chmod 777` usually the wrong response to file-transfer problems?
+1. What is the difference between copying a file and sharing a filesystem? copying duplicates the files and sharing makes the same filesystems visible across machines. 
+2. Why is `scp` simpler than `rsync`? scp is simpler because it is a basic one-shot secure copy. 
+3. Why is `rsync` usually better than `scp` for repeated deployments? rsync is better for repeated deployments. It transfers changes the best. 
+4. What does `rsync --dry-run` do? It shows what would happen without making changes. 
+5. Why is `rsync --delete` dangerous? This is dangerous because it removes files on destinations that are missing from the source.
+6. What does a trailing slash change in rsync source paths? Trailing slash on source means "copy contents of directory" instead of "copy the directory itself". 
+7. Why should `.env` usually not be copied casually? .env files contain secrets that should not be copied to the servers. 
+8. Why should you inspect ownership after transferring files? Ownership must be inspected because copied files keep the original owner which services may not access. 
+9. What problem does Samba solve? Samba solves Windows-copatible file sharing. 
+10. What problem does NFS solve? NFS solves native linux filesystem sharing. 
+11. What problem does SSHFS solve? SSHFS solves mounting remote directories over SSH. 
+12. Why is cloud storage not the same thing as a normal Linux filesystem? Cloud storage adds latency, visioning, and different permission models. 
+13. Why is file sharing often a security concern? File sharing expands attack surface and permission complexity. 
+14. Why is a backup not proven just because a file was copied? Backup must be verified as restorable, not just copied. 
+15. Why is `chmod 777` usually the wrong response to file-transfer problems? Chmod 777 exposes files to everyone and is insecure. 
 
 ---
 
@@ -52,6 +50,9 @@ rsync -av /home/john/project john@app01:/home/john/deploy/
 ```
 
 What will the destination tree look like?
+/home/john/deploy/project/README.md,
+/home/john/deploy/projects/src/main.clj,
+/home/john/deploy/project/target/app.jar.
 
 ---
 
@@ -64,6 +65,7 @@ rsync -av /home/john/project/ john@app01:/home/john/deploy/
 ```
 
 What will the destination tree look like?
+Contents of project/ directly in /home/john/deploy/ (no extra project/ level).
 
 ---
 
@@ -76,6 +78,7 @@ rsync -av --exclude 'target/' /home/john/project/ john@app01:/home/john/deploy/
 ```
 
 What will be excluded?
+target/ directory and its contents are excluded. 
 
 ---
 
@@ -101,36 +104,11 @@ rsync -av --delete /home/john/project/ john@app01:/home/john/deploy/
 ```
 
 What happens to `old.txt`?
+old.txt is deleted. 
 
 ---
 
-## Part 3 — Command writing
-
-Write commands for each task.
-
-1. Copy `notes.txt` from current machine to `/home/john/` on `app01`.
-2. Copy the directory `project/` to `app01` so the destination becomes `/home/john/project/`.
-3. Sync the contents of `project/` into `/home/john/deploy/` on `app01`.
-4. Dry-run a sync before actually doing it.
-5. Sync `project/` while excluding `.git/`, `target/`, and `.env`.
-6. Pull all files from `/home/john/db-backups/` on `db01` into `~/db-backups-from-db01/` on the local machine.
-7. Show the ownership and permissions of a copied file.
-8. Check whether SSH port 22 is reachable on `app01`.
-9. Show the last 50 SSH logs on Ubuntu.
-10. Show the last 50 SSH logs on AlmaLinux.
-
----
-
-## Part 4 — Troubleshooting scenarios
-
-For each scenario, write:
-
-```text
-likely cause:
-commands to check:
-fix:
-prevention:
-```
+## Part 3 — Troubleshooting scenarios
 
 ### Scenario 1
 
@@ -163,37 +141,3 @@ SSH key login stopped working after changing permissions in `~/.ssh`.
 ### Scenario 8
 
 A copied backup file exists, but it is empty.
-
----
-
-## Part 5 — Oral Feynman explanations
-
-Explain these out loud.
-
-1. “A file transfer involves identity, path, permission, and trust.”
-2. “rsync is not just faster scp.”
-3. “A trailing slash can change the destination tree.”
-4. “Dry-run is a professional habit.”
-5. “File sharing is not backup.”
-6. “A service account should own or read app files, not root or a random human user.”
-7. “Network success and filesystem permission are separate layers.”
-8. “The destination must be inspected after transfer.”
-
----
-
-## Passing standard
-
-He passes only if he can:
-
-```text
-predict rsync destination structure
-use dry-run correctly
-avoid copying secrets
-explain ownership after transfer
-troubleshoot permission denied without chmod 777
-pull a backup from db01
-push an app artifact to app01
-explain transfer vs sharing
-```
-
-If he gets the commands right but cannot explain them, he has not passed.

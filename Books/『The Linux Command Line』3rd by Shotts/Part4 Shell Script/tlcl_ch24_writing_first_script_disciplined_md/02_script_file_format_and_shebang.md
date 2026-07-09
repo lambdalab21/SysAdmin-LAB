@@ -126,7 +126,7 @@ What line contains the purpose comment?
 Edit the script:
 
 ```bash
-nano system-info
+vim system-info
 ```
 
 Make it look like this:

@@ -1,23 +1,5 @@
 # The Linux Command Line, Chapter 20: Text Processing
 
-Use these files as a one-week plan. Each day has a reading target, a Feynman-style analogy, questions, and command practice.
-
-Core habit:
-
-```text
-Do not memorize commands as isolated tricks. Use each command to answer a clear question about text.
-```
-
-Disciplined thinking pattern:
-
-```text
-1. What question am I trying to answer?
-2. What text do I have?
-3. What part of the text matters?
-4. What command transforms or filters it?
-5. How can I inspect the result before trusting it?
-```
-
 One-time setup:
 
 ```bash
@@ -83,27 +65,14 @@ tail
 less
 ```
 
-## Feynman analogy before reading
-
-Imagine a messy pile of index cards. Each card has one line of text.
-
-```text
-cat  = show the cards
-wc   = count the cards, words, or characters
-sort = put cards in order
-uniq = remove repeated neighboring cards
-```
-
-Important: `uniq` only notices duplicates that are next to each other. That is why `sort | uniq` is common.
-
 ## Before touching the keyboard
 
 Answer:
 
-1. Why does `uniq` often need `sort` before it?
-2. What question does `wc -l` answer?
-3. Why is `less` safer than `cat` for a huge file?
-4. Does `sort file.txt` modify the file itself?
+1. Why does `uniq` often need `sort` before it? Uniq only removes consecutive duplicates.
+2. What question does `wc -l` answer? Answers how many lines there are. 
+3. Why is `less` safer than `cat` for a huge file? less paginates safely, it doesn't dump everything at once. 
+4. Does `sort file.txt` modify the file itself? No. Sort outputs to stdout. The original file is left unchanged. 
 
 ## Practice
 
@@ -125,12 +94,6 @@ wc -w repeated.txt
 wc -c repeated.txt
 ```
 
-Say aloud:
-
-```text
-wc counts lines, words, and bytes. wc -l counts lines only.
-```
-
 ### Drill 2: Sort without changing the file
 
 ```bash
@@ -138,9 +101,7 @@ sort repeated.txt
 cat repeated.txt
 ```
 
-Question: Did `sort` modify the file?
-
-Expected: No. It sorted the output stream only.
+Question: Did `sort` modify the file? No. It sorted the output stream only.
 
 ### Drill 3: Understand `uniq`
 
@@ -148,12 +109,6 @@ Expected: No. It sorted the output stream only.
 uniq repeated.txt
 sort repeated.txt | uniq
 sort repeated.txt | uniq -c
-```
-
-Say aloud:
-
-```text
-uniq removes adjacent duplicate lines. sort makes duplicates adjacent. uniq -c counts them.
 ```
 
 ### Drill 4: Build one stage at a time
@@ -165,32 +120,5 @@ cat repeated.txt | sort | uniq
 cat repeated.txt | sort | uniq | wc -l
 ```
 
-Question: What question does the final command answer?
+Question: What question does the final command answer? The final command answers how many unique items there are. 
 
-Expected: How many unique lines are in `repeated.txt`?
-
-### Drill 5: Explain to a ten-year-old
-
-Explain:
-
-```bash
-sort repeated.txt | uniq -c
-```
-
-Use:
-
-```text
-First it...
-Then it...
-The final output tells me...
-```
-
-## Checkpoint
-
-He understands Unit 1 only if he can answer:
-
-1. Why does `uniq` often follow `sort`?
-2. What is the difference between `wc` and `wc -l`?
-3. Does `sort file.txt` modify the file?
-4. What does `sort file.txt | uniq -c` show?
-5. How do you count unique lines?

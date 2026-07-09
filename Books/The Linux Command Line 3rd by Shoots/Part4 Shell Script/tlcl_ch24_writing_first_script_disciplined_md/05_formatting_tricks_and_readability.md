@@ -2,37 +2,11 @@
 
 Use this guide with William Shotts, *The Linux Command Line*, Chapter 24, "Writing Your First Script."
 
-This chapter starts Part IV of the book: shell scripting. The goal is not to type a few scripts and feel finished. The goal is to learn how a command sequence becomes a repeatable tool.
-
-Core discipline:
-
-```text
-Do not type first.
-Think first.
-Write the English purpose first.
-Predict what the script should do.
-Run it safely.
-Verify the result.
-Explain every line.
-```
-
 One-time lab setup:
 
 ```bash
 mkdir -p ~/tlcl-ch24-lab/{bin,scripts,tmp,output}
 cd ~/tlcl-ch24-lab
-```
-
-Use this answer template throughout the chapter:
-
-```text
-Purpose of this script:
-Input it uses:
-Output it produces:
-Commands inside it:
-How I will run it:
-How I will verify it worked:
-What could go wrong:
 ```
 
 ---
@@ -61,25 +35,15 @@ This matters even in a beginner script.
 
 ---
 
-# Feynman analogy
-
-A script is like instructions left for your future self.
-
-If the instructions are messy, future you will make mistakes.
-
-Formatting is not decoration. It reduces confusion.
-
----
-
 # After-reading questions
 
 Answer before editing:
 
-1. Why are comments useful?
-2. Why are blank lines useful?
-3. Why might long option names be clearer than short options?
-4. What is line continuation?
-5. Why should indentation be consistent?
+1. Why are comments useful? Comments explain why code exists. 
+2. Why are blank lines useful? Black lines separate logical sections. 
+3. Why might long option names be clearer than short options? Long options are self-documenting. 
+4. What is line continuation? Line continuation joins split lines into one command. 
+5. Why should indentation be consistent? Consistent indentation shows structure and nesting clearly. 
 
 ---
 
@@ -119,10 +83,10 @@ printf 'Date:      %s
 
 Before running:
 
-1. What changed from `echo` to `printf`?
-2. What does `$(hostname)` do?
-3. Why are command substitutions quoted?
-4. What output format do you expect?
+1. What changed from `echo` to `printf`? printf gives exact control over newlines and formatting. 
+2. What does `$(hostname)` do? $(hostname) runs the command and inserts its output. 
+3. Why are command substitutions quoted? It's quoted to prevent word-splitting if output has spaces. 
+4. What output format do you expect? Labeled blocks with aligned colons. 
 
 Run:
 
@@ -157,10 +121,10 @@ type printf
 
 Answer:
 
-1. Is `printf` a shell builtin?
-2. Which help source was fastest?
-3. What does `%s` mean?
-4. What does `
+1. Is `printf` a shell builtin? Yes. 
+2. Which help source was fastest? help printf
+3. What does `%s` mean? string placeholder. 
+4. What does \n is a newline.`
 ` mean?
 
 ---
@@ -184,10 +148,10 @@ chmod +x ~/tlcl-ch24-lab/scripts/list-lab
 Before running:
 
 ```text
-What does --all mean?
-What does --human-readable mean?
-What does --long mean?
-How can I confirm?
+What does --all mean? Shows hidden files. 
+What does --human-readable mean? shows sizes in kb/md/etc.
+What does --long mean? use -l instead. 
+How can I confirm? confirmed via ls --help. 
 ```
 
 Use documentation:
@@ -228,9 +192,9 @@ ls   --all   --human-readable   --long   ~/tlcl-ch24-lab
 Before running:
 
 ```text
-What does the backslash at the end of a line do?
-Why is this easier to read?
-What mistake would break this command?
+What does the backslash at the end of a line do? backslash at the end of a line continues to the command. 
+Why is this easier to read? It's easier to read because it has one option per line. 
+What mistake would break this command? Trailing space after \ or missing \ entirely. 
 ```
 
 Run:
@@ -252,9 +216,9 @@ ls   --all   --human-readable   --long   ~/tlcl-ch24-lab
 Use:
 
 ```text
-The command is still one command because...
-Each long option means...
-The indentation helps because...
+The command is still one command because \ joins lines. 
+Each long option is self-explanatory. 
+The indentation helps because it provides visual alignment of options. 
 ```
 
 ---
@@ -281,14 +245,17 @@ line continuation
 
 Explain why.
 
+chosen: long option names. 
+They make scripts self-documenting. There is no need to remember short flags or to look them up later. Reduces mistakes for beginners. 
+
 ---
 
 # Session 5 checkpoint
 
 He is ready for the final lab only if he can answer:
 
-1. Why use comments?
-2. Why might long options be better for beginner scripts?
-3. What does line continuation do?
-4. Why is `printf` often more controlled than `echo`?
-5. How did he use `man` or `--help` to verify an option?
+1. Why use comments? Comments are used to record intent and make maintenance easier. 
+2. Why might long options be better for beginner scripts? Long options are clearer and less error-prone for beginners. 
+3. What does line continuation do? It joins multi-line commands into one logical line.
+4. Why is `printf` often more controlled than `echo`? printf offers precise formatting and reliable newlines. 
+5. How did he use `man` or `--help` to verify an option? Used command --help and man command to verify options. 

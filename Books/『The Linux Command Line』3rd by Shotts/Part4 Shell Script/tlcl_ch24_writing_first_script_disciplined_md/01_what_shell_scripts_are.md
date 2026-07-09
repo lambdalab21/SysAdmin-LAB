@@ -135,7 +135,7 @@ Create a script file:
 
 ```bash
 cd ~/tlcl-ch24-lab/scripts
-nano system-info
+vim system-info
 ```
 
 Before writing commands, put this comment at the top:
