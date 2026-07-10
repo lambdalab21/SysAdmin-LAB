@@ -377,26 +377,3 @@ tar -xzf "$latest" -C /tmp/site3-rollback
 rsync -av --delete /tmp/site3-rollback/public/ /var/www/site3/public/
 '
 ```
-
----
-
-# Deployment record
-
-```text
-Date:
-Branch:
-Commit deployed:
-Changed file(s):
-Backup file:
-Dry-run summary:
-Deployment command:
-Filesystem evidence:
-HTTP evidence:
-Access-log evidence:
-Error-log evidence:
-What Git proved:
-What backup protected:
-What rsync did:
-Rollback needed? yes/no
-Lesson:
-```

@@ -2,22 +2,6 @@
 
 Use these files as a one-week plan. Each day has a reading target, a Feynman-style analogy, questions, and command practice.
 
-Core habit:
-
-```text
-Do not memorize commands as isolated tricks. Use each command to answer a clear question about text.
-```
-
-Disciplined thinking pattern:
-
-```text
-1. What question am I trying to answer?
-2. What text do I have?
-3. What part of the text matters?
-4. What command transforms or filters it?
-5. How can I inspect the result before trusting it?
-```
-
 One-time setup:
 
 ```bash

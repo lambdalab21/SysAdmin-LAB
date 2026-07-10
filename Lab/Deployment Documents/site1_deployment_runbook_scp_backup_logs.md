@@ -2,16 +2,6 @@
 
 ## Purpose
 
-This document is the operational deployment runbook for `site1`.
-
-```text
-site1 = scp copy deployment
-site2 = rsync synchronized deployment
-site3 = Git-tracked deployment
-```
-
-Use this when you want to deploy `site1` deliberately and verify the result.
-
 ---
 
 # Deployment model
@@ -54,17 +44,6 @@ Adjust paths if your machine uses different values.
 ---
 
 # Pre-deployment checklist
-
-Do not deploy until these are true.
-
-```text
-[ ] I am on the development machine.
-[ ] I am in the local project directory.
-[ ] I know the file I am deploying.
-[ ] I know the exact remote destination.
-[ ] I know `scp` will not delete stale files.
-[ ] I am not deploying as root.
-```
 
 Commands:
 
@@ -158,14 +137,6 @@ tar -tzf "$latest" | head -n 20
 '
 ```
 
-Required evidence:
-
-```text
-[ ] Backup file exists.
-[ ] Backup is not zero bytes.
-[ ] Archive lists public/index.html.
-```
-
 ---
 
 # 3. Verify local change before deployment
@@ -201,14 +172,6 @@ scp ./public/index.html ./public/style.css deploy@app01:/var/www/site1/public/
 
 Avoid using broad recursive copy unless you have inspected the local directory first.
 
-Record:
-
-```text
-Exact command:
-Source path:
-Destination path:
-```
-
 ---
 
 # 5. Verify deployment
@@ -238,16 +201,6 @@ Fallback:
 ```bash
 ssh your-admin-user@app01 'sudo tail -n 20 /var/log/nginx/access.log'
 ssh your-admin-user@app01 'sudo tail -n 20 /var/log/nginx/error.log'
-```
-
-Deployment is complete only when:
-
-```text
-[ ] Server file contains expected text.
-[ ] curl returns expected HTTP status.
-[ ] curl shows expected content.
-[ ] Access log shows the request.
-[ ] Error log shows no new relevant error.
 ```
 
 ---

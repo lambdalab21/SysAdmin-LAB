@@ -151,24 +151,7 @@ Required evidence:
 
 ---
 
-# 3. Verify local change
-
-Example:
-
-```bash
-grep -n 'text-you-expect' public/index.html
-```
-
-Record:
-
-```text
-Changed file:
-Exact local evidence:
-```
-
----
-
-# 4. Dry run
+# 3. Dry run
 
 Run:
 
@@ -194,7 +177,7 @@ Do not deploy if the dry-run output does not make sense.
 
 ---
 
-# 5. Deploy
+# 4. Deploy
 
 Only after the dry run is safe:
 
@@ -212,7 +195,7 @@ Files deleted:
 
 ---
 
-# 6. Verify deployment
+# 5. Verify deployment
 
 Filesystem:
 
@@ -253,7 +236,7 @@ Deployment is complete only when:
 
 ---
 
-# 7. Stale-file check
+# 6. Stale-file check
 
 Use this occasionally to prove `--delete` behavior.
 
@@ -295,7 +278,7 @@ Expected:
 
 ---
 
-# 8. Restore test
+# 7. Restore test
 
 Extract newest backup into `/tmp`:
 
