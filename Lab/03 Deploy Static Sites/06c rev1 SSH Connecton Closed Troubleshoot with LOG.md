@@ -1,3 +1,5 @@
+#LAB #deployment
+#ssh
 # Log-Driven Troubleshooting Lab: SSH Connection Closes Immediately
 
 ## Scenario

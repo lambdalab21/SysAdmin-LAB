@@ -1,3 +1,5 @@
+#LAB #deployment
+#ssh
 # Follow-Up: `/etc/hosts`, DNS, and How Names Become IP Addresses
 
 ## Purpose

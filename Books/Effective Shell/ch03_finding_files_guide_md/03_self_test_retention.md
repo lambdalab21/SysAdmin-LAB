@@ -1,11 +1,13 @@
+#Book/Effective-Shell #Author/Kerr 
+#drill #find #search 
 # Effective Shell Chapter 3: Finding Files
 
-This guide is designed to reinforce Shotts, *The Linux Command Line*, Chapter 17.
+This guide is designed to reinforce Author/Shotts, *The Linux Command Line*, Chapter 17.
 
 Main bridge:
 
 ```text
-Shotts Chapter 17 teaches the mechanics.
+Author/Shotts Chapter 17 teaches the mechanics.
 Effective Shell Chapter 3 helps the structure click.
 ```
 
@@ -83,7 +85,7 @@ find ~/effective-shell-ch03-lab -maxdepth 3 -print
 
 ## Purpose
 
-This file checks whether he can use Effective Shell Chapter 3 to strengthen Shotts Chapter 17.
+This file checks whether he can use Effective Shell Chapter 3 to strengthen Author/Shotts Chapter 17.
 
 No notes at first.
 
@@ -353,7 +355,7 @@ RISK:
 
 # Final standard
 
-He has solidified Shotts Chapter 17 with Effective Shell Chapter 3 only if he can say:
+He has solidified Author/Shotts Chapter 17 with Effective Shell Chapter 3 only if he can say:
 
 ```text
 I understand find as a search expression.

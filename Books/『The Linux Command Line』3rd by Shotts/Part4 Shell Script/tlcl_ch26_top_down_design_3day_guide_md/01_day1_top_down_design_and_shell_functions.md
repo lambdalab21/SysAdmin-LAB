@@ -1,6 +1,8 @@
-# Shotts Chapter 26: Top-Down Design
+#Book/The-Linux-Command-Line #Author/Shotts 
+#shell-script
+# Author/Shotts Chapter 26: Top-Down Design
 
-This guide is for Chapter 26, **Top-Down Design**, from William Shotts's *The Linux Command Line*.
+This guide is for Chapter 26, **Top-Down Design**, from William Author/Shotts's *The Linux Command Line*.
 
 The goal is not merely to type functions.
 

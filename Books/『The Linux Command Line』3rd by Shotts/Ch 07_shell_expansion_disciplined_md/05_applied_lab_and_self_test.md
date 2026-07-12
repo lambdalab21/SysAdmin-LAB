@@ -1,3 +1,5 @@
+#Book/The-Linux-Command-Line #Author/Shotts 
+#expansion #shell-expansion 
 # The Linux Command Line, Chapter 7: Seeing the World as the Shell Sees It
 
 Use these guides after Chapter 6 redirection/pipelines and before heavy scripting.

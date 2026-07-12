@@ -1,3 +1,5 @@
+#Author/Ward #Book/How-Linux-Works 
+#network 
 # Ward Ch. 10 Machine Labs — Ubuntu + AlmaLinux
 
 These labs are for the two-laptop home lab:

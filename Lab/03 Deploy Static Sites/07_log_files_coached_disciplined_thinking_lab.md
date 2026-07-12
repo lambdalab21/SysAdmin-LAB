@@ -1,3 +1,5 @@
+#LAB #deployment
+#ssh
 # 07 — Log Files: Coached Lab for Disciplined Troubleshooting
 ---
 

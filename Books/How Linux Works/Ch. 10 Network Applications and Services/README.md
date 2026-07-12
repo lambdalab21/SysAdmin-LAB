@@ -1,3 +1,6 @@
+#Author/Ward #Book/How-Linux-Works 
+#network 
+#README 
 # Ward Ch. 10 Reading Guide Bundle
 
 Files:

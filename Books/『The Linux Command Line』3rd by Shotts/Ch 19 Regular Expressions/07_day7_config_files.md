@@ -1,3 +1,5 @@
+#Book/The-Linux-Command-Line #Author/Shotts 
+#regex
 # The Linux Command Line, Chapter 19: Regular Expressions
 
 One-time setup:

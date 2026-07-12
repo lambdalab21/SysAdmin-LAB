@@ -1,3 +1,5 @@
+#Book/Wizard-Zine 
+#LAB 
 /He should do a **Linux scavenger hunt** and create a one-page “map of the machine.”
 
 The box-set description presents the zines as a way to understand what programs are doing, how Linux system parts communicate, and how to use tools already available on the machine. ([nostarch.com](https://nostarch.com/linuxtoolbox))

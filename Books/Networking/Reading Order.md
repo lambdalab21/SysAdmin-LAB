@@ -1,4 +1,5 @@
-A more natural phrase is: When he moves on to the networking section, what order should he read the resources by Julia Evans, Michael Lucas, Brian Ward, and William Shotts?
+#network #README 
+A more natural phrase is: When he moves on to the networking section, what order should he read the resources by Julia Evans, Michael Lucas, Brian Ward, and William Author/Shotts?
 
 He should not read four networking resources cover to cover in sequence. That would create unnecessary repetition. Use a layered approach: curiosity first, basic tools second, mental model third, troubleshooting depth last.
 
@@ -16,13 +17,13 @@ This should be casual reading. No quizzes. No notes. No labs unless he spontaneo
 
 ---
 
-### 2. Shotts: _The Linux Command Line_, Chapter 16 — “Networking”
+### 2. Author/Shotts: _The Linux Command Line_, Chapter 16 — “Networking”
 
-Read William Shotts next.
+Read William Author/Shotts next.
 
 Chapter 16 of the current third edition is explicitly titled “Networking.” The book is organized around practical command-line tasks, including working with networking tools. ([nostarch.com](https://nostarch.com/linux-command-line-3e?utm_source=chatgpt.com "The Linux Command Line, 3rd Edition"))
 
-Shotts is the right first formal reading because it introduces the commands from the user’s perspective. He can immediately run commands without needing to understand every layer of the network stack.
+Author/Shotts is the right first formal reading because it introduces the commands from the user’s perspective. He can immediately run commands without needing to understand every layer of the network stack.
 
 He should become comfortable with tools such as:
 
@@ -45,7 +46,7 @@ Depending on the edition, the exact list may differ slightly. That does not matt
 
 ### 3. Julia Evans: _Bite Size Networking_
 
-Read _**Bite Size Networking**_ immediately after Shotts or alongside it.
+Read _**Bite Size Networking**_ immediately after Author/Shotts or alongside it.
 
 This zine explains 17 important Linux networking tools. Each tool gets a one-page comic and a small set of useful options rather than an exhaustive manual-page-style explanation. ([wizard zines](https://wizardzines.com/zines/bite-size-networking/?utm_source=chatgpt.com "Bite Size Networking!"))
 
@@ -66,7 +67,7 @@ Julia Evans also provides a free “Every Linux networking tool I know” poster
 
 Do not require him to memorize the poster. It is a map, not a checklist.
 
-**Purpose:** reinforce Shotts with memorable explanations and expose him to tools he will revisit for years.
+**Purpose:** reinforce Author/Shotts with memorable explanations and expose him to tools he will revisit for years.
 
 ---
 
@@ -185,8 +186,8 @@ Her _**How DNS Works**_ zine is especially useful because DNS has difficult term
 | Stage | Resource                                                   | Reading style                                      |
 | ----- | ---------------------------------------------------------- | -------------------------------------------------- |
 | 1     | Julia Evans: _Networking! ACK!_                            | Casual preview                                     |
-| 2     | Shotts: Chapter 16                                         | Read and run commands                              |
-| 3     | Julia Evans: _Bite Size Networking_                        | Read alongside Shotts                              |
+| 2     | Author/Shotts: Chapter 16                                         | Read and run commands                              |
+| 3     | Julia Evans: _Bite Size Networking_                        | Read alongside Author/Shotts                              |
 | 4     | Ward: Chapter 9                                            | Read carefully; explain concepts                   |
 | 5     | Ward: Chapter 10                                           | Connect concepts to SSH, nginx, and other services |
 | 6     | Lucas: _Networking for System Administrators_, 2nd edition | Read gradually with troubleshooting experiments    |
@@ -200,7 +201,7 @@ The core curriculum should be:
 
 ```text
 Julia Evans
-→ Shotts
+→ Author/Shotts
 → Ward
 → Lucas
 ```

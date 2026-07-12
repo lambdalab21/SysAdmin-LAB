@@ -1,3 +1,7 @@
+#Book/The-Linux-Command-Line #Author/Shotts 
+#process 
+#quiz
+
 A cleaner phrasing is: “He is reading Chapter 10. Can you make quizzes so he can check his understanding?”
 
 Chapter 10 of _The Linux Command Line_, 3rd ed. is **“Processes.”** It covers how processes work, viewing processes, `top`, foreground and background jobs, stopping and resuming jobs, process priority, signals, `kill`, `killall`, hang-up-proof processes, shutdown, and related commands. ([オライリー](https://www.oreilly.com/library/view/the-linux-command/0642572230227/ "The Linux Command Line, 3rd Edition [Book]"))

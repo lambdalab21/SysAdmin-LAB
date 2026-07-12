@@ -1,3 +1,5 @@
+#LAB
+#Book/How-Linux-Works #Author/Ward 
 
 Ward Ch. 2 is about basic commands and the Linux directory hierarchy. The goal is not to memorize commands mechanically. He should become comfortable moving through a Linux system, identifying files, using documentation, and explaining where things live.
 

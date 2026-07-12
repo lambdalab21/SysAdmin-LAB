@@ -1,20 +1,21 @@
+#Author/Lucas #Book/Network-for-System-Administrators #network 
 For Michael W. Lucas’s **_Networking for System Administrators_, 2nd edition**, read it cover to cover, but not all at once and not before Ward.
 
 Lucas wrote it as a compact, practical overview for system administrators who need enough networking knowledge to deploy services, troubleshoot failures, and communicate with network specialists. It is not a large academic networking textbook. The official description emphasizes modern networks, TCP/IP, IPv6, diagnostic tools, TLS, packet inspection, connectivity testing, and troubleshooting from the physical connection through DNS. ([Michael W Lucas](https://mwl.io/static/books/networking-for-system-administrators-second-edition.html?utm_source=chatgpt.com "Networking for System Administrators, second edition"))
 
 ## Recommended sequence
 
-### First: Shotts and Ward
+### First: Author/Shotts and Ward
 
 Use these as the structured introduction:
 
 ```text
-Shotts: networking chapter
+Author/Shotts: networking chapter
 → Ward: How Linux Works, Chapter 9
 → Ward: How Linux Works, Chapter 10
 ```
 
-Shotts gives him commands. Ward builds the mental model. By the end of Ward Chapter 10, he should understand enough to benefit from Lucas rather than merely encounter unfamiliar terminology.
+Author/Shotts gives him commands. Ward builds the mental model. By the end of Ward Chapter 10, he should understand enough to benefit from Lucas rather than merely encounter unfamiliar terminology.
 
 ### Then: read Lucas from beginning to end
 
@@ -75,7 +76,7 @@ That combination works well because Lucas gives him a coherent explanation, whil
 Do not interleave four books page by page:
 
 ```text
-Shotts section 1
+Author/Shotts section 1
 → Ward section 1
 → Lucas section 1
 → Julia Evans comic
@@ -88,7 +89,7 @@ Use a cleaner progression:
 
 ```text
 Julia Evans preview
-→ Shotts networking chapter
+→ Author/Shotts networking chapter
 → Ward Chapters 9 and 10
 → Lucas cover to cover
 → Julia Evans selectively whenever a concept benefits from a visual explanation

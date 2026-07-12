@@ -1,8 +1,9 @@
+#Book/Effective-Shell #Author/Kerr
 # Effective Shell Chapter 2: Thinking in Pipelines
 
-This guide is a follow-up to Shotts, *The Linux Command Line*, Chapter 6 on redirection.
+This guide is a follow-up to Author/Shotts, *The Linux Command Line*, Chapter 6 on redirection.
 
-Shotts Chapter 6 should have taught the mechanics:
+Author/Shotts Chapter 6 should have taught the mechanics:
 
 ```text
 stdin
@@ -157,9 +158,9 @@ A pipeline sends stdout from one command into stdin of the next command.
 
 ---
 
-# Reading checkpoint 2: Connect to Shotts Chapter 6
+# Reading checkpoint 2: Connect to Author/Shotts Chapter 6
 
-Before continuing, review these from Shotts:
+Before continuing, review these from Author/Shotts:
 
 ```text
 stdout = normal output

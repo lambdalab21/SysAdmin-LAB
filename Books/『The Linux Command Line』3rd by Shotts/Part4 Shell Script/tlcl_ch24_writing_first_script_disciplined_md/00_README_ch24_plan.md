@@ -1,6 +1,8 @@
-# Shotts Chapter 24: Writing Your First Script — Disciplined Reading Plan
+#Book/The-Linux-Command-Line Author/Shotts 
+#shell-script
+# Author/Shotts Chapter 24: Writing Your First Script — Disciplined Reading Plan
 
-A cleaner phrasing: “Create Markdown file(s) for Chapter 24, ‘Writing Your First Script,’ by Shotts. Use the Feynman method, force disciplined thinking, specify what sections to read before/after each exercise, and make him answer important concepts after reading.”
+A cleaner phrasing: “Create Markdown file(s) for Chapter 24, ‘Writing Your First Script,’ by Author/Shotts. Use the Feynman method, force disciplined thinking, specify what sections to read before/after each exercise, and make him answer important concepts after reading.”
 
 Recommended split:
 

@@ -1,3 +1,5 @@
+#LAB #deployment
+#ssh
 
 Do not start by editing configuration files. Capture evidence first.
 

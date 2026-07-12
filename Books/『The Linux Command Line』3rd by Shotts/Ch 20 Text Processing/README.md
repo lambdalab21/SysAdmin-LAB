@@ -1,3 +1,5 @@
+#Book/The-Linux-Command-Line #Author/Shotts 
+#text-processing #README 
 # TLCL Chapter 20 One-Week Text Processing Plan
 
 Use these seven files across one week.

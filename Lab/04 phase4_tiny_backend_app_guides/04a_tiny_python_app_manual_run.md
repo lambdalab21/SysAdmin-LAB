@@ -1,3 +1,4 @@
+#LAB #deployment #backend
 # 04a — Tiny Python App: Manual Run
 
 ---

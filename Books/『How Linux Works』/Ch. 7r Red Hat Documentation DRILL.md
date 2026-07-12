@@ -1,3 +1,5 @@
+#LAB
+#Book/How-Linux-Works #Author/Ward 
 Correction: _Create drills from Red Hat Documentation, “Chapter 2: Troubleshooting problems by using log files.”_
 
 Below is a practical drill set for **AlmaLinux `app01`**, based on the Red Hat chapter. The chapter explains that Linux logs contain messages from the system, kernel, services, and applications; `systemd-journald` collects messages from the kernel, early boot, daemon output, and syslog; `rsyslog` sorts messages and writes persistent files under `/var/log`. ([docs.redhat.com](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/10/html/risk_reduction_and_recovery_operations/troubleshooting-problems-by-using-log-files "Chapter 2. Troubleshooting problems by using log files | Risk reduction and recovery operations | Red Hat Enterprise Linux | 10 | Red Hat Documentation"))

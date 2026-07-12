@@ -1,3 +1,5 @@
+#Book/The-Linux-Command-Line #Author/Shotts 
+#process 
 A cleaner phrasing is: “Please make short drills he can practice regularly so that he retains what he learned in Chapter 10.”
 
 Use `playground01`. Each drill set should take about 3–7 minutes. Rotate them. Do not do the full Chapter 10 lab every time.

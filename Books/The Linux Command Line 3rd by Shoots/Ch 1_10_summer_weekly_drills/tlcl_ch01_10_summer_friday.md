@@ -1,3 +1,4 @@
+#Book/The-Linux-Command-Line  #Author/Shotts 
 # The Linux Command Line, Chapters 1–10: Summer Retention Drills
 
 Use these on `playground01`. Repeat weekly through the summer. Keep each session short: 20–35 minutes.

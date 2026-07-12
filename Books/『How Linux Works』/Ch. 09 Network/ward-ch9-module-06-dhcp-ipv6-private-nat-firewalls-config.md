@@ -1,3 +1,4 @@
+#Book/How-Linux-Works #Author/Ward 
 # Module 6 — DHCP, IPv6, Private Networks, NAT, Firewalls, and Configuration Tools
 
 **Source:** Brian Ward, *How Linux Works*, Chapter 9.

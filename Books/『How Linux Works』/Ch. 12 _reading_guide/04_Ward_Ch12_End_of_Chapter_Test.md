@@ -1,3 +1,5 @@
+#Book/How-Linux-Works #Author/Ward 
+#network
 # Ward Ch. 12 End-of-Chapter Test — Network File Transfer and Sharing
 
 This test is not about memorizing commands. It checks whether he understands what file transfer and sharing mean in a real Linux environment.

@@ -1,3 +1,5 @@
+#Book/Wizard-Zine 
+#network 
 Use one client machine and `app01`.
 
 ### 1. Identify the machine’s network identity

@@ -1,7 +1,8 @@
+#Book/The-Linux-Command-Line #Author/Shotts 
 
 These labs are for `playground01`. They are deliberately more substantial than the short drills. The student should predict the outcome before running each command, observe the actual result, and explain any mismatch.
 
-Chapter 9 is not merely about memorizing `chmod` numbers. The important ideas are ownership, groups, file modes, directory modes, default permissions, identity changes, and safe privilege escalation. Shotts’s permissions lesson distinguishes owner, group, and others; explains octal `chmod`; and emphasizes that `r`, `w`, and `x` behave differently on directories. ([LinuxCommand](https://linuxcommand.org/lc3_lts0090.php?utm_source=chatgpt.com "Learning the shell - Lesson 9: Permissions"))
+Chapter 9 is not merely about memorizing `chmod` numbers. The important ideas are ownership, groups, file modes, directory modes, default permissions, identity changes, and safe privilege escalation. Author/Shotts’s permissions lesson distinguishes owner, group, and others; explains octal `chmod`; and emphasizes that `r`, `w`, and `x` behave differently on directories. ([LinuxCommand](https://linuxcommand.org/lc3_lts0090.php?utm_source=chatgpt.com "Learning the shell - Lesson 9: Permissions"))
 
 # Chapter 9 Labs: Permissions
 

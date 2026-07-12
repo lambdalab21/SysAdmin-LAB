@@ -1,6 +1,8 @@
-# Shotts Chapter 25: Starting a Project
+#Book/The-Linux-Command-Line Author/Shotts 
+#shell-script
+# Author/Shotts Chapter 25: Starting a Project
 
-This guide is for Chapter 25, **Starting a Project**, from William Shotts's *The Linux Command Line*.
+This guide is for Chapter 25, **Starting a Project**, from William Author/Shotts's *The Linux Command Line*.
 
 The goal is not to type an HTML-report script mindlessly. The goal is to learn how a script grows from a tiny working version into a useful project.
 
@@ -91,7 +93,7 @@ I can compare later versions to it.
 
 Answer without looking back:
 
-1. Why does Shotts begin with a minimal document?
+1. Why does Author/Shotts begin with a minimal document?
 2. What is the advantage of a script that runs but does very little?
 3. What does it mean to redirect script output into a file?
 4. Why is stdout useful for report generation?

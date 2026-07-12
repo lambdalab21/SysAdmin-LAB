@@ -1,3 +1,5 @@
+#LAB
+#Book/How-Linux-Works #Author/Ward 
 After Chapter 1, the goal should be proving he can inspect a running Linux system and explain what is happening.
 
 Assume he is using the Ubuntu laptop as `db01`.

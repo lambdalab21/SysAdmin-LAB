@@ -1,3 +1,5 @@
+#LAB #deployment #deployment-document
+#rsync
 # Site3 Deployment Runbook — Git-Tracked `rsync` + Backup + Logs
 
 ## Purpose

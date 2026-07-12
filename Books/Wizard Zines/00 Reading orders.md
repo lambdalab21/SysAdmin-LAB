@@ -1,4 +1,4 @@
-
+#Book/Wizard-Zine
 
 The box set **_Your Linux Toolbox_** includes seven zines: _So You Want to Be a Wizard_, _Bite-Size Linux!_, _Networking, ACK!_, _Let’s Learn tcpdump!_, _Linux Debugging Tools You’ll Love_, _Spying on Your Programs with strace_, and _Profiling & Tracing with perf_. ([nostarch.com](https://nostarch.com/linuxtoolbox?utm_source=chatgpt.com "Your Linux Toolbox"))
 
@@ -15,7 +15,7 @@ Read first:
 2. **_Bite-Size Linux!_**
     
 
-These are motivational and confidence-building. They help him see that Linux is not magic; it is inspectable. This should pair with Ward Ch. 1–2 and Shotts early chapters.
+These are motivational and confidence-building. They help him see that Linux is not magic; it is inspectable. This should pair with Ward Ch. 1–2 and Author/Shotts early chapters.
 
 Do not spend too long here. Read, then use the shell.
 
@@ -47,7 +47,7 @@ Do **not** read _Profiling & Tracing with perf_ yet. `perf` is useful, but it is
 
 ---
 
-### Stage 3: Networking — Ward Ch. 9, Shotts Ch. 16, Lucas
+### Stage 3: Networking — Ward Ch. 9, Author/Shotts Ch. 16, Lucas
 
 Read:
 
@@ -132,7 +132,7 @@ backup-site.sh
 
 _Bite Size Bash!_ reinforces practical shell scripting. _The Secret Rules of the Terminal_ helps explain terminal behavior, foreground/background jobs, Ctrl-C, Ctrl-Z, shells, and confusing command-line interactions.
 
-This pairs with Ward Ch. 11 and Shotts shell chapters.
+This pairs with Ward Ch. 11 and Author/Shotts shell chapters.
 
 ---
 
@@ -234,7 +234,7 @@ Useful, but later. He should first know `ps`, `top`, `lsof`, `strace`, `vmstat`,
 16. **_Bite Size Command Line!_**
     
 
-Probably optional because he is already reading Shotts and _Bite-Size Linux!_. Buy/use it only if Shotts feels too dry.
+Probably optional because he is already reading Author/Shotts and _Bite-Size Linux!_. Buy/use it only if Author/Shotts feels too dry.
 
 17. **_Oh Shit, Git!_**
     
@@ -312,4 +312,4 @@ curl -I http://app01
 curl -H "Host: site1.local" http://app01
 ```
 
-The zines are excellent reinforcement. They should not replace Ward, Shotts, Lucas, or the labs. They should make the hard ideas stick.
+The zines are excellent reinforcement. They should not replace Ward, Author/Shotts, Lucas, or the labs. They should make the hard ideas stick.

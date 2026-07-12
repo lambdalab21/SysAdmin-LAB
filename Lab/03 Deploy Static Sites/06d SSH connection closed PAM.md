@@ -1,3 +1,5 @@
+#LAB #deployment
+#ssh #pam
 He has already proven that this is **not primarily a firewall, routing, port, or password-authentication problem**. The logs show:
 
 ```text

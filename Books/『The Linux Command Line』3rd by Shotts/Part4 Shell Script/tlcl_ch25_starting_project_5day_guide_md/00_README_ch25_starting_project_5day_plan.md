@@ -1,6 +1,9 @@
+#Book/The-Linux-Command-Line Author/Shotts 
+#shell-script
+#README 
 # TLCL Chapter 25: Starting a Project — Five-Day Guide
 
-A cleaner phrasing: “Create Markdown file(s) for Chapter 25, ‘Starting a Project,’ by Shotts. Use the Feynman method and train disciplined thinking. Split it into days as appropriate.”
+A cleaner phrasing: “Create Markdown file(s) for Chapter 25, ‘Starting a Project,’ by Author/Shotts. Use the Feynman method and train disciplined thinking. Split it into days as appropriate.”
 
 Recommended split:
 

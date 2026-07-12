@@ -1,3 +1,4 @@
+#LAB 
 # SysAdmin-LAB
 
 ## To read this lab on your Obsidian
@@ -8,7 +9,7 @@
    
 ## Resources
 - How Linux Works, 3rd Edition: What Every Superuser Should Know, Brian Ward
-- The Linux Command Line, 3rd Edition: A Complete Introduction, William Shotts
+- The Linux Command Line, 3rd Edition: A Complete Introduction, William Author/Shotts
 
 ## Setup
 ### Physical Setup 

@@ -1,3 +1,5 @@
+#LAB #deployment
+#ssh
 # Follow-Up: How to Open `site1`, `site2`, and `site3` in a Browser
 
 ## Purpose

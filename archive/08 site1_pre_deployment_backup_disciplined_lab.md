@@ -1,3 +1,4 @@
+#deployment #LAB 
 # Pre-Deployment Backup Lab for `site1`
 
 ## Purpose

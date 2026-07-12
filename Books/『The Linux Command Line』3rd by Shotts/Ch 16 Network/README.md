@@ -1,4 +1,6 @@
-# Shotts Chapter 16 — Networking Drills Split by Part
+#Book/The-Linux-Command-Line #Author/Shotts 
+#network 
+# Author/Shotts Chapter 16 — Networking Drills Split by Part
 
 This folder contains the uploaded Chapter 16 networking drill file split into four separate Markdown files.
 

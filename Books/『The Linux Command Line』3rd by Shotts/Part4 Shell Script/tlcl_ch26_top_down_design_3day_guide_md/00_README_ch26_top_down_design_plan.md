@@ -1,6 +1,8 @@
+#Book/The-Linux-Command-Line Author/Shotts 
+#shell-script #README 
 # TLCL Chapter 26: Top-Down Design — Three-Day Guide
 
-A cleaner phrasing: “Create Markdown file(s) for Chapter 26, ‘Top-Down Design,’ by Shotts. Separate them into Day 1, Day 2, and Day 3.”
+A cleaner phrasing: “Create Markdown file(s) for Chapter 26, ‘Top-Down Design,’ by Author/Shotts. Separate them into Day 1, Day 2, and Day 3.”
 
 Chapter 26 is best studied in three days.
 

@@ -1,3 +1,4 @@
+#LAB #deployment #backend
 # 05g — Break/Fix Lab: `site5-app` with Data
 
 ## Purpose

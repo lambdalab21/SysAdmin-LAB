@@ -1,3 +1,5 @@
+ #Book/How-Linux-Works #drill 
+
 More natural phrasing: **“Create drills to retain the information in _How Linux Works_ Ch. 8.”**
 
 Ward Ch. 8 is **“A Closer Look at Processes and Resource Utilization.”** It focuses on the relationship between processes, the kernel, and three basic hardware-resource categories: CPU, memory, and I/O. ([オライリー・メディア](https://www.oreilly.com/library/view/how-linux-works/9781098128913/c08.xhtml?utm_source=chatgpt.com "How Linux Works, 3rd Edition"))

@@ -1,6 +1,8 @@
-# Shotts Chapter 16 — Networking Drills
+#Book/The-Linux-Command-Line #Author/Shotts 
+#network 
+# Author/Shotts Chapter 16 — Networking Drills
 
-These drills accompany Chapter 16, **Networking**, of William Shotts' *The Linux Command Line*.
+These drills accompany Chapter 16, **Networking**, of William Author/Shotts' *The Linux Command Line*.
 Use machines that belong to your home lab, such as `app01` and `db01`.
 
 ## Safety and setup

@@ -1,6 +1,8 @@
+#Book/The-Linux-Command-Line Author/Shotts 
+#regex
 # The Linux Command Line, Chapter 19: Regular Expressions
 
-Use these files as a multi-day study plan for Shotts's Chapter 19.
+Use these files as a multi-day study plan for Author/Shotts's Chapter 19.
 
 One-time setup:
 

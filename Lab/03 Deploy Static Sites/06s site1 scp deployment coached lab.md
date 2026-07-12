@@ -1,3 +1,5 @@
+#LAB #deployment
+#ssh
 # Site1 Update Deployment Lab (`scp`) — Coached Version
 
 ## Purpose

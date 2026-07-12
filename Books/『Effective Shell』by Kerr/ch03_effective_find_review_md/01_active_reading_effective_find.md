@@ -1,9 +1,10 @@
-# Effective Shell Chapter 3: Finding Files — Review After Shotts Chapter 17
+#Book/Effective-Shell #Author/Kerr
+# Effective Shell Chapter 3: Finding Files — Review After Author/Shotts Chapter 17
 
 Purpose:
 
 ```text
-Shotts Chapter 17 taught the tools.
+Author/Shotts Chapter 17 taught the tools.
 Effective Shell Chapter 3 should teach better judgment.
 ```
 
@@ -15,7 +16,7 @@ Core habit:
 English question → search scope → tests → action → verification
 ```
 
-Use the Shotts pattern:
+Use the Author/Shotts pattern:
 
 ```text
 find WHERE TESTS ACTION
@@ -389,7 +390,7 @@ Explain-back:
 
 Answer in writing:
 
-1. What did Effective Shell add beyond Shotts Chapter 17?
+1. What did Effective Shell add beyond Author/Shotts Chapter 17?
 2. What is the difference between `-name` and `-path`?
 3. Why should OR expressions be grouped?
 4. Why should wildcard patterns be quoted?

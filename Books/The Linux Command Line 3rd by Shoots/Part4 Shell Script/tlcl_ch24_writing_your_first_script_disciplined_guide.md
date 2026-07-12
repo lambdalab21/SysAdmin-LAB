@@ -1,3 +1,5 @@
+#Book/The-Linux-Command-Line  #Author/Shotts 
+#shell-script #bash-script
 # TLCL Chapter 24 Guide — Writing Your First Script
 ---
 ```
@@ -62,7 +64,7 @@ Why am I using a practice directory instead of random places in my home director
 
 ## Read this part of Chapter 24
 
-Read the opening part of Chapter 24 where Shotts introduces shell scripts and creates a first simple script.
+Read the opening part of Chapter 24 where Author/Shotts introduces shell scripts and creates a first simple script.
 
 Focus on:
 
@@ -205,7 +207,7 @@ The computer runs the commands in the same sequence.
 
 ## Read this part of Chapter 24
 
-Read the section where Shotts explains making a script executable and running it like a command.
+Read the section where Author/Shotts explains making a script executable and running it like a command.
 
 Focus on:
 
@@ -321,7 +323,7 @@ PATH is the list of directories the shell searches for commands.
 
 ## Read this part of Chapter 24
 
-Read the part of Chapter 24 where Shotts improves the first script and discusses writing scripts carefully.
+Read the part of Chapter 24 where Author/Shotts improves the first script and discusses writing scripts carefully.
 
 Focus on:
 

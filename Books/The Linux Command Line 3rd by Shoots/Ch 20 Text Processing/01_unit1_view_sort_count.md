@@ -1,3 +1,5 @@
+#Book/The-Linux-Command-Line  Author/Shotts 
+#process 
 # The Linux Command Line, Chapter 20: Text Processing
 
 Use these files as a one-week plan. Each day has a reading target, a Feynman-style analogy, questions, and command practice.

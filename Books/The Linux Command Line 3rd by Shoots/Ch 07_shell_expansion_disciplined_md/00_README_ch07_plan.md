@@ -1,6 +1,7 @@
+#Book/The-Linux-Command-Line  Author/Shotts 
 # TLCL Chapter 7: Seeing the World as the Shell Sees It — Disciplined Guide
 
-A cleaner phrasing: “Create Markdown file(s) for Chapter 7, ‘Seeing the World as the Shell Sees It,’ by Shotts. Use the Feynman method and train disciplined thinking rather than mindless typing.”
+A cleaner phrasing: “Create Markdown file(s) for Chapter 7, ‘Seeing the World as the Shell Sees It,’ by Author/Shotts. Use the Feynman method and train disciplined thinking rather than mindless typing.”
 
 Recommended split:
 

@@ -1,3 +1,4 @@
+#LAB #deployment #backend
 # 04d — Break/Fix Lab: Tiny App + Nginx
 
 ## Purpose

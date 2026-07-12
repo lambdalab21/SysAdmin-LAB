@@ -1,3 +1,5 @@
+#LAB #deployment
+#ssh
 The command is reasonable:
 
 ```bash

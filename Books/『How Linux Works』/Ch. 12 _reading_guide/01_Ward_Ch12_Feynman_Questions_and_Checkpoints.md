@@ -1,3 +1,5 @@
+#Book/How-Linux-Works #Author/Ward 
+#network
 # Ward Ch. 12 — Feynman Questions and Checkpoints
 
 > Rule: before running a command, predict what will happen. After running it, explain what happened. If prediction and result differ, that is the learning moment.

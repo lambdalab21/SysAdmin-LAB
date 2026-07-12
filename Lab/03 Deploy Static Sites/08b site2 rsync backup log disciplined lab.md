@@ -1,3 +1,5 @@
+#LAB #deployment
+#ssh
 # 09 — `site2` Deployment with `rsync`: Backup + Log Checks
 
 ## Role of this lab

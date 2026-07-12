@@ -1,3 +1,4 @@
+#LAB #deployment #backend
 # 05a — State, SQLite, and Directory Layout
 
 ## Purpose

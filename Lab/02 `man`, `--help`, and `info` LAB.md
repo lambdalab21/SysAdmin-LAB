@@ -1,4 +1,5 @@
-
+#LAB  
+#man #info 
 Use a **layered workflow**. Do not randomly jump between `man`, `info`, `--help`, Stack Overflow, and tutorials. First identify what kind of thing you are dealing with, then choose the right reference.
 
 ## The basic workflow

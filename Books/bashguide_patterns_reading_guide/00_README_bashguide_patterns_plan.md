@@ -1,8 +1,9 @@
+#bashguide 
 # BashGuide Patterns — Reading Guide Plan
 
 A cleaner phrasing: “Please make a reading guide from BashGuide/Patterns.”
 
-Use this after Shotts Chapter 7 and before deeper regex practice.
+Use this after Author/Shotts Chapter 7 and before deeper regex practice.
 
 Recommended order:
 

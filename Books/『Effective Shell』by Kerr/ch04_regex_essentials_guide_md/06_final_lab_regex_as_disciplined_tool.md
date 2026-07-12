@@ -1,11 +1,12 @@
+#Book/Effective-Shell #Author/Kerr
 # Effective Shell Chapter 4: Regular Expression Essentials
 
-This guide is a follow-up to Shotts Chapter 19, **Regular Expressions**.
+This guide is a follow-up to Author/Shotts Chapter 19, **Regular Expressions**.
 
 Main purpose:
 
 ```text
-Shotts Chapter 19 introduced regex symbols.
+Author/Shotts Chapter 19 introduced regex symbols.
 Kerr Chapter 4 should teach disciplined regex construction.
 ```
 

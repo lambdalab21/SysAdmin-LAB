@@ -1,6 +1,8 @@
-# Shotts Chapter 24: Writing Your First Script
+#Book/The-Linux-Command-Line  aAuthor/Author/Shotts 
+#shell-script #bash-script
+# Author/Shotts Chapter 24: Writing Your First Script
 
-Use this guide with William Shotts, *The Linux Command Line*, Chapter 24, "Writing Your First Script."
+Use this guide with William Author/Shotts, *The Linux Command Line*, Chapter 24, "Writing Your First Script."
 
 This chapter starts Part IV of the book: shell scripting. The goal is not to type a few scripts and feel finished. The goal is to learn how a command sequence becomes a repeatable tool.
 
@@ -203,7 +205,7 @@ Reread the “How to Write a Shell Script” section.
 This time, read it with this question in mind:
 
 ```text
-What process does Shotts want me to follow when creating a script?
+What process does Author/Shotts want me to follow when creating a script?
 ```
 
 Write a three-step process:

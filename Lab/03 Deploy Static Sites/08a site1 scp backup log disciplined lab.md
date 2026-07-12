@@ -1,3 +1,5 @@
+#LAB #deployment
+#ssh
 # 08 — `site1` Deployment with `scp`: Backup + Log Checks
 
 ## Role of this lab

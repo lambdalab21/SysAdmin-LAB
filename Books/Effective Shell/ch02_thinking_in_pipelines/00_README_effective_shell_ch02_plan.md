@@ -1,3 +1,5 @@
+#Book/Effective-Shell #Author/Kerr 
+#README
 # Effective Shell Chapter 2: Thinking in Pipelines — Study Plan
 
 Recommended split:
@@ -10,10 +12,10 @@ Recommended split:
 | 4 | `04_man_help_documentation_habits.md` | Use `man`, `--help`, `type`, `help`, `info` |
 | 5 | `05_applied_lab_and_self_test.md` | Final applied lab and self-test |
 
-Main bridge from Shotts Chapter 6:
+Main bridge from Author/Shotts Chapter 6:
 
 ```text
-Shotts: where streams go
+Author/Shotts: where streams go
 Kerr: how to think with streams
 ```
 

@@ -1,6 +1,8 @@
-# Shotts Chapter 25: Starting a Project
+#Book/The-Linux-Command-Line Author/Shotts 
+#shell-script
+# Author/Shotts Chapter 25: Starting a Project
 
-This guide is for Chapter 25, **Starting a Project**, from William Shotts's *The Linux Command Line*.
+This guide is for Chapter 25, **Starting a Project**, from William Author/Shotts's *The Linux Command Line*.
 
 The goal is not to type an HTML-report script mindlessly. The goal is to learn how a script grows from a tiny working version into a useful project.
 
@@ -177,7 +179,7 @@ He is learning to add one useful report section without breaking the whole scrip
 
 ## Read before exercise
 
-Reread the part of the chapter where Shotts adds more data to the report.
+Reread the part of the chapter where Author/Shotts adds more data to the report.
 
 Ask:
 

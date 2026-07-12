@@ -1,3 +1,5 @@
+#Book/The-Linux-Command-Line Author/Shotts 
+#expansion #shell-expansion 
 # The Linux Command Line, Chapter 7: Seeing the World as the Shell Sees It
 
 Use these guides after Chapter 6 redirection/pipelines and before heavy scripting.
@@ -60,7 +62,7 @@ find ~/tlcl-ch07-lab -maxdepth 3 -print | sort
 
 ## Read these Chapter 7 sections
 
-Read the beginning of Chapter 7 where Shotts explains expansion and why the shell sees commands differently from humans.
+Read the beginning of Chapter 7 where Author/Shotts explains expansion and why the shell sees commands differently from humans.
 
 Focus on:
 

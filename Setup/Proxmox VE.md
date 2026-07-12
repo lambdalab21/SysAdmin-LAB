@@ -1,3 +1,4 @@
+#linux #setup  #proxmox #virtual-machine
 
 There is a default account name. Proxmox VE always uses **`root`** as the default system username.
 

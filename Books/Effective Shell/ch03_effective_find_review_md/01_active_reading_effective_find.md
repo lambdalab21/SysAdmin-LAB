@@ -1,13 +1,15 @@
-# Effective Shell Chapter 3: Finding Files — Review After Shotts Chapter 17
+#Book/Effective-Shell #Author/Kerr 
+#drill #find #search 
+# Effective Shell Chapter 3: Finding Files — Review After Author/Shotts Chapter 17
 
 Purpose:
 
 ```text
-Shotts Chapter 17 taught the tools.
+Author/Shotts Chapter 17 taught the tools.
 Effective Shell Chapter 3 should teach better judgment.
 ```
 
-Use the Shotts pattern:
+Use the Author/Shotts pattern:
 
 ```text
 find WHERE TESTS ACTION

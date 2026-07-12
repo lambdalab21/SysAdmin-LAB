@@ -1,3 +1,5 @@
+#Book/The-Linux-Command-Line  #Author/Shotts 
+#README 
 # TLCL Chapters 1–10 Summer Weekly Drills
 
 Use one file per day. Repeat weekly through the summer.

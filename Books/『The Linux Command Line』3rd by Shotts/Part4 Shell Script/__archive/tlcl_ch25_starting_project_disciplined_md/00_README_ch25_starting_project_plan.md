@@ -1,6 +1,8 @@
+ #Book/The-Linux-Command-Line 
+#shell-script #bash-script 
 # TLCL Chapter 25: Starting a Project — Disciplined Reading Plan
 
-A cleaner phrasing: “Create Markdown file(s) for Chapter 25, ‘Starting a Project,’ by Shotts.”
+A cleaner phrasing: “Create Markdown file(s) for Chapter 25, ‘Starting a Project,’ by Author/Shotts.”
 
 Use this package after Chapter 24.
 
