@@ -53,9 +53,9 @@ id site5
 Stop and answer:
 
 ```text
-Why not run as root?
-Why create a separate site5 user?
-Should site5 be a normal login user?
+Why not run as root? Running as the root is dangerous. A bug could delete or damage the entire system. 
+Why create a separate site5 user? Principle of least privilege. The app only has permissions if they're needed. 
+Should site5 be a normal login user? No. It should be a system user with no login shell. 
 ```
 
 ---
@@ -88,10 +88,10 @@ ls -l /opt/site5-app/app.py
 Write:
 
 ```text
-Source:
-Destination:
-Owner:
-What this proves:
+Source: Local app.py
+Destination: /opt/site5-app/app.py on app01
+Owner: deploy:deploy
+What this proves: This application's code is successfully deployed to the standard /opt location.
 ```
 
 ---
@@ -117,11 +117,10 @@ Stop with `Ctrl-C`.
 Write:
 
 ```text
-Manual run command:
-GET evidence:
-POST evidence:
-What this proves:
-What this does not prove:
+GET evidence: Server returns 200 OK with HTML page. 
+POST evidence: Note appears when you get / again. 
+What this proves: The app runs correctly udner the dedicated site5 user and it uses the proper data directory. 
+What this does not prove: That it survives, reboots, or runs automatically as a service. 
 ```
 
 ---
@@ -143,10 +142,9 @@ sudo chown site5:site5 /var/lib/site5-app/site5.db
 Write:
 
 ```text
-Database path:
-Database owner:
-Write test:
-What this proves:
+Database path: /var/lib/site5-app/site5.db
+Database owner: site5:site5
+What this proves: The service user can read and write its own database file. 
 ```
 
 ---
@@ -154,14 +152,12 @@ What this proves:
 # Final reflection
 
 ```text
-App code directory:
-Data directory:
-App service user:
-Who owns code:
-Who owns data:
-Manual run command:
-Command that proved GET:
-Command that proved POST:
-Command that proved database file exists:
-Why code and data are separated:
+App code directory: /opt/site5-app/
+Data directory: /var/lib/site5-app/
+App service user:site5
+Who owns code: deploy:deploy
+Who owns data: site5:site5
+Command that proved GET: curl -v http://127.0.0.1:8000
+Command that proved database file exists: ls -l /var/lib/site5-app/site5.db
+Why code and data are separated: Code in /opt can be overwritten during deployments but data in /var/lib must persist across updates and restarts. 
 ```
