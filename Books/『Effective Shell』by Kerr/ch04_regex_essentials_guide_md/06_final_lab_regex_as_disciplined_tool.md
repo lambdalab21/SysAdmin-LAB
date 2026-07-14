@@ -2,33 +2,6 @@
 
 This guide is a follow-up to Shotts Chapter 19, **Regular Expressions**.
 
-Main purpose:
-
-```text
-Shotts Chapter 19 introduced regex symbols.
-Kerr Chapter 4 should teach disciplined regex construction.
-```
-
-Core rule:
-
-```text
-Do not start with a complicated regex.
-Start with examples, write the English rule, then build the regex one piece at a time.
-```
-
-Disciplined regex workflow:
-
-```text
-1. Write valid examples.
-2. Write invalid or suspicious examples.
-3. Write the English rule.
-4. Build the smallest regex that matches something useful.
-5. Test for false positives.
-6. Test for false negatives.
-7. Add one feature only when needed.
-8. Explain every symbol.
-```
-
 One-time lab setup:
 
 ```bash
@@ -101,45 +74,6 @@ Greedy Matching
 A Word of Warning
 ```
 
-## What he should gain from this lab
-
-He should gain confidence in this process:
-
-```text
-I can build a regex slowly.
-I can test it against examples.
-I can explain the tradeoffs.
-I do not need a perfect regex for every task.
-```
-
----
-
-# Required thinking sheet
-
-For every task, fill this out before typing:
-
-```text
-Task:
-Valid examples:
-Invalid examples:
-English rule:
-First regex:
-Predicted false positives:
-Predicted false negatives:
-Tool and option used:
-Reason for tool choice:
-```
-
-After typing:
-
-```text
-Actual result:
-What matched unexpectedly?
-What failed to match?
-Next small improvement:
-Final explanation:
-```
-
 ---
 
 # Lab 1: Log level matcher
@@ -162,13 +96,6 @@ Build in stages:
 ```bash
 grep -E 'ERROR|WARN' log-lines.txt
 grep -E '^(ERROR|WARN)' log-lines.txt
-```
-
-Explain:
-
-```text
-Why is the second regex stricter?
-What false positive could the first regex allow?
 ```
 
 ---
@@ -198,8 +125,8 @@ grep -E '^PasswordAuthentication' config-sample.conf
 Explain:
 
 ```text
-Why is the anchor important?
-What did the broad search include that the strict search excluded?
+Why is the anchor important? It ensures that the directive is at the start of the line, not inside a comment or elsewhere. 
+What did the broad search include that the strict search excluded? Commented lines. 
 ```
 
 Now find both commented and uncommented forms:
@@ -207,9 +134,6 @@ Now find both commented and uncommented forms:
 ```bash
 grep -E '^#?PasswordAuthentication' config-sample.conf
 ```
-
-Explain `#?`.
-
 ---
 
 # Lab 3: Package marker matcher
@@ -231,19 +155,11 @@ Task:
 Find installed packages.
 ```
 
-Compare:
-
-```bash
-grep -E '[installed]' packages.txt
-grep -E '\[installed\]' packages.txt
-grep -F '[installed]' packages.txt
-```
-
 Explain:
 
 ```text
-Why is grep -F simplest here?
-When should he avoid regex and use fixed strings?
+Why is grep -F simplest here? You only need to search for the fixed string. 
+When should he avoid regex and use fixed strings? When searching for literal text that contains special regex characters.
 ```
 
 ---
@@ -274,11 +190,10 @@ grep -E '^[^@[:space:]]+@[^@[:space:]]+$' email-addresses.txt
 
 Answer:
 
-1. What did each version fix?
-2. What invalid examples might still pass?
-3. Would this be enough for a quick shell filter?
-4. Would this be enough for a production email validator?
-5. What would you do for production validation instead of relying only on regex?
+1. What invalid examples might still pass? dave@, @example.com, multiple dots, invalid domains, etc.
+2. Would this be enough for a quick shell filter? Yes. 
+3. Would this be enough for a production email validator? No. 
+4. What would you do for production validation instead of relying only on regex? Use a proper library or validation function in your programming language. Regex alone is never sufficient for full RFC compliance. 
 
 ---
 
@@ -301,71 +216,6 @@ grep -E '<[^>]+>' html-snippets.txt
 Explain:
 
 ```text
-Why can dot-plus be too greedy?
-Why is not-closing-bracket clearer here?
-```
-
----
-
-# Final Feynman explain-back
-
-Explain this regex to a younger student:
-
-```text
-^[^@[:space:]]+@[^@[:space:]]+$
-```
-
-Use this format:
-
-```text
-^ means:
-[^@[:space:]] means:
-+ means:
-@ means:
-The second character set means:
-$ means:
-The whole pattern means:
-This pattern still does not prove:
-```
-
----
-
-# Final self-test
-
-Without notes, write regex commands for:
-
-1. Lines beginning with `ERROR` or `WARN`.
-2. Lines containing any digit.
-3. Lines containing literal `[installed]`.
-4. Lines that are not comments.
-5. Lines beginning with `PasswordAuthentication`.
-6. Lines containing exactly one `@` roughly, with no whitespace.
-7. HTML-like tags without using broad `<.+>`.
-
-Expected command patterns:
-
-```bash
-grep -E '^(ERROR|WARN)' log-lines.txt
-grep -E '[[:digit:]]' file
-grep -F '[installed]' packages.txt
-grep -v -E '^#' config-sample.conf
-grep -E '^PasswordAuthentication' config-sample.conf
-grep -E '^[^@[:space:]]+@[^@[:space:]]+$' email-addresses.txt
-grep -E '<[^>]+>' html-snippets.txt
-```
-
----
-
-# End standard
-
-He understands Kerr Chapter 4 only if he can say:
-
-```text
-I build regexes from examples.
-I start simple and refine.
-I check false positives and false negatives.
-I know what quantifiers, character sets, anchors, and groups do.
-I know broad dot patterns can match too much.
-I know regex syntax differs by tool.
-I use man/help before trusting advanced syntax.
+Why can dot-plus be too greedy? .+ matches as much as possible, so <.+> eats everything from the first < to the last > on the line. 
+Why is not-closing-bracket clearer here? <[^>]+> stops at the first >. Correctly matching one tag at a time. 
 ```

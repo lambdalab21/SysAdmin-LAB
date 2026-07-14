@@ -139,10 +139,9 @@ The app listens on 127.0.0.1:8000.
 Stop and answer:
 
 ```text
-Where is the local database?
-What path shows notes?
-What path adds a note?
-What does 127.0.0.1 mean?
+What path shows notes? GET /(The root path)
+What path adds a note? POST /notes. 
+What does 127.0.0.1 mean? This is the localhost 
 ```
 
 ---
@@ -164,10 +163,10 @@ curl -v http://127.0.0.1:8000/
 Write:
 
 ```text
-HTTP status:
-Content-Type:
-What this proves:
-What this does not prove:
+HTTP status: 200 ok. 
+Content-Type: text/html; charset = utf-8
+What this proves: The server responds to get GET requests and serves an HTML page with the notes list. 
+What this does not prove: That POST works or that data persists across restarts.
 ```
 
 ---
@@ -182,9 +181,9 @@ curl -s http://127.0.0.1:8000/ | grep 'first note from curl'
 Write:
 
 ```text
-POST status:
-GET evidence after POST:
-What this proves:
+POST status: 303 See other
+GET evidence after POST: The note text appears in the <UL> list. 
+What this proves: Data can be written via POST and immediately read back on the next GET. 
 ```
 
 ---
@@ -205,9 +204,9 @@ sqlite3 ./data/site5.db 'SELECT id, body FROM notes;'
 Write:
 
 ```text
-Database file:
-File size:
-What this proves:
+Database file: ./data/site5.db
+File size: Non-zero. 
+What this proves: Notes are persisted to a real SQLite file on the disk, not just memory. 
 ```
 
 ---
@@ -221,24 +220,16 @@ python3 app.py
 curl -s http://127.0.0.1:8000/ | grep 'first note from curl'
 ```
 
-Write:
-
-```text
-Did the note survive restart?
-Where was the note stored?
-What does this prove?
-```
-
 ---
 
 # Final reflection
 
 ```text
-Database path:
-Command that tested GET:
-Command that tested POST:
-Command that proved the database file exists:
-What survived restart:
-Why this matters for deployment:
-One Python detail I intentionally did not chase deeply:
+Database path: ./data/site5.db
+Command that tested GET: curl -v http://127.0.0.1:8000/
+Command that tested POST: curl -v -X POST -d 'body=first note from curl' http://127.0
+Command that proved the database file exists: find ./data -type f -print ls. 
+What survived restart: The notes stored in the database. 
+Why this matters for deployment: Real web apps need persistent storage, so data doesn't vanish when the server restarts or crashes. 
+One Python detail I intentionally did not chase deeply: The full http.server / BaseHTTPRequestHandler internals or advanced splite3 features. 
 ```

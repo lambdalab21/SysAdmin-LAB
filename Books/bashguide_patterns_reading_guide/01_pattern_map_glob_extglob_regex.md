@@ -5,13 +5,6 @@ URL: https://mywiki.wooledge.org/BashGuide/Patterns
 
 Purpose: build enough glob/pattern skill to be effective in Bash, and to prevent confusing shell globs with regex.
 
-Core discipline:
-
-```text
-Do not type a pattern first.
-First decide who interprets the pattern: the shell, [[ ... ]], case, grep, sed, or awk.
-```
-
 Before every exercise, answer:
 
 ```text
@@ -52,62 +45,20 @@ Replace `PATTERN` with the glob you are testing.
 
 Read the opening of BashGuide/Patterns, from the beginning through the short definition of “Pattern.”
 
-## What he should gain
-
-He should gain a map of the territory:
-
-```text
-glob           = mostly filename matching / simple string matching
-extended glob  = more powerful glob syntax, still glob-style
-regex          = string matching, not filename expansion
-brace expansion = word generation, not pattern matching
-```
-
-Do not let him treat all pattern symbols as “regex.” That is the mistake this guide is designed to prevent.
-
 ---
-
-## Feynman analogy
-
-Imagine three different people can read a pattern:
-
-```text
-The shell reads globs before the command starts.
-[[ ... ]] can use globs to test a string.
-grep/sed/awk read regex after they start.
-```
-
-Brace expansion is not really matching. It is like a word-generating machine.
-
-```bash
-echo file{1..3}.txt
-```
-
-means:
-
-```text
-Generate file1.txt file2.txt file3.txt.
-```
-
-It does not ask whether those files exist.
-
----
-
 ## Before touching the keyboard
 
 Answer:
 
-1. What is a pattern?
-2. Which kind of pattern selects filenames on the command line?
-3. Can regex select filenames in normal shell expansion?
-4. What is the difference between matching and generating?
+1. What is a pattern? A string with special syntax designed to match filenames and check/validate data strings. 
+2. Which kind of pattern selects filenames on the command line? Globs. 
+3. Can regex select filenames in normal shell expansion? No. 
+4. What is the difference between matching and generating? Matching tests if a string fits a pattern, generating shell expands the pattern into actual matching filenames. 
 5. Which later tools use regex: `grep`, `sed`, `awk`, or `ls`?
 
 ---
 
 ## Exercise 1: Who interprets this pattern?
-
-For each command, write who interprets the pattern.
 
 ```bash
 ls *.txt
@@ -118,49 +69,10 @@ grep '[0-9]' docs/report.txt
 echo file{1..3}.txt
 ```
 
-Expected thinking:
-
-```text
-ls *.txt                  shell expands glob before ls runs
-find . -name "*.txt"      find receives a name pattern
- grep '[0-9]' file         grep receives a regex
-[[ $name = *.txt ]]       Bash [[ ]] uses glob matching
-[[ $line =~ ... ]]        Bash [[ ]] uses regex matching
-echo file{1..3}.txt       Bash performs brace expansion
-```
-
 ---
-
-## Exercise 2: Explain it to a younger student
-
-Explain this difference:
-
-```bash
-echo *.txt
-echo "*.txt"
-```
-
-Use:
-
-```text
-In the first command, the shell...
-In the second command, quotes...
-The echo command receives...
-```
-
----
-
 ## Concept check after reading
 
-Answer without notes:
-
-1. Why is “glob versus regex” not just vocabulary?
-2. Why can `ls *.txt` behave differently from `grep '*.txt' file`?
-3. Why is `echo` useful for learning expansion?
-4. What habit prevents dangerous glob mistakes?
-
-Required habit:
-
-```text
-Preview expansions before using rm, mv, cp, or chmod.
-```
+1. Why is “glob versus regex” not just vocabulary? They have different syntaxes, capabilities, and are interpreted by different parts of the system. 
+2. Why can `ls *.txt` behave differently from `grep '*.txt' file`? ls *.txt makes shell expand the glob to filenames first. 
+3. Why is `echo` useful for learning expansion? It safely shows what the shell expands the pattern into without side effects. 
+4. What habit prevents dangerous glob mistakes? Always preview with printf '<%s>\n' PATTERN before using cp, mv, or rm. 

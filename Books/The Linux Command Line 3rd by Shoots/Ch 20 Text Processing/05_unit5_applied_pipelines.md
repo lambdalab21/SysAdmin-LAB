@@ -2,22 +2,6 @@
 
 Use these files as a one-week plan. Each day has a reading target, a Feynman-style analogy, questions, and command practice.
 
-Core habit:
-
-```text
-Do not memorize commands as isolated tricks. Use each command to answer a clear question about text.
-```
-
-Disciplined thinking pattern:
-
-```text
-1. What question am I trying to answer?
-2. What text do I have?
-3. What part of the text matters?
-4. What command transforms or filters it?
-5. How can I inspect the result before trusting it?
-```
-
 One-time setup:
 
 ```bash
@@ -91,29 +75,15 @@ redirection
 pipes
 ```
 
-## Feynman analogy before reading
-
-A pipeline is an assembly line. Each worker does one simple job.
-
-```text
-Worker 1 selects relevant lines.
-Worker 2 selects useful columns.
-Worker 3 sorts values.
-Worker 4 removes duplicates.
-Worker 5 counts the result.
-```
-
-A good pipeline is built one worker at a time.
-
 ## Before touching the keyboard
 
 Answer:
 
-1. Why should you build pipelines one stage at a time?
-2. What command helps select lines?
-3. What command helps select fields?
-4. What command removes adjacent duplicates?
-5. Why should you inspect intermediate output?
+1. Why should you build pipelines one stage at a time? To verity each part works right before adding the next, making debugging easier. 
+2. What command helps select lines? grep
+3. What command helps select fields? cut
+4. What command removes adjacent duplicates? uniq
+5. Why should you inspect intermediate output? To catch mistakes early and understand what each stage produces. 
 
 ## Practice
 
@@ -138,10 +108,6 @@ grep ERROR sample.log | wc -l
 grep 'failed-login' sample.log
 grep 'failed-login' sample.log | cut -d ' ' -f5
 ```
-
-Question: Which field contains the username?
-
-Expected: Field 5 in this sample data.
 
 ### Drill 3: Count messages by level
 
@@ -176,17 +142,10 @@ cat report.txt
 sed 's/app01/web01/g' sample.log
 cat sample.log
 ```
-
-Say aloud:
-
-```text
-sed changed the output, not the original file.
-```
-
 ## Checkpoint
 
-1. Why build pipelines one stage at a time?
-2. How do `grep`, `cut`, `sort`, and `uniq` work together?
-3. How do you count message levels?
-4. How do you extract usernames from matching log lines?
-5. How do you redirect a report to a file?
+1. Why build pipelines one stage at a time? Easier to test, debug, and understand each transformation. 
+2. How do `grep`, `cut`, `sort`, and `uniq` work together? grep filters lines, cut extracts fields, sort orders them, and uniq -c counts unique items. 
+3. How do you count message levels? cuts -d ' ' -f1 sample.log | sort | uniq -c
+4. How do you extract usernames from matching log lines? grep 'failed-login' sample.log | cut -d ' ' -f5
+5. How do you redirect a report to a file? use > report.txt. 

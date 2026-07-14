@@ -69,16 +69,6 @@ sudo chown -R deploy:deploy /opt/site5-app
 sudo chown -R site5:site5 /var/lib/site5-app
 ls -ld /opt/site5-app /var/lib/site5-app
 ```
-
-Write:
-
-```text
-/opt/site5-app owner:
-/var/lib/site5-app owner:
-What this proves:
-What this does not prove:
-```
-
 ---
 
 # Part 3 — Copy app code

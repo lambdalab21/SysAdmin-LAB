@@ -2,22 +2,6 @@
 
 Use these files as a one-week plan. Each day has a reading target, a Feynman-style analogy, questions, and command practice.
 
-Core habit:
-
-```text
-Do not memorize commands as isolated tricks. Use each command to answer a clear question about text.
-```
-
-Disciplined thinking pattern:
-
-```text
-1. What question am I trying to answer?
-2. What text do I have?
-3. What part of the text matters?
-4. What command transforms or filters it?
-5. How can I inspect the result before trusting it?
-```
-
 One-time setup:
 
 ```bash
@@ -60,10 +44,6 @@ EOF
 
 ---
 
-# Unit 4: Formatting Output
-
-Suggested day: Thursday
-
 ## Read these Chapter 20 sections
 
 Read the sections covering:
@@ -83,29 +63,13 @@ printf
 nl
 ```
 
-Skim `pr` unless printing-style output matters.
-
-## Feynman analogy before reading
-
-Imagine preparing a school handout.
-
-```text
-nl     = number lines
-fold   = wrap long lines mechanically
-fmt    = reflow paragraphs
-pr     = prepare printable pages
-printf = format exact output
-```
-
-Formatting is not decoration. It helps humans compare information.
-
 ## Before touching the keyboard
 
 Answer:
 
-1. Why is aligned output easier to read?
-2. Why is `printf` more controlled than `echo`?
-3. Which command here seems most useful for scripting?
+1. Why is aligned output easier to read? Aligned output is easier to read because columns line up and patterns are easier to see. 
+2. Why is `printf` more controlled than `echo`? printf is more controlled than echo because you choose the same format of the output. 
+3. Which command here seems most useful for scripting? printf seems most useful for scripting because it gives predictable and formatted outputs.
 
 ## Practice
 
@@ -145,12 +109,6 @@ fmt -w 60 paragraph.txt
 pr scores.txt | head
 ```
 
-Say aloud:
-
-```text
-pr prepares text for printing-style output. I only need basic recognition for now.
-```
-
 ### Drill 5: Basic `printf`
 
 ```bash
@@ -160,13 +118,6 @@ printf 'Score: %d
 ' 92
 printf '%s scored %d
 ' Alice 92
-```
-
-Say aloud:
-
-```text
-%s formats a string. %d formats an integer. 
- creates a newline.
 ```
 
 ### Drill 6: Aligned columns
@@ -182,17 +133,10 @@ printf '%-10s %5d
 ' Diana 100
 ```
 
-Say aloud:
-
-```text
-%-10s makes a left-aligned text column. %5d makes a right-aligned number column.
-```
-
 ## Checkpoint
 
-1. What does `nl` do?
-2. What does `fold -w 40` do?
-3. What does `fmt -w 40` do?
-4. Why is `printf` useful?
-5. What do `%s`, `%d`, and `
-` mean?
+1. What does `nl` do? nl numbers the lines in a file. 
+2. What does `fold -w 40` do? fold -w 40 wraps lines so that each line is at most 40 characters wide. 
+3. What does `fmt -w 40` do? fmt -w 40 reformats paragraphs so that lines are wrapped neatly at about 40 characters.  
+4. Why is `printf` useful? printf is useful because it can create nicely formatted, aligned outputs. 
+5. What do `%s`, `%d`, and ` mean? %s means string, %d means integer number, and \n means new line. 

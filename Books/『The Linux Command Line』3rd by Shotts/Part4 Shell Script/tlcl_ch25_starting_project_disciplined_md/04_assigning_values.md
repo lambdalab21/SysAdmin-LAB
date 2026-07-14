@@ -2,29 +2,6 @@
 
 Use this after Chapter 24, “Writing Your First Script.”
 
-Chapter 25 is not mainly about memorizing new syntax. It is about starting to think like a script writer:
-
-```text
-What output should this script produce?
-What data belongs in the script?
-What should be a variable?
-What should stay constant?
-How do I make the script readable enough to improve later?
-```
-
-Core discipline:
-
-```text
-Do not type a script line because the book shows it.
-Type it only after you can explain what job that line does.
-```
-
-Feynman rule for this chapter:
-
-```text
-If you cannot explain the script to a younger student in plain English, you do not understand the script yet.
-```
-
 One-time setup:
 
 ```bash
@@ -59,47 +36,13 @@ Read only:
 Assigning Values to Variables and Constants
 ```
 
-## What he should gain from this section
-
-He should learn that assignment syntax is exact:
-
-```bash
-NAME=value
-```
-
-No spaces around `=`.
-
-He should also learn that command substitution can put command output into a variable.
-
-## Feynman analogy
-
-A variable assignment is like labeling a box.
-
-```bash
-TITLE="System Information Report"
-```
-
-means:
-
-```text
-Put this text into the box named TITLE.
-```
-
-But Bash is strict. This is not the same:
-
-```bash
-TITLE = "System Information Report"
-```
-
-That looks like English, but Bash does not read it that way.
-
 ## After reading: concept questions
 
-1. Why are spaces around `=` wrong in shell variable assignment?
-2. What is the difference between `NAME=value` and `$NAME`?
-3. When do you use the variable name without `$`?
-4. When do you use the variable name with `$`?
-5. What is command substitution useful for?
+1. Why are spaces around `=` wrong in shell variable assignment? Spaces around = are wrong because Bash treats it as separate words, not assignment. 
+2. What is the difference between `NAME=value` and `$NAME`? NAME=value assigns a value, $NAME gets the value of the variable. 
+3. When do you use the variable name without `$`? Use the variable name without $ when assigning a value. 
+4. When do you use the variable name with `$`? Use the variable name with $ when you want to expand or read its value. 
+5. What is command substitution useful for? Command substitution is useful for storing the output of a command in a variable. 
 
 ## Exercise 1: Test assignment syntax
 
@@ -125,8 +68,8 @@ echo "$TITLE"
 Explain:
 
 ```text
-What did Bash try to do with TITLE = "Wrong Assignment"?
-Why is that not assignment?
+What did Bash try to do with TITLE = "Wrong Assignment"? Bash tries to run a command named TITLE WITH = and "wrong assignment" as arguments. 
+Why is that not assignment? That is not assignment because assignment can not have space around =. 
 ```
 
 ## Exercise 2: Add dynamic values
@@ -165,11 +108,10 @@ echo "</html>"
 Answer:
 
 ```text
-When is date executed?
-When is hostname executed?
-What will CURRENT_TIME contain?
-What will HOST_NAME contain?
-Will the values change if I run the script again later?
+When is date executed? date and hostname are executed when the script runs. 
+What will CURRENT_TIME contain? CURRENT_TIME will contain the output of a date.  
+What will HOST_NAME contain? HOST_NAME will contain the output of hostname. 
+Will the values change if I run the script again later? Yes, the values can change if you run the script again later, especially CURRENT_TIME. 
 ```
 
 ## Run and inspect
@@ -192,10 +134,10 @@ diff work/report.html work/report2.html || true
 Answer:
 
 ```text
-Which line changed?
-Why did it change?
-Which value stayed the same?
-Why did it stay the same?
+Which line changed? The generated line changed because the time was different. 
+Why did it change? It changed because date runs each time the script is executed. 
+Which value stayed the same? The host line stayed the same because the machine name did not change. 
+Why did it stay the same? It stayed the same because hostname returned the same value both times. 
 ```
 
 ## Exercise 3: Read documentation habit
@@ -211,8 +153,8 @@ hostname --help 2>/dev/null | head || man hostname
 Answer:
 
 ```text
-Which option would let date print only year-month-day?
-Where did I find that information?
+Which option would let date print only year-month-day? date +%F prints just the year-month-day format. 
+Where did I find that information? I found that from the man page. 
 ```
 
 Try:
@@ -226,15 +168,3 @@ Then update:
 ```bash
 CURRENT_DATE=$(date +%F)
 ```
-
-Add a line to the report if desired.
-
-## Disciplined-thinking checkpoint
-
-He is done only if he can answer:
-
-1. Why must assignment have no spaces around `=`?
-2. What does `$(date)` do?
-3. Why is `$(...)` better than manually typing the date?
-4. What changed between two runs?
-5. Did he use `--help` or `man` before adding an option?

@@ -66,27 +66,14 @@ s/old/new/g
 /pattern/d
 ```
 
-## Feynman analogy before reading
-
-Text is moving on a conveyor belt.
-
-`tr` is a simple machine that changes characters one by one.
-
-`sed` is a smarter machine that reads one line at a time and applies editing rules.
-
-```text
-tr  = character transformer
-sed = stream editor for lines and patterns
-```
-
 ## Before touching the keyboard
 
 Answer:
 
-1. Why is `tr` good for character-level changes?
-2. Why is `sed` better for replacing words or patterns?
-3. What does global replacement mean?
-4. Why should you test `sed` output before editing real files?
+1. Why is `tr` good for character-level changes? `tr` is good for character-level changes because it works on one character at a time, like converting letters or deleting symbols. 
+2. Why is `sed` better for replacing words or patterns? `sed` is better for replacing words or patterns because it can match text inside whole lines, not just single characters.
+3. What does global replacement mean? Global replacement is replacing every match on a line instead of just the first one.  
+4. Why should you test `sed` output before editing real files? sed output should be tested first because it shows the changes without changing the files. 
 
 ## Practice
 
@@ -112,12 +99,6 @@ echo 'hello     world' | tr -s ' '
 echo '2026-06-17' | tr '-' '/'
 ```
 
-Say aloud:
-
-```text
--d deletes characters. -s squeezes repeated characters.
-```
-
 ### Drill 3: Basic `sed` substitution
 
 ```bash
@@ -126,9 +107,7 @@ sed 's/app01/web01/' sample.log
 cat sample.log
 ```
 
-Question: Did `sed` modify `sample.log`?
-
-Expected: No. It printed transformed output.
+Question: Did `sed` modify `sample.log`? No, it printed transformed output. 
 
 ### Drill 4: Global substitution
 
@@ -140,24 +119,12 @@ sed 's/red/RED/' colors.txt
 sed 's/red/RED/g' colors.txt
 ```
 
-Say aloud:
-
-```text
-Without g, sed replaces only the first match on each line. With g, it replaces all matches.
-```
-
 ### Drill 5: Print selected lines
 
 ```bash
 sed -n '1,3p' sample.log
 sed -n '/ERROR/p' sample.log
 sed -n '/failed-login/p' sample.log
-```
-
-Say aloud:
-
-```text
--n suppresses automatic printing. p prints selected lines.
 ```
 
 ### Drill 6: Delete matching lines from output
@@ -167,24 +134,10 @@ sed '/INFO/d' sample.log
 sed '/ERROR/d' sample.log
 ```
 
-### Drill 7: Explain to a ten-year-old
-
-Explain:
-
-```bash
-sed -n '/ERROR/p' sample.log
-```
-
-Use:
-
-```text
-The file is like a stack of cards. sed checks one card at a time and only shows cards that contain...
-```
-
 ## Checkpoint
 
-1. What is the difference between `tr` and `sed`?
-2. What does `tr -d` do?
-3. What does `tr -s` do?
-4. What is the difference between `s/red/RED/` and `s/red/RED/g`?
-5. What does `sed -n '/ERROR/p' file` do?
+1. What is the difference between `tr` and `sed`? tr changes individual characters while sed edits text by lines and patterns. 
+2. What does `tr -d` do? tr -d deletes the specified characters. 
+3. What does `tr -s` do? tr -s squeezes repeated characters into a single one. 
+4. What is the difference between `s/red/RED/` and `s/red/RED/g`? s/red/RED/ changes only one first red on each line, while s/red/RED/g changes all red matches on each line. 
+5. What does `sed -n '/ERROR/p' file` do? sed -n '/ERROR/p' file prints only the lines that contain ERROR. 

@@ -2,29 +2,6 @@
 
 Use this after Chapter 24, “Writing Your First Script.”
 
-Chapter 25 is not mainly about memorizing new syntax. It is about starting to think like a script writer:
-
-```text
-What output should this script produce?
-What data belongs in the script?
-What should be a variable?
-What should stay constant?
-How do I make the script readable enough to improve later?
-```
-
-Core discipline:
-
-```text
-Do not type a script line because the book shows it.
-Type it only after you can explain what job that line does.
-```
-
-Feynman rule for this chapter:
-
-```text
-If you cannot explain the script to a younger student in plain English, you do not understand the script yet.
-```
-
 One-time setup:
 
 ```bash
@@ -59,49 +36,13 @@ Read only:
 Variables and Constants
 ```
 
-## What he should gain from this section
-
-He should learn:
-
-```text
-Names can hold values, and good names make scripts easier to change.
-```
-
-He should also begin to distinguish:
-
-```text
-constant-like values = values the script sets and usually does not change
-variable values      = values that may change during execution or between runs
-```
-
-Shell does not enforce constants the way some languages do. The discipline is mostly human discipline.
-
-## Feynman analogy
-
-Imagine writing a school report.
-
-Bad version:
-
-```text
-The same title is typed by hand in ten places.
-```
-
-Good version:
-
-```text
-Write the title once on an index card.
-Whenever the report needs the title, copy it from the card.
-```
-
-A shell variable is that index card.
-
 ## After reading: concept questions
 
-1. What is a variable?
-2. Why are names useful in scripts?
-3. What is the practical difference between typing a value many times and storing it once?
-4. Why might uppercase names be used for constant-like values?
-5. Why should variable names be meaningful?
+1. What is a variable? A variable is a named place to store a value. 
+2. Why are names useful in scripts? Names are useful because they make scripts easier to read and reuse. 
+3. What is the practical difference between typing a value many times and storing it once? Storing a value once is better because you only change it in one place instead of many places. 
+4. Why might uppercase names be used for constant-like values? Uppercase names are used for constant-like values to show they should not change often. 
+5. Why should variable names be meaningful? Variable names should be meaningful so that the script is easier to understand later. 
 
 ## Exercise 1: Identify repeated data
 
@@ -114,9 +55,9 @@ cat bin/sys_report_page
 Answer:
 
 ```text
-Which text appears more than once?
-Which text might change later?
-Which text deserves a name?
+Which text appears more than once? The repeated text is the title shown in both the <title> and <h1> tags. 
+Which text might change later? The text that might change later is the report title. 
+Which text deserves a name? The text deserves a name because it is used more than once. 
 ```
 
 ## Exercise 2: Add title variable
@@ -151,9 +92,9 @@ echo "</html>"
 Answer:
 
 ```text
-What exact text will $TITLE become?
-Will single quotes and double quotes behave the same here?
-What would happen if I wrote '$TITLE' instead of "$TITLE"?
+What exact text will $TITLE become? $TILE becomes System Information Report.
+Will single quotes and double quotes behave the same here? Single Quotes and Double Quotes do not behave the same here. 
+What would happen if I wrote '$TITLE' instead of "$TITLE"? If you wrote '$TITLE', it would print $TITLE literally instead of expanding the variable. 
 ```
 
 ## Run and inspect
@@ -171,13 +112,6 @@ Run:
 TITLE="Test Title"
 echo "$TITLE"
 echo '$TITLE'
-```
-
-Explain:
-
-```text
-Double quotes allow variable expansion.
-Single quotes prevent variable expansion.
 ```
 
 ## Exercise 4: Change one value
@@ -204,15 +138,5 @@ cat work/report.html
 Question:
 
 ```text
-How many output locations changed because one assignment changed?
+How many output locations changed because one assignment changed? One assignment change updates both output locations, because this title is used in two places. 
 ```
-
-## Disciplined-thinking checkpoint
-
-He is done only if he can answer:
-
-1. Why was `TITLE` useful?
-2. What does `$TITLE` mean?
-3. Why did double quotes matter?
-4. What would single quotes do?
-5. How did the script become easier to change?

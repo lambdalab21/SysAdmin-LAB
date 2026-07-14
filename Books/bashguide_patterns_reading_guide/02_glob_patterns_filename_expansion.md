@@ -3,26 +3,6 @@
 Source: Greg's Wiki, `BashGuide/Patterns`  
 URL: https://mywiki.wooledge.org/BashGuide/Patterns
 
-Purpose: build enough glob/pattern skill to be effective in Bash, and to prevent confusing shell globs with regex.
-
-Core discipline:
-
-```text
-Do not type a pattern first.
-First decide who interprets the pattern: the shell, [[ ... ]], case, grep, sed, or awk.
-```
-
-Before every exercise, answer:
-
-```text
-1. Am I matching filenames or text strings?
-2. Who interprets the pattern?
-3. Is this a glob, extended glob, regex, or brace expansion?
-4. What should match?
-5. What should not match?
-6. Can I preview safely with printf before using cp, mv, or rm?
-```
-
 One-time lab setup:
 
 ```bash
@@ -73,42 +53,16 @@ Filenames containing spaces remain single arguments after glob expansion.
 
 ---
 
-## Feynman analogy
-
-A glob is a filename filter used by the shell.
-
-The shell looks in the current directory and asks:
-
-```text
-Which filenames match this pattern as a whole filename?
-```
-
-Then it replaces the pattern with the matching filenames.
-
-```bash
-echo a*
-```
-
-is not really what `echo` sees. The shell may turn it into:
-
-```bash
-echo app.log archive
-```
-
-first.
-
----
-
 ## Before touching the keyboard
 
 Answer:
 
-1. What does `*` match?
-2. What does `?` match?
-3. What does `[abc]` match?
-4. What does “implicitly anchored” mean?
-5. Why is `a*` different from regex `a.*`?
-6. Does `*` normally match `/` inside pathname expansion?
+1. What does `*` match? Any string of characters 
+2. What does `?` match? Any one character
+3. What does `[abc]` match? Any one character from the set inside the brackets
+4. What does “implicitly anchored” mean? The glob must match the entire filename. 
+5. Why is `a*` different from regex `a.*`? glob a* must match the whole name. Regex a.* can match anywhere in the string. 
+6. Does `*` normally match `/` inside pathname expansion? no. 
 
 ---
 
@@ -131,14 +85,6 @@ printf '<%s>
 ' images/*.[jb][mp][gp]
 ```
 
-For each command, answer:
-
-```text
-What pattern did the shell see?
-What filenames matched?
-What arguments did printf receive?
-```
-
 ---
 
 ## Exercise 2: Implicit anchoring
@@ -149,13 +95,6 @@ Create a string test:
 name='cat'
 [[ $name = a* ]] && echo yes || echo no
 [[ $name = ca* ]] && echo yes || echo no
-```
-
-Explain:
-
-```text
-Why does a* not match cat?
-Why does ca* match cat?
 ```
 
 Important idea:
@@ -180,15 +119,8 @@ Observe `file with spaces.txt`.
 Question:
 
 ```text
-Did the glob split this filename into three arguments?
+Did the glob split this filename into three arguments? No. The filename stays as one argument. 
 ```
-
-Expected answer:
-
-```text
-No. Filename expansion happens after word splitting, so the matched filename remains one argument.
-```
-
 ---
 
 ## Exercise 4: Do not parse `ls`
@@ -207,22 +139,13 @@ for file in tmp/*; do printf '<%s>
 ' "$file"; done
 ```
 
-Explain:
-
-```text
-Why does the ls version break with spaces?
-Why does the glob loop handle the filename correctly?
-```
-
 ---
 
 ## Concept check after reading
 
 Answer:
 
-1. What does the shell do with `logs/*.log` before running the command?
-2. Why is `printf '<%s>
-' *.txt` a good preview habit?
-3. Why is globbing usually better than parsing `ls` output?
-4. Why does quoting a glob prevent filename expansion?
-5. What is the danger of using `rm *` without preview?
+1. What does the shell do with `logs/*.log` before running the command? Expands the glob into a sorted list of matching filenames and passes them as separate arguments. 
+2. Why is `printf '<%s> Safe way to see exactly what files a glob would match without running dangerous commands.
+3. Why is globbing usually better than parsing `ls` output? Globs handle spaces, special characters, and hidden files correctly. 
+4. Why does quoting a glob prevent filename expansion? Quotes turn the glob into a string. The shell does not expand it. 
