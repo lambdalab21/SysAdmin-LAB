@@ -1,0 +1,363 @@
+# Shotts Chapter 25: Starting a Project
+
+This guide is for Chapter 25, **Starting a Project**, from William Shotts's *The Linux Command Line*.
+
+The chapter starts the continuing shell-script project: a small HTML system-information report.
+
+The point is not to memorize HTML or copy shell syntax. The point is to learn how a useful script grows:
+
+```text
+minimal working script
+→ add one piece of data
+→ name repeated/changing values
+→ understand variable expansion
+→ use a here document for readable output
+→ keep testing after every small change
+```
+
+Feynman analogy:
+
+```text
+Do not build the whole house in your head.
+First build a small frame that stands.
+Then add one wall.
+Then label the reusable parts.
+Then replace messy repeated work with a cleaner method.
+```
+
+Working directory for all three days:
+
+```bash
+mkdir -p ~/tlcl-ch25-starting-project
+cd ~/tlcl-ch25-starting-project
+```
+
+Discipline rule:
+
+```text
+Before typing: predict what the script should print.
+After running: inspect the output.
+Before moving on: explain what changed and why it helped.
+```
+
+---
+# Day 1: Minimal Document and First Data
+
+## Sections to read today
+
+Read before Exercise 1:
+
+```text
+Chapter 25 opening
+First Stage: Minimal Document
+```
+
+Read before Exercise 4:
+
+```text
+Second Stage: Adding a Little Data
+```
+
+Do not read ahead to variables yet. Day 1 is about building a small working script first.
+
+---
+
+# What he should gain today
+
+He should gain this idea:
+
+```text
+A useful script should begin as the smallest working version.
+```
+
+He is not trying to finish the report. He is learning the habit of starting with something that runs.
+
+Mindful question before starting:
+
+```text
+What am I gaining from this section?
+```
+
+Answer:
+
+```text
+I am learning how a shell script can generate text output that another program, such as a web browser, can use.
+```
+
+---
+
+# After reading: concept questions
+
+Answer these after reading the opening and “First Stage: Minimal Document.”
+
+1. What project does Chapter 25 begin?
+2. Why does the report use HTML output?
+3. Why is the first version intentionally minimal?
+4. What does it mean for a script to print to standard output?
+5. Why is output redirection useful here?
+6. Why is it better to build a tiny working script than to start with the full final script?
+
+Do not do Exercise 1 until these are answered.
+
+---
+
+# Exercise 1: Build the smallest report script
+
+## Skill being gained
+
+He is learning to create a script that produces a complete but minimal output document.
+
+## Predict before typing
+
+Before typing, write:
+
+```text
+I expect this script to print a small HTML page.
+It will not contain real system information yet.
+It should be possible to redirect the output into a .html file.
+```
+
+## Create the first script
+
+```bash
+cd ~/tlcl-ch25-starting-project
+
+cat > sys-info-page <<'SCRIPT'
+#!/usr/bin/env bash
+
+# sys-info-page - generate a simple system information page
+
+echo '<!doctype html>'
+echo '<html>'
+echo '<head>'
+echo '  <title>System Information</title>'
+echo '</head>'
+echo '<body>'
+echo '  <h1>System Information</h1>'
+echo '  <p>This report is not finished yet.</p>'
+echo '</body>'
+echo '</html>'
+SCRIPT
+```
+
+Run it with Bash first:
+
+```bash
+bash sys-info-page
+```
+
+Redirect output:
+
+```bash
+bash sys-info-page > report.html
+```
+
+Inspect:
+
+```bash
+head report.html
+wc -l report.html
+```
+
+Optional browser test:
+
+```bash
+xdg-open report.html 2>/dev/null &
+```
+
+If `xdg-open` is unavailable, just inspect with `less`:
+
+```bash
+less report.html
+```
+
+## Explain-back
+
+Answer:
+
+1. Which program interpreted the script?
+2. Where did the script print its output before redirection?
+3. What did `>` do?
+4. Why did we run `bash sys-info-page` before making it executable?
+5. What does this script already do correctly?
+6. What does it not do yet?
+
+---
+
+# Exercise 2: Make it executable only after it works
+
+## Skill being gained
+
+He is learning the safe sequence:
+
+```text
+write → run with bash → inspect → then chmod +x
+```
+
+## Predict before typing
+
+Write:
+
+```text
+After chmod +x, I should be able to run the script as ./sys-info-page.
+The output should be the same as bash sys-info-page.
+```
+
+## Run
+
+```bash
+chmod +x sys-info-page
+./sys-info-page > report.html
+head report.html
+```
+
+## Explain-back
+
+Answer:
+
+1. Why does `./sys-info-page` need `./`?
+2. What did `chmod +x` change?
+3. What line tells the system which interpreter to use?
+4. Why is this still not a “project” in the larger sense yet?
+
+---
+
+# Exercise 3: Practice incremental change
+
+## Skill being gained
+
+He is learning to change one thing, test, then explain.
+
+## Predict before typing
+
+Write:
+
+```text
+I will add one paragraph.
+Only the body of the HTML should change.
+The number of output lines should increase.
+```
+
+Edit the script and add this line before `</body>`:
+
+```bash
+echo '  <p>Generated by a Bash script.</p>'
+```
+
+Run:
+
+```bash
+./sys-info-page > report.html
+grep 'Generated' report.html
+wc -l report.html
+```
+
+## Explain-back
+
+Answer:
+
+1. What changed in the script?
+2. What changed in the output?
+3. Did anything else change accidentally?
+4. How did you verify it?
+
+---
+
+# Read before Exercise 4
+
+Now read:
+
+```text
+Second Stage: Adding a Little Data
+```
+
+Mindful question:
+
+```text
+What am I gaining from this section?
+```
+
+Answer:
+
+```text
+I am learning how to make the report include real information from the machine instead of only fixed text.
+```
+
+---
+
+# After reading: concept questions
+
+Answer after reading “Second Stage: Adding a Little Data.”
+
+1. What kind of data can a system-information report include?
+2. Why should the script add only a little data first?
+3. What command can show the current date and time?
+4. What command can show the hostname?
+5. How does command output become part of the script output?
+6. Why is it useful that Unix commands write text to stdout?
+
+---
+
+# Exercise 4: Add a little real data
+
+## Skill being gained
+
+He is learning to mix fixed text with command output.
+
+## Predict before typing
+
+Write:
+
+```text
+I expect the output to include the hostname and the current date.
+These values should change depending on the machine and time.
+```
+
+Replace the body part of the script so it includes command output:
+
+```bash
+echo '<body>'
+echo '  <h1>System Information</h1>'
+echo '  <p>Hostname:</p>'
+echo '  <pre>'
+hostname
+echo '  </pre>'
+echo '  <p>Date:</p>'
+echo '  <pre>'
+date
+echo '  </pre>'
+echo '  <p>Generated by a Bash script.</p>'
+echo '</body>'
+```
+
+Run:
+
+```bash
+./sys-info-page > report.html
+grep -A3 'Hostname' report.html
+grep -A3 'Date' report.html
+```
+
+## Explain-back
+
+Answer:
+
+1. Which lines print fixed HTML text?
+2. Which lines run commands that produce data?
+3. Why did `hostname` and `date` not need `echo`?
+4. What does this teach about stdout?
+5. Why is the script already becoming harder to read?
+
+---
+
+# Day 1 finish standard
+
+He is done with Day 1 only if he can explain:
+
+```text
+I started with a minimal working script.
+The script prints HTML to stdout.
+I can redirect stdout to report.html.
+I can run with bash first, then make the script executable.
+I added only a little real data and verified the output.
+```

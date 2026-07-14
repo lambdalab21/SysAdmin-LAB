@@ -80,8 +80,9 @@
 #day-of-week/thursday
 - [ ] HLW Ch 12 Network File Transfer# [[04_Ward_Ch12_End_of_Chapter_Test]]
 - [ ] TLCL Ch20 Text Processing [[02_unit2_extract_columns_combine]]
-- [ ] TLCL Ch25-Starting a project README [[00_README_ch25_starting_project_3day_plan]]
-- [ ] TLCL Ch25-Starting a project Day1 [[01_day1_minimal_document_and_first_data]]
+- [ ] TLCL Ch25-Starting a project Day1 [[00_README_ch25_starting_project_5day_plan]]
+- [ ] TLCL Ch25-Starting a project README [[00_README_ch25_starting_project_5day_plan]]
+- [ ] TLCL Ch25-Starting a project Day1 [[01_day1_minimal_document]]
 - [ ] LAB Phase 5a with data [[05a_state_sqlite_and_directory_layout]]
 - [ ] Clojure - C REPL Driven Development > 3B REPL COntrolled Server Code
 - [ ] CSS 
@@ -89,7 +90,7 @@
 2026-07-10 (Fri)
 #day-of-week/friday
 - [ ] TLCL Ch20 Text Processing [[03_unit3_transform_text_tr_sed]]
-- [ ] TLCL Ch25-Starting a project Day2 [[02_day2_variables_constants_and_assignment]]
+- [ ] TLCL Ch25-Starting a project Day2 [[02_day2_adding_data_to_the_report]]
 - [ ] LAB Phase 5b with data [[05b_build_tiny_notes_app_locally]]
 - [ ] Clojure - C REPL Driven Development > 3C CIDER Start Evaluate and Test
 - [ ] CSS 
@@ -99,7 +100,7 @@
 - [ ] Read BashGuide/[Patterns](https://mywiki.wooledge.org/BashGuide/Patterns)
 - [ ] bash guide PATTERNS [[01_pattern_map_glob_extglob_regex]]
 - [ ] TLCL Ch20 Text Processing [[04_unit4_format_output]]
-- [ ] TLCL Ch25-Starting a project Day[3 [[03_day3_here_documents_final_lab]]
+- [ ] TLCL Ch25-Starting a project Day[3 [[03_day3_variables_constants_assignment]]
 - [ ] CSS 
 
 2026-07-11 (Sat PM)
@@ -113,30 +114,30 @@
 #day-of-week/sunday
 - [ ] ES Ch3-2 Regex [[02_quantifiers_and_false_matches]]
 - [ ] read Ntwrork for SysAdmin [[lucas-n4sa2e-ch00-the-problem]]
-- [ ] CSS 
 
 
 2026-07-12 (Sun PM)
 #day-of-week/sunday
 - [ ] bash guide PATTERNS [[02_glob_patterns_filename_expansion]]
 - [ ] TLCL Ch20 Text Processing [[05_unit5_applied_pipelines]]
-- [ ] TLCL Ch26-Top-Down Design[[00_README_ch26_top_down_design_plan]]
+- [ ] TLCL Ch25-Starting a project Day 4[[04_day4_here_documents]]]
+- [ ] TLCL Ch26-Top-Down Design[[]]
+- [ ] CSS 
 
 2026-07-13 (Mon)
 #day-of-week/monday
 - [ ] ES Ch3-3 Regex [[03_character_sets_metacharacters]]
 - [ ] ES Ch3-4 Regex [[04_anchors_capture_greedy]]
 - [ ] ES Ch3-5 Regex [[05_tool_differences_and_manpage_habits]]
-- [ ] ES Ch9 Script Essentials 00
-- [ ] ES Ch9 Script Essentials 01
-- [ ] read Ntwrork for SysAdmin [[lucas-n4sa2e-ch01-network-layers]]
+- [ ] read Ntwrork for SysAdmin [[lucas-n4sa2e-ch00-the-problem]]
 - [ ] read SSH Mastery [[ssh-mastery-ch02-common-configuration-reading-guide]]
 - [ ] CSS
 
 2026-07-14 (Tue)
 #day-of-week/tuesday
 - [ ] bash guide PATTERNS [[03_safe_file_enumeration_and_string_matching]]
-- [ ] TLCL Ch26-Top-Down Design[[01_day1_top_down_design_and_shell_functions]]
+- [ ] ES Ch3-6# Regex [[06_final_lab_regex_as_disciplined_tool]]
+- [ ] TLCL Ch25-Starting a project Day 5# [[05_day5_final_project_self_test]]
 - [ ] Clojure - C REPL Driven Development > 3D Change Code Without Restarting Jetty
 - [ ] LAB Phase 5c with data [[05c_install_site5_app_on_app01]]
 - [ ] CSS
@@ -146,8 +147,6 @@
 - [ ] ES Ch3-6# Regex [[06_final_lab_regex_as_disciplined_tool]]
 - [ ] ES Ch4 README [[00_README_effective_shell_ch04_plan]]
 - [ ] ES Ch4 intro [[01_intro_and_building_from_examples]]
-- [ ] ES Ch9 Script Essentials 02
-- [ ] read Ntwrork for SysAdmin [[lucas-n4sa2e-ch02-ethernet]]
 - [ ] read SSH Mastery [[ssh-mastery-ch02-common-configuration-reading-guide]]
 - [ ] CSS
 
@@ -155,7 +154,8 @@
 #day-of-week/thursday
 - [ ] bash guide PATTERNS [[04_extended_globs]]
 - [ ] TLCL Ch20 Text Processing [[07_apply_logs_processes_network]]
-- [ ] TLCL Ch26 Day3 [[03_day3_keep_scripts_running_and_final_lab]]
+- [ ] TLCL Ch26 README [[00_README_ch26_top_down_design_plan]]
+- [ ] TLCL Ch26 Day1 [[01_day1_top_down_design_and_shell_functions]]
 - [ ] Clojure - C REPL Driven Development > 3D Change Code Without Restarting Jetty
 - [ ] LAB Phase 5d with data [[05d_systemd_and_nginx_for_site5_app]]
 - [ ] CSS 
@@ -164,250 +164,129 @@
 #day-of-week/friday
 - [ ] bash guide PATTERNS [[05_regex_and_brace_expansion_contrast]]
 - [ ] TLCL Ch20 Text Processing [[07_apply_logs_processes_network]]
-- [ ] TLCL Ch27 README [[00_README_ch27_branching_if_4day_plan]]
-- [ ] TLCL Ch27 Day1 [[01_day1_if_and_exit_status]]
+- [ ] TLCL Ch26 Day2 [[02_day2_local_variables_and_function_boundaries]]
 - [ ] Clojure - C REPL Driven Development > 3D Change Code Without Restarting Jetty
 - [ ] CSS 
 
 2026-07-18 (Sat AM)
 #day-of-week/saturday
 - [ ] bash guide PATTERNS [[Books/bashguide_patterns_reading_guide/06_final_lab_and_self_test|06_final_lab_and_self_test]]
-- [ ] TLCL Ch27 Day2 [[02_day2_using_test_file_string_integer_checks]]
+- [ ] TLCL Ch26 Day3 [[03_day3_keep_scripts_running_and_final_lab]]
 
 2026-07-18 (Sat PM)
 #day-of-week/saturday
-- [ ] read Ntwrork for SysAdmin [[lucas-n4sa2e-ch03-ipv4]]
-- [ ] ES Ch4 intro [[02_quantifiers_and_false_matches]]
-- [ ] ES Ch9 Script Essentials QUIZ
-- [ ] ES Ch10 1
 
 2026-07-19 (Sun AM)
 #day-of-week/sunday
 - [ ] CSS 
-- [ ] ES Ch4 intro [[03_character_sets_metacharacters]]
-- [ ] ES Ch10 2
 
 2026-07-19 (Sun PM)
 #day-of-week/sunday
-- [ ] TLCL Ch27 Day3 [[03_day3_modern_test_and_integer_evaluation]]
 
 2026-07-20 (Mon)
 #day-of-week/monday
-- [ ] ES Ch4 intro [[04_anchors_capture_greedy]]
 - [ ] read SSH Mastery [[ssh-mastery-ch03-openssh-server-reading-guide]]
-- [ ] read Ntwrork for SysAdmin [[lucas-n4sa2e-ch04-ipv6]]
 - [ ] CSS
       
 2026-07-21 (Tue)
 #day-of-week/tuesday
-- [ ] TLCL Ch27 Day4 [[04_day4_combining_expressions_control_operators_final_lab]]
 - [ ] CSS 
 
 2026-07-22 (Wed)
 #day-of-week/wednesday
-- [ ] ES Ch4 tools differences [[05_tool_differences_and_manpage_habits]]
 - [ ] read SSH Mastery [[ssh-mastery-ch03-openssh-server-reading-guide]]
-- [ ] read Ntwrork for SysAdmin [[lucas-n4sa2e-ch05-tcp-ip]]
 - [ ] CSS
 
 2026-07-23 (Thur)
 #day-of-week/thursday
-- [ ] TLCL Ch28 Day1
-
 2026-07-24 (Fri)
 #day-of-week/friday
-- [ ] TLCL Ch28 Day2
-
 2026-07-25 (Sat AM)
 #day-of-week/saturday
-- [ ] TLCL Ch29 Day1
-
 2026-07-25 (Sat PM)
 #day-of-week/saturday
-- [ ] ES Ch4 final [[06_final_lab_regex_as_disciplined_tool]]
-- [ ] read Ntwrork for SysAdmin [[lucas-n4sa2e-ch06-viewing-network-connections]]
-- [ ] CSS
+
 
 2026-07-26 (Sun AM)
 #day-of-week/sunday
 - [ ] read SSH Mastery [[ssh-mastery-ch04-verifying-server-keys-reading-guide]]
-- [ ] ES Ch5 README [[00_README_effective_shell_ch05_grep_supplement_plan]]
-- [ ] ES Ch5 grep [[Books/『The Linux Command Line』3rd by Shotts/Ch 19 Regular Expressions/01_day1_grep_literal_matching|01_day1_grep_literal_matching]]
-
+- [ ] CSS
 2026-07-26 (Sun PM)
 #day-of-week/sunday
-- [ ] TLCL Ch29 Day2
-
 2026-07-27 (Mon)
 #day-of-week/monday
-- [ ] read Ntwrork for SysAdmin [[lucas-n4sa2e-ch07-transport-layer-security]]
-- [ ] ES Ch5 patterns [[02_day2_patterns_precision_and_false_matches]]
-
 2026-07-28 (Tue)
 #day-of-week/tuesday
-- [ ] TLCL Ch30 Day1
-
 2026-07-29 (Wed)
 #day-of-week/wednesday
-- [ ] ES Ch5 patterns [[03_day3_context_invert_and_multifile_search]]
 - [ ] read SSH Mastery [[ssh-mastery-ch04-verifying-server-keys-reading-guide]]
-- [ ] read Ntwrork for SysAdmin [[lucas-n4sa2e-ch08-network-testing-basics]]
 - [ ] CSS
-
 2026-07-30 (Thur)
 #day-of-week/thursday
-- [ ] TLCL Ch30 Day2
-
 2026-07-31 (Fri)
 #day-of-week/friday
-- [ ] TLCL Ch30 Day3
-
-2026-08-01 (Sat AM)
+2026-08-01 (Sat)
 #day-of-week/saturday
-- [ ] TLCL Ch31 Day1
 
-2026-08-01 (Sat PM)
-#day-of-week/saturday
-- [ ] read Ntwrork for SysAdmin [[lucas-n4sa2e-ch09-domain-name-system]]
-- [ ] ES Ch5 patterns [[04_day4_pipelines_alternatives_and_final_lab]]
-
-2026-08-02 (Sun AM)
+2026-08-02 (Sun)
 #day-of-week/sunday
-- [ ] ES Ch5 review [[05_review_quiz_and_retention_drills]]
-- [ ] CSS
-
-2026-08-02 (Sun PM)
-#day-of-week/sunday
-- [ ] TLCL Ch31 Day2
-
 2026-08-03 (Mon)
 #day-of-week/monday
-- [ ] ES Ch6 README [[00_README_effective_shell_ch06_slice_dice_supplement_plan]]
-- [ ] ES Ch6 head [[01_day1_head_tail_and_safe_inspection]]
 - [ ] read SSH Mastery [[ssh-mastery-ch05-ssh-clients-reading-guide]]
-- [ ] read Ntwrork for SysAdmin [[lucas-n4sa2e-ch10-tracing-problems]]
-
 2026-08-04 (Tue)
 #day-of-week/tuesday
-- [ ] TLCL Ch31 Day2
-
 2026-08-05 (Wed)
-#day-of-week/wednesday 
-- [ ] ES Ch6 tr [[02_day2_tr_cut_and_field_extraction]]
 - [ ] read SSH Mastery [[ssh-mastery-ch05-ssh-clients-reading-guide]]
-
 2026-08-06 (Thur)
 #day-of-week/thursday
-
 2026-08-07 (Fri)
 #day-of-week/friday
-- [ ] TLCL Ch32 Day1
-
-2026-08-08 (Sat AM)
+2026-08-08 (Sat)
 #day-of-week/saturday
-- [ ] TLCL Ch32 Day2
-- [ ] read Ntwrork for SysAdmin [[lucas-n4sa2e-ch11-packet-sniffing]]
 
-2026-08-08 (Sat PM)
-#day-of-week/saturday
-- [ ] ES Ch6 rev [[03_day3_rev_sort_uniq_and_pager]]
-
-2026-08-09 (Sun AM)
+2026-08-09 (Sun)
 #day-of-week/sunday
-- [ ] ES Ch6 final# [[04_day4_final_lab_and_review]]
-
-2026-08-09 (Sun PM)
-#day-of-week/sunday
-
 2026-08-10 (Mon)
 #day-of-week/monday
-- [ ] ES Ch7
 - [ ] read SSH Mastery [[ssh-mastery-ch06-copying-files-over-ssh-reading-guide]]
-- [ ] read Ntwrork for SysAdmin [[lucas-n4sa2e-ch12-creating-traffic]]
-
 2026-08-11 (Tue)
 #day-of-week/tuesday
-- [ ] TLCL Ch32 Day3
-
 2026-08-12 (Wed)
 #day-of-week/wednesday
-- [ ] ES Ch7
 - [ ] read SSH Mastery [[ssh-mastery-ch06-copying-files-over-ssh-reading-guide]]
-- [ ] read Ntwrork for SysAdmin [[lucas-n4sa2e-ch13-server-packet-filtering]]
-
 2026-08-13 (Thur)
 #day-of-week/thursday
-- [ ] TLCL Ch33 Day1
-
 2026-08-14 (Fri)
 #day-of-week/friday
-- [ ] TLCL Ch33 Day2
-
-2026-08-15 (Sat AM)
+2026-08-15 (Sat)
 #day-of-week/saturday
-- [ ] TLCL Ch33 Day3
 
-2026-08-15 (Sat PM)
-#day-of-week/saturday
-- [ ] ES Ch7
-
-2026-08-16 (Sun AM)
+2026-08-16 (Sun)
 #day-of-week/sunday
-- [ ] ES Ch7
 - [ ] read SSH Mastery [[ssh-mastery-ch07-ssh-keys-reading-guide]]
-
-2026-08-16 (Sun PM)
-#day-of-week/sunday
-- [ ] TLCL Ch34 Day1
-
-2026-08-17 (Mon)
-#day-of-week/sunday
-- [ ] ES Ch8
-
 2026-08-18 (Tue)
 #day-of-week/tuesday
-- [ ] TLCL Ch34 Day2
-
 2026-08-18 (Wed)
 #day-of-week/wednesday
-- [ ] ES Ch8
 - [ ] read SSH Mastery [[ssh-mastery-ch07-ssh-keys-reading-guide]]
-
 2026-08-20 (Thur)
 #day-of-week/thursday
-- [ ] TLCL Ch34 Day3
-
 2026-08-21 (Fri)
 #day-of-week/friday
-- [ ] TLCL Ch35 Day1
-
-2026-08-22 (Sat AM)
-#day-of-week/saturday
-- [ ] TLCL Ch35 Day2
-
-2026-08-22 (Sat PM)
-- [ ] ES Ch8
+2026-08-22 (Sat)
 #day-of-week/saturday
 
-2026-08-23 (Sun AM)
-#day-of-week/sunday 
-- [ ] ES Ch8
-
-2026-08-23 (Sun PM)
-#day-of-week/sunday 
-- [ ] TLCL Ch35 Day3
 
 
-
-x TLCL 27 Flow Control: IF
-x TLCL 28 Reading Keyboard Input
-x TLCL 29 Flow Control: Looping with While/Until
-x TLCL 30 troubleshooting
-x TLCL 31 flow Control: Case
-x TLCL 32 Positional Parameters
-x TLCL 33 Flow Control: FOR
-x TLCL 34 STRING and Numbers
-x TLCL 35 Arrays
+TLCL 27 Flow Control: IF
+TLCL 28 Reading Keyboard Input
+TLCL 29 Flow Control: Looping with While/Until
+TLCL 30 troubleshooting
+TLCL 31 flow Control: Case
+TLCL 32 Positional Parameters
+TLCL 33 Flow Control: FOR
+TLCL 34 STRING and Numbers
+TLCL 35 Arrays
 TLCL 36 Exotica
 
 ES  9 shell script fundamentals
