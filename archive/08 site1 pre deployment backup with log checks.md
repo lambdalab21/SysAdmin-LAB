@@ -4,15 +4,7 @@
 
 You read **The Linux Command Line**, Ch. 18: **Archiving and Backup**.
 
-Now apply it to a real deployment problem:
-
-```text
-Before I change the server, can I preserve the current working state?
-```
-
-This lab adds a disciplined backup step before updating `site1`.
-
-The goal is not to collect random backup files.
+This lab adds a backup step before updating `site1`.
 
 The goal is to build this habit:
 
@@ -84,14 +76,6 @@ The server directory is the currently running copy.
 A backup is a snapshot of the current server copy before I replace it.
 ```
 
-Feynman check:
-
-```text
-If I deploy a bad version, the backup lets me put the old working files back.
-```
-
-If you cannot explain that simply, slow down before typing commands.
-
 ---
 
 # Current Setup
@@ -111,17 +95,17 @@ Test URL:                    http://app01/
 Write your actual values:
 
 ```text
-My local project directory:
+My local project directory: ~/projects/site1
 
-My local public directory:
+My local public directory: ~/projects/site1/public
 
-My server hostname or IP:
+My server hostname or IP: 192.168.0.107 or app01
 
-My remote public directory:
+My remote public directory: /var/www/site1/public/
 
-My backup directory:
+My backup directory: /var/www/backups/site1/
 
-My test URL:
+My test URL: http://192.168.0.107
 ```
 
 ---
@@ -143,15 +127,15 @@ My test URL:
 Before creating a backup, answer this.
 
 ```text
-What directory will deployment change?
+What directory will deployment change? /var/www/site1/public/
 
-What command will change it?
+What command will change it? rsync -av --delete or scp
 
-Can this command overwrite files?
+Can this command overwrite files? Yes. 
 
-Can this command delete files?
+Can this command delete files? Yes. (with --delete)
 
-What would be painful to lose?
+What would be painful to lose? The live website files served by NGinx. 
 ```
 
 Expected idea:
@@ -161,16 +145,6 @@ Deployment changes /var/www/site1/public/.
 rsync --delete can overwrite and delete files there.
 Therefore I should back up /var/www/site1/public/ before deploying.
 ```
-
-## Green check
-
-```text
-[ ] I know the exact remote directory that may change.
-[ ] I know whether my deployment command can delete files.
-[ ] I know what I am backing up.
-```
-
-Do not continue until those are true.
 
 ---
 
@@ -191,13 +165,11 @@ curl -s http://app01/ | head
 Write:
 
 ```text
-Current server files:
+Current server files: form.scss, index.html, java.js, practice.html, signupform.js, style.css
 
-Current homepage response contains:
+Current homepage response contains: Everything intended to be on it.
 
-What this proves:
-
-What this does not prove:
+What this proves: That it's working as intended. 
 ```
 
 Important:
@@ -231,7 +203,7 @@ Expected:
 ```text
 200
 ```
-
+^working as expected
 Now check the recent access log:
 
 ```bash
@@ -259,43 +231,13 @@ ssh your-admin-user@app01 'sudo tail -n 10 /var/log/nginx/error.log'
 Write:
 
 ```text
-HTTP status before deployment:
+HTTP status before deployment: 200
 
-Access log line showing my request:
+Any new error-log line? No.
 
-Any new error-log line?
+What this proves: NGinx is serving site1 normally before changes. 
 
-What this proves:
-
-What this does not prove:
-```
-
-## Stop and think
-
-Do not write:
-
-```text
-logs are fine
-```
-
-Quote one exact access-log line or write that you could not find it.
-
-Expected idea:
-
-```text
-The access log proves Nginx received my request.
-The 200 status proves Nginx served the homepage successfully.
-The error log shows whether Nginx recorded a relevant problem.
-This does not prove the backup is valid.
-```
-
-## Green check
-
-```text
-[ ] I made a baseline HTTP request.
-[ ] I found the request in the access log.
-[ ] I checked the error log.
-[ ] I know the site worked before deployment.
+What this does not prove: That every file and feature on the site works perfectly. 
 ```
 
 ---
@@ -319,24 +261,7 @@ Verify as `deploy`:
 ```bash
 ssh deploy@app01 'test -w /var/www/backups/site1 && echo "deploy can write backups"'
 ```
-
-Write:
-
-```text
-Backup parent directory:
-
-Who owns it?
-
-What command proves deploy can write there?
-```
-
-## Green check
-
-```text
-[ ] Backup directory exists.
-[ ] deploy can write into it.
-[ ] I did not make the backup directory world-writable.
-```
+^ works
 
 ---
 
@@ -370,38 +295,6 @@ then archive the public directory.
 
 It avoids storing the full absolute path inside the archive.
 
-## Feynman check
-
-Explain it simply:
-
-```text
-tar is putting the current server public directory into one compressed file.
-The timestamp keeps each backup from overwriting the previous backup.
-```
-
-Write:
-
-```text
-Backup command:
-
-Backup file created:
-
-Backup size:
-
-What directory was backed up?
-
-What this proves:
-
-What this does not prove:
-```
-
-Important:
-
-```text
-Creating a tar file does not prove it can restore correctly.
-You must inspect or test the archive.
-```
-
 ---
 
 # Part 5: Verify the Backup Contents
@@ -430,31 +323,6 @@ public/index.html
 public/style.css
 ...
 ```
-
-Write:
-
-```text
-Newest backup file:
-
-Contents shown by tar -tzf:
-
-Does the archive contain public/index.html?
-
-Does it contain the expected site files?
-
-What this proves:
-```
-
-## Green check
-
-```text
-[ ] The backup file exists.
-[ ] The backup is not zero bytes.
-[ ] tar -tzf can list the archive.
-[ ] The archive contains public/index.html.
-```
-
-Do not deploy until all four are true.
 
 ---
 
@@ -487,47 +355,23 @@ grep -n 'Backup-before-deploy' public/index.html
 Write:
 
 ```text
-Changed file:
+Changed file: /projects/site1/public/index.html
 
-Exact change:
+Exact change: Line 17 - <p>Backup-before-deploy practice.</p>
 
-Local verification output:
+Local verification output: 17: <p>Backup-before-deploy practice.</p>
 ```
 
 ---
 
-# Part 7: Predict the Deployment
-
-Before deploying, write:
-
-```text
-Deployment command I plan to run:
-
-Source path:
-
-Destination path:
-
-Can this command overwrite files?
-
-Can this command delete files?
-
-Which backup protects me if this goes wrong?
-
-How would I restore from that backup?
-```
-
-Do not run the deployment command until you can answer this.
-
----
-
-# Part 8: Deploy
+# Part 7: Deploy
 
 Use `scp` if this is still `site1` practice:
 
 ```bash
 scp ./public/index.html deploy@app01:/var/www/site1/public/
 ```
-
+^this one
 Or, if you are practicing the later `rsync` pattern:
 
 ```bash
@@ -542,27 +386,9 @@ If the dry run is correct:
 rsync -av --delete ./public/ deploy@app01:/var/www/site1/public/
 ```
 
-Write:
-
-```text
-Exact command run:
-
-What changed:
-
-What did not change:
-
-What could still be wrong:
-```
-
-Important:
-
-```text
-A successful transfer command does not prove Nginx served the new page.
-```
-
 ---
 
-# Part 9: Verify After Deployment
+# Part 8: Verify After Deployment
 
 You need three kinds of evidence:
 
@@ -623,64 +449,9 @@ If that file does not exist:
 ssh your-admin-user@app01 'sudo tail -n 20 /var/log/nginx/error.log'
 ```
 
-## Stop and think
-
-The access log is relevant even if there is no error.
-
-It proves:
-
-```text
-the request reached Nginx
-which path was requested
-which status code Nginx returned
-```
-
-The error log is especially relevant if something failed.
-
-It may explain:
-
-```text
-permission denied
-file not found
-configuration or runtime problems
-```
-
-Write:
-
-```text
-Filesystem evidence:
-
-HTTP status code:
-
-HTTP content evidence:
-
-Access log line showing my request:
-
-Status code in access log:
-
-Error log evidence:
-
-What this proves:
-
-What this does not prove:
-
-Final conclusion:
-```
-
-## Green check
-
-```text
-[ ] Server file contains the new text.
-[ ] curl returns the expected HTTP status.
-[ ] curl shows the new text.
-[ ] Access log shows my request.
-[ ] Error log shows no new relevant error.
-[ ] I did not declare success from scp or rsync alone.
-```
-
 ---
 
-# Part 10: Restore Drill
+# Part 9: Restore Drill
 
 Do this drill at least once while the site is simple.
 
@@ -710,18 +481,6 @@ find /tmp/site1-restore-test -type f -print | sort
 '
 ```
 
-Write:
-
-```text
-Restore test directory:
-
-Files restored:
-
-Did public/index.html appear?
-
-What this proves:
-```
-
 ## Optional real rollback
 
 Only do this if you intentionally want to roll back the running site.
@@ -743,27 +502,9 @@ Verify:
 curl -s http://app01/ | head
 ```
 
-## Stop and think
-
-A restore command can overwrite the current site.
-
-Before doing a real rollback, write:
-
-```text
-I am about to replace:
-
-With files from:
-
-The reason is:
-
-The command can delete current files because:
-
-My verification after rollback will be:
-```
-
 ---
 
-# Part 11: Clean Up Old Backups
+# Part 10: Clean Up Old Backups
 
 Do not let backups grow forever.
 
@@ -805,38 +546,36 @@ Do not run deletion commands casually.
 
 ---
 
-# Part 12: Final Reflection
+# Part 11: Final Reflection
 
 Write briefly.
 
 ```text
-Task:
+Task: Pre-deployment backup and safe update of site1. 
 
-Directory protected by backup:
+Directory protected by backup: /var/www/site1/public/
 
-Backup file created:
+Command that created the backup: tar -czf ... -C /var/www/site1 public
 
-Command that created the backup:
+Command that verified the backup: tar -tzf "$latest" | head
 
-Command that verified the backup:
+Deployment command: scp ./public/index.html deploy@app01:/var/www/site1/public/
 
-Deployment command:
+Strongest evidence deployment worked: grep found the new text on the server and curl showed the paragraph. 
 
-Strongest evidence deployment worked:
+Access log evidence after deployment: New 200 entry for GET / from my IP. 
 
-Access log evidence after deployment:
+Error log evidence after deployment:No new errors. 
 
-Error log evidence after deployment:
+Strongest evidence backup is usable: Successfully extracted archive to /tmp and saw original files. 
 
-Strongest evidence backup is usable:
+One thing the backup does not protect against: Changes made directly on the server or files outside /var/www/site1/public/
 
-One thing the backup does not protect against:
+One mistake I avoided: Deploying without backup. 
 
-One mistake I avoided:
+One habit I practiced: Backup -> Verify -> Deploy -> Verify -> Rollback. 
 
-One habit I practiced:
-
-One habit to improve next time:
+One habit to improve next time: Automate backup verification steps. 
 ```
 
 ## Good answer pattern
@@ -871,18 +610,18 @@ Each answers a different question.
 
 Explain without notes:
 
-1. Why back up before a risky deployment?
-2. What directory did you back up?
-3. What does `tar -czf` do?
-4. What does `tar -tzf` do?
-5. What does `tar -xzf` do?
-6. Why use a timestamp in the backup filename?
-7. Why verify the archive before deploying?
-8. Why test restore into `/tmp` before overwriting the real site?
-9. Why is Git not the same as a server backup?
-10. Why is `scp` success not enough proof that the website works?
-11. Why does `rsync --delete` make backup more important?
-12. What exact evidence proved the backup existed?
-13. What exact evidence proved the site still worked?
-14. What access-log line proved Nginx received the post-deployment request?
-15. What did the error log show after deployment?
+1. Why back up before a risky deployment? To have a rollback point if something goes wrong, especially with --delete. 
+2. What directory did you back up? /var/www/site1/public/
+3. What does `tar -czf` do? It creates a compressed archive of files/directories. 
+4. What does `tar -tzf` do? Lists the contents of a compressed archive without extracting. 
+5. What does `tar -xzf` do? Extracts files from a compressed archive. 
+6. Why use a timestamp in the backup filename? To uniquely identify backups and keep multiple versions. 
+7. Why verify the archive before deploying? To confirm the backup actually contains the expected files and is not corrupt. 
+8. Why test restore into `/tmp` before overwriting the real site? To safely validate the backup works without risking the live site. 
+9. Why is Git not the same as a server backup? Git tracks source code history locally. Server backup captures the exact deployed state. 
+10. Why is `scp` success not enough proof that the website works? It only proves the file reached the filesystem. It does not prove NGinx is serving it correctly over HTTP. 
+11. Why does `rsync --delete` make backup more important?It can remove files on a server that no longer locally exists. 
+12. What exact evidence proved the backup existed? ls -lt /var/www/backups/site1/ showed the .tar.gz file with correct size/timestamps. 
+13. What exact evidence proved the site still worked? Curl returned 200 and contained the expected new content. 
+14. What access-log line proved Nginx received the post-deployment request? The new GET / entry with 200 status after deployment. 
+15. What did the error log show after deployment? No new error entries, site continued working well. 

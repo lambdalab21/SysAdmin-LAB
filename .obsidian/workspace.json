@@ -1,0 +1,215 @@
+{
+  "main": {
+    "id": "722960f08967f3c9",
+    "type": "split",
+    "children": [
+      {
+        "id": "9adf3bf1e559d560",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cbf5d0ef3b95e1e0",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "643f10b76902c485",
+    "type": "split",
+    "children": [
+      {
+        "id": "0346fbf90fa03f86",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1de840b5fe10be74",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "8a676bc2318ce3e7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "d61be9c9a19db9d5",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 255.5
+  },
+  "right": {
+    "id": "d6b425d082942f33",
+    "type": "split",
+    "children": [
+      {
+        "id": "7c0a2ec6f56393f6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2b62c1f2b190b919",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Books/『The Linux Command Line』3rd by Shotts/Part4 Shell Script/tlcl_ch24_writing_your_first_script_disciplined_guide.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for tlcl_ch24_writing_your_first_script_disciplined_guide"
+            }
+          },
+          {
+            "id": "5fae7d4729cc27c3",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Books/『The Linux Command Line』3rd by Shotts/Part4 Shell Script/tlcl_ch24_writing_your_first_script_disciplined_guide.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from tlcl_ch24_writing_your_first_script_disciplined_guide"
+            }
+          },
+          {
+            "id": "1c4123969d35b77d",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "b82baeb508182964",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "d4c8b77c93628006",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Books/『The Linux Command Line』3rd by Shotts/Part4 Shell Script/tlcl_ch24_writing_your_first_script_disciplined_guide.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of tlcl_ch24_writing_your_first_script_disciplined_guide"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "1de840b5fe10be74",
+  "lastOpenFiles": [
+    "Lab/07x Deploy Static Sites - Phase 1 LAB.md",
+    "Lab/07 Setup nginx and Deploy Static site Phase 1.md",
+    "Lab/06 SCP Deploy Troubleshooting.md",
+    "Lab/06 Create a Development Environment.md",
+    "Lab/05 『How Linux Works』 Ch. 8 LAB.md",
+    "Lab/04 『How Linux Works』 Ch. 7 LAB.md",
+    "Lab/03 『How Linux Works』 Ch. 1 LAB.md",
+    "Books/『The Linux Command Line』3rd by Shotts/Ch 18 Archiving and Backup/01_compression_gzip_bzip2.md",
+    "Lab/06 Deployment LAB (`scp`).md",
+    "Books/『Wizard Zines』/00 Reading orders.md",
+    "Books/『How Linux Works』/Ch. 8 LAB.md",
+    "Books/『The Linux Command Line』3rd by Shotts/Ch 19 Regular Expressions/08_day8_logs_processes_network_output.md",
+    "Books/『The Linux Command Line』3rd by Shotts/Ch 18 Archiving and Backup/06_restore_and_verify.md",
+    "Books/『The Linux Command Line』3rd by Shotts/Ch 18 Archiving and Backup/05_rsync_backup.md",
+    "Books/『The Linux Command Line』3rd by Shotts/Ch 18 Archiving and Backup/04_zip_unzip.md",
+    "Books/『The Linux Command Line』3rd by Shotts/Ch 18 Archiving and Backup/03_compressed_tar_archives.md",
+    "Books/『The Linux Command Line』3rd by Shotts/Ch 18 Archiving and Backup/02_tar_archives.md",
+    "Books/『The Linux Command Line』3rd by Shotts/Ch 18 Archiving and Backup/00_README_ch18_plan.md",
+    "Lab/06c rev1 SSH Connecton Closed Troubleshoot with LOG.md",
+    "Books/『The Linux Command Line』3rd by Shotts/Ch 1_10_summer_weekly_drills/tlcl_ch01_10_summer_tuesday.md",
+    "Lab/08 site2 Deployment LAB (`rsync`).md.md",
+    "Books/『The Linux Command Line』3rd by Shotts/Ch 19 Regular Expressions/07_day7_config_files.md",
+    "Text Processing/Video Tutorials.md",
+    "Setup/AlmaLinux.md",
+    "Untitled.canvas",
+    "Untitled.base",
+    "Untitled 1.base",
+    "2026-06-13.md",
+    "Books/『The Linux Command Line』3rd by Shotts/Ch 19 Regular Expressions/06_day6_passwd_and_package_output.md",
+    "archive"
+  ]
+}

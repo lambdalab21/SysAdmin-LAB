@@ -2,22 +2,6 @@
 
 Use these files as a multi-day study plan for Shotts's Chapter 19.
 
-Main discipline:
-
-```text
-Do not treat regex as magic symbols.
-A regular expression is a small rule for matching text.
-```
-
-Before every command, answer:
-
-```text
-1. What lines do I expect to match?
-2. Which part of the regex creates that match?
-3. Could the shell change my pattern before grep sees it?
-4. Did the output prove my prediction?
-```
-
 One-time setup:
 
 ```bash
@@ -99,20 +83,6 @@ EOF
 
 This connects regex to real Linux output: `/etc/passwd`, `apt list`, package lists, installed markers, shell paths, and usernames.
 
-## Feynman analogy
-
-Real system output is like a crowded bulletin board. Regex asks: Which notices start with this word? Which contain this marker? Which end with this shell?
-
-## Discipline rule
-
-Before every command, write:
-
-```text
-I expect this to match...
-I expect this not to match...
-The risky part of this pattern is...
-```
-
 ## `/etc/passwd` practice
 
 ```bash
@@ -125,10 +95,10 @@ grep -E '^[a-z_][a-z0-9_-]*:' /etc/passwd | head
 
 Questions:
 
-1. What does `^root` mean?
-2. What does `bash$` mean?
-3. Why does the username regex end with `:`?
-4. Why inspect with `head`?
+1. What does `^root` mean? It matches lines starting with "root"
+2. What does `bash$` mean? It matches lines ending with "root"
+3. Why does the username regex end with `:`? It anchors after the username because that's the field separator in /etc/passwd
+4. Why inspect with `head`? Limits output to the first few links for quick inspection without flooding the terminal. 
 
 ## Package output practice
 
@@ -166,5 +136,3 @@ Explain why they differ. `[installed]` is a character class; `\[installed\]` mat
 ```bash
 grep '\[installed\]' packages.txt | cut -d '/' -f1 | sort
 ```
-
-Say aloud: `grep` selected rows, `cut` selected a field, `sort` ordered the result.
