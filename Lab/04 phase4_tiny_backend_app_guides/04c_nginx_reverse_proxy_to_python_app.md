@@ -1,3 +1,4 @@
+#LAB #deployment #backend
 # 04c — Put Nginx in Front of the Tiny Python App
 
 ## Purpose

@@ -1,3 +1,4 @@
+#LAB #deployment #backend
 # 05b — Build the Tiny Notes App Locally
 
 ## Purpose

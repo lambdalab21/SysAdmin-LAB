@@ -1,3 +1,5 @@
+#Book/How-Linux-Works #Author/Ward 
+#network
 # Ward Ch. 12 Reading Guide — Network File Transfer and Sharing
 
 > Correction: it is usually spelled **Feynman method**, not “Feinman method.”

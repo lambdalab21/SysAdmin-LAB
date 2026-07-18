@@ -1,3 +1,4 @@
+ #Book/How-Linux-Works #drill 
 Ward Ch. 8 is about the relationship between processes, the kernel, and three major hardware-resource categories: CPU, memory, and I/O. These labs should make those relationships visible rather than turn into command memorization. ([オライリー・メディア](https://www.oreilly.com/library/view/how-linux-works/9781098128913/c08.xhtml?utm_source=chatgpt.com "How Linux Works, 3rd Edition"))
 
 # Chapter 8 lab series

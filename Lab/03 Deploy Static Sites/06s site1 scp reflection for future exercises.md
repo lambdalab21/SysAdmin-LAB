@@ -1,3 +1,5 @@
+#LAB #deployment
+#ssh
 # Reflection Handout: How to Improve Future Lab Work
 
 ## Purpose

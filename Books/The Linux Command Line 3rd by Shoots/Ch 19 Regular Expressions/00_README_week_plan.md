@@ -1,3 +1,5 @@
+#Book/The-Linux-Command-Line  Author/Shotts 
+#regex 
 # TLCL Chapter 19 Regular Expressions: Multi-Day Plan
 
 A cleaner phrasing: “Please create Markdown files for the split Chapter 19 plan.”

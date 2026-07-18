@@ -1,3 +1,4 @@
+#log 
 Yes. This should come **before** he proceeds far into Nginx deployment.
 
 Do not give him a separate 500-page logging book yet. He needs a focused logging module tied to his actual machines:
@@ -95,7 +96,7 @@ From **_The Linux Command Line_**, use these sections:
 |**Ch. 19 — Regular Expressions**|Filtering logs with `grep` patterns|Read soon|
 |**Ch. 20 — Text Processing**|`cat`, `sort`, `uniq`, `cut`, and related tools|Read selectively later|
 
-Shotts Ch. 3 explicitly includes viewing files with `less`; Ch. 6 covers standard input, output, error, redirection, and pipelines; Ch. 19 covers regular expressions and `grep`; Ch. 20 introduces text-processing tools such as `cat`, `sort`, `uniq`, and `cut`. ([オライリー](https://www.oreilly.com/library/view/the-linux-command/9781492071235/ "The Linux Command Line, 2nd Edition [Book]"))
+Author/Shotts Ch. 3 explicitly includes viewing files with `less`; Ch. 6 covers standard input, output, error, redirection, and pipelines; Ch. 19 covers regular expressions and `grep`; Ch. 20 introduces text-processing tools such as `cat`, `sort`, `uniq`, and `cut`. ([オライリー](https://www.oreilly.com/library/view/the-linux-command/9781492071235/ "The Linux Command Line, 2nd Edition [Book]"))
 
 For now, he does **not** need to master `awk`, `sed`, or complex regular expressions. Start with:
 

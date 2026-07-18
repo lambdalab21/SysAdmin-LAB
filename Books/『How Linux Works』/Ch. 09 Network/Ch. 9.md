@@ -1,3 +1,4 @@
+#Book/How-Linux-Works aAuthor/#Author/Ward
 Yes. Ward Chapter 9 is too dense to treat as one reading assignment followed by one quiz.
 
 A better phrase is: What is a good strategy for dividing the chapter into sections and creating drills and quizzes?

@@ -1,3 +1,4 @@
+#linux #setup  #alma-linux
 
 [setup](https://chatgpt.com/s/t_6a12f551e2c88191a6ec77a167b1bc15)
 

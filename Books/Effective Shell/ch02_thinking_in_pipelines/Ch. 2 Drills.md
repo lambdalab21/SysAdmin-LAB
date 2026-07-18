@@ -1,3 +1,5 @@
+#Book/Effective-Shell #Author/Kerr 
+#pipeline #drill 
 A cleaner phrasing is: “Please create drills for Chapter 2 of _Effective Shell_ by Kerr.”
 
 Chapter 2, **“Thinking in Pipelines,”** covers `stdin`, `stdout`, `stderr`, file descriptors `0`, `1`, and `2`, pipelines, redirection, `less`, `/dev/null`, redirection order, and `tee`. Kerr specifically says these concepts are fundamental and will recur throughout the book. ([effective-shell.com](https://effective-shell.com/part-2-core-skills/thinking-in-pipelines/ "Thinking in Pipelines | Effective Shell"))

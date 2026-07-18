@@ -1,3 +1,5 @@
+#scp 
+#LAB #deployment #deployment-document
 # Site1 Deployment Runbook — `scp` + Backup + Logs
 
 ## Purpose

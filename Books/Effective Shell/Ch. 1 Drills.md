@@ -1,3 +1,5 @@
+#Book/Effective-Shell #Author/Kerr 
+#drill 
 A cleaner phrasing is: “Please create drills for Chapter 1 of _Effective Shell_ by Kerr. Emphasize shortcuts and tricks that are not used often so that he will not forget them.”
 
 Chapter 1, **“Flying on the Command Line,”** covers cursor movement, deleting text efficiently, undoing edits, searching command history, editing a command inside a text editor, clearing the screen, inspecting history, rerunning a numbered history entry, listing key bindings, and transposing text. Kerr specifically recommends practicing the techniques while reading because they are difficult to learn passively. ([ノースターチプレス](https://nostarch.com/download/EffectiveShell_chapter1.pdf "EffectiveShell_txt_1p.indd"))

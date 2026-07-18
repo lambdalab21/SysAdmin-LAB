@@ -1,3 +1,5 @@
+#linux #setup  #ubuntu
+
 Next thing: **turn the Ubuntu laptop into a clean database server**, not a random Linux playground.
 
 Assume this machine will be:

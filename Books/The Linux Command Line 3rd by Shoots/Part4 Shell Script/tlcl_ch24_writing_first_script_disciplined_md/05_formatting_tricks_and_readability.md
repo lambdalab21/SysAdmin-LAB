@@ -1,6 +1,8 @@
-# Shotts Chapter 24: Writing Your First Script
+#Book/The-Linux-Command-Line  #Author/Shotts 
+#shell-script #bash-script
+# Author/Shotts Chapter 24: Writing Your First Script
 
-Use this guide with William Shotts, *The Linux Command Line*, Chapter 24, "Writing Your First Script."
+Use this guide with William Author/Shotts, *The Linux Command Line*, Chapter 24, "Writing Your First Script."
 
 One-time lab setup:
 

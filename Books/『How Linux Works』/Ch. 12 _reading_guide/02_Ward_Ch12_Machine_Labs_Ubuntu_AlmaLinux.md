@@ -1,3 +1,5 @@
+#Book/How-Linux-Works #Author/Ward 
+#network
 # Ward Ch. 12 Machine Labs — Ubuntu db01 + AlmaLinux app01
 
 These labs assume:

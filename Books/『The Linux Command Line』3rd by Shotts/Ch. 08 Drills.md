@@ -1,5 +1,7 @@
+#Book/The-Linux-Command-Line #Author/Shotts 
+#shortcut  #key-binding #drill
 
-Chapter 8, **“Advanced Keyboard Tricks,”** is about reducing unnecessary typing by using Bash’s Readline editing features, tab completion, command history, and the `script` command. Shotts explicitly says that the student does not need to learn every shortcut immediately. The goal is to select the useful ones and gradually turn them into habits. ([Linux Class](https://linuxclass.heinz.cmu.edu/doc/TLCL-25.12.pdf "The Linux Command Line, 7th Internet Edition"))
+Chapter 8, **“Advanced Keyboard Tricks,”** is about reducing unnecessary typing by using Bash’s Readline editing features, tab completion, command history, and the `script` command. Author/Shotts explicitly says that the student does not need to learn every shortcut immediately. The goal is to select the useful ones and gradually turn them into habits. ([Linux Class](https://linuxclass.heinz.cmu.edu/doc/TLCL-25.12.pdf "The Linux Command Line, 7th Internet Edition"))
 
 Do not treat this as a memorization assignment. A student may remember a shortcut for a quiz but continue pressing arrow keys and retyping commands during real work. The drills below require him to use the shortcuts repeatedly.
 
@@ -132,7 +134,7 @@ Repeat five times.
 
 ### Lesson
 
-`Alt-b` and `Alt-f` are more efficient than holding down the left or right arrow key when editing long commands. Shotts lists these as word-level cursor-movement commands. ([Linux Class](https://linuxclass.heinz.cmu.edu/doc/TLCL-25.12.pdf "The Linux Command Line, 7th Internet Edition"))
+`Alt-b` and `Alt-f` are more efficient than holding down the left or right arrow key when editing long commands. Author/Shotts lists these as word-level cursor-movement commands. ([Linux Class](https://linuxclass.heinz.cmu.edu/doc/TLCL-25.12.pdf "The Linux Command Line, 7th Internet Edition"))
 
 ---
 
@@ -308,7 +310,7 @@ These are useful, but less important than the Part 1 shortcuts.
 |`Alt-l`|Convert text to lowercase|
 |`Alt-u`|Convert text to uppercase|
 
-Shotts includes these as text-editing commands, but they should not receive equal practice time. ([Linux Class](https://linuxclass.heinz.cmu.edu/doc/TLCL-25.12.pdf "The Linux Command Line, 7th Internet Edition"))
+Author/Shotts includes these as text-editing commands, but they should not receive equal practice time. ([Linux Class](https://linuxclass.heinz.cmu.edu/doc/TLCL-25.12.pdf "The Linux Command Line, 7th Internet Edition"))
 
 ## Drill 4.1: Fix a transposed character
 
@@ -481,7 +483,7 @@ should be treated as a mistake when tab completion could have been used.
 
 # Part 6: History drills
 
-Bash stores previous commands in its history list. Shotts emphasizes that history becomes especially useful when combined with command-line editing. ([Linux Class](https://linuxclass.heinz.cmu.edu/doc/TLCL-25.12.pdf "The Linux Command Line, 7th Internet Edition"))
+Bash stores previous commands in its history list. Author/Shotts emphasizes that history becomes especially useful when combined with command-line editing. ([Linux Class](https://linuxclass.heinz.cmu.edu/doc/TLCL-25.12.pdf "The Linux Command Line, 7th Internet Edition"))
 
 ## Drill 6.1: Seed the history list
 
@@ -612,7 +614,7 @@ These shortcuts perform the same operations as Up-arrow and Down-arrow. ([Linux 
 
 History expansion is worth recognizing, but it should **not** become the student's default workflow. `Ctrl-r` followed by editing is generally easier to inspect and control.
 
-Shotts warns that some history expansions can execute an unintended previous command. He recommends appending `:p` to print an expansion before running it. ([Linux Class](https://linuxclass.heinz.cmu.edu/doc/TLCL-25.12.pdf "The Linux Command Line, 7th Internet Edition"))
+Author/Shotts warns that some history expansions can execute an unintended previous command. He recommends appending `:p` to print an expansion before running it. ([Linux Class](https://linuxclass.heinz.cmu.edu/doc/TLCL-25.12.pdf "The Linux Command Line, 7th Internet Edition"))
 
 ## Drill 7.1: Repeat the last command
 
@@ -704,7 +706,7 @@ Ctrl-l
 
 # Part 9: Record a terminal session with `script`
 
-The `script` command records a terminal session to a file. Shotts presents its basic syntax as `script [file]`. ([Linux Class](https://linuxclass.heinz.cmu.edu/doc/TLCL-25.12.pdf "The Linux Command Line, 7th Internet Edition"))
+The `script` command records a terminal session to a file. Author/Shotts presents its basic syntax as `script [file]`. ([Linux Class](https://linuxclass.heinz.cmu.edu/doc/TLCL-25.12.pdf "The Linux Command Line, 7th Internet Edition"))
 
 Start recording:
 

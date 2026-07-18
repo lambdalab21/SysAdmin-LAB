@@ -1,3 +1,5 @@
+#rsync
+#LAB #deployment #deployment-document
 # Site2 Deployment Runbook — `rsync` + Backup + Logs
 
 ## Purpose

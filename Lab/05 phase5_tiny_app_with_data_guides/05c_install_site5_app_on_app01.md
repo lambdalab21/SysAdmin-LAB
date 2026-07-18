@@ -1,3 +1,4 @@
+#LAB #deployment #backend
 # 05c — Install `site5-app` on `app01`
 
 ## Purpose

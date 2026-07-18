@@ -1,3 +1,4 @@
+#deployment #LAB 
 # Phase 2 Lab: Deploy `site2` with `rsync`
 
 ## Purpose

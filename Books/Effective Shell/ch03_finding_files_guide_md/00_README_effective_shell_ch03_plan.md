@@ -1,8 +1,10 @@
+#Book/Effective-Shell #Author/Kerr 
+#drill #find #search 
 # Effective Shell Chapter 3: Finding Files — Study Plan
 
 A cleaner phrasing: “Create a reading guide for Chapter 3, ‘Finding Files and Folders,’ of *Effective Shell* that solidifies what he learned in Chapter 17 of *The Linux Command Line*.”
 
-Use these files after he has already studied Shotts Chapter 17.
+Use these files after he has already studied Author/Shotts Chapter 17.
 
 Recommended schedule:
 

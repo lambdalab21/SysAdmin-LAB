@@ -1,3 +1,5 @@
+#Book/How-Linux-Works #Author/Ward 
+#network
 # Ward Ch. 10 Reading Guide — Network Applications and Services
 
 Book: Brian Ward, *How Linux Works*, 3rd ed.  

@@ -1,3 +1,4 @@
+#LAB #deployment
 To copy files to a server using the `scp` command, you need specific permissions both for authenticating to the server and for writing to the target directory. [1, 2]
 
 Here is exactly what you need:

@@ -1,3 +1,5 @@
+#LAB #deployment
+#ssh
 
 ---
 
@@ -58,7 +60,7 @@ nginx  = the user/group that reads files for the web server
 
 ---
 
-# Day 1: Shotts Chapter 9 — Permissions
+# Day 1: Author/Shotts Chapter 9 — Permissions
 
 ## Goal
 
@@ -70,7 +72,7 @@ You should also be able to diagnose basic website permission problems without gu
 
 ## Part 1: Read with a Purpose
 
-Read or review Shotts Chapter 9.
+Read or review Author/Shotts Chapter 9.
 
 Focus on:
 

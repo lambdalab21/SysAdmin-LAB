@@ -1,3 +1,4 @@
+#deployment #LAB 
 # Phase 3 Lab: Deploy `site03` with Git + `rsync`
 
 ## Purpose

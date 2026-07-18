@@ -1,6 +1,8 @@
+#Book/The-Linux-Command-Line  #Author/Shotts 
+#find  #search 
 # The Linux Command Line, Chapter 17 Drills: Searching for Files
 
-A more natural phrasing: “Please create drills to practice Shotts’s Chapter 17.”
+A more natural phrasing: “Please create drills to practice Author/Shotts’s Chapter 17.”
 
 Chapter 17 of *The Linux Command Line* focuses on **searching for files**. The important commands and ideas are:
 

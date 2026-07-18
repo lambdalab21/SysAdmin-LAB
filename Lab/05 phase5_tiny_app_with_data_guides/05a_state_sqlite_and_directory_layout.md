@@ -1,3 +1,4 @@
+#LAB #deployment #backend
 # 05a — State, SQLite, and Directory Layout
 
 # Part 1 — What is state?

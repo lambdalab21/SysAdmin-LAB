@@ -1,6 +1,9 @@
+#Book/The-Linux-Command-Line Author/Shotts 
+#README 
+#redirection
 # TLCL Chapter 6 — Redirection and Pipeline Thinking Plan
 
-Use this package while reading Shotts Chapter 6.
+Use this package while reading Author/Shotts Chapter 6.
 
 Recommended split:
 

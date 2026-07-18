@@ -1,3 +1,5 @@
+#LAB #deployment
+#ssh
 
  **Static sites are the right next step.** In fact, they are better than a dynamic app right now.
 

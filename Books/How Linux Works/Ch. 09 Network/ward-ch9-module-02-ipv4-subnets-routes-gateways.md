@@ -1,3 +1,5 @@
+#Author/Ward #Book/How-Linux-Works 
+#network 
 # Module 2 — IPv4, Subnets, CIDR, Routes, and Gateways
 
 **Source:** Brian Ward, *How Linux Works*, Chapter 9.

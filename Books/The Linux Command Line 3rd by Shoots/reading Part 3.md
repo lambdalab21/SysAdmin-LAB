@@ -1,4 +1,6 @@
-Most of Shotts Part III should **not** be read as one uninterrupted block. Insert each chapter when Ward or the server project creates a reason to care.
+#Book/The-Linux-Command-Line  #Author/Shotts 
+#README 
+Most of Author/Shotts Part III should **not** be read as one uninterrupted block. Insert each chapter when Ward or the server project creates a reason to care.
 
 In the 3rd edition, Part III is:
 
@@ -19,7 +21,7 @@ That chapter list is from No Starch Press’s official table of contents. ([nost
 
 ## Recommended placement
 
-| Shotts chapter                    | When to read it                                                 | Pair with                                      |          Priority |
+| Author/Shotts chapter                    | When to read it                                                 | Pair with                                      |          Priority |
 | --------------------------------- | --------------------------------------------------------------- | ---------------------------------------------- | ----------------: |
 | **Ch. 14 — Package Management**   | Now or immediately before installing Nginx and networking tools | Ward Ch. 7 and the AlmaLinux/Ubuntu comparison |              High |
 | **Ch. 15 — Storage Media**        | Later, with disks and filesystems                               | Ward Ch. 4                                     |   High, but delay |
@@ -37,7 +39,7 @@ The key point:
 
 # Read now: Ch. 14 and Ch. 17
 
-## Shotts Ch. 14 — Package Management
+## Author/Shotts Ch. 14 — Package Management
 
 Read this now because he has already used:
 
@@ -95,7 +97,7 @@ This directly supports the Nginx project and his two-distribution lab.
 
 ---
 
-## Shotts Ch. 17 — Searching for Files
+## Author/Shotts Ch. 17 — Searching for Files
 
 Read this soon. It is more important than it initially looks.
 
@@ -147,7 +149,7 @@ Know how to locate the path.
 
 # Read during the deployment phase: Ch. 18
 
-## Shotts Ch. 18 — Archiving and Backup
+## Author/Shotts Ch. 18 — Archiving and Backup
 
 Read this after the first successful `scp` deployment and before relying on `rsync --delete`.
 
@@ -232,7 +234,7 @@ tar -czf "$HOME/backups/site1-$timestamp.tar.gz" "$HOME/projects/site1"
 
 # Read before serious Bash scripting: Ch. 19 and Ch. 20
 
-## Shotts Ch. 19 — Regular Expressions
+## Author/Shotts Ch. 19 — Regular Expressions
 
 Read this after networking or alongside log inspection.
 
@@ -268,7 +270,7 @@ The correct target is:
 
 ---
 
-## Shotts Ch. 20 — Text Processing
+## Author/Shotts Ch. 20 — Text Processing
 
 Read this before or during Ward Ch. 11 shell scripting.
 
@@ -330,7 +332,7 @@ This is where Unix philosophy becomes concrete.
 
 # Read after text processing: Ch. 21
 
-## Shotts Ch. 21 — Formatting Output
+## Author/Shotts Ch. 21 — Formatting Output
 
 Read selectively after Ch. 20.
 
@@ -365,14 +367,14 @@ Useful, but do not delay the infrastructure project for it.
 
 # Delay Ch. 15 until Ward Ch. 4
 
-## Shotts Ch. 15 — Storage Media
+## Author/Shotts Ch. 15 — Storage Media
 
 Read this with Ward Ch. 4, not immediately.
 
 The pairing is strong:
 
 ```text
-Shotts = commands under his fingers
+Author/Shotts = commands under his fingers
 Ward   = filesystems, disks, mounts, and internal model
 ```
 
@@ -419,7 +421,7 @@ Then use it to understand where deployed files physically live and how storage i
 
 # Delay Ch. 23 until Ward Ch. 15–16
 
-## Shotts Ch. 23 — Compiling Programs
+## Author/Shotts Ch. 23 — Compiling Programs
 
 Read this much later.
 
@@ -450,7 +452,7 @@ But it is not a summer priority unless he is especially curious.
 
 # Skip or skim Ch. 22
 
-## Shotts Ch. 22 — Printing
+## Author/Shotts Ch. 22 — Printing
 
 Skim it if he wants to understand Unix printing pipelines or if he actually administers printers.
 
@@ -476,15 +478,15 @@ Here is the clean combined path.
 
 ```text
 Ward 1–2
-→ Shotts 1–10 selectively
+→ Author/Shotts 1–10 selectively
 → Ward 7–8
 ```
 
 ## Next: prepare for networking
 
 ```text
-Shotts 14 — Package Management
-→ Shotts 17 — Searching for Files
+Author/Shotts 14 — Package Management
+→ Author/Shotts 17 — Searching for Files
 ```
 
 These chapters immediately improve his Nginx and troubleshooting work.
@@ -493,7 +495,7 @@ These chapters immediately improve his Nginx and troubleshooting work.
 
 ```text
 Ward 9
-→ Shotts 16
+→ Author/Shotts 16
 → selected Lucas chapters
 → Ward 10
 → Evans networking zines
@@ -505,16 +507,16 @@ Ward 9
 static Nginx deployment
 → scp
 → rsync
-→ Shotts 18 — Archiving and Backup
+→ Author/Shotts 18 — Archiving and Backup
 ```
 
 ## Automation phase
 
 ```text
-Shotts 19 — Regular Expressions
-→ Shotts 20 — Text Processing
+Author/Shotts 19 — Regular Expressions
+→ Author/Shotts 20 — Text Processing
 → Ward 11
-→ Shotts Part IV scripting chapters
+→ Author/Shotts Part IV scripting chapters
 → deploy.sh
 → check-site.sh
 → backup-site.sh
@@ -524,7 +526,7 @@ Shotts 19 — Regular Expressions
 
 ```text
 Ward 4
-→ Shotts 15 — Storage Media
+→ Author/Shotts 15 — Storage Media
 → Ward 6
 → backend app managed by systemd
 ```
@@ -533,7 +535,7 @@ Ward 4
 
 ```text
 Ward 15–16
-→ Shotts 23 — Compiling Programs
+→ Author/Shotts 23 — Compiling Programs
 → selected Kerrisk chapters
 → Ward 17 containers
 ```

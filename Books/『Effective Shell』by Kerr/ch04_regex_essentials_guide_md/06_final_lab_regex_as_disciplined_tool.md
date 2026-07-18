@@ -1,7 +1,38 @@
+#Book/Effective-Shell #Author/Kerr
 # Effective Shell Chapter 4: Regular Expression Essentials
 
-This guide is a follow-up to Shotts Chapter 19, **Regular Expressions**.
+This guide is a follow-up to Author/Shotts Chapter 19, **Regular Expressions**.
 
+<<<<<<< HEAD
+=======
+Main purpose:
+
+```text
+Author/Shotts Chapter 19 introduced regex symbols.
+Kerr Chapter 4 should teach disciplined regex construction.
+```
+
+Core rule:
+
+```text
+Do not start with a complicated regex.
+Start with examples, write the English rule, then build the regex one piece at a time.
+```
+
+Disciplined regex workflow:
+
+```text
+1. Write valid examples.
+2. Write invalid or suspicious examples.
+3. Write the English rule.
+4. Build the smallest regex that matches something useful.
+5. Test for false positives.
+6. Test for false negatives.
+7. Add one feature only when needed.
+8. Explain every symbol.
+```
+
+>>>>>>> origin/publish
 One-time lab setup:
 
 ```bash

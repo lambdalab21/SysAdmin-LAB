@@ -1,3 +1,5 @@
+#Book/Wizard-Zine 
+#README 
 Yes. Do one short exercise immediately after reading it. Do **not** assign another book.
 
 Evans describes the zine as being about how she learns difficult programming topics: asking good questions, reading source code, debugging, software design, and developing the ability to “figure it out anyway.” ([wizard zines](https://wizardzines.com/zines/wizard/?utm_source=chatgpt.com "So you want to be a wizard")) The zine also argues that deeper understanding is most worth the effort when debugging a difficult problem, improving performance, or building something new.

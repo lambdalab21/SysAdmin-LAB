@@ -1,3 +1,5 @@
+#Book/The-Linux-Command-Line  Author/Shotts 
+#text-processing #regex  
 # Chapter 20 Text Processing Practice Using Chapter 19 Regex
 
 A cleaner phrasing: “Can you make Chapter 20 text-processing practice exercises that use regular expressions from Chapter 19?”

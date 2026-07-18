@@ -1,3 +1,5 @@
+#Author/Ward #Book/How-Linux-Works 
+#network 
 # Ward Ch. 10 — Feynman Questions and Checkpoints
 
 Use this file while reading. Stop at each checkpoint and explain the idea in plain language.

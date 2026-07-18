@@ -1,3 +1,5 @@
+#text-processing 
+#awk 
 ## Brodie
 
 [Why Every Linux User Needs to learn Awk](https://www.youtube.com/watch?v=PnDzUhmP26c)

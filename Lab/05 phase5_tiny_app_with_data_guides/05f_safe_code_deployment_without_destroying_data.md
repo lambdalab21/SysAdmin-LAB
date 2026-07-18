@@ -1,3 +1,4 @@
+#LAB #deployment #backend
 # 05f — Safe Code Deployment Without Destroying Data
 
 ## Purpose

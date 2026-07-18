@@ -1,3 +1,4 @@
+#LAB #deployment #backend
 # 05d — systemd and Nginx for `site5-app`
 
 ## Purpose

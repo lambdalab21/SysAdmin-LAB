@@ -1,3 +1,5 @@
+#Book/The-Linux-Command-Line Author/Shotts 
+#text-processing #regex
 # TLCL Chapter 20 Practice Using Chapter 19 Regular Expressions
 
 These exercises combine:

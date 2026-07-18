@@ -1,3 +1,5 @@
+#LAB #deployment
+#ssh
 # 10 — `site3` Git-Tracked Deployment: Backup + Log Checks
 
 ## Role of this lab

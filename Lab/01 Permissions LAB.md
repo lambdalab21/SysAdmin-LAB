@@ -1,3 +1,5 @@
+#LAB #deployment #deployment-document
+#permission 
 [LAB](https://chatgpt.com/s/t_6a17a20cd6688191ae5146efc6f10e26)
 
 Below is a permission lab he can run on **both machines**.

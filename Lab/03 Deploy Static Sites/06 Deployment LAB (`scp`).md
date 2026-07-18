@@ -1,4 +1,4 @@
-
+#LAB #deployment
 ```text
 copy these files from this machine to that machine over SSH
 ```

@@ -1,6 +1,8 @@
+#Book/The-Linux-Command-Line  #Author/Shotts 
+#standard-IO
 # The Linux Command Line, Chapter 6: Redirection and Pipeline Thinking
 
-This guide is for Shotts, *The Linux Command Line*, Chapter 6.
+This guide is for Author/Shotts, *The Linux Command Line*, Chapter 6.
 
 A cleaner phrasing: “Please create Markdown file(s) for Chapter 6, using disciplined thinking.”
 

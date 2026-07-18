@@ -1,3 +1,5 @@
+#LAB #deployment
+#ssh
 You fixed the SSH issue, but the bigger win is not that SSH works now. The bigger win is that you learned how to follow evidence.
 
 Here is the blunt version: your first attempt had good data, but weak interpretation. The logs were telling you the answer, but you rushed past them.

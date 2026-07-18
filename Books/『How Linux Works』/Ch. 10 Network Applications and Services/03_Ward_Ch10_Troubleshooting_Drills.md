@@ -1,3 +1,5 @@
+#Book/How-Linux-Works #Author/Ward 
+#network
 # Ward Ch. 10 Troubleshooting Drills
 
 These drills force evidence-based thinking. Do not guess. Use commands to prove each layer.

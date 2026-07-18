@@ -1,0 +1,432 @@
+# Shotts Chapter 25: Starting a Project
+
+This guide is for Chapter 25, **Starting a Project**, from William Shotts's *The Linux Command Line*.
+
+The chapter starts the continuing shell-script project: a small HTML system-information report.
+
+The point is not to memorize HTML or copy shell syntax. The point is to learn how a useful script grows:
+
+```text
+minimal working script
+→ add one piece of data
+→ name repeated/changing values
+→ understand variable expansion
+→ use a here document for readable output
+→ keep testing after every small change
+```
+
+Feynman analogy:
+
+```text
+Do not build the whole house in your head.
+First build a small frame that stands.
+Then add one wall.
+Then label the reusable parts.
+Then replace messy repeated work with a cleaner method.
+```
+
+Working directory for all three days:
+
+```bash
+mkdir -p ~/tlcl-ch25-starting-project
+cd ~/tlcl-ch25-starting-project
+```
+
+Discipline rule:
+
+```text
+Before typing: predict what the script should print.
+After running: inspect the output.
+Before moving on: explain what changed and why it helped.
+```
+
+---
+# Day 2: Variables, Constants, and Assignment
+
+## Sections to read today
+
+Read before Exercise 1:
+
+```text
+Variables and Constants
+```
+
+Read before Exercise 4:
+
+```text
+Assigning Values to Variables and Constants
+```
+
+Day 2 is about naming values and understanding expansion. Do not rush. Many Bash bugs come from variables, empty values, and quoting mistakes.
+
+---
+
+# What he should gain today
+
+He should gain this idea:
+
+```text
+A variable gives a name to a value, but Bash expansion can surprise careless programmers.
+```
+
+Mindful question before starting:
+
+```text
+What am I gaining from this section?
+```
+
+Answer:
+
+```text
+I am learning how scripts store values, reuse values, and accidentally break when a variable is empty or unquoted.
+```
+
+---
+
+# After reading: concept questions for “Variables and Constants”
+
+Answer without looking back:
+
+1. What is a variable in a shell script?
+2. Why might a script use a variable for the page title?
+3. What is a constant in practical scripting?
+4. What happens when Bash expands an undefined variable?
+5. Why can an empty variable be dangerous?
+6. Why should a disciplined programmer inspect variable values during learning?
+7. What is the difference between the variable name and the variable value?
+
+Do not do Exercise 1 until these are answered.
+
+---
+
+# Exercise 1: Observe variable expansion
+
+## Skill being gained
+
+He is learning that `$name` is replaced by the variable's value.
+
+## Predict before typing
+
+Before running, predict each output line.
+
+```bash
+TITLE='System Information Report'
+echo TITLE
+echo $TITLE
+echo '$TITLE'
+echo "$TITLE"
+```
+
+Write your prediction:
+
+```text
+echo TITLE will print:
+echo $TITLE will print:
+echo '$TITLE' will print:
+echo "$TITLE" will print:
+```
+
+## Run
+
+```bash
+TITLE='System Information Report'
+echo TITLE
+echo $TITLE
+echo '$TITLE'
+echo "$TITLE"
+```
+
+## Explain-back
+
+Answer:
+
+1. When did Bash expand the variable?
+2. When did it not expand the variable?
+3. What did single quotes do?
+4. What did double quotes allow?
+5. Why is this important for scripts?
+
+---
+
+# Exercise 2: Observe empty-variable danger
+
+## Skill being gained
+
+He is learning that undefined variables expand to nothing.
+
+## Predict before typing
+
+Do not run yet.
+
+```bash
+echo "Value is: $DOES_NOT_EXIST"
+```
+
+Predict:
+
+```text
+What will appear after the colon?
+Why?
+```
+
+## Run
+
+```bash
+echo "Value is: $DOES_NOT_EXIST"
+```
+
+Now create a safe lab:
+
+```bash
+mkdir -p empty-var-lab
+cd empty-var-lab
+printf 'hello
+' > source.txt
+DEST='copy.txt'
+cp source.txt "$DEST"
+ls -l
+cd ..
+```
+
+Now inspect, but do not run destructive examples. Write this danger in English:
+
+```text
+If a variable intended to hold a filename is empty, a command may receive fewer arguments than expected or operate on the wrong target.
+```
+
+## Explain-back
+
+Answer:
+
+1. Why is an empty variable not always obvious?
+2. Why do careful scripts validate important variables?
+3. Why should filenames usually be quoted?
+4. What kind of mistake could happen if `$DEST` were empty?
+
+---
+
+# Exercise 3: Add variables to the report script
+
+## Skill being gained
+
+He is learning to replace repeated literal text with named values.
+
+## Predict before typing
+
+Write:
+
+```text
+TITLE should appear in the HTML title and h1 heading.
+CURRENT_TIME should appear in a paragraph.
+HOSTNAME_VALUE should appear in a paragraph.
+```
+
+Edit `sys-info-page` into this version:
+
+```bash
+cat > sys-info-page <<'SCRIPT'
+#!/usr/bin/env bash
+
+# sys-info-page - generate a simple system information page
+
+TITLE="System Information Report"
+CURRENT_TIME="$(date)"
+HOSTNAME_VALUE="$(hostname)"
+
+echo '<!doctype html>'
+echo '<html>'
+echo '<head>'
+echo "  <title>$TITLE</title>"
+echo '</head>'
+echo '<body>'
+echo "  <h1>$TITLE</h1>"
+echo "  <p>Generated: $CURRENT_TIME</p>"
+echo "  <p>Hostname: $HOSTNAME_VALUE</p>"
+echo '  <p>Generated by a Bash script.</p>'
+echo '</body>'
+echo '</html>'
+SCRIPT
+
+chmod +x sys-info-page
+./sys-info-page > report.html
+```
+
+Inspect:
+
+```bash
+grep -E '<title>|<h1>|Generated:|Hostname:' report.html
+```
+
+## Explain-back
+
+Answer:
+
+1. Why did `TITLE` help readability?
+2. Why was `$(date)` used?
+3. When was `CURRENT_TIME` assigned?
+4. If the script ran again one minute later, would the time change? Why?
+5. Why were double quotes used around HTML lines containing variables?
+
+---
+
+# Read before Exercise 4
+
+Now read:
+
+```text
+Assigning Values to Variables and Constants
+```
+
+Mindful question:
+
+```text
+What am I gaining from this section?
+```
+
+Answer:
+
+```text
+I am learning the exact rules for variable assignment, because small spacing and quoting mistakes can change the meaning of Bash commands.
+```
+
+---
+
+# After reading: concept questions for assignment
+
+Answer without looking back:
+
+1. Why must there be no spaces around `=` in a shell assignment?
+2. How do you assign a value containing spaces?
+3. How can command substitution assign command output to a variable?
+4. How can arithmetic expansion assign a calculated value?
+5. Why are braces useful in `${name}`?
+6. What is the difference between `name=value` and `$name`?
+7. Why is `name = value` not the same as `name=value`?
+
+---
+
+# Exercise 4: Assignment rule drill
+
+## Skill being gained
+
+He is learning to distinguish assignment from command execution.
+
+## Predict before typing
+
+For each line, write whether it is valid assignment or likely an error:
+
+```bash
+A=5
+B = 5
+C='hello world'
+D=$(hostname)
+E=$((5 + 7))
+```
+
+## Run safely
+
+```bash
+A=5
+C='hello world'
+D=$(hostname)
+E=$((5 + 7))
+
+echo "A=$A"
+echo "C=$C"
+echo "D=$D"
+echo "E=$E"
+```
+
+Now test the bad spacing in a subshell so it does not affect the session:
+
+```bash
+bash -c 'B = 5'
+```
+
+## Explain-back
+
+Answer:
+
+1. Why did `B = 5` fail?
+2. What did Bash think `B` was?
+3. Why are spaces allowed inside quotes but not around assignment `=`?
+4. Why is this easy for beginners to mistype?
+
+---
+
+# Exercise 5: Use braces to protect variable names
+
+## Skill being gained
+
+He is learning why `${variable}` can be clearer than `$variable`.
+
+## Predict before typing
+
+Predict:
+
+```bash
+name='report'
+echo "$name.html"
+echo "${name}.html"
+```
+
+Now run:
+
+```bash
+name='report'
+echo "$name.html"
+echo "${name}.html"
+```
+
+Now predict this:
+
+```bash
+name='report'
+echo "$name_final.html"
+echo "${name}_final.html"
+```
+
+Run:
+
+```bash
+name='report'
+echo "$name_final.html"
+echo "${name}_final.html"
+```
+
+## Explain-back
+
+Answer:
+
+1. Why did the first pair behave similarly?
+2. Why did the second pair differ?
+3. What variable name did Bash look for in `$name_final`?
+4. When should he prefer braces for clarity?
+
+---
+
+# Day 2 finish standard
+
+He is done with Day 2 only if he can explain:
+
+```text
+A variable assignment has no spaces around =.
+$name means “expand this variable.”
+Undefined variables expand to empty text.
+Single quotes prevent expansion.
+Double quotes allow variable expansion but protect spaces.
+Command substitution can store command output in a variable.
+${name} protects the variable name boundary.
+```
+
+He should also be able to explain why this is dangerous:
+
+```bash
+cp $source $destination
+```
+
+and why this is usually safer:
+
+```bash
+cp -- "$source" "$destination"
+```

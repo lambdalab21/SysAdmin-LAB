@@ -1,4 +1,4 @@
-
+#HLW #Book/How-Linux-Works 
 # What he should pay attention to in Ward Ch. 7
 
 Ward Ch. 7 is about **system configuration**. For him, the important parts are not trivia. The important question is:

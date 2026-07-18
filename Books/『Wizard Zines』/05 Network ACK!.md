@@ -1,3 +1,5 @@
+#Book/Wizard-Zine 
+#network 
 # Networking! ACK! — Short Networking Drills
 
 [SCRIBD](https://www.scribd.com/document/661678590/Networking-ACK-Julia-Evans?v=0.451)

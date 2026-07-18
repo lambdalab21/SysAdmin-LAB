@@ -1,11 +1,12 @@
+#find  #Book/The-Linux-Command-Line 
 # Effective Shell Chapter 3: Finding Files
 
-This guide is designed to reinforce Shotts, *The Linux Command Line*, Chapter 17.
+This guide is designed to reinforce Author/Shotts, *The Linux Command Line*, Chapter 17.
 
 Main bridge:
 
 ```text
-Shotts Chapter 17 teaches the mechanics.
+Author/Shotts Chapter 17 teaches the mechanics.
 Effective Shell Chapter 3 helps the structure click.
 ```
 
@@ -83,9 +84,9 @@ find ~/effective-shell-ch03-lab -maxdepth 3 -print
 
 ## Purpose
 
-This reading guide uses *Effective Shell* Chapter 3 to make Shotts Chapter 17 stick.
+This reading guide uses *Effective Shell* Chapter 3 to make Author/Shotts Chapter 17 stick.
 
-Shotts gave him many useful `find` tests:
+Author/Shotts gave him many useful `find` tests:
 
 ```text
 -type
@@ -459,7 +460,7 @@ Effective Shell’s important lesson is that `-name`, `-type`, `-or`, `-not`, an
 1. Why does the starting point come before the expression?
 2. What is the search expression?
 3. Why is this mental model useful?
-4. How does this connect to Shotts Chapter 17?
+4. How does this connect to Author/Shotts Chapter 17?
 
 ---
 
@@ -509,8 +510,8 @@ I can recreate the practice files if needed.
 
 Answer in writing:
 
-1. What does Effective Shell explain better than Shotts for this topic?
-2. What did Shotts explain more completely?
+1. What does Effective Shell explain better than Author/Shotts for this topic?
+2. What did Author/Shotts explain more completely?
 3. What is the difference between `-name` and `-path`?
 4. Why are quotes necessary around wildcard patterns?
 5. Why is `find` better understood as a search expression language?

@@ -1,7 +1,27 @@
+#Book/Effective-Shell #Author/Kerr 
+#pipeline 
 # Effective Shell Chapter 2: Thinking in Pipelines
 
-This guide is a follow-up to Shotts, *The Linux Command Line*, Chapter 6 on redirection.
+This guide is a follow-up to Author/Shotts, *The Linux Command Line*, Chapter 6 on redirection.
 
+<<<<<<< HEAD
+=======
+Author/Shotts Chapter 6 should have taught the mechanics:
+
+```text
+stdin
+stdout
+stderr
+>
+>>
+<
+2>
+2>&1
+|
+tee
+```
+
+>>>>>>> origin/publish
 Kerr Chapter 2 should make him more effective:
 
 ```text

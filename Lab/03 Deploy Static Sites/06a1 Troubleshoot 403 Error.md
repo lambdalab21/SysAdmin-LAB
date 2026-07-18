@@ -1,3 +1,4 @@
+#LAB #deployment
 A `403 Forbidden` response is a good troubleshooting exercise.
 
 It already tells him something important:

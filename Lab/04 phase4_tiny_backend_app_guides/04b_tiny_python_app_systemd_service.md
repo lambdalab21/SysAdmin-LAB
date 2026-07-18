@@ -1,3 +1,4 @@
+#LAB #deployment #backend
 # 04b — Manage the Tiny Python App with systemd
 
 ## Purpose

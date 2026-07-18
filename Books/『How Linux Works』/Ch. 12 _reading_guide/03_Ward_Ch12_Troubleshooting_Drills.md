@@ -1,3 +1,5 @@
+#Book/How-Linux-Works #Author/Ward 
+#network
 # Ward Ch. 12 Troubleshooting Drills
 
 These drills are designed to break file transfers in controlled ways.

@@ -1,8 +1,9 @@
+#Book/Effective-Shell #Author/Kerr
 # Effective Shell Chapter 4: Regular Expression Essentials — Study Plan
 
 A cleaner phrasing: “Create Markdown file(s) for Chapter 4, ‘Regular Expression Essentials,’ by Kerr. Use the Feynman method and train disciplined thinking rather than mindless command typing.”
 
-Use this after Shotts Chapter 19.
+Use this after Author/Shotts Chapter 19.
 
 Recommended schedule:
 

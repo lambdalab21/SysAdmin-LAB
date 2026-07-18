@@ -1,3 +1,5 @@
+#LAB #deployment
+#ssh
 
 This phase is not “install Nginx and copy files.” That is too shallow.
 
