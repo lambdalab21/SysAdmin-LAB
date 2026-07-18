@@ -33,8 +33,6 @@ ps -o pid,ppid,stat,ni,cmd
 echo "$$"
 ```
 
-Say aloud: `PID = process ID`; `PPID = parent process ID`; `$$ = current shell PID`.
-
 ## 2. Foreground process and Ctrl-c
 
 ```bash

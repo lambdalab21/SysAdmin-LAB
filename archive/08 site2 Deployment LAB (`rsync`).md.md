@@ -1,155 +1,10 @@
 #deployment #LAB 
 # Phase 2 Lab: Deploy `site2` with `rsync`
 
-## Purpose
-
-You already deployed `site1` with `scp`.
-
-Keep `site1` as the **scp baseline**.
-
-Use this lab to deploy a new site:
-
-```text
-site1 = copied with scp
-site2 = synchronized with rsync
-```
-
-This makes the comparison clear.
-
-The goal is not merely to run `rsync`.
-
-The goal is to build this habit:
-
 ```text
 question → command → evidence → conclusion → next narrow question
 ```
-
-Do not rush through commands.
-
-If you cannot explain what a command is testing, do not run it yet.
-
----
-
-# Mental Model: Feynman Version
-
-Imagine the server directory is a display shelf.
-
-`scp` is like carrying items one by one to the shelf.
-
-If you stop carrying one item, the old item may still remain on the shelf.
-
-`rsync` is closer to saying:
-
-```text
-Make the shelf match this box of items.
-```
-
-But that power is dangerous.
-
-With `--delete`, `rsync` can remove things from the shelf if they are not in your local box.
-
-So before using it for real, you ask:
-
-```text
-What would rsync add?
-What would rsync update?
-What would rsync delete?
-Is the destination path exactly correct?
-```
-
-That is why dry run matters.
-
----
-
-# Anti-Rushing Rule
-
-Before each important command, write:
-
-```text
-I am about to run:
-
-This command tests:
-
-If I am right, I expect:
-
-If I am wrong, I expect:
-```
-
-After each important command, write:
-
-```text
-Exact output or exact evidence:
-
-What this proves:
-
-What this does not prove:
-
-Next narrow question:
-```
-
-Do not write only:
-
-```text
-worked
-failed
-done
-probably
-```
-
-Those are not disciplined conclusions.
-
----
-
-# Green Check Habit
-
-Use checkboxes, but do not check them mindlessly.
-
-A checkbox is earned only when you have evidence.
-
-Example:
-
-```text
-[ ] Dry run output inspected carefully
-```
-
-You may check it only after you can say:
-
-```text
-The dry run would copy these files:
-The dry run would delete these files:
-The destination path is:
-This is safe because:
-```
-
-Small green checks are useful only if they represent real understanding.
-
----
-
-# Starting Assumptions
-
-Already done:
-
-```text
-Nginx is installed.
-Nginx is running.
-The firewall allows HTTP.
-The deployment user exists.
-/var/www/site1/public exists.
-site1 works.
-```
-
-This lab creates:
-
-```text
-/var/www/site2/public/
-~/projects/site2/public/
-```
-
----
-
 # Part 1: Decide Why `site2` Exists
-
-Stop here.
 
 Explain before typing commands:
 
@@ -163,13 +18,6 @@ Answer:
 site1 is the scp baseline.
 site2 is the rsync experiment.
 Keeping both lets me compare deployment methods without confusing the results.
-```
-
-Green check:
-
-```text
-[ ] I can explain why site1 remains the scp baseline.
-[ ] I can explain why site2 is the rsync experiment.
 ```
 
 ---
@@ -232,27 +80,11 @@ find ./public -type f -print
 Stop and answer:
 
 ```text
-What files are in the source directory?
+What files are in the source directory? public/index.html and public/style.css
 
-Which directory is the source of truth?
+Which directory is the source of truth? ~/projects/site2/public on the development machine. 
 
-Should I edit files directly on app01 after this?
-```
-
-Expected conclusion:
-
-```text
-~/projects/site2/public/ is the source of truth.
-app01 receives deployed files.
-Do not edit deployed files manually on app01.
-```
-
-Green check:
-
-```text
-[ ] I inspected the local source files.
-[ ] I know which directory is the source of truth.
-[ ] I will not manually edit site2 files on app01.
+Should I edit files directly on app01 after this? No, always edit files locally and deploy. 
 ```
 
 ---
@@ -279,14 +111,6 @@ Explain like you are teaching a younger student:
 deploy owns the files because deploy writes during deployment.
 nginx is the group because Nginx needs to read the files.
 Nginx should not need write permission to static website files.
-```
-
-Green check:
-
-```text
-[ ] deploy can write to /var/www/site2/public.
-[ ] nginx can read from /var/www/site2/public.
-[ ] I can explain why nginx should not own the deployment process.
 ```
 
 Optional evidence commands:
@@ -341,9 +165,9 @@ sudo systemctl reload nginx
 Stop and answer:
 
 ```text
-What does nginx -t prove?
+What does nginx -t prove? That the configuration syntax is valid. 
 
-What does it not prove?
+What does it not prove? That the ifles exist or that the site is reachable in a browser. 
 ```
 
 Expected answer:
@@ -351,14 +175,6 @@ Expected answer:
 ```text
 nginx -t proves that the Nginx configuration syntax is valid.
 It does not prove that the website files exist or that the browser can reach the site.
-```
-
-Green check:
-
-```text
-[ ] I ran nginx -t before reload.
-[ ] I did not reload a broken config.
-[ ] I understand that config syntax and website content are separate.
 ```
 
 Exit:
@@ -396,36 +212,17 @@ q
 Write short answers:
 
 ```text
--a means:
+-a means: Archive Mode. 
 
--v means:
+-v means: Verbose. 
 
--n means:
+-n means: Dry Run. 
 
---delete means:
+--delete means: Delete Files in Destination that are missing from the source. 
 
-Trailing slash matters because:
+Trailing slash matters because: Source/ copies the contents of source into destinations. Source copies the source directory itself. 
 ```
 
-Minimum expected answers:
-
-```text
--a preserves important file attributes and copies recursively.
--v prints more detail.
--n is dry run; it shows what would happen without changing files.
---delete removes destination files that are not in the source.
-The trailing slash changes whether rsync copies the directory itself or the contents of the directory.
-```
-
-Green check:
-
-```text
-[ ] I can explain -a.
-[ ] I can explain -v.
-[ ] I can explain -n.
-[ ] I can explain --delete.
-[ ] I can explain the trailing slash problem.
-```
 
 ---
 
@@ -443,34 +240,20 @@ Run dry run:
 rsync -avn ./public/ deploy@app01:/var/www/site2/public/
 ```
 
-Stop.
-
-Do not run the real command yet.
-
 Answer:
 
 ```text
-What is the source path?
+What is the source path? ./public/
 
-What is the destination path?
+What is the destination path? deploy@192.168.0.107:/var/www/site2/public/
 
-What files would be copied?
+What files would be copied? index.html and style.css
 
-Would anything be deleted?
+Would anything be deleted? No. 
 
-Is this the site2 directory, not site1?
+Is this the site2 directory, not site1? Yes. 
 
-Is the trailing slash correct?
-```
-
-Green check:
-
-```text
-[ ] I confirmed the source is ./public/.
-[ ] I confirmed the destination is /var/www/site2/public/.
-[ ] I confirmed this is not site1.
-[ ] I inspected the dry run output.
-[ ] I did not run the real command before understanding the dry run.
+Is the trailing slash correct? Yes. 
 ```
 
 ---
@@ -498,13 +281,13 @@ curl -v -H 'Host: site2.local' http://app01/
 Stop and explain:
 
 ```text
-What changed on app01?
+What changed on app01? Static files were updated on disk. 
 
-What proves it?
+What proves it? Find shows files and curl returns site2 content. 
 
-Did Nginx need to restart?
+Did Nginx need to restart? No. NGinx serves static files from disk. 
 
-Why or why not?
+Why or why not? NGinx serves static files from disk. 
 ```
 
 Expected conclusion:
@@ -512,15 +295,6 @@ Expected conclusion:
 ```text
 The static files changed on disk.
 Nginx serves files from disk, so static file updates do not require an Nginx restart.
-```
-
-Green check:
-
-```text
-[ ] Remote files exist.
-[ ] curl returns the site2 page.
-[ ] I verified with the correct Host header.
-[ ] I did not restart Nginx unnecessarily.
 ```
 
 ---
@@ -554,11 +328,11 @@ rsync -avn ./public/ deploy@app01:/var/www/site2/public/
 Stop and answer:
 
 ```text
-Which file would rsync transfer?
+Which file would rsync transfer? Only the changed `index.html`
 
-Did it list every file or only changed files?
+Did it list every file or only changed files? No. Just the changed files. 
 
-What does this teach me about rsync?
+What does this teach me about rsync? RSync is effecient. It only transfers differences. 
 ```
 
 Then deploy:
@@ -571,14 +345,6 @@ Verify:
 
 ```bash
 curl -s -H 'Host: site2.local' http://app01/ | grep 'site2 version 2'
-```
-
-Green check:
-
-```text
-[ ] I predicted the changed file before deploying.
-[ ] I verified the changed content after deploying.
-[ ] I understand that rsync is useful for repeated deployment.
 ```
 
 ---
@@ -624,26 +390,11 @@ curl -v -H 'Host: site2.local' http://app01/old-page.html
 Stop and explain:
 
 ```text
-Why does old-page.html still exist on the server?
+Why does old-page.html still exist on the server? --delete wasn't used, so rsync only adds on and updates assets. 
 
-How is this similar to scp?
+How is this similar to scp? Yes. 
 
-What does this teach me about deployment?
-```
-
-Feynman explanation:
-
-```text
-rsync without --delete brings new and changed items to the shelf,
-but it does not remove old items from the shelf.
-```
-
-Green check:
-
-```text
-[ ] I created a stale server file.
-[ ] I proved it still exists after normal rsync.
-[ ] I understand why --delete exists.
+What does this teach me about deployment? It explicitly manages deletions with `--delete` for clean deployments. 
 ```
 
 ---
@@ -655,24 +406,6 @@ Before using `--delete`, dry run:
 ```bash
 rsync -avn --delete ./public/ deploy@app01:/var/www/site2/public/
 ```
-
-Stop.
-
-Do not deploy yet.
-
-Write:
-
-```text
-Files that would be deleted:
-
-Files that would be copied or updated:
-
-Destination path:
-
-Why this is safe:
-```
-
-Only if the output is correct:
 
 ```bash
 rsync -av --delete ./public/ deploy@app01:/var/www/site2/public/
@@ -688,15 +421,6 @@ Expected:
 
 ```text
 404 Not Found
-```
-
-Green check:
-
-```text
-[ ] I dry-ran before using --delete.
-[ ] I identified exactly what would be deleted.
-[ ] I confirmed the destination path before deleting.
-[ ] I verified the stale page returns 404.
 ```
 
 ---
@@ -736,21 +460,13 @@ find ~/rsync-lab -type f -print
 Stop and answer:
 
 ```text
-With source/, the resulting path was:
+With source/, the resulting path was: Files go diretly into `dest/`. 
 
-With source, the resulting path was:
+With source, the resulting path was: It creates dest/source/
 
-The difference is:
+The difference is: It trails slash controls whether the source directory or it's contents are copied. 
 
-Why this matters with --delete:
-```
-
-Green check:
-
-```text
-[ ] I saw the path difference myself.
-[ ] I can explain trailing slash without notes.
-[ ] I understand why trailing slash plus --delete requires caution.
+Why this matters with --delete: Wrong slashes can delete wrong files or leave extra directories. 
 ```
 
 ---
@@ -816,20 +532,7 @@ Slow down before pressing `y`.
 Answer:
 
 ```text
-Did the dry run show the expected destination?
-
-Did it show unexpected deletes?
-
-Am I deploying site2, not site1?
-```
-
-Green check:
-
-```text
-[ ] deploy.sh uses site2 paths.
-[ ] deploy.sh shows dry run first.
-[ ] deploy.sh asks before deploying for real.
-[ ] deploy.sh verifies with curl.
+Did the dry run show the expected destination? It should show the correct destination and only intended changes. 
 ```
 
 ---
@@ -838,29 +541,23 @@ Green check:
 
 Fill in:
 
-| Behavior | scp | rsync |
-|---|---|---|
-| Uses SSH | | |
-| Copies files | | |
-| Copies directories | | |
-| Dry run | | |
-| Transfers changed files efficiently | | |
-| Can delete stale destination files | | |
-| Better for one-time copy | | |
-| Better for repeatable deployment | | |
-
-Feynman explanation:
-
-```text
-Explain scp and rsync to a 10-year-old using the shelf analogy.
-```
+| Behavior                            | scp | rsync |
+| ----------------------------------- | --- | ----- |
+| Uses SSH                            | Yes | Yes   |
+| Copies files                        | Yes | Yes   |
+| Copies directories                  | Yes | Yes   |
+| Dry run                             | No  | Yes   |
+| Transfers changed files efficiently | No  | Yes   |
+| Can delete stale destination files  | No  | Yes   |
+| Better for one-time copy            | Yes | -     |
+| Better for repeatable deployment    | Yes | -     |
 
 Write 3 sentences:
 
 ```text
-scp is like...
-rsync is like...
---delete is dangerous because...
+scp is like mailing a full package every time. 
+rsync is like smart syncing that only sends changes. 
+--delete is dangerous because it can remove files you forgot were only on the server. 
 ```
 
 ---
@@ -870,23 +567,21 @@ rsync is like...
 Use this short report.
 
 ```text
-Symptom or task:
+Source directory: ~/projects/site2/public/
 
-Source directory:
+Destination directory: /var/www/site2/public/
 
-Destination directory:
+Strongest evidence that deployment worked: curl showed updated content and correct Host header. 
 
-Strongest evidence that deployment worked:
+One thing dry run prevented: Accidental deletion of files. 
 
-One thing dry run prevented:
+One stale-file lesson: Always uses `--delete` after dry runs. 
 
-One stale-file lesson:
+One trailing-slash lesson: Controls contents and directory copies. 
 
-One trailing-slash lesson:
+One mistake I almost made: Editing files directly on the server. 
 
-One mistake I almost made:
-
-One habit I improved:
+One habit I improved: Always dry-run first. 
 ```
 
 Keep it short.
@@ -896,33 +591,3 @@ Good lab work is not long.
 Good lab work is precise.
 
 ---
-
-# Completion Checkpoint
-
-Do not move on until you can explain these without notes:
-
-```text
-rsync copies differences between source and destination.
--n is dry run.
---delete removes destination files missing from the source.
-Dry run should come before --delete.
-The local public/ directory is the source of truth.
-The server should not be edited manually.
-The trailing slash changes the meaning of the source path.
-Nginx does not need to restart for static file changes.
-deploy writes the files; nginx reads the files.
-site1 is the scp baseline; site2 is the rsync deployment.
-```
-
-Final green checks:
-
-```text
-[ ] site1 still works.
-[ ] site2 works.
-[ ] site2 was deployed with rsync.
-[ ] stale files can be removed with --delete after dry run.
-[ ] I can explain the trailing slash difference.
-[ ] I can explain scp vs rsync using a simple analogy.
-[ ] I did not rush through the lab mindlessly.
-```
-
