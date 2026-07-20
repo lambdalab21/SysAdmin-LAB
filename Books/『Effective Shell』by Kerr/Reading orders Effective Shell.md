@@ -27,13 +27,13 @@ After ES Chapter 2, pause _Effective Shell_. Do not continue directly into Chapt
 
 ## Part 2: Text processing
 
-|_Effective Shell_|Topic|Closest TLCL chapters|Recommendation|
-|---|---|---|---|
-|ES 4|Regular Expression Essentials|TLCL 19: Regular Expressions|Read together|
-|ES 5|Getting to Grips with `grep`|TLCL 19–20|Read immediately after ES 4|
-|ES 6|Slicing and Dicing Text|TLCL 20: Text Processing|Read together|
-|ES 7|Advanced Text Manipulation with `sed`|TLCL 20: Text Processing|Read after TLCL 20|
-|ES 8|Building Commands on the Fly|TLCL 20 and selected material from TLCL 36|Read after ES 7|
+| _Effective Shell_ | Topic                                 | Closest TLCL chapters                      | Recommendation              |
+| ----------------- | ------------------------------------- | ------------------------------------------ | --------------------------- |
+| ES 4              | Regular Expression Essentials         | TLCL 19: Regular Expressions               | Read together               |
+| ES 5              | Getting to Grips with `grep`          | TLCL 19–20                                 | Read immediately after ES 4 |
+| ES 6              | Slicing and Dicing Text               | TLCL 20: Text Processing                   | Read together               |
+| ES 7              | Advanced Text Manipulation with `sed` | TLCL 20: Text Processing                   | Read after TLCL 20          |
+| ES 8              | Building Commands on the Fly          | TLCL 20 and selected material from TLCL 36 | Read after ES 7             |
 
 Author/Shotts places regular expressions in Chapter 19 and text processing in Chapter 20. Kerr expands that material into five chapters, which is useful because text processing is central to Unix command-line work. ([ノースターチプレス](https://nostarch.com/linux-command-line-3e "The Linux Command Line, 3rd Edition | No Starch Press"))
 
