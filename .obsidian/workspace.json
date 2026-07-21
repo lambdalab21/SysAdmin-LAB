@@ -1,20 +1,24 @@
 {
   "main": {
-    "id": "722960f08967f3c9",
+    "id": "d45534e5e574eb0b",
     "type": "split",
     "children": [
       {
-        "id": "9adf3bf1e559d560",
+        "id": "46676344b947a088",
         "type": "tabs",
         "children": [
           {
-            "id": "cbf5d0ef3b95e1e0",
+            "id": "18ef48e09c92e806",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "スケジュール.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "スケジュール"
             }
           }
         ]
@@ -23,15 +27,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "643f10b76902c485",
+    "id": "189d4a9a07478353",
     "type": "split",
     "children": [
       {
-        "id": "0346fbf90fa03f86",
+        "id": "230a099b6e1f5da0",
         "type": "tabs",
         "children": [
           {
-            "id": "1de840b5fe10be74",
+            "id": "f014988721451c2b",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -44,7 +48,7 @@
             }
           },
           {
-            "id": "8a676bc2318ce3e7",
+            "id": "85448957abc9cc82",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -61,7 +65,7 @@
             }
           },
           {
-            "id": "d61be9c9a19db9d5",
+            "id": "b3ee787c5c00d9c7",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -74,23 +78,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 255.5
+    "width": 224.5
   },
   "right": {
-    "id": "d6b425d082942f33",
+    "id": "b440462012c9a8d4",
     "type": "split",
     "children": [
       {
-        "id": "7c0a2ec6f56393f6",
+        "id": "5bfae5a23de4567b",
         "type": "tabs",
         "children": [
           {
-            "id": "2b62c1f2b190b919",
+            "id": "41471a738e0394d1",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Books/『The Linux Command Line』3rd by Shotts/Part4 Shell Script/tlcl_ch24_writing_your_first_script_disciplined_guide.md",
+                "file": "スケジュール.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,25 +104,24 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for tlcl_ch24_writing_your_first_script_disciplined_guide"
+              "title": "Backlinks for スケジュール"
             }
           },
           {
-            "id": "5fae7d4729cc27c3",
+            "id": "3a42ffa34d6229f2",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Books/『The Linux Command Line』3rd by Shotts/Part4 Shell Script/tlcl_ch24_writing_your_first_script_disciplined_guide.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from tlcl_ch24_writing_your_first_script_disciplined_guide"
+              "title": "Outgoing links"
             }
           },
           {
-            "id": "1c4123969d35b77d",
+            "id": "ba6013b2dd95b84d",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -133,7 +136,7 @@
             }
           },
           {
-            "id": "b82baeb508182964",
+            "id": "be75d5de8036e073",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -147,18 +150,17 @@
             }
           },
           {
-            "id": "d4c8b77c93628006",
+            "id": "26dd1dc25f6731e2",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Books/『The Linux Command Line』3rd by Shotts/Part4 Shell Script/tlcl_ch24_writing_your_first_script_disciplined_guide.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of tlcl_ch24_writing_your_first_script_disciplined_guide"
+              "title": "Outline"
             }
           }
         ]
@@ -179,37 +181,44 @@
       "bases:Create new base": false
     }
   },
-  "active": "1de840b5fe10be74",
+  "active": "18ef48e09c92e806",
   "lastOpenFiles": [
-    "Lab/07x Deploy Static Sites - Phase 1 LAB.md",
-    "Lab/07 Setup nginx and Deploy Static site Phase 1.md",
-    "Lab/06 SCP Deploy Troubleshooting.md",
-    "Lab/06 Create a Development Environment.md",
-    "Lab/05 『How Linux Works』 Ch. 8 LAB.md",
-    "Lab/04 『How Linux Works』 Ch. 7 LAB.md",
-    "Lab/03 『How Linux Works』 Ch. 1 LAB.md",
-    "Books/『The Linux Command Line』3rd by Shotts/Ch 18 Archiving and Backup/01_compression_gzip_bzip2.md",
-    "Lab/06 Deployment LAB (`scp`).md",
-    "Books/『Wizard Zines』/00 Reading orders.md",
-    "Books/『How Linux Works』/Ch. 8 LAB.md",
-    "Books/『The Linux Command Line』3rd by Shotts/Ch 19 Regular Expressions/08_day8_logs_processes_network_output.md",
-    "Books/『The Linux Command Line』3rd by Shotts/Ch 18 Archiving and Backup/06_restore_and_verify.md",
-    "Books/『The Linux Command Line』3rd by Shotts/Ch 18 Archiving and Backup/05_rsync_backup.md",
-    "Books/『The Linux Command Line』3rd by Shotts/Ch 18 Archiving and Backup/04_zip_unzip.md",
-    "Books/『The Linux Command Line』3rd by Shotts/Ch 18 Archiving and Backup/03_compressed_tar_archives.md",
-    "Books/『The Linux Command Line』3rd by Shotts/Ch 18 Archiving and Backup/02_tar_archives.md",
-    "Books/『The Linux Command Line』3rd by Shotts/Ch 18 Archiving and Backup/00_README_ch18_plan.md",
-    "Lab/06c rev1 SSH Connecton Closed Troubleshoot with LOG.md",
-    "Books/『The Linux Command Line』3rd by Shotts/Ch 1_10_summer_weekly_drills/tlcl_ch01_10_summer_tuesday.md",
-    "Lab/08 site2 Deployment LAB (`rsync`).md.md",
-    "Books/『The Linux Command Line』3rd by Shotts/Ch 19 Regular Expressions/07_day7_config_files.md",
-    "Text Processing/Video Tutorials.md",
-    "Setup/AlmaLinux.md",
-    "Untitled.canvas",
-    "Untitled.base",
-    "Untitled 1.base",
-    "2026-06-13.md",
-    "Books/『The Linux Command Line』3rd by Shotts/Ch 19 Regular Expressions/06_day6_passwd_and_package_output.md",
-    "archive"
+    "Lab/05.5 phase5.5_tiny_form/055_phase55_overview_tiny_form_app.md",
+    "スケジュール.md",
+    "Books/Networking/『SSH Mastery』/ssh-mastery-ch03-openssh-server-reading-guide.md",
+    "Books/Networking/『Netowrking for System Administrators』/lucas-n4sa2e-ch04-ipv6.md",
+    "Books/『The Linux Command Line』3rd by Shotts/tlcl_ch27_branching_if_4day_guide/03_day3_modern_test_and_integer_evaluation.md",
+    "Books/『The Linux Command Line』3rd by Shotts/tlcl_ch27_branching_if_4day_guide/02_day2_using_test_file_string_integer_checks.md",
+    "schedule.bkp.md",
+    "archive/tlcl_ch25_starting_project_disciplined_md/06_final_lab_and_self_test.md",
+    "archive/tlcl_ch25_starting_project_disciplined_md/05_here_documents.md",
+    "archive/tlcl_ch25_starting_project_disciplined_md/04_assigning_values.md",
+    "archive/tlcl_ch25_starting_project_disciplined_md/03_variables_and_constants.md",
+    "archive/tlcl_ch25_starting_project_disciplined_md/02_adding_a_little_data.md",
+    "archive/tlcl_ch25_starting_project_disciplined_md/01_minimal_document.md",
+    "archive/tlcl_ch25_starting_project_disciplined_md/00_README_ch25_starting_project_plan.md",
+    "archive/tlcl_ch25_starting_project_disciplined_md",
+    "archive/tlcl_ch25_starting_project_5day_guide_md/05_day5_final_project_self_test.md",
+    "archive/tlcl_ch25_starting_project_5day_guide_md/04_day4_here_documents.md",
+    "archive/tlcl_ch25_starting_project_5day_guide_md/03_day3_variables_constants_assignment.md",
+    "archive/tlcl_ch25_starting_project_5day_guide_md/02_day2_adding_data_to_the_report.md",
+    "archive/tlcl_ch25_starting_project_5day_guide_md/01_day1_minimal_document.md",
+    "archive/tlcl_ch25_starting_project_5day_guide_md/00_README_ch25_starting_project_5day_plan.md",
+    "archive/tlcl_ch25_starting_project_5day_guide_md",
+    "Lab/instagram clone.md",
+    "Lab/07 summer capstone/summer_capstone_document_templates.md",
+    "Lab/07 summer capstone/summer_capstone_day10_oral_exam_cleanup.md",
+    "Lab/07 summer capstone/summer_capstone_day09_troubleshooting_commands.md",
+    "Lab/07 summer capstone/summer_capstone_day08_runbooks.md",
+    "Lab/07 summer capstone/summer_capstone_day07_readme_architecture_docs.md",
+    "Lab/07 summer capstone",
+    "Lab/06 phase6 flask",
+    "Lab/05.5 phase5.5_tiny_form",
+    "Books/『The Linux Command Line』3rd by Shotts/tlcl_ch27_branching_if_4day_guide",
+    "Books/『The Linux Command Line』3rd by Shotts/tlcl_ch26_top_down_design_3day_guide_md",
+    "Books/『The Linux Command Line』3rd by Shotts/tlcl_ch25_starting_project_3day_guide",
+    "Books/『The Linux Command Line』3rd by Shotts/tlcl_ch24_writing_first_script_disciplined_md",
+    "Books/『How Linux Works』/Ch. 04_reading_guide_md_files",
+    "Untitled.canvas"
   ]
 }

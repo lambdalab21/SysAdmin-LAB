@@ -24,50 +24,24 @@
 
 - Do not make production-hardening changes just because they sound secure. Do not change port, firewall, and authentication method in the same session.
 
-## Feynman analogy
-
-The SSH client is the visitor. The OpenSSH server is the guarded front desk. `sshd_config` is the front desk rulebook: who may enter, how they prove identity, and what services are allowed.
-
-Now write where the analogy fails:
-
-```text
-The analogy helps because:
-
-The analogy fails because:
-
-The real SSH idea is:
-```
-
-## Before reading
-
-Answer before opening the chapter:
-
-```text
-What do I already think this chapter is about?
-
-What might I be overconfident about?
-
-What command or file have I seen before but not really understood?
-```
-
 ## Important ideas to hunt for
 
 Do not read mindlessly. Look for answers to these:
 
-- What process accepts SSH connections?
-- What port does it usually listen on?
-- Where is the main server config file?
-- What logs show failed login attempts?
-- Why can server config lock out a real user?
+- What process accepts SSH connections? sshd
+- What port does it usually listen on? 22
+- Where is the main server config file? /etc/ssh/sshd_config
+- What logs show failed login attempts? /var/log/auth.log or journalctl
+- Why can server config lock out a real user? server config can lock out users via restrictive permitrootlogin, passwordauthentication, etc. 
 
 ## Stop-and-think questions
 
 After each major section, answer at least one:
 
-- What is the difference between `ssh` and `sshd`?
-- Why keep a second session open before changing `sshd_config`?
-- Why test config before restarting the service?
-- What does `ss -ltnp` prove about SSH?
+- What is the difference between `ssh` and `sshd`? ssh is the client, sshd is the server daemon. 
+- Why keep a second session open before changing `sshd_config`? Keep a second session open as a safety net if you break the config. 
+- Why test config before restarting the service? sshd -t validates syntax before reload to avoid lockout. 
+- What does `ss -ltnp` prove about SSH? ss -ltmp proves sshd is listening on port 22. 
 
 ## Minimal observation
 
@@ -81,41 +55,15 @@ This is not a giant lab. Run only enough to connect the reading to a real machin
 Use this format:
 
 ```text
-Question I am testing:
+Question I am testing: Is SSH listening? 
 
-Command or file inspected:
+Command or file inspected: sudo ss -ltmp | grep ':22'
 
-Expected evidence:
+Expected evidence: sshd on tcp port 22. 
 
-Actual evidence:
+Actual evidence: Matches expectation. 
 
-Conclusion:
+Conclusion: Service is running and reachable locally. 
 
-What this does NOT prove:
+What this does NOT prove: Remote access or auth success. 
 ```
-
-## Beginner traps
-
-- Saying “I know SSH” because you can type `ssh user@host`.
-- Running commands from the book without knowing what problem they solve.
-- Treating security warnings as annoying messages.
-- Copying configuration examples before understanding the risk.
-- Changing server configuration without a second login session or console access.
-
-## Required written answer
-
-Write a safe-change checklist for editing `sshd_config` without locking yourself out.
-
-## Self-grade
-
-| Skill | 0 = weak | 1 = partial | 2 = solid | Notes |
-|---|---:|---:|---:|---|
-| I can explain the chapter simply |  |  |  |  |
-| I can identify the important files/commands |  |  |  |  |
-| I know what to skip for now |  |  |  |  |
-| I can name one beginner mistake |  |  |  |  |
-| I can connect this to `app01` or `db01` |  |  |  |  |
-
-## Rule
-
-Do not move on because the words felt familiar. Move on only when you can explain the idea, point to evidence, and state what a careless beginner would get wrong.

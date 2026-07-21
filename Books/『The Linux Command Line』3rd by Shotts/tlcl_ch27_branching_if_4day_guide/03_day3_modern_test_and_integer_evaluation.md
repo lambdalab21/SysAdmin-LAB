@@ -6,29 +6,6 @@ The purpose is not to memorize `if` syntax.
 
 The purpose is to learn disciplined branching:
 
-```text
-What condition am I testing?
-What counts as success?
-What should happen if it succeeds?
-What should happen if it fails?
-How will I prove the script chose the right branch?
-```
-
-Feynman analogy:
-
-```text
-An if statement is a fork in the road.
-The test is the road sign.
-The script should not guess which road to take.
-It should inspect evidence, then choose.
-```
-
-Main continuing project:
-
-```text
-lab-report.sh
-```
-
 The script will grow from the Chapter 25–26 report project into a report that changes behavior based on conditions.
 
 Create a safe working directory:
@@ -39,14 +16,6 @@ cd ~/tlcl-ch27-if
 ```
 
 If you already have `lab-report.sh` from Chapter 26, copy it here. If not, the Day 4 final lab creates a complete version.
-
-Core discipline:
-
-```text
-Before typing: predict the branch.
-After running: verify the branch.
-Before moving on: explain why Bash chose that branch.
-```
 
 ---
 # Day 3: Modern Tests with `[[ ]]` and Arithmetic Decisions with `(( ))`
@@ -78,38 +47,18 @@ Useful rule of thumb:
 
 ---
 
-# Before reading: Feynman preview
-
-Think of `[ ]`, `[[ ]]`, and `(( ))` as three workbenches:
-
-```text
-[ ]    = old general workbench, common but easy to misuse
-[[ ]]  = safer Bash workbench for conditions
-(( ))  = math workbench
-```
-
-A disciplined thinker asks:
-
-```text
-Am I testing a file, a string, or a number?
-```
-
----
-
 # After reading: concept questions
 
 Answer without looking back:
 
-1. How is `[[ ]]` different from `[ ]`?
-2. Why is `[[ ]]` often safer in Bash scripts?
-3. What kinds of tests fit naturally inside `[[ ]]`?
-4. What kinds of tests fit naturally inside `(( ))`?
-5. In arithmetic context, why can `count > 0` be written naturally?
-6. What is the danger of confusing string comparison and integer comparison?
-7. What does the right side of `==` inside `[[ ]]` sometimes behave like?
-8. When should a pattern be quoted or not quoted inside `[[ ]]`?
-
-Do not do the exercises until these are answered.
+1. How is `[[ ]]` different from `[ ]`? [[]] is a bash keyword with special parsing rules. 
+2. Why is `[[ ]]` often safer in Bash scripts? It's safer because it doesn't do word-splitting or pathname expansions on variables. 
+3. What kinds of tests fit naturally inside `[[ ]]`? File tests and string tests/patterns matching. 
+4. What kinds of tests fit naturally inside `(( ))`? integer comparisons and arithmetic expressions. 
+5. In arithmetic context, why can `count > 0` be written naturally? Inside (( )), variables are automatically treated as numbers and you can use familiar operations like > and <. 
+6. What is the danger of confusing string comparison and integer comparison? Mixing them causes incorrect logic. 
+7. What does the right side of `==` inside `[[ ]]` sometimes behave like? The right side of == in [[]] can act like a shell glob pattern if it's unquoted. 
+8. When should a pattern be quoted or not quoted inside `[[ ]]`? don't quote when you want pattern matching. Instead, quote when you want a literal match. 
 
 ---
 
