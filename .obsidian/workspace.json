@@ -20,23 +20,8 @@
               "icon": "lucide-file",
               "title": "スケジュール"
             }
-          },
-          {
-            "id": "c5ff3d3e0a1c0457",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Books/『The Linux Command Line』3rd by Shotts/tlcl_ch27_branching_if_4day_guide/03_day3_modern_test_and_integer_evaluation.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "03_day3_modern_test_and_integer_evaluation"
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -196,13 +181,14 @@
       "bases:Create new base": false
     }
   },
-  "active": "c5ff3d3e0a1c0457",
+  "active": "18ef48e09c92e806",
   "lastOpenFiles": [
+    "Books/『How Linux Works』/Ch. 04_reading_guide_md_files/07_Day7_Review_Troubleshooting_and_Exit_Test.md",
     "スケジュール.md",
+    "Books/『The Linux Command Line』3rd by Shotts/tlcl_ch27_branching_if_4day_guide/03_day3_modern_test_and_integer_evaluation.md",
     "Lab/05.5 phase5.5_tiny_form/055_phase55_overview_tiny_form_app.md",
     "Books/Networking/『SSH Mastery』/ssh-mastery-ch03-openssh-server-reading-guide.md",
     "Books/Networking/『Netowrking for System Administrators』/lucas-n4sa2e-ch04-ipv6.md",
-    "Books/『The Linux Command Line』3rd by Shotts/tlcl_ch27_branching_if_4day_guide/03_day3_modern_test_and_integer_evaluation.md",
     "Books/『The Linux Command Line』3rd by Shotts/tlcl_ch27_branching_if_4day_guide/02_day2_using_test_file_string_integer_checks.md",
     "schedule.bkp.md",
     "archive/tlcl_ch25_starting_project_disciplined_md/06_final_lab_and_self_test.md",
@@ -225,7 +211,6 @@
     "Lab/07 summer capstone/summer_capstone_day10_oral_exam_cleanup.md",
     "Lab/07 summer capstone/summer_capstone_day09_troubleshooting_commands.md",
     "Lab/07 summer capstone/summer_capstone_day08_runbooks.md",
-    "Lab/07 summer capstone/summer_capstone_day07_readme_architecture_docs.md",
     "Lab/07 summer capstone",
     "Lab/06 phase6 flask",
     "Lab/05.5 phase5.5_tiny_form",
