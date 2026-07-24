@@ -52,19 +52,11 @@ Host: site55.local
 ## Stop and answer
 
 ```text
-When I type a URL in a browser, what HTTP method is usually used?
+When I type a URL in a browser, what HTTP method is usually used? Typing a URL in a browser usually sends GET. 
 
-Should GET change important server data?
+Should GET change important server data? No. GET should not change important server data. 
 
-What should GET / do in the message-board app?
-```
-
-Expected:
-
-```text
-Typing a URL usually sends GET.
-GET should normally retrieve data, not change important server data.
-GET / should show the page and messages.
+What should GET / do in the message-board app? GET / should show the main page with the form and list of messages. 
 ```
 
 ---
@@ -92,19 +84,11 @@ The browser sends this when a form has:
 ## Stop and answer
 
 ```text
-What method sends form data?
+What method sends form data? POST sends form data. 
 
-What path receives the message?
+What path receives the message? POST /messages recieves the message. 
 
-Should POST /messages show all messages directly, or redirect?
-```
-
-Expected:
-
-```text
-POST sends form data.
-POST /messages receives the message.
-After saving, it should redirect to GET /.
+Should POST /messages show all messages directly, or redirect? After saving it, it should redirect to GET /.
 ```
 
 ---
@@ -137,13 +121,13 @@ body=hello
 ## Stop and explain
 
 ```text
-What does method="POST" mean?
+What does method="POST" mean? means send data to the server using the POST HTTP method. 
 
-What does action="/messages" mean?
+What does action="/messages" mean? Submit the form data to the /messages path. 
 
-Why does the input need name="body"?
+Why does the input need name="body"? The input neds name="body" so the server can identify and read the field's value. 
 
-What data should the server read?
+What data should the server read? The server should read the body field data. 
 ```
 
 ---
@@ -185,19 +169,11 @@ Redirect moves the browser back to a safe GET page.
 ## Stop and answer
 
 ```text
-What problem can happen if refresh repeats POST?
+What problem can happen if refresh repeats POST? Refresh can re-submit the POST and duplicate the message. 
 
-What should the server send after saving a message?
+What should the server send after saving a message? The server should send a redirect to /. 
 
-What should the browser do after receiving the redirect?
-```
-
-Expected:
-
-```text
-Refresh may duplicate the message.
-The server should redirect to /.
-The browser should send GET /.
+What should the browser do after receiving the redirect? The browser should follow the redirect by sending GET /. 
 ```
 
 ---
@@ -233,27 +209,17 @@ That comes later.
 # Final reflection
 
 ```text
-What does GET mean?
+What does GET mean? GET means "retrieve this resource". 
 
-What does POST mean?
+What does POST mean? POST means "here is data to process". 
 
-What does an HTML form do?
+What does an HTML form do? An HTML form collects user input and sends it to the server. 
 
-What does action="/messages" mean?
+What does action="/messages" mean? action="/messages" tells the form where to send the data. 
 
-What does name="body" mean?
+What does name="body" mean? name="body" identifies the input field so that the server can access its value. 
 
-Why redirect after POST?
+Why redirect after POST? Redirect after POST prevents duplicate submissions on fersh. 
 
-Why avoid JavaScript for now?
-```
-
-Completion checkpoint:
-
-```text
-[ ] I can explain GET.
-[ ] I can explain POST.
-[ ] I can explain the form fields.
-[ ] I can explain redirect-after-POST.
-[ ] I can explain server-rendered HTML.
+Why avoid JavaScript for now? Avoid JavaScript for now to keep it simple with server-rendered HTML. 
 ```
