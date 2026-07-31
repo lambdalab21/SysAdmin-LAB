@@ -1,46 +1,10 @@
 # TLCL Chapter 30: Troubleshooting
-
-This guide is for Chapter 30, **Troubleshooting**, from William Shotts's *The Linux Command Line*.
-
-The goal is not to memorize debugging tricks.
-
-The goal is to build this habit:
-
-```text
-Observe the failure.
-State what should have happened.
-Make one hypothesis.
-Use one test.
-Inspect evidence.
-Change one thing.
-Retest.
-Explain what happened.
-```
-
-Feynman analogy:
-
-```text
-Debugging is like fixing a lamp.
-A careless person shakes it and hopes it works.
-A disciplined thinker asks:
-Is there power? Is the bulb good? Is the switch working? Is the wire broken?
-One test at a time.
-```
-
 Working directory:
 
 ```bash
 mkdir -p ~/tlcl-ch30-troubleshooting
 cd ~/tlcl-ch30-troubleshooting
 ```
-
-Disciplined rule:
-
-```text
-Do not randomly edit a broken script.
-Write down what you expected, what actually happened, and what evidence you used.
-```
-
 ---
 # Day 2: Defensive Programming and Input Testing
 
@@ -57,48 +21,6 @@ Verifying Input
 Testing
 Test Cases
 ```
-
-## What he should gain from this reading
-
-He should gain this idea:
-
-```text
-Good scripts do not merely work when input is perfect.
-Good scripts defend themselves against bad input, missing files, strange filenames, and failed commands.
-```
-
-He is learning to think like this:
-
-```text
-What can go wrong?
-How will I detect it?
-What should the script do safely?
-```
-
----
-
-# Before reading: Feynman preview
-
-Explain this before reading:
-
-```text
-Defensive programming is like checking the bridge before driving a truck over it.
-You do not assume the bridge is safe because you want it to be safe.
-You inspect it.
-```
-
-In shell scripts, the “bridge” may be:
-
-```text
-a filename
-a directory
-a user answer
-a command exit status
-a variable that might be empty
-a pipeline where one stage failed
-```
-
----
 
 # After reading: concept questions
 
@@ -119,21 +41,6 @@ Answer without looking back:
 ---
 
 # Exercise 1: Verify input before action
-
-## Skill being gained
-
-He is learning to check preconditions.
-
-## Predict before typing
-
-Answer:
-
-```text
-What should the script do if the file exists?
-What should it do if the file does not exist?
-What should it do if no filename is provided?
-```
-
 ## Create script
 
 ```bash
@@ -207,20 +114,6 @@ bash show-file.sh
 ---
 
 # Exercise 2: Use safer defaults and observe `set -u`
-
-## Skill being gained
-
-He is learning how unset variables create hidden bugs.
-
-## Predict before typing
-
-Answer:
-
-```text
-What happens when a script uses a variable that was never assigned?
-How could that become dangerous?
-```
-
 ## Create two scripts
 
 ```bash
@@ -258,20 +151,6 @@ Answer:
 ---
 
 # Exercise 3: Pipeline failure and `pipefail`
-
-## Skill being gained
-
-He is learning that a pipeline may look successful even when an early command failed.
-
-## Predict before typing
-
-Answer:
-
-```text
-In a pipeline, whose exit status does Bash normally report?
-What could go wrong if an early command fails?
-```
-
 ## Create test script
 
 ```bash
@@ -359,13 +238,6 @@ Answer:
 ---
 
 # Exercise 5: Test cases
-
-## Skill being gained
-
-He is learning to prove the script works in multiple cases.
-
-Create a test-case list for `show-file.sh`:
-
 ```text
 Case 1: existing regular file
 Command: bash show-file.sh /etc/passwd
@@ -394,19 +266,4 @@ Actual:
 Exit status:
 Pass/fail:
 Fix needed:
-```
-
----
-
-# Day 2 finish standard
-
-He is done only if he can say:
-
-```text
-I can verify input before action.
-I can send error messages to stderr.
-I can use exit statuses deliberately.
-I know why set -u and pipefail can reveal hidden bugs.
-I can protect filenames with quotes and --.
-I can create test cases before claiming a script works.
 ```
