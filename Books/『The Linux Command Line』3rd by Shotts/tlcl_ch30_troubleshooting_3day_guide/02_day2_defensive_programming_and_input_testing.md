@@ -22,25 +22,6 @@ Testing
 Test Cases
 ```
 
-## What he should gain from this reading
-
-He should gain this idea:
-
-```text
-Good scripts do not merely work when input is perfect.
-Good scripts defend themselves against bad input, missing files, strange filenames, and failed commands.
-```
-
-He is learning to think like this:
-
-```text
-What can go wrong?
-How will I detect it?
-What should the script do safely?
-```
-
----
-
 # After reading: concept questions
 
 Answer without looking back:
