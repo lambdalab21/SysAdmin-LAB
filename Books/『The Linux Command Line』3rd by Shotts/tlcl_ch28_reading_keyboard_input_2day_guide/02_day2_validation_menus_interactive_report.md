@@ -72,10 +72,10 @@ For the second run, press Enter with no input.
 
 Answer:
 
-1. What does `-z` test? Tests if a string is empty. 
+1. What does `-z` test? It tests if a string is empty. 
 2. Why quote `"$hostname"`? To prevent word splitting and globbing.
 3. Why use `>&2` for the error?Directs error outputs from normal stdout. 
-4. Why use `exit 1`? Signals failure to the shell/calling process. 
+4. Why use `exit 1`? Signals failure to the shell process. 
 
 ---
 

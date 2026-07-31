@@ -2,8 +2,6 @@
 
 ## Purpose
 
-Deploy the tiny message board on `app01`.
-
 Target shape:
 
 ```text
@@ -46,22 +44,6 @@ ls -ld /var/lib/site55-app
 id site55
 ```
 
-Write:
-
-```text
-App code directory:
-
-Data directory:
-
-Service user:
-
-Code owner:
-
-Data owner:
-
-What this proves:
-```
-
 ---
 
 # Part 2 — Copy app code
@@ -76,18 +58,6 @@ On `app01`:
 
 ```bash
 ls -l /opt/site55-app/app.py
-```
-
-Write:
-
-```text
-Source:
-
-Destination:
-
-Owner:
-
-What this proves:
 ```
 
 ---
@@ -109,22 +79,6 @@ curl -s http://127.0.0.1:8000/ | grep 'manual deploy test'
 ```
 
 Stop manual app with Ctrl-C.
-
-Write:
-
-```text
-Manual run command:
-
-GET evidence:
-
-POST evidence:
-
-Database path:
-
-What this proves:
-
-What this does not prove:
-```
 
 ---
 
@@ -155,20 +109,6 @@ Restart=on-failure
 WantedBy=multi-user.target
 ```
 
-## Stop and explain
-
-```text
-What user runs the app?
-
-Where is the database path configured?
-
-What command starts the app?
-
-Why is WorkingDirectory /opt/site55-app?
-
-Why not run as root?
-```
-
 ---
 
 # Part 5 — Start service
@@ -192,22 +132,6 @@ Check logs:
 ```bash
 sudo journalctl -u site55-app --since "10 minutes ago"
 sudo ss -ltnp | grep 8000
-```
-
-Write:
-
-```text
-Service state:
-
-GET evidence:
-
-POST evidence:
-
-ss evidence:
-
-journal evidence:
-
-What this proves:
 ```
 
 Enable only after testing:
@@ -249,22 +173,6 @@ sudo nginx -t
 sudo systemctl reload nginx
 ```
 
-Write:
-
-```text
-Nginx config file:
-
-server_name:
-
-proxy_pass target:
-
-nginx -t evidence:
-
-What this proves:
-
-What this does not prove:
-```
-
 ---
 
 # Part 7 — Test through Nginx
@@ -281,22 +189,6 @@ Check logs:
 sudo tail -n 20 /var/log/nginx/site55.access.log
 sudo tail -n 20 /var/log/nginx/site55.error.log
 sudo journalctl -u site55-app --since "10 minutes ago"
-```
-
-Write:
-
-```text
-GET through Nginx evidence:
-
-POST through Nginx evidence:
-
-Access-log line:
-
-Error-log evidence:
-
-App journal evidence:
-
-What this proves:
 ```
 
 ---
@@ -326,55 +218,9 @@ curl -s -H 'Host: site55.local' http://app01/ | grep 'browser message text'
 Write:
 
 ```text
-Browser URL:
+Browser URL: http://site55.local/
 
-Message submitted:
+Message submitted: 'Browser message text'
 
-curl evidence:
-
-Nginx access-log evidence:
-```
-
----
-
-# Final reflection
-
-```text
-Task:
-
-Service user:
-
-Code directory:
-
-Data directory:
-
-Database path:
-
-systemd service file:
-
-Nginx config file:
-
-Backend direct test:
-
-Nginx test:
-
-Browser test:
-
-What systemd does:
-
-What Nginx does:
-
-What SQLite stores:
-```
-
-Completion checkpoint:
-
-```text
-[ ] App runs as site55.
-[ ] Database lives in /var/lib/site55-app.
-[ ] systemd manages the app.
-[ ] Nginx proxies site55.local to the app.
-[ ] GET works through Nginx.
-[ ] POST works through Nginx.
-[ ] Browser form submission works.
+curl evidence: The message showed
 ```

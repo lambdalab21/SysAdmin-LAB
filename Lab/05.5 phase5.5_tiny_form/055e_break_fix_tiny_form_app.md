@@ -25,40 +25,6 @@ permissions
 
 ---
 
-# Before each exercise
-
-Write:
-
-```text
-Failure I am creating:
-
-Expected symptom:
-
-Layer I expect to break:
-
-Command to observe symptom:
-
-Log to check:
-
-How I will restore:
-```
-
-After each exercise:
-
-```text
-Exact symptom:
-
-Exact evidence:
-
-Broken layer:
-
-Fix:
-
-Verification:
-```
-
----
-
 # Exercise 1 — App service stopped
 
 Break:
@@ -90,20 +56,6 @@ Verify:
 
 ```bash
 curl -v -H 'Host: site55.local' http://app01/
-```
-
-Write:
-
-```text
-HTTP symptom:
-
-systemd evidence:
-
-Nginx error evidence:
-
-Broken layer:
-
-Fix evidence:
 ```
 
 ---
@@ -151,20 +103,6 @@ Verify:
 ```bash
 curl -v -H 'Host: site55.local' -X POST -d 'body=form action fixed' http://app01/messages
 curl -s -H 'Host: site55.local' http://app01/ | grep 'form action fixed'
-```
-
-Write:
-
-```text
-Wrong action:
-
-HTTP symptom:
-
-Why /wrong failed:
-
-Fix:
-
-Verification:
 ```
 
 ---
@@ -224,22 +162,6 @@ curl -H 'Host: site55.local' -X POST -d 'body=permission fixed' http://app01/mes
 curl -s -H 'Host: site55.local' http://app01/ | grep 'permission fixed'
 ```
 
-Write:
-
-```text
-Permission break:
-
-POST symptom:
-
-Journal evidence:
-
-Ownership evidence:
-
-Fix:
-
-Verification:
-```
-
 ---
 
 # Exercise 4 — Wrong database path in systemd
@@ -295,22 +217,6 @@ Verify old messages:
 curl -s -H 'Host: site55.local' http://app01/
 ```
 
-Write:
-
-```text
-Wrong DB path:
-
-Service symptom:
-
-Journal evidence:
-
-Fix:
-
-Did old messages return?
-
-What this proves:
-```
-
 ---
 
 # Exercise 5 — Duplicate submission thought experiment
@@ -332,56 +238,4 @@ Now check page:
 
 ```bash
 curl -s -H 'Host: site55.local' http://app01/ | grep 'redirect test message'
-```
-
-Answer:
-
-```text
-Why does the server return 303?
-
-What would be the risk if refresh repeated POST?
-
-How does redirect-after-POST help?
-```
-
----
-
-# Final reflection
-
-```text
-Most useful curl command:
-
-Most useful systemd command:
-
-Most useful Nginx log:
-
-Most useful app log:
-
-Most useful permission command:
-
-One problem caused by Nginx:
-
-One problem caused by app code:
-
-One problem caused by database permissions:
-
-One problem caused by systemd configuration:
-
-My troubleshooting order next time:
-1.
-2.
-3.
-4.
-5.
-```
-
-Completion checkpoint:
-
-```text
-[ ] I can diagnose app service stopped.
-[ ] I can diagnose wrong form action.
-[ ] I can diagnose database permission failure.
-[ ] I can diagnose wrong database path.
-[ ] I can explain redirect-after-POST.
-[ ] I can use evidence instead of guessing.
 ```
