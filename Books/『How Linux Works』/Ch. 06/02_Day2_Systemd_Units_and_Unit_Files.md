@@ -27,8 +27,8 @@ systemctl list-units --type=timer
 
 Questions:
 
-1. What is an active unit?
-2. Which services are running?
+1. What is an active unit? An active unit is a systemd unit loaded in an active state. 
+2. Which services are running? The running services are the ones shown as `active`. 
 3. Which targets are active?
 4. Which timers exist?
 
