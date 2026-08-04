@@ -1,29 +1,4 @@
 # 06b — Build Flask + Jinja CRUD App Locally
-
-## Purpose
-
-Build a small CRUD app locally.
-
-The app is a task tracker.
-
-Features:
-
-```text
-list tasks
-create task
-view task
-edit task
-delete task
-```
-
-The deeper purpose:
-
-```text
-understand routes, templates, database writes, redirects, and persistence
-```
-
----
-
 # Part 1 — Create project
 
 ```bash
@@ -39,19 +14,6 @@ python3 -m venv .venv
 python -m pip install --upgrade pip
 python -m pip install Flask
 ```
-
-Record:
-
-```text
-Python version:
-
-Flask installed:
-
-Virtual environment path:
-
-What this proves:
-```
-
 ---
 
 # Part 2 — Create `app.py`
@@ -176,21 +138,6 @@ def delete_task(task_id):
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8000)
 ```
-
-## Stop and understand only this
-
-```text
-DB_PATH controls where the database lives.
-GET / lists tasks.
-POST /tasks creates a task.
-GET /tasks/<id> shows one task.
-POST /tasks/<id> updates one task.
-POST /tasks/<id>/delete deletes one task.
-After POST, the app redirects.
-```
-
-Do not chase every Flask detail yet.
-
 ---
 
 # Part 3 — Create templates
@@ -347,34 +294,7 @@ vi templates/edit.html
 
 ---
 
-# Part 4 — Run locally
-
-```bash
-. .venv/bin/activate
-python app.py
-```
-
-In another terminal:
-
-```bash
-curl -v http://127.0.0.1:8000/
-```
-
-Write:
-
-```text
-HTTP status:
-
-Heading or page evidence:
-
-What this proves:
-
-What this does not prove:
-```
-
----
-
-# Part 5 — Test create with curl
+# Part 4 — Test create with curl
 
 ```bash
 curl -v -X POST   -d 'title=first task'   -d 'body=created from curl'   http://127.0.0.1:8000/tasks
@@ -393,51 +313,9 @@ Then:
 curl -s http://127.0.0.1:8000/ | grep 'first task'
 ```
 
-Write:
-
-```text
-POST status:
-
-Redirect location:
-
-GET evidence after POST:
-
-What this proves:
-```
-
 ---
 
-# Part 6 — Test in browser
-
-Open:
-
-```text
-http://127.0.0.1:8000/
-```
-
-Create a task.
-
-Edit it.
-
-Delete it.
-
-For each action, write:
-
-```text
-Action:
-
-Browser URL before:
-
-Browser URL after:
-
-What changed in page:
-
-Was there a redirect after POST?
-```
-
----
-
-# Part 7 — Prove persistence
+# Part 5 — Prove persistence
 
 Find database:
 
@@ -458,20 +336,9 @@ Check old task still exists:
 ```bash
 curl -s http://127.0.0.1:8000/ | grep 'first task'
 ```
-
-Write:
-
-```text
-Database file:
-
-Did data survive restart?
-
-What this proves:
-```
-
 ---
 
-# Part 8 — Initialize Git
+# Part 6 — Initialize Git
 
 If not already:
 
@@ -481,61 +348,9 @@ git add app.py templates
 git commit -m "Create Flask Jinja CRUD app"
 ```
 
-Write:
-
-```text
-Commit:
-
-What Git protects:
-
-What Git does not protect:
-```
-
 Expected:
 
 ```text
 Git protects code history.
 Git does not protect the live SQLite database unless it is intentionally backed up.
-```
-
----
-
-# Final reflection
-
-```text
-Task:
-
-Framework:
-
-Template engine:
-
-Database:
-
-Local database path:
-
-Routes that use GET:
-
-Routes that use POST:
-
-Command that proved create:
-
-Command that proved persistence:
-
-What Flask helped with:
-
-What Jinja helped with:
-
-What infrastructure questions remain:
-```
-
-Completion checkpoint:
-
-```text
-[ ] I can run the app locally.
-[ ] I can create a task.
-[ ] I can view a task.
-[ ] I can edit a task.
-[ ] I can delete a task.
-[ ] I can explain redirect-after-POST.
-[ ] I can prove data survives restart.
 ```

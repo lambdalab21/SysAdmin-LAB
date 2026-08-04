@@ -17,22 +17,6 @@ backups
 
 ---
 
-# Target layout
-
-```text
-/opt/site6-app/                  app code
-/opt/site6-app/.venv/            Python virtual environment
-/var/lib/site6-app/site6.db      SQLite database
-/etc/systemd/system/site6-app.service
-/etc/nginx/conf.d/site6-app.conf
-/var/backups/site6-app/
-/var/log/nginx/site6.access.log
-/var/log/nginx/site6.error.log
-journalctl -u site6-app
-```
-
----
-
 # Part 1 — Code vs data
 
 Code:
@@ -53,18 +37,9 @@ site6.db
 Stop and answer:
 
 ```text
-Which files can be replaced from Git?
-Which file contains user-created data?
-Which file must not be deleted by code deployment?
-Why not store site6.db inside /opt/site6-app?
-```
-
-Expected:
-
-```text
-Code can be recreated from Git.
-The database contains user data.
-The database should live in /var/lib/site6-app.
+Which files can be replaced from Git? Git-replaceable: app.py, templates/, static/, requirements.txt 
+Which file must not be deleted by code deployment? site6.db
+Why not store site6.db inside /opt/site6-app? To keep DB out of/opt so that deploys can not wipe user data. 
 ```
 
 ---
@@ -83,10 +58,9 @@ nginx user handles public HTTP
 Stop and answer:
 
 ```text
-Why not run Flask as root?
-Who should write the database?
-Should deploy user own the database?
-Should Nginx write the database?
+Why not run Flask as root? Root is too priviliged, a bug becomes a system compromise. 
+Should deploy user own the database? No. 
+Should Nginx write the database? No. 
 ```
 
 ---
@@ -105,14 +79,6 @@ In systemd:
 Environment=SITE6_DB=/var/lib/site6-app/site6.db
 ```
 
-This teaches:
-
-```text
-same code
-different environment
-different database path
-```
-
 Local:
 
 ```text
@@ -128,9 +94,9 @@ Server:
 Stop and explain:
 
 ```text
-Why use an environment variable?
-Why is local DB path different from server DB path?
-What could go wrong if systemd points to the wrong DB path?
+Why use an environment variable? Easy to change per environment without editing code. 
+Why is local DB path different from server DB path? Local uses a convenient relative path; servers use a managed system path. 
+What could go wrong if systemd points to the wrong DB path? App reads/writes the wrong file or fails to open the database. 
 ```
 
 ---
@@ -148,10 +114,10 @@ Nginx listens on public port 80.
 Explain:
 
 ```text
-Why does Flask listen only on 127.0.0.1?
-Why does Nginx listen on port 80?
-Which process should be reachable from the LAN?
-Which process should only be reachable locally?
+Why does Flask listen only on 127.0.0.1? Only the local reverse proxy should speak to it. 
+Why does Nginx listen on port 80? Public HTTP traffic
+Which process should be reachable from the LAN? Nginx
+Which process should only be reachable locally? Flask/app process. 
 ```
 
 ---
@@ -174,37 +140,8 @@ journalctl -u site6-app
 Stop and answer:
 
 ```text
-Which log proves the browser reached Nginx?
-Which log helps with proxy errors?
-Which log shows Flask startup or crash errors?
-Which log might show Python tracebacks?
-```
-
----
-
-# Final reflection
-
-```text
-Code directory:
-Data directory:
-Config file:
-Systemd service:
-Nginx config:
-App user:
-Database owner:
-Nginx access log:
-Nginx error log:
-App journal command:
-Backup directory:
-One mistake this layout prevents:
-```
-
-Completion checkpoint:
-
-```text
-[ ] I can separate code from data.
-[ ] I can explain service user ownership.
-[ ] I can explain local vs server DB path.
-[ ] I can explain why Nginx is public and Flask is local.
-[ ] I can identify which log to check.
+Which log proves the browser reached Nginx? Nginx access log. 
+Which log helps with proxy errors? Nginx error log. 
+Which log shows Flask startup or crash errors? `journalctl -u site6-app`
+Which log might show Python tracebacks? `journalctl -u site6-app`
 ```

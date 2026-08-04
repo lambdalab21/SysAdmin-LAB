@@ -1,47 +1,10 @@
 # TLCL Chapter 30: Troubleshooting
-
-This guide is for Chapter 30, **Troubleshooting**, from William Shotts's *The Linux Command Line*.
-
-The goal is not to memorize debugging tricks.
-
-The goal is to build this habit:
-
-```text
-Observe the failure.
-State what should have happened.
-Make one hypothesis.
-Use one test.
-Inspect evidence.
-Change one thing.
-Retest.
-Explain what happened.
-```
-
-Feynman analogy:
-
-```text
-Debugging is like fixing a lamp.
-A careless person shakes it and hopes it works.
-A disciplined thinker asks:
-Is there power? Is the bulb good? Is the switch working? Is the wire broken?
-One test at a time.
-```
-
 Working directory:
 
 ```bash
 mkdir -p ~/tlcl-ch30-troubleshooting
 cd ~/tlcl-ch30-troubleshooting
 ```
-
-Disciplined rule:
-
-```text
-Do not randomly edit a broken script.
-Write down what you expected, what actually happened, and what evidence you used.
-```
-
----
 # Day 3: Debugging, Tracing, and Final Lab
 
 ## Read before exercises
@@ -56,80 +19,24 @@ Examining Values During Execution
 Summing Up
 ```
 
-## What he should gain from this reading
-
-He should gain this idea:
-
-```text
-Debugging is controlled investigation.
-Do not guess. Narrow the problem area, trace execution, inspect values, and retest.
-```
-
-He is learning to use tools such as:
-
-```text
-bash -n
-bash -x
-set -x
-set +x
-echo / printf debugging
-small test cases
-```
-
----
-
-# Before reading: Feynman preview
-
-Explain this before reading:
-
-```text
-If a large script fails, do not stare at the whole script.
-Find the neighborhood of the problem.
-Then inspect the exact line.
-Then inspect the exact value.
-```
-
-Analogy:
-
-```text
-If a house is dark, you do not replace every wire.
-You check whether the whole block has power, then the house, then the room, then the lamp.
-```
-
----
-
 # After reading: concept questions
 
 Answer without looking back:
 
-1. What does it mean to find the problem area?
-2. Why should a bug be isolated before editing?
-3. What does `bash -x script.sh` show?
-4. Why is tracing sometimes too noisy?
-5. How can `set -x` and `set +x` trace only part of a script?
-6. Why should variable values be inspected during execution?
-7. Why is `printf` often better than vague `echo` debugging?
-8. Why should each fix be followed by retesting?
-9. What is the danger of making several changes before retesting?
-10. What makes a useful debugging note?
+1. What does it mean to find the problem area? Narrow the bug down to the smallest code section that causes it. 
+2. Why should a bug be isolated before editing? Avoid changing unrelated code and creating new bugs. 
+3. What does `bash -x script.sh` show? Each command as it runs, with expansions. 
+4. Why is tracing sometimes too noisy? Long scripts produce outputs that are hard to read. 
+5. How can `set -x` and `set +x` trace only part of a script? Turn tracing on only around the suspicious lines. 
+6. Why should variable values be inspected during execution? To see the real values the script is using. 
+7. Why is `printf` often better than vague `echo` debugging? printf shows exact content and spaces clearly. 
+8. Why should each fix be followed by retesting? To confirm the fix worked and nothing else broke. 
+9. What is the danger of making several changes before retesting? You cannot tell which change edited what. 
+10. What makes a useful debugging note? Clear expected/actual behavior and evidence. 
 
 ---
 
 # Exercise 1: Trace a simple script
-
-## Skill being gained
-
-He is learning to see what Bash actually executes after expansion.
-
-## Predict before typing
-
-Answer:
-
-```text
-What lines do I expect bash -x to show?
-Will it show commands before or after variable expansion?
-```
-
 ## Create script
 
 ```bash
@@ -162,28 +69,14 @@ bash -x trace-demo.sh
 
 Answer:
 
-1. What extra information did `bash -x` show?
-2. Did it show `$name` literally or expanded?
-3. How can this help with debugging?
-4. Why might this be too noisy in a long script?
+1. What extra information did `bash -x` show? Each command line before execution. 
+2. Did it show `$name` literally or expanded? Expanded values. 
+3. How can this help with debugging? Shows what the shell actually ran. 
+4. Why might this be too noisy in a long script? Too many lines to scan in a large script. 
 
 ---
 
 # Exercise 2: Trace only the suspicious area
-
-## Skill being gained
-
-He is learning to turn tracing on and off.
-
-## Predict before typing
-
-Answer:
-
-```text
-Which part should be traced?
-Which part should remain quiet?
-```
-
 ## Create script
 
 ```bash
@@ -209,29 +102,14 @@ bash selective-trace.sh
 
 Answer:
 
-1. Which lines were traced?
-2. Which lines were not traced?
-3. Why is selective tracing better than tracing everything?
-4. What command actually ran after variables expanded?
+1. Which lines were traced? The `grep | head` line. 
+2. Which lines were not traced? The `echo` lines outside `set -x / set +x`
+3. Why is selective tracing better than tracing everything? Focuses attention and reduces noise. 
+4. What command actually ran after variables expanded? `grep root /etc/passwd | head -n 1`
 
 ---
 
 # Exercise 3: Examine values during execution
-
-## Skill being gained
-
-He is learning to inspect exact variable values, including spaces and empty strings.
-
-## Predict before typing
-
-Answer:
-
-```text
-Why is printf '<%s>
-' useful?
-What does it show that plain echo may hide?
-```
-
 ## Create script
 
 ```bash
@@ -256,18 +134,13 @@ bash value-debug.sh
 
 Answer:
 
-1. How can angle brackets reveal spaces?
-2. How can they reveal empty variables?
-3. Why is this useful before using a variable as a filename?
+1. How can angle brackets reveal spaces? Spaces appear between the brackets. 
+2. How can they reveal empty variables? Empty variables show as <>. 
+3. Why is this useful before using a variable as a filename? It prevents using a blank or space-filled name a a path. 
 
 ---
 
 # Exercise 4: Final debugging lab
-
-## Skill being gained
-
-He is learning full disciplined debugging: classify, isolate, trace, inspect, fix, retest.
-
 ## Create intentionally flawed script
 
 ```bash
@@ -308,12 +181,12 @@ EOF
 Before running, answer:
 
 ```text
-What arguments does this script expect?
-What should happen with good input?
-What should happen with missing input?
-What variables are unquoted?
-What commands might fail?
-What filenames or patterns might be dangerous?
+What arguments does this script expect? Expects: directory and pattern. 
+What should happen with good input? Good input: header + directory line + matching log lines. 
+What should happen with missing input? Missing input: empty vars, broken searches 
+What variables are unquoted? Unquoted: $target_dir, $pattern. 
+What commands might fail? Missing directories, missing arguments, or bad grep. 
+What filenames or patterns might be dangerous? Spaces in names or patterns starting with -. 
 ```
 
 ## Run test cases
@@ -341,23 +214,6 @@ bash lab-check.sh sample-logs ERROR
 bash lab-check.sh sample-logs
 bash lab-check.sh /no/such/dir ERROR
 bash -x lab-check.sh sample-logs ERROR
-```
-
-## Debugging log
-
-For each problem found, fill this out:
-
-```text
-Expected behavior:
-Actual behavior:
-Bug type:
-Smallest suspicious area:
-Hypothesis:
-Test used:
-Evidence:
-Fix:
-Retest:
-Feynman explanation:
 ```
 
 ## Improve the script
@@ -427,48 +283,13 @@ bash lab-check.sh 'sample-logs' 'disk almost'
 
 Answer:
 
-1. Why use `${1:-}` instead of `$1` with `set -u`?
-2. Why validate before searching?
-3. Why quote `"$target_dir"` and `"$pattern"`?
-4. Why use `--` before grep arguments?
-5. Why is `usage` a function?
-6. Which failures now produce clear messages?
-7. Which test cases prove the script is safer?
-
----
-
-# Exercise 5: Write a troubleshooting report
-
-## Skill being gained
-
-He is learning to communicate debugging clearly.
-
-Write a short report:
-
-```text
-Bug 1:
-Expected:
-Actual:
-Cause:
-Fix:
-Evidence after retest:
-
-Bug 2:
-Expected:
-Actual:
-Cause:
-Fix:
-Evidence after retest:
-
-Most important lesson:
-```
-
-Rules:
-
-```text
-No vague words: “weird,” “broken,” “didn't work.”
-Use evidence: command, output, exit status, trace line, variable value.
-```
+1. Why use `${1:-}` instead of `$1` with `set -u`? Avoids unbound-variable errors when args are missing. 
+2. Why validate before searching? Fail fast with a clear message instead of cryptic failures. 
+3. Why quote `"$target_dir"` and `"$pattern"`? Prevents word-splitting and globbing. 
+4. Why use `--` before grep arguments? Stops patterns starting with - from being treated as options. 
+5. Why is `usage` a function? Reusable, keeps main flow clean. 
+6. Which failures now produce clear messages? Missing arguments and non-directory paths. 
+7. Which test cases prove the script is safer? No argument, missing directory, and spaced-filename cases. 
 
 ---
 
@@ -476,44 +297,13 @@ Use evidence: command, output, exit status, trace line, variable value.
 
 Answer in writing:
 
-1. What is the difference between syntax, expansion, and logical errors?
-2. Why should `bash -n` be run before testing a changed script?
-3. What does `bash -x` show?
-4. Why does quoting variables prevent many bugs?
-5. Why can filenames be dangerous?
-6. What does `--` protect against?
-7. Why should error messages go to stderr?
-8. Why should bad input be tested intentionally?
-9. Why is one change at a time better than many changes at once?
-10. What makes a debugging explanation convincing?
-
----
-
-# Day 3 finish standard
-
-He is done with Chapter 30 only if he can say:
-
-```text
-I can classify a bug.
-I can isolate a problem area.
-I can use bash -n for syntax checking.
-I can use bash -x or set -x for tracing.
-I can inspect variable values with printf.
-I can design test cases for good and bad input.
-I can fix one bug at a time and retest.
-I can explain the cause of the bug in plain English.
-```
-
-Chapter 30 should change how he studies every later chapter.
-
-The standard is no longer:
-
-```text
-Did the command work once?
-```
-
-The standard is:
-
-```text
-Can I explain why it worked, how it can fail, and how I verified the fix?
-```
+1. What is the difference between syntax, expansion, and logical errors? Syntax = parse error. Expansion = wrong values after $/*; logical = runs but does the wrong thing.
+2. Why should `bash -n` be run before testing a changed script? Catches syntax errors before runtime. 
+3. What does `bash -x` show? Commands as executed with expansions. 
+4. Why does quoting variables prevent many bugs? It stops word-splitting and globbing. 
+5. Why can filenames be dangerous? Spaces, leading -, and special characters break unquoted use. 
+6. What does `--` protect against? Filenames or patterns that look like options. 
+7. Why should error messages go to stderr? Keeps them separate from normal output. 
+8. Why should bad input be tested intentionally? Proves that the script defends itself. 
+9. Why is one change at a time better than many changes at once? You can isolate which change fixed the bug. 
+10. What makes a debugging explanation convincing? Specific expected/actual evidence tied to a cause and fix. 
