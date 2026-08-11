@@ -64,14 +64,14 @@ produce text
 
 ## Part 3: Shell scripting
 
-|_Effective Shell_|Topic|Closest TLCL chapters|Recommendation|
-|---|---|---|---|
-|ES 9|Shell Script Fundamentals|TLCL 24–26|Read after TLCL 26|
-|ES 10|Variables|TLCL 7, 25, and 34|Read with ES 9|
-|ES 11|Conditional Logic|TLCL 27 and 31|Read after TLCL 27|
-|ES 12|Loops with Files and Folders|TLCL 29 and 33|Read after TLCL 33|
-|ES 13|Functions, Parameters, and Error Handling|TLCL 30 and 32|Read after TLCL 32|
-|ES 14|Useful Patterns for Shell Scripts|TLCL 30 and 36|Read after TLCL 34|
+| _Effective Shell_ | Topic                                     | Closest TLCL chapters | Recommendation     |
+| ----------------- | ----------------------------------------- | --------------------- | ------------------ |
+| ES 9              | Shell Script Fundamentals                 | TLCL 24–26            | Read after TLCL 26 |
+| ES 10             | Variables                                 | TLCL 7, 25, and 34    | Read with ES 9     |
+| ES 11             | Conditional Logic                         | TLCL 27 and 31        | Read after TLCL 27 |
+| ES 12             | Loops with Files and Folders              | TLCL 29 and 33        | Read after TLCL 33 |
+| ES 13             | Functions, Parameters, and Error Handling | TLCL 30 and 32        | Read after TLCL 32 |
+| ES 14             | Useful Patterns for Shell Scripts         | TLCL 30 and 36        | Read after TLCL 34 |
 
 Author/Shotts devotes Chapters 24–36 to shell scripts, progressing from a first script through project structure, conditions, loops, troubleshooting, positional parameters, strings, arrays, and advanced features. ([ノースターチプレス](https://nostarch.com/linux-command-line-3e "The Linux Command Line, 3rd Edition | No Starch Press"))
 
