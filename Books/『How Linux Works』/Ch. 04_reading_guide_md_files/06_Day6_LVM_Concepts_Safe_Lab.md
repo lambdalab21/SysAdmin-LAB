@@ -16,12 +16,6 @@ physical volume
 → mount point
 ```
 
-## Why LVM matters
-
-LVM can make storage management more flexible by allowing logical volumes to be created, resized, and managed above physical devices. It is common on servers.
-
-Do not let this become magic. Draw the layers.
-
 ## Lab setup
 
 Use a fake disk file.
@@ -112,10 +106,10 @@ sudo losetup -d "$LOOPDEV"
 
 ## Questions
 
-1. What problem does LVM solve?
-2. What is a physical volume?
-3. What is a volume group?
-4. What is a logical volume?
-5. Does LVM replace filesystems?
-6. Why does a logical volume still need `mkfs` before mounting?
-7. Why is LVM an abstraction layer, not a filesystem?
+1. What problem does LVM solve? LVM solves inflexible disk management by letting the user resize, add, or move storage without downtime or divisions. 
+2. What is a physical volume? A physical volume(or a PV) is a physical disk initialized for use in LVM. 
+3. What is a volume group? A volume group( or a VG) is a pool of storage that combines one of the more physical volumes. 
+4. What is a logical volume? A logical volume( or a LV) is a virtual partition created from space in a volume group. 
+5. Does LVM replace filesystems? No, LVM works on top of physical storage and still requires a filesystem. 
+6. Why does a logical volume still need `mkfs` before mounting? Because a logical volume is just a block device, it needs a filesystem to organize files and directories.
+7. Why is LVM an abstraction layer, not a filesystem? LVM provides flexible block device management but does not handle file storage. 

@@ -1,23 +1,5 @@
 # Day 3 — Start, Stop, Enable, Disable
 
-## Core distinction
-
-```text
-start   = run now
-stop    = stop now
-enable  = start automatically at boot
-disable = do not start automatically at boot
-```
-
-A service can be:
-
-```text
-running but disabled
-stopped but enabled
-running and enabled
-stopped and disabled
-```
-
 ## Lab 1: Observe current state
 
 Use Nginx if installed:
@@ -73,10 +55,10 @@ ss -tulpn | grep ':80'
 
 Questions:
 
-1. Which command shows systemd’s view?
-2. Which command shows process state?
-3. Which command shows listening ports?
-4. Does “running” prove remote clients can reach the service?
+1. Which command shows systemd’s view? systemctl status nginx
+2. Which command shows process state? ps aux | grep nginx
+3. Which command shows listening ports? ss -tulpn | grep ':80'
+4. Does “running” prove remote clients can reach the service? No. Firewall, binding, or network issues can still block access. 
 
 ## Break/fix
 
@@ -108,16 +90,8 @@ sudo systemctl start nginx
 
 ## Retrieval questions
 
-1. Difference between `start` and `enable`?
-2. Difference between `stop` and `disable`?
-3. Difference between `restart` and `reload`?
-4. What does `is-active` tell you?
-5. What does `is-enabled` tell you?
-
-## Exit criterion
-
-He can say:
-
-```text
-I can run a service now, make it start at boot, stop it now, and prevent future boot startup — and those are separate actions.
-```
+1. Difference between `start` and `enable`? `start` runs it now; `enable` makes it start at boot. 
+2. Difference between `stop` and `disable`? `stop` stops it. `disable` prevents start. 
+3. Difference between `restart` and `reload`? `restart` stops then starts, `reload` reloads config without full stop if supported.
+4. What does `is-active` tell you? Whether the service is running. 
+5. What does `is-enabled` tell you? Whether or not it's set to start at boot. 

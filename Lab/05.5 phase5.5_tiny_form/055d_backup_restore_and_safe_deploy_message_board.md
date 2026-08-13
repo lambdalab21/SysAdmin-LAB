@@ -85,7 +85,6 @@ What this proves:
 ```
 
 ---
-
 # Part 3 — Create a backup
 
 Create backup directory:

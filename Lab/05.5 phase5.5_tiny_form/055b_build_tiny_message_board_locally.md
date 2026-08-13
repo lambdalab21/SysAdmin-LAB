@@ -10,11 +10,6 @@ Features:
 GET /              show page, form, and messages
 POST /messages     save one message, then redirect to /
 ```
-
-This is not full CRUD.
-
-There is no edit and no delete.
-
 ---
 
 # Part 1 — Create project
@@ -147,18 +142,16 @@ add_message writes to SQLite.
 The app listens on 127.0.0.1:8000.
 ```
 
-## Stop and answer
-
 ```text
-Where is the local database?
+Where is the local database? It's at ./data/site55.db. 
 
-What path shows the page?
+What path shows the page? / shows the page. 
 
-What path receives the form?
+What path receives the form? /messages receives the form. 
 
-What field name holds the message?
+What field name holds the message? body field holds the message. 
 
-What happens after POST succeeds?
+	What happens after POST succeeds? After a successful POST, it issues a 303 redirect back to /. 
 ```
 
 ---
@@ -178,15 +171,15 @@ curl -v http://127.0.0.1:8000/
 Write:
 
 ```text
-HTTP status:
+HTTP status: 200
 
-Content-Type:
+Content-Type: text/html: charset=utf-8
 
-Page title or heading found:
+Page title or heading found: site55 message board
 
-What this proves:
+What this proves: It proves that the server responds to GET /. 
 
-What this does not prove:
+What this does not prove: This does not prove form submsision or database persistence. 
 ```
 
 ---
@@ -214,13 +207,13 @@ curl -s http://127.0.0.1:8000/ | grep 'hello from curl'
 Write:
 
 ```text
-POST status:
+POST status: 303 See Other. 
 
-Redirect Location:
+Redirect Location: /
 
-GET evidence after POST:
+GET evidence after POST: TThe message text appears in the list. 
 
-What this proves:
+What this proves: This proves the message was saved and redirect works. 
 ```
 
 ---
@@ -244,13 +237,13 @@ curl -s http://127.0.0.1:8000/ | grep 'your message text'
 Write:
 
 ```text
-Browser message:
+Browser message: Successfully added via form. 
 
-curl evidence:
+curl evidence: Message text appears in HTML. 
 
-What this proves:
+What this proves: This proves browser from submission works.
 
-What this does not prove:
+What this does not prove: This does not prove persistence across server starts.
 ```
 
 ---
@@ -284,11 +277,11 @@ curl -s http://127.0.0.1:8000/ | grep 'hello from curl'
 Write:
 
 ```text
-Database file:
+Database file: ./data/site55.db
 
-Did message survive restart?
+Did message survive restart? Yes, the message survived. 
 
-What this proves:
+What this proves: Data is stored in SQLite. 
 ```
 
 Expected:
@@ -311,20 +304,13 @@ messages longer than 200 characters
 Answer:
 
 ```text
-Why reject empty messages?
+Why reject empty messages? Reject empty messages to avoid clutter and meaningless entries. 
 
-Why limit length?
+Why limit length? To keep the UI clean and prevent any abuse. 
 
-Does this make the app secure?
+Does this make the app secure? no
 
-What security questions are not covered yet?
-```
-
-Expected:
-
-```text
-This is basic input hygiene.
-It is not a complete security model.
+What security questions are not covered yet? XSS, SQL injection, rate limiting, and authentication. 
 ```
 
 ---
@@ -332,33 +318,23 @@ It is not a complete security model.
 # Final reflection
 
 ```text
-Task:
+Task: Build a tiny persistent message board. 
 
-GET path:
+GET path: /
 
-POST path:
+POST path: /messages
 
-Form field name:
+Form field name: body
 
-Database file:
+Database file: ./data/site55.db
 
-Command that proved GET:
+Command that proved GET: curl http://127.0.0.1:8000/
 
-Command that proved POST:
+Command that proved POST: curl -X POST -d 'body=...' http://127.0.0.1:8000/messages
 
-Command that proved redirect:
+Command that proved redirect: 303 status + location header. 
 
-Command that proved persistence:
+Command that proved persistence: restart server, then curl GET. 
 
-One Python detail I intentionally did not chase deeply:
-```
-
-Completion checkpoint:
-
-```text
-[ ] I can run the app locally.
-[ ] I can submit a form from curl.
-[ ] I can submit a form from the browser.
-[ ] I can explain 303 redirect.
-[ ] I can prove data survives restart.
+One Python detail I intentionally did not chase deeply: Full HTTP server class internals or advanced sqlite3 features. 
 ```

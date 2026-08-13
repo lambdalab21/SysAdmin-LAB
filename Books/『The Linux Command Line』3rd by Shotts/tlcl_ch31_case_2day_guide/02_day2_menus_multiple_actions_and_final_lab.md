@@ -1,74 +1,5 @@
 # Day 2: Menus, Multiple Actions, and Final Lab
-
-## Read before exercises
-
-Read the rest of Chapter 31:
-
-```text
-Performing Multiple Actions
-Summing Up
-```
-
-If your edition uses older headings, read the rest of **The case Command** and **Summing Up**.
-
-## What he should gain from this reading
-
-He should gain this idea:
-
-```text
-`case` becomes powerful when each branch calls a clear function.
-```
-
-This connects Chapter 31 back to:
-
-```text
-Ch. 26: functions
-Ch. 28: menus and read
-Ch. 29: loops
-Ch. 30: testing and debugging
-```
-
-He should not write a huge `case` block full of messy commands. He should use `case` to route the script to named actions.
-
----
-
-# Before reading: Feynman preview
-
-Explain this before reading:
-
-```text
-A menu does not do the work itself.
-A menu sends you to the right kitchen station.
-
-In a script:
-case = menu router
-functions = kitchen stations that do the work
-```
-
----
-
-# After reading: concept questions
-
-Answer without looking back:
-
-1. Why is `case` useful for menus?
-2. Why should a branch often call a function instead of containing many commands?
-3. How can one branch match multiple choices, such as `q|quit`?
-4. What is the purpose of the default branch?
-5. How should the script respond to invalid input?
-6. Why should valid and invalid cases both be tested?
-7. How does `case` improve readability compared with many `elif` branches?
-8. Why is `bash -n` useful before running the script?
-9. What is one mistake that `case` will not protect you from?
-10. What should be explained before moving on to Chapter 32?
-
----
-
 # Exercise 1: Multiple patterns for the same action
-
-## Skill being gained
-
-He is learning to let several inputs mean the same thing.
 
 ## Do not type yet
 
@@ -131,19 +62,6 @@ Answer:
 ---
 
 # Exercise 2: Use `case` with functions
-
-## Skill being gained
-
-He is learning script organization: `case` routes; functions perform.
-
-## Read before exercise
-
-Briefly review Chapter 26's function idea:
-
-```text
-The main body of the script should read like an outline.
-```
-
 ## Do not type yet
 
 Before typing, define the functions in English:

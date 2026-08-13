@@ -10,55 +10,22 @@ Menus
 Summing Up
 ```
 
-Read `Extra Credit` only if time remains.
-
-## What he should gain from this reading
-
-He should gain this mental model:
-
-```text
-Input is untrusted until the script checks it.
-A menu is just input plus validation plus branching.
-```
-
-A script that asks for input but does not validate it is incomplete.
-
----
-
-# Before-reading Feynman preview
-
-Explain this before reading:
-
-```text
-If a script asks “Enter 1, 2, or 3,” a human might type:
-1
-2
-banana
-empty input
-1 2
-../../weird
-```
-
-A disciplined script must decide what to do with each case.
-
 ---
 
 # After-reading concept questions
 
 Answer without looking back:
 
-1. Why must scripts validate input?
-2. Why is validation especially important before destructive actions?
-3. How can `[[ -z "$var" ]]` help validate input?
-4. How can regex help validate input?
-5. Why should error messages often go to stderr?
-6. What is a menu-driven program?
-7. What are valid menu choices in a simple numbered menu?
-8. What should the script do when the user enters an invalid choice?
-9. Why should validation happen before action?
-10. How does Chapter 28 reuse ideas from Chapter 27?
-
-Do not continue until these are answered.
+1. Why must scripts validate input? Scripts must validate input because users can provide bad, empty, or malicious data. 
+2. Why is validation especially important before destructive actions? Destructive actions can cause major damage if they're ran with invalid input. 
+3. How can `[[ -z "$var" ]]` help validate input? [[ -z "$var" ]] checks if the variable is empty. 
+4. How can regex help validate input? Regex can match patterns to ensure input format. 
+5. Why should error messages often go to stderr? Error messages go to stderr so that they are separate from normal output
+6. What is a menu-driven program? A menu-driven program presents options and acts based on user choices. 
+7. What are valid menu choices in a simple numbered menu? Valid choices are usually 0 through 3. 
+8. What should the script do when the user enters an invalid choice? Show an error and exit, or reprompt. 
+9. Why should validation happen before action? To prevent running actions. 
+10. How does Chapter 28 reuse ideas from Chapter 27? It reuses if statements. 
 
 ---
 
@@ -73,20 +40,6 @@ Validating Input
 ```
 
 Focus on empty input.
-
-## Skill being gained
-
-He is learning the first validation rule: do not assume the user typed something useful.
-
-## Do not type yet
-
-Predict:
-
-```text
-What should happen if the user types app01?
-What should happen if the user presses Enter?
-Should the error go to stdout or stderr?
-```
 
 ## Create the script
 
@@ -119,10 +72,10 @@ For the second run, press Enter with no input.
 
 Answer:
 
-1. What does `-z` test?
-2. Why quote `"$hostname"`?
-3. Why use `>&2` for the error?
-4. Why use `exit 1`?
+1. What does `-z` test? It tests if a string is empty. 
+2. Why quote `"$hostname"`? To prevent word splitting and globbing.
+3. Why use `>&2` for the error?Directs error outputs from normal stdout. 
+4. Why use `exit 1`? Signals failure to the shell process. 
 
 ---
 
@@ -133,27 +86,6 @@ Answer:
 Read the `Menus` section.
 
 Then reread the part of `Validating Input` that uses tests and regex.
-
-## Skill being gained
-
-He is learning to accept only known choices.
-
-## Do not type yet
-
-Write the rules in English:
-
-```text
-Valid choices:
-Invalid choices:
-Regex or test I will use:
-Action for invalid input:
-```
-
-For this exercise, valid choices are:
-
-```text
-0, 1, 2, 3
-```
 
 ## Create the script
 
@@ -197,11 +129,11 @@ empty input
 
 Answer:
 
-1. What does `^[0-3]$` mean?
-2. Why are `^` and `$` important?
-3. Why would `[0-3]` alone be weaker?
-4. Why is `1 2` invalid?
-5. What branch runs for bad input?
+1. What does `^[0-3]$` mean? Matches a single character that is exactly 0, 1, 2, or 3. 
+2. Why are `^` and `$` important? ^ anchors to start of string; $ to end - ensures entire input matches, no extras. 
+3. Why would `[0-3]` alone be weaker? [0-3] alone matches anywhere in the string. 
+4. Why is `1 2` invalid? Contains space and extra characters, doesn't match the full pattern. 
+5. What branch runs for bad input? The if [[ ! ... ]] error branch runs and exits. 
 
 ---
 
@@ -219,22 +151,6 @@ Exit Status
 Using test
 A More Modern Version of test
 ```
-
-## Skill being gained
-
-He is learning that a menu is input plus branching.
-
-## Do not type yet
-
-Before typing, complete this table:
-
-| Input | Expected action |
-|---|---|
-| 1 | |
-| 2 | |
-| 3 | |
-| 0 | |
-| banana | |
 
 ## Create the script
 
@@ -282,11 +198,11 @@ Test every valid branch and at least two invalid branches.
 
 Answer:
 
-1. Where does input enter the script?
-2. Where is input validated?
-3. Where does branching happen?
-4. Why should validation come before the actions?
-5. Which previous chapters does this script reuse?
+1. Where does input enter the script? Via read -r -p ... selection. 
+2. Where is input validated? Immediately after reading, with the regex test. 
+3. Where does branching happen? In the if/elif/else chain after validation. 
+4. Why should validation come before the actions? Prevents running potentially harmful commands with bad data. 
+5. Which previous chapters does this script reuse? Chapter 27.
 
 ---
 
@@ -303,31 +219,6 @@ Summing Up
 ```
 
 Ask what this chapter adds to the earlier report-generator project.
-
-## Skill being gained
-
-He is learning to combine:
-
-```text
-functions from Chapter 26
-if from Chapter 27
-read from Chapter 28
-validation from Chapter 28
-```
-
-## Do not type yet
-
-Design first:
-
-```text
-Script job:
-Menu choices:
-Valid input:
-Invalid input:
-Functions needed:
-How I will test each branch:
-```
-
 ## Create the script
 
 ```bash
@@ -440,20 +331,16 @@ empty input
 
 Answer:
 
-1. Why does `print_html_page` take one argument?
-2. Why is `section` local?
-3. Why validate before calling `print_html_page`?
-4. Why does choice `0` exit before generating HTML?
-5. Why is this not yet a repeated menu?
-6. Which later chapter will make repeated menus easier?
+1. Why does `print_html_page` take one argument? To specify which report section to generate(0, 1, 2, or 3)
+2. Why is `section` local? Keeps it scoped to the function, avoids polluting global namescapes. 
+3. Why validate before calling `print_html_page`? Ensures only valid sections reach the HTML generation logic. 
+4. Why does choice `0` exit before generating HTML? No report is needed. 
+5. Why is this not yet a repeated menu? It runs once and exits. No loop to redisplay menu. 
+6. Which later chapter will make repeated menus easier? Probably Chapter 29. 
 
 ---
 
 # Exercise 5: Make a test checklist
-
-## Skill being gained
-
-He is learning that interactive scripts require multiple test cases.
 
 Create this file:
 
@@ -494,63 +381,8 @@ Fill it in after testing.
 
 Answer in writing:
 
-1. What is the difference between reading input and validating input?
-2. Why is empty input often invalid?
-3. Why should invalid input usually stop the script before actions happen?
-4. What makes `^[0-3]$` more precise than `[0-3]`?
-5. Why is `read -r` a good default?
-6. Why should user input usually be quoted when expanded?
-7. What is a menu-driven script?
-8. Why is this chapter a bridge between simple scripts and real tools?
-9. What is still awkward without loops?
-10. What should Chapter 29 add?
-
----
-
-# Final Feynman explain-back
-
-Explain Chapter 28 to a younger student:
-
-```text
-A script can ask the user for input using read.
-The answer is stored in a variable.
-But the script should not trust the answer.
-It should check whether the answer is empty, wrong, or unsafe.
-A menu is a controlled way to ask the user what action to run.
-```
-
-Then explain this command:
-
-```bash
-read -r -p 'Enter selection [0-3] > ' selection
-```
-
-Use this structure:
-
-```text
-read:
--r:
--p:
-prompt text:
-selection:
-```
-
-Then explain this validation:
-
-```bash
-[[ ! "$selection" =~ ^[0-3]$ ]]
-```
-
-Use this structure:
-
-```text
-[[ ... ]]:
-!:
-"$selection":
-=~:
-^:
-[0-3]:
-$:
-```
-
-If he cannot explain each part, he should review Day 2 before moving on.
+1. What is the difference between reading input and validating input? Reading input gets raw user data; validating input checks it for accuracy, safety, and expected format before usage. 
+2. Why is empty input often invalid? Empty inputs are often invalid because it can cause errors, unexpected behavior, or bypass intended logic in scripts. 
+3. Why should invalid input usually stop the script before actions happen? Invalid inputs should stop the script early to avoid running commands with malicious data that could cause damage, errors, or security issues. 
+4. What makes `^[0-3]$` more precise than `[0-3]`? It's more precise because ^ and $ anchor the match to the entire string. 
+5. Why is `read -r` a good default? read -r is a good default because it prevents backslash interpretation, preserving literal input as it's typed. 

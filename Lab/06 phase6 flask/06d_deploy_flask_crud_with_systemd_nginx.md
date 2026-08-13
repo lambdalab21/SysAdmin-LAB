@@ -48,16 +48,6 @@ ls -ld /opt/site6-app /var/lib/site6-app /var/backups/site6-app
 id site6
 ```
 
-Write:
-
-```text
-Service user:
-Code directory owner:
-Data directory owner:
-Backup directory owner:
-What this proves:
-```
-
 ---
 
 # Part 2 — Create requirements file locally
@@ -88,16 +78,6 @@ From local project:
 rsync -av --delete   --exclude '.git'   --exclude '.venv'   --exclude 'data'   ./ deploy@app01:/opt/site6-app/
 ```
 
-Stop and explain:
-
-```text
-Why exclude .venv?
-Why exclude data?
-Why exclude .git?
-Which directory is being updated?
-Which directory must not be touched?
-```
-
 Check on app01:
 
 ```bash
@@ -122,15 +102,6 @@ Check:
 
 ```bash
 /opt/site6-app/.venv/bin/python -c 'import flask; print(flask.__version__)'
-```
-
-Write:
-
-```text
-Server venv path:
-Flask import evidence:
-What this proves:
-What this does not prove:
 ```
 
 ---
@@ -260,32 +231,4 @@ Check logs:
 sudo tail -n 20 /var/log/nginx/site6.access.log
 sudo tail -n 20 /var/log/nginx/site6.error.log
 sudo journalctl -u site6-app --since "10 minutes ago"
-```
-
----
-
-# Final reflection
-
-```text
-Code directory:
-Data directory:
-Service user:
-Python venv path:
-systemd service file:
-Nginx config file:
-Direct backend test:
-Nginx test:
-Browser test:
-Strongest evidence that deployment works:
-Strongest evidence that data is persistent:
-```
-
-Completion checkpoint:
-
-```text
-[ ] Flask app runs locally on app01.
-[ ] systemd manages site6-app.
-[ ] Nginx proxies site6.local to the app.
-[ ] CRUD works through Nginx.
-[ ] Logs show evidence.
 ```
