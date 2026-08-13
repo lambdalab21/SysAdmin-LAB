@@ -35,37 +35,17 @@ Use "$@" when you need to loop over all arguments safely.
 
 Answer without looking back:
 
-1. What is the difference between handling one positional parameter and handling many?
-2. What does `shift` do?
-3. Why can `shift` be useful in a loop?
-4. What is the practical danger of unquoted `$@`?
-5. Why is `"$@"` usually the safest way to pass or loop over arguments?
-6. Why can filenames with spaces expose bad argument handling?
-7. What is the difference between the arguments the user typed and the arguments the script receives?
-
-Do not continue until these are answered.
+1. What is the difference between handling one positional parameter and handling many? One value vs looping over / forwarding all of them. 
+2. What does `shift` do? Removes $1 and shifts the rest left. 
+3. Why can `shift` be useful in a loop? Processing arguments one by one until none of the mare left. 
+4. What is the practical danger of unquoted `$@`? Word splitting and globbing break arguments with spaces. 
+5. Why is `"$@"` usually the safest way to pass or loop over arguments? It keeps each original arguments intact. 
+6. Why can filenames with spaces expose bad argument handling? Unquoted expansion splits them into multiple words. 
+7. What is the difference between the arguments the user typed and the arguments the script receives? The shell may have already split or joined them before the script sees them. 
 
 ---
 
 # Exercise 1: Compare `$*`, `$@`, `"$*"`, and `"$@"`
-
-## Skill being gained
-
-He is learning that small quoting differences change argument behavior.
-
-## Do not type yet
-
-Predict what happens when the script receives:
-
-```bash
-one "two words" three
-```
-
-Question:
-
-```text
-Will "two words" stay together or get split apart?
-```
 
 ## Create the script
 
@@ -114,39 +94,14 @@ chmod +x compare-all-args.sh
 
 Answer:
 
-1. Which version preserved `two words` as one argument?
-2. Which version treated all arguments as one big string?
-3. Which versions were unsafe because they allowed word splitting?
-4. Why is `"$@"` usually the correct choice?
-
-Write the rule:
-
-```text
-When I want each original argument preserved separately, I use "$@".
-```
+1. Which version preserved `two words` as one argument? "$0"
+2. Which version treated all arguments as one big string? "$*"
+3. Which versions were unsafe because they allowed word splitting? "$*" and "$0"
+4. Why is `"$@"` usually the correct choice? It preserves each argument separately and intact. 
 
 ---
 
 # Exercise 2: Use `shift` to process arguments one at a time
-
-## Skill being gained
-
-He is learning that `shift` moves the argument list forward.
-
-## Read before exercise
-
-Reread the part of the chapter that explains `shift`.
-
-## Do not type yet
-
-Predict this sequence:
-
-```text
-Initial arguments: alpha beta gamma
-Before shift: $1 = ?
-After one shift: $1 = ?
-After two shifts: $1 = ?
-```
 
 ## Create the script
 
@@ -166,44 +121,18 @@ chmod +x shift-demo.sh
 ./shift-demo.sh alpha beta gamma
 ```
 
-Note: if the indentation before `done` bothers you, fix it. The shell cares about the keyword, but humans care about readable structure.
-
 ## Explain-back
 
 Answer:
 
-1. What does `shift` remove?
-2. What happens to old `$2` after `shift`?
-3. Why does `$#` get smaller?
-4. What would happen if the loop forgot to call `shift`?
+1. What does `shift` remove? The current $1. 
+2. What happens to old `$2` after `shift`? It becomes the new $1. 
+3. Why does `$#` get smaller? One argument was removed. 
+4. What would happen if the loop forgot to call `shift`? Infinite loop on the same $1. 
 
 ---
 
 # Exercise 3: Prefer `"$@"` for simple loops
-
-## Skill being gained
-
-He is learning that many cases do not require `shift`; `for arg in "$@"` is clearer.
-
-## Do not type yet
-
-State the job:
-
-```text
-Print each argument exactly as the user passed it.
-```
-
-Which is clearer?
-
-```bash
-while [[ $# -gt 0 ]]; do ... shift; done
-```
-
-or:
-
-```bash
-for arg in "$@"; do ... done
-```
 
 ## Create the script
 
@@ -227,39 +156,14 @@ chmod +x list-args-safely.sh
 
 Answer:
 
-1. Why did `"beta gamma"` stay one argument?
-2. Why did `"*.txt"` not expand into filenames?
-3. What does `((count++))` do?
-4. Why are both `$count` and `$arg` quoted in `printf`?
+1. Why did `"beta gamma"` stay one argument? Quotes keep it as one argument. 
+2. Why did `"*.txt"` not expand into filenames? Quotes prevented glob expansions. 
+3. What does `((count++))` do? Increments count by one. 
+4. Why are both `$count` and `$arg` quoted in `printf`? Safe expansions without splitting or globbing. 
 
 ---
 
 # Exercise 4: Upgrade report script to accept multiple sections
-
-## Skill being gained
-
-He is learning to loop through requested sections.
-
-## Command-line contract
-
-Before typing, write this:
-
-```text
-Command:
-./lab-report.sh TITLE SECTION...
-
-TITLE:
-first argument
-
-SECTION:
-one or more of: system, disk, home
-```
-
-Example:
-
-```bash
-./lab-report.sh "App01 Report" system disk
-```
 
 ## Create the script
 
@@ -356,43 +260,4 @@ Inspect:
 
 ```bash
 grep -E '<h1>|<h2>' report.html
-```
-
-## Explain-back
-
-Answer:
-
-1. Why does the script save `report_title=$1` before `shift`?
-2. After `shift`, what does `"$@"` contain?
-3. Why is `for section in "$@"` safer than `for section in $@`?
-4. Why does the unknown-section branch exit with failure?
-5. Why is `case` clearer than many `if` statements here?
-
----
-
-# Day 2 finish standard
-
-He is done with Day 2 only if he can say:
-
-```text
-shift removes the current first positional parameter.
-"$@" preserves each original argument separately.
-Unquoted $@ can split arguments and cause bugs.
-A script that accepts many arguments must define what each one means.
-```
-
-He must also be able to explain why this is usually wrong:
-
-```bash
-for file in $@; do
-    echo "$file"
-done
-```
-
-And why this is usually better:
-
-```bash
-for file in "$@"; do
-    echo "$file"
-done
 ```

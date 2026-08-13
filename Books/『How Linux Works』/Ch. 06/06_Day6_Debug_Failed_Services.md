@@ -17,8 +17,6 @@ status
 → verify
 ```
 
-Use the custom service from Day 5.
-
 Verify it works:
 
 ```bash
@@ -104,20 +102,8 @@ sudo systemctl restart hlw-ch6-web
 
 ## Questions
 
-1. Which error appeared for the missing script?
-2. Which error appeared for bad permissions?
-3. Which tool identified the port conflict?
-4. Why is `journalctl` better than guessing?
-5. Why make only one controlled break at a time?
-
-## Exit criterion
-
-He can diagnose:
-
-```text
-bad ExecStart path
-bad executable permission
-port conflict
-```
-
-without being told the answer.
+1. Which error appeared for the missing script? "No such file or directory". 
+2. Which error appeared for bad permissions? "Permission denied". 
+3. Which tool identified the port conflict? ss or lsof. 
+4. Why is `journalctl` better than guessing? It shows the real error messages and timestamps instead of speculation. 
+5. Why make only one controlled break at a time? So the exact cause is clear and easy to isolate. 
