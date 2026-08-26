@@ -1,47 +1,6 @@
 # Day 8 — Deployment and Backup Runbooks
 
-## Expected time
-
-```text
-Target: 120–180 minutes
-Minimum: 90 minutes
-Deep version: 3 hours by actually following both runbooks
-```
-
-## Goal
-
-Turn understanding into repeatable procedures.
-
-A runbook is a clear procedure you can follow during a real task.
-
-Today polish:
-
-```text
-DEPLOYMENT.md
-BACKUP_RESTORE.md
-```
-
-
 ---
-
-# Daily depth rule
-
-Do not stop because the commands ran successfully.
-
-Stop only when you can explain:
-
-```text
-What question was I asking?
-What command did I run?
-What exact evidence did I get?
-What does it prove?
-What does it not prove?
-What is the next narrow question?
-```
-
-If you finish in under 60 minutes, you probably did it too shallowly. Add one extra break/fix case or rewrite your explanation more clearly.
-
-
 # Part 1 — Deployment runbook
 
 `DEPLOYMENT.md` should include:
@@ -64,18 +23,7 @@ If you finish in under 60 minutes, you probably did it too shallowly. Add one ex
 ## Rollback notes
 ```
 
-# Part 2 — Include exact commands and explanations
-
-For each command include:
-
-```text
-Command:
-What it proves:
-What it does not prove:
-Risk if wrong:
-```
-
-# Part 3 — Backup/restore runbook
+# Part 2 — Backup/restore runbook
 
 `BACKUP_RESTORE.md` should include:
 
@@ -92,7 +40,7 @@ Risk if wrong:
 ## Risks
 ```
 
-# Part 4 — Practice the runbook
+# Part 3 — Practice the runbook
 
 Actually follow your runbook once.
 
@@ -110,7 +58,7 @@ Correction made:
 Evidence that runbook now works:
 ```
 
-# Part 5 — Pre-deployment checklist
+# Part 4 — Pre-deployment checklist
 
 Add to `DEPLOYMENT.md`:
 
@@ -128,14 +76,4 @@ Add to `DEPLOYMENT.md`:
 [ ] Nginx access log checked
 [ ] Nginx error log checked
 [ ] app journal checked
-```
-
-# Completion checklist
-
-```text
-[ ] DEPLOYMENT.md is usable.
-[ ] BACKUP_RESTORE.md is usable.
-[ ] Commands include explanations.
-[ ] I followed the runbook once.
-[ ] I fixed unclear steps.
 ```

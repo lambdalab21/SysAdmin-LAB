@@ -1,42 +1,5 @@
 # Day 9 — Troubleshooting Guide and Commands I Can Explain
 
-## Expected time
-
-```text
-Target: 120–180 minutes
-Minimum: 90 minutes
-Deep version: 3 hours with symptom drills
-```
-
-## Goal
-
-Create a troubleshooting guide organized by layer.
-
-The goal is not to memorize commands.
-
-The goal is to know which command answers which question.
-
-
----
-
-# Daily depth rule
-
-Do not stop because the commands ran successfully.
-
-Stop only when you can explain:
-
-```text
-What question was I asking?
-What command did I run?
-What exact evidence did I get?
-What does it prove?
-What does it not prove?
-What is the next narrow question?
-```
-
-If you finish in under 60 minutes, you probably did it too shallowly. Add one extra break/fix case or rewrite your explanation more clearly.
-
-
 # Part 1 — Commands by layer
 
 Create or improve:
@@ -64,15 +27,6 @@ Organize commands like this:
 # Part 2 — Fill in command cards
 
 For each command, use:
-
-```text
-Command:
-Question it answers:
-Expected output:
-What it proves:
-What it does not prove:
-Common mistake:
-```
 
 Include at least:
 
@@ -133,20 +87,10 @@ Verification:
 Answer without commands first, then verify.
 
 ```text
-What do I check if browser cannot resolve site6.local?
-What do I check if Nginx returns 502?
-What do I check if POST fails?
-What do I check if data disappears after restart?
-What do I check if systemd says failed?
-What do I check if Nginx reload fails?
-```
-
-# Completion checklist
-
-```text
-[ ] COMMANDS_I_CAN_EXPLAIN.md is organized by layer.
-[ ] Each command has what it proves and does not prove.
-[ ] TROUBLESHOOTING.md is organized by symptom.
-[ ] I can choose commands based on the question.
-[ ] I can explain 502, failed POST, and name resolution problems.
+What do I check if browser cannot resolve site6.local? The browser can't resolve `site6.local`. 
+What do I check if Nginx returns 502? Check whether the backend process is running and listening, then check Nginx's error log for the specific connect failure. 
+What do I check if POST fails? Check the app/service logs for errors, and check filesystem permissions/ownership on the database and data directory. 
+What do I check if data disappears after restart? CHeck whether the app is writing to the expected persistent path rather than a temp location, and check that a deployment didn't overwrite the data directory. 
+What do I check if systemd says failed? Run `systemctl status` for the failure reason and `journalctl -u site6-app` for the actual error. 
+What do I check if Nginx reload fails? Run `sudo nginx -t` to test the config syntax before reloading. 
 ```

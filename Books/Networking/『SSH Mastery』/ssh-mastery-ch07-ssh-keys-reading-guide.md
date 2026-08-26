@@ -16,29 +16,6 @@
 - Key-based login
 - SSH agent basics
 
-### Skim
-
-- Key-distribution at scale if the chapter touches it lightly
-- Old key types unless Lucas says they matter historically
-
-### Skip for now
-
-- Do not skip security warnings. Do not rush into passwordless automation yet. Automation belongs later, after key safety is understood.
-
-## Feynman analogy
-
-A public key is a lock you install on servers. Your private key is the only key that opens that lock. A passphrase protects the private key if stolen. An agent holds the unlocked key for a working session.
-
-Now write where the analogy fails:
-
-```text
-The analogy helps because:
-
-The analogy fails because:
-
-The real SSH idea is:
-```
-
 ## Before reading
 
 Answer before opening the chapter:

@@ -1,47 +1,5 @@
 # Day 5 — Safe Deployment with Git and rsync
 
-## Expected time
-
-```text
-Target: 120–180 minutes
-Minimum: 90 minutes
-Deep version: 3 hours with one intentional rollback/restore discussion
-```
-
-## Goal
-
-Deploy code without destroying data.
-
-Key idea:
-
-```text
-Git protects code history.
-Backups protect live data.
-rsync deploys files.
-curl and logs prove what the server served.
-```
-
-
----
-
-# Daily depth rule
-
-Do not stop because the commands ran successfully.
-
-Stop only when you can explain:
-
-```text
-What question was I asking?
-What command did I run?
-What exact evidence did I get?
-What does it prove?
-What does it not prove?
-What is the next narrow question?
-```
-
-If you finish in under 60 minutes, you probably did it too shallowly. Add one extra break/fix case or rewrite your explanation more clearly.
-
-
 # Part 1 — Git review
 
 In local project:
@@ -195,18 +153,4 @@ Required sections:
 ## Log verification
 ## Data survival check
 ## Rollback or restore notes
-```
-
-# Completion checklist
-
-```text
-[ ] I checked Git status.
-[ ] I inspected git diff.
-[ ] I committed intentionally.
-[ ] I backed up data.
-[ ] I inspected rsync dry run.
-[ ] I deployed code.
-[ ] I proved code changed.
-[ ] I proved data survived.
-[ ] I updated DEPLOYMENT.md.
 ```
