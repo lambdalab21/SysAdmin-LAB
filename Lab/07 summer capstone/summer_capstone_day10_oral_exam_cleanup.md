@@ -1,53 +1,11 @@
 # Day 10 — Oral Exam, Cleanup, and Final Reflection
 
-## Expected time
-
-```text
-Target: 90–150 minutes
-Minimum: 60 minutes
-Deep version: 2–3 hours with a full no-notes oral exam
-```
-
-## Goal
-
-Prove ownership.
-
-Today is not about adding features.
-
-Today is about answering clearly:
-
-```text
-What did I build?
-How does it work?
-How do I deploy it?
-How do I protect data?
-How do I troubleshoot it?
-```
-
 
 ---
 
-# Daily depth rule
-
-Do not stop because the commands ran successfully.
-
-Stop only when you can explain:
-
-```text
-What question was I asking?
-What command did I run?
-What exact evidence did I get?
-What does it prove?
-What does it not prove?
-What is the next narrow question?
-```
-
-If you finish in under 60 minutes, you probably did it too shallowly. Add one extra break/fix case or rewrite your explanation more clearly.
-
-
 # Part 1 — Oral exam
 
-Answer out loud without notes first.
+Answer without notes first.
 
 Then check notes.
 
@@ -57,51 +15,35 @@ Then check notes.
 A user opens http://site6.local/.
 Explain every step until SQLite is reached.
 ```
+1.) The browser resolves `site6.local` to the server IP.
+2.) It sends HTTP GET to port 80. 
+3.) Nginx accepts the connection on Port 80, matches `server_name site6.local`, and uses `proxy_pass` to forward the request to the app backend. 
+4.) The systemd unit `site6-app` keeps the Flask process running. 
+5.) Flask handles the route and opens the SQLite database. 
+6.) SQLite reads/writes the file and returns data. This response flows back through flask, nginx, and to the browser. 
 
 ## Nginx
 
 ```text
-What does Nginx do?
-What is server_name?
-What is proxy_pass?
-Why does Nginx listen on port 80?
+What does Nginx do? Reerses proxy and web server. 
+What is server_name? The hostname this `server` block responds to. 
+What is proxy_pass? Directive that forwards the request to the upstream app. 
+Why does Nginx listen on port 80? Standard unencrypted HTTP port so browsers can reach the site without specifying a port. 
 ```
 
 ## systemd
 
 ```text
-What does systemd do?
-What is ExecStart?
-What is Environment=SITE6_DB?
-What is the difference between start and enable?
-```
-
-## Database
-
-```text
-Where is the database?
-Who owns it?
-Why is it not inside /opt/site6-app?
-How do you back it up?
-How do you test restore?
-```
-
-## Deployment
-
-```text
-What is the safe deployment sequence?
-Why run git diff?
-Why run rsync dry run?
-Why check old data after deployment?
+What does systemd do? Starts, stops, and supervises the `site6-app` service. Manages its lifecycle and environment. 
+What is ExecStart? The exact command that launches the application process. 
+What is Environment=SITE6_DB? Sets the environment variable that tells the app where the SQLite files live. 
 ```
 
 ## Troubleshooting
 
 ```text
-How do you troubleshoot 502?
-How do you troubleshoot failed POST?
-How do you troubleshoot wrong site showing?
-How do you troubleshoot data missing?
+How do you troubleshoot failed POST? App error, permission, or CSRF/validation issue -> check app logs and Nginx error log. 
+How do you troubleshoot wrong site showing? `server_name` mismatch or missing HOST reader -> verify NGinx configurations and `curl -H 'host: site6.local'
 ```
 
 # Part 2 — Write ORAL_EXAM_ANSWERS.md
@@ -145,25 +87,13 @@ git status
 git log --oneline -n 5
 ```
 
-Write:
-
-```text
-Service health:
-HTTP health:
-Error log:
-Git status:
-Anything to clean up:
-```
 
 # Part 4 — Final package
 
 Confirm these files exist:
 
 ```text
-README.md
-ARCHITECTURE.md
 DEPLOYMENT.md
-BACKUP_RESTORE.md
 TROUBLESHOOTING.md
 COMMANDS_I_CAN_EXPLAIN.md
 ORAL_EXAM_ANSWERS.md
@@ -180,27 +110,11 @@ LESSONS_LEARNED.md
 Write:
 
 ```text
-The most important thing I learned:
-The most confusing thing at first:
-The command I understand best now:
-The failure I can diagnose best now:
-The failure I still need to practice:
-The tool I am glad I did not rush into:
-What I am ready to learn next:
-```
-
-# Final completion standard
-
-You are done when you can say:
-
-```text
-I can explain my app from browser to database.
-I can deploy code without deleting data.
-I can back up and test restore.
-I can troubleshoot by layer.
-I can explain the commands I use.
-I know which tools I delayed and why.
-```
-
-That is a successful summer.
+The most important thing I learned: The full request path from browser to SQLite. 
+The most confusing thing at first: How Nginx, systemd, and the apps fit together. 
+The command I understand best now: Systemctl status / restart and the proxy flow. 
+The failure I can diagnose best now: 502 Bad Gateway. 
+The failure I still need to practice: Intermittent data or permission issues. 
+The tool I am glad I did not rush into: Docker/containers. 
+What I am ready to learn next: More robust backup automation and monitoring. 
 ```
