@@ -5,7 +5,10 @@ This guide is for Chapter 35, **Arrays**, from William Shotts's *The Linux Comma
 Use this chapter as a practical introduction to Bash arrays, not as a reason to turn shell scripts into Python programs.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/publish
 Feynman rule for this chapter:
 
 ```text
@@ -23,6 +26,9 @@ Then use printf to inspect it.
 Only after that use the values in a loop or command.
 ```
 
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
 Working directory for all three days:
 
@@ -52,7 +58,10 @@ Array Operations
 ```
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/publish
 Pay special attention to subsections like these if they appear in your edition:
 
 ```text
@@ -91,6 +100,9 @@ Do not type yet. First answer:
 2. Why might counting array elements be useful?
 3. Why might seeing the used indexes matter?
 
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
 ---
 
@@ -98,6 +110,7 @@ Do not type yet. First answer:
 
 Answer without looking back:
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 1. How do you output every element of an array? Use "${array[@]}".
 2. How do you count the number of elements? Use ${#array[@]}
@@ -108,6 +121,8 @@ Answer without looking back:
 7. Why can array indexes have gaps? Deleting an element removes that index without renumbering the remaining elements. 
 8. Why should you preview before using arrays with `rm`, `mv`, `cp`, or `chmod`? Previewing helps prevent accidental changes to the wrong files. This is especially helpful when names contain spaces and/or unexpected values. 
 =======
+=======
+>>>>>>> origin/publish
 1. How do you output every element of an array?
 2. How do you count the number of elements?
 3. How do you show the indexes used by an array?
@@ -116,6 +131,9 @@ Answer without looking back:
 6. How do you delete the whole array?
 7. Why can array indexes have gaps?
 8. Why should you preview before using arrays with `rm`, `mv`, `cp`, or `chmod`?
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
 
 ---
@@ -123,7 +141,10 @@ Answer without looking back:
 # Exercise 1: Count and inspect elements
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/publish
 ## Skill being gained
 
 He is learning to inspect array contents before using them.
@@ -138,6 +159,9 @@ What indexes are used?
 What should each printf line show?
 ```
 
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
 ## Commands
 
@@ -164,9 +188,15 @@ bash day2-array-inspect.sh
 Answer:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 1. What does `${#servers[@]}` mean? ${#servers[@]} is the number of elements in servers. 
 2. What does `${!servers[@]}` mean? $(!servers[@]) expands to the indexes currently used in servers. 
 3. Why is `printf` better than trusting your memory? printf shows the actual array contents and structure instead of relying on assumptions. 
+=======
+1. What does `${#servers[@]}` mean?
+2. What does `${!servers[@]}` mean?
+3. Why is `printf` better than trusting your memory?
+>>>>>>> origin/publish
 =======
 1. What does `${#servers[@]}` mean?
 2. What does `${!servers[@]}` mean?
@@ -178,7 +208,10 @@ Answer:
 # Exercise 2: Loop safely over array elements
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/publish
 ## Skill being gained
 
 He is learning the safest common loop pattern for arrays.
@@ -197,6 +230,9 @@ What value should item have on the first pass?
 What value should item have on the last pass?
 ```
 
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
 ## Commands
 
@@ -219,15 +255,21 @@ bash day2-loop-array.sh
 Answer:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 1. Why is `"${files[@]}"` quoted? "${files[@]}" is quoted so each array element stays a single item, even if it contains spaces. 
 2. Why is `$file` quoted inside the loop? "$file" is quoted so the filename is passed to printf as one value. 
 3. What would happen if `daily report.txt` were split into two words? It would become daily and report.txt, which could make the script act on the wrong files. 
 4. Why does the script say `Would process` instead of actually changing files? It's a safe preview. It shows what would happen without modifying anything.
 =======
+=======
+>>>>>>> origin/publish
 1. Why is `"${files[@]}"` quoted?
 2. Why is `$file` quoted inside the loop?
 3. What would happen if `daily report.txt` were split into two words?
 4. Why does the script say `Would process` instead of actually changing files?
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
 
 ---
@@ -235,7 +277,10 @@ Answer:
 # Exercise 3: Append and delete elements
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/publish
 ## Skill being gained
 
 He is learning how arrays change over time.
@@ -251,6 +296,9 @@ What happens after deleting index 1?
 Will the remaining elements shift automatically?
 ```
 
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
 ## Commands
 
@@ -284,22 +332,31 @@ bash day2-append-delete.sh
 Answer:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 1. What did `servers+=(cache01)` do? servers+=(cache01) added cache01 as a new final element. 
 2. What did `unset 'servers[1]'` do? unset 'servers[1]' removed the element at index 1.  
 3. Did the indexes shift after deleting index 1? No. 
 4. Why should you not assume the indexes are always continuous? Array elements can be deleted or assigned at specific indexes, leaving unused indexes. 
 =======
+=======
+>>>>>>> origin/publish
 1. What did `servers+=(cache01)` do?
 2. What did `unset 'servers[1]'` do?
 3. Did the indexes shift after deleting index 1?
 4. Why should you not assume the indexes are always continuous?
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
 
 ---
 
 # Exercise 4: Sort an array safely
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/publish
 
 ## Skill being gained
 
@@ -315,6 +372,9 @@ What order should sort produce?
 Will the original array change automatically, or do we need to store the result?
 ```
 
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
 ## Commands
 
@@ -341,15 +401,21 @@ bash day2-sort-array.sh
 Answer:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 1. What did `printf '%s\n' "${names[@]}"` produce? It printed each name on its own line
 2. What did `sort` do? `sort` arranges those lines alphabetically. 
 3. What did `mapfile -t sorted_names` store? It read the sorted lines into the `sorted_names` array, one line per element while removing trailing newline characters. 
 4. Why is this more complex than sorting a plain text file? A text file is already lines of text. An array must first be converted into lines, sorted, and read back into an array.
 =======
+=======
+>>>>>>> origin/publish
 1. What did `printf '%s\n' "${names[@]}"` produce?
 2. What did `sort` do?
 3. What did `mapfile -t sorted_names` store?
 4. Why is this more complex than sorting a plain text file?
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
 
 Do not worry if process substitution looks advanced. The main lesson is:
@@ -357,8 +423,11 @@ Do not worry if process substitution looks advanced. The main lesson is:
 ```text
 Array values can be sent through text tools, but inspect each stage.
 <<<<<<< HEAD
+<<<<<<< HEAD
 ```
 =======
+=======
+>>>>>>> origin/publish
 ```
 
 ---
@@ -376,4 +445,7 @@ I can delete an element with unset 'array[index]'.
 I know indexes may have gaps.
 I preview array contents before using them in dangerous commands.
 ```
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish

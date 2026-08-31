@@ -1,7 +1,10 @@
 # TLCL Chapter 35: Arrays
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/publish
 This guide is for Chapter 35, **Arrays**, from William Shotts's *The Linux Command Line*.
 
 Use this chapter as a practical introduction to Bash arrays, not as a reason to turn shell scripts into Python programs.
@@ -40,6 +43,9 @@ Always quote array expansions unless you have a specific reason not to.
 
 ---
 
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
 # Day 1: Indexed Arrays, Creation, Access, and Expansion
 
@@ -69,7 +75,10 @@ He is learning how Bash can keep a small list of related values without creating
 ---
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/publish
 # Before reading: Feynman preview
 
 Explain this before reading:
@@ -95,11 +104,15 @@ Do not type yet. First answer:
 
 ---
 
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
 # After reading: concept questions
 
 Answer without looking back:
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 1. What is an array? A variable that can hold multiple values under one name. 
 2. What is an array element? One individual value stored in the array.  
@@ -110,6 +123,8 @@ Answer without looking back:
 7. Why are braces needed in `${array[0]}`? So that bash knows the array name and index; without braces the expansion is ambiguous. 
 8. Why should array values often be quoted? To protect spaces and special characters in the values. 
 =======
+=======
+>>>>>>> origin/publish
 1. What is an array?
 2. What is an array element?
 3. What is an array index or subscript?
@@ -120,6 +135,9 @@ Answer without looking back:
 8. Why should array values often be quoted?
 
 Do not do the exercises until these are answered.
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
 
 ---
@@ -127,7 +145,10 @@ Do not do the exercises until these are answered.
 # Exercise 1: Create and inspect a simple array
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/publish
 ## Skill being gained
 
 He is learning to create an indexed array and inspect individual elements.
@@ -143,6 +164,9 @@ Which value is at index 1?
 Which value is at index 2?
 ```
 
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
 ## Commands
 
@@ -175,9 +199,15 @@ ${servers[0]} expands to the first element.
 Then answer:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 1. Why is the first item index `0`, not `1`? Bash indexed arrays are zero-based by design. 
 2. What would `${servers[3]}` print? Nothing. 
 3. How would you test that? `printf '<%s>\n' "${servers[3]}`
+=======
+1. Why is the first item index `0`, not `1`?
+2. What would `${servers[3]}` print?
+3. How would you test that?
+>>>>>>> origin/publish
 =======
 1. Why is the first item index `0`, not `1`?
 2. What would `${servers[3]}` print?
@@ -188,7 +218,10 @@ Then answer:
 
 # Exercise 2: Assignment by index
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/publish
 
 ## Skill being gained
 
@@ -213,6 +246,9 @@ Will servers[0] change?
 Will servers[2] change?
 ```
 
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
 ## Commands
 
@@ -236,9 +272,15 @@ bash day1-array-assignment.sh
 Answer:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 1. Which element changed? Index 1. 
 2. Which elements stayed the same? Indexes zero and two. 
 3. Why is this better than creating new variable names? Related values stay together under one name instead of many separate variables. 
+=======
+1. Which element changed?
+2. Which elements stayed the same?
+3. Why is this better than creating new variable names?
+>>>>>>> origin/publish
 =======
 1. Which element changed?
 2. Which elements stayed the same?
@@ -249,7 +291,10 @@ Answer:
 
 # Exercise 3: Values with spaces
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/publish
 
 ## Skill being gained
 
@@ -264,6 +309,9 @@ If an array element contains a space, what could go wrong when it is not quoted?
 What should printf show if the value is preserved correctly?
 ```
 
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
 ## Commands
 
@@ -286,9 +334,15 @@ bash day1-array-spaces.sh
 Answer:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 1. Why did the array use quotes around `daily report.txt`? So the space is part of the single element, not a separator. 
 2. Why did the expansion use quotes around `${files[0]}`? So the whole element is treated as one argument. 
 3. What danger would appear if these were real filenames? Word-splitting or globbing could turn one filename into many wrong arguments. 
+=======
+1. Why did the array use quotes around `daily report.txt`?
+2. Why did the expansion use quotes around `${files[0]}`?
+3. What danger would appear if these were real filenames?
+>>>>>>> origin/publish
 =======
 1. Why did the array use quotes around `daily report.txt`?
 2. Why did the expansion use quotes around `${files[0]}`?
@@ -300,7 +354,10 @@ Answer:
 # Exercise 4: First look at all elements
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/publish
 ## Skill being gained
 
 He is learning that expanding one element and expanding all elements are different operations.
@@ -315,6 +372,9 @@ printf '<%s>\n' "${files[@]}"
 printf '<%s>\n' "${files[*]}"
 ```
 
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
 ## Commands
 
@@ -342,12 +402,15 @@ bash day1-array-all-elements.sh
 Answer:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 1. What did `${files[0]}` produce? Only the first element. 
 2. What did `"${files[@]}"` produce? Each element as a separate word. 
 3. What did `"${files[*]}"` produce? All elements joined into one word. 
 4. Which form is usually safer when looping over elements? `"${array[0]}"`
 
 =======
+=======
+>>>>>>> origin/publish
 1. What did `${files[0]}` produce?
 2. What did `"${files[@]}"` produce?
 3. What did `"${files[*]}"` produce?
@@ -384,4 +447,7 @@ for file in "${files[@]}"; do
     echo "$file"
 done
 ```
+<<<<<<< HEAD
+>>>>>>> origin/publish
+=======
 >>>>>>> origin/publish
